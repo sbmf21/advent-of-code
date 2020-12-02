@@ -9,7 +9,7 @@ import java.io.IOException;
 public class Day1 implements IDay {
 
     public char[] loadInstructions() {
-        try (var reader = AdventOfCode.getResource("floors")) {
+        try (var reader = AdventOfCode.getResource("directions")) {
             StringBuilder input = new StringBuilder();
 
             String line;
