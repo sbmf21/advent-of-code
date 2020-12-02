@@ -1,3 +1,4 @@
+#!/usr/local/bin/lua
 
 print('Part 1:')
 require 'part1'
