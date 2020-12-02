@@ -32,6 +32,6 @@ public class Part2 extends APart<Day1> {
     }
 
     @Override public int partNumber() {
-        return 0;
+        return 2;
     }
 }
