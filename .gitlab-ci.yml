@@ -1,0 +1,24 @@
+variables:
+  MAVEN_CLI_OPTS: "--batch-mode"
+  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
+
+.maven:
+  image: maven:latest
+  before_script:
+    - cd 2015
+  cache:
+    paths:
+      - 2015/.m2/repository/
+      - 2015/target/
+
+verify2015:
+  extends: .maven
+  stage: build
+  script:
+    - mvn $MAVEN_CLI_OPTS compile
+
+test2015:
+  extends: .maven
+  stage: test
+  script:
+    - mvn $MAVEN_CLI_OPTS test
