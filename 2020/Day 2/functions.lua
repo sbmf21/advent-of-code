@@ -12,8 +12,8 @@ local function split(input, match)
     return sparts
 end
 
-function parsePasswords(file)
-    local lines = io.lines(file)
+local function parsePasswords()
+    local lines = io.lines('passwords.txt')
     local passwords = {}
 
     for line in lines do
@@ -30,4 +30,17 @@ function parsePasswords(file)
     end
 
     return passwords
+end
+
+function numValid(isValid)
+    local count = 0
+    local passwords = parsePasswords()
+
+    for _, password in ipairs(passwords) do
+        if(isValid(password)) then
+            count = count + 1
+        end
+    end
+
+    return count
 end
