@@ -2,6 +2,7 @@
 
 My super epic awesome solutions for the hardest puzzles ever.
 
-Year | Language
---- | ---
-*2020* | `lua`
+Year | Language | Notes
+--- | --- | ---
+*2015* | `java` | Made in 2020
+*2020* | `lua` | 
