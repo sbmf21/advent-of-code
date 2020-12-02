@@ -5,13 +5,4 @@ local function isValid(password)
     return n >= password.min and n <= password.max
 end
 
-passwords = parsePasswords('passwords.txt')
-count = 0
-
-for k, v in ipairs(passwords) do
-    if isValid(v) then
-        count = count + 1
-    end
-end
-
-print(count)
+print(numValid(isValid))
