@@ -11,7 +11,7 @@ variables:
       - 2015/.m2/repository/
       - 2015/target/
 
-verify2015:
+compile2015:
   extends: .maven
   stage: build
   script:
