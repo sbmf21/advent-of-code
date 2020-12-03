@@ -26,13 +26,13 @@ public class Part2 extends APart<Day3> {
 
     private void move(Iterator<Direction> directions, HashMap<Point, Integer> presents, Santa santa, Santa robotSanta) {
         while (directions.hasNext()) {
-            santa.deliverPresent(directions.next(), presents);
+            santa.deliverPresent(directions, presents);
 
             if (!directions.hasNext()) {
                 break;
             }
 
-            robotSanta.deliverPresent(directions.next(), presents);
+            robotSanta.deliverPresent(directions, presents);
         }
     }
 

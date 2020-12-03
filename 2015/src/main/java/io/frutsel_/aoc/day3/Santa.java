@@ -1,6 +1,7 @@
 package io.frutsel_.aoc.day3;
 
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class Santa {
 
@@ -34,6 +35,9 @@ public class Santa {
         }
     }
 
+    public void deliverPresent(Iterator<Direction> directions, HashMap<Point, Integer> presents) {
+        deliverPresent(directions.next(), presents);
+    }
 
     public Point getPoint() {
         return new Point(x, y);
