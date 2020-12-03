@@ -1,4 +1,6 @@
 import io.frutsel_.aoc.day2.Day2;
+import io.frutsel_.aoc.day2.Part1;
+import io.frutsel_.aoc.day2.Part2;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,6 +15,27 @@ public class Day2Test {
     @Before
     public void createDay() {
         day = new Day2();
+    }
+
+    @Test
+    public void testDayNumber() {
+        assertEquals(2, day.dayNumber());
+    }
+
+    @Test
+    public void testPart1Output() throws IOException {
+        var part = new Part1(day);
+
+        assertEquals("1586300", part.solve());
+        assertEquals(1, part.partNumber());
+    }
+
+    @Test
+    public void testPart2Output() throws IOException {
+        var part = new Part2(day);
+
+        assertEquals("3737498", part.solve());
+        assertEquals(2, part.partNumber());
     }
 
     @Test
