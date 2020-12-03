@@ -8,19 +8,26 @@ public class Part2 extends APart<Day1> {
         super(day);
     }
 
-    @Override public void solve() {
-        var chars = day.loadInstructions();
+    @Override public int solve() {
+        return findFloor(day.loadInstructions());
+    }
 
+    private int findFloor(char[] chars) {
         int floor = 0;
 
         for (int i = 0; i < chars.length; ) {
             floor += getDirection(chars[i++]);
 
-            if (floor == -1) {
-                System.out.println(i);
+            if (isFinalFloor(floor)) {
                 break;
             }
         }
+
+        return floor;
+    }
+
+    private boolean isFinalFloor(int floor) {
+        return floor == -1;
     }
 
     private int getDirection(char c) {
