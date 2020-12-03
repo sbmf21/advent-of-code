@@ -10,10 +10,10 @@ public class Part1 extends APart<Day1> {
         super(day);
     }
 
-    @Override public int solve() {
+    @Override public String solve() {
         var map = countChars(day.loadInstructions());
 
-        return map.getOrDefault('(', 0) - map.getOrDefault(')', 0);
+        return Integer.toString(map.getOrDefault('(', 0) - map.getOrDefault(')', 0));
     }
 
     private HashMap<Character, Integer> countChars(char[] chars) {

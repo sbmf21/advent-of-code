@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 
     protected final D day;
 
-    public abstract int solve();
+    public abstract String solve();
 
     public abstract int partNumber();
 }

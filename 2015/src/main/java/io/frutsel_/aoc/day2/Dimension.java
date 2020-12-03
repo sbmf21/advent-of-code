@@ -8,8 +8,8 @@ public class Dimension {
         var parts = line.split("x");
 
         return new Dimension(
-                Integer.parseInt(parts[0]),
-                Integer.parseInt(parts[1]),
+                Integer.parseInt(parts[0]), //
+                Integer.parseInt(parts[1]), //
                 Integer.parseInt(parts[2])
         );
     }
@@ -22,16 +22,16 @@ public class Dimension {
 
     public int[] sides() {
         return new int[]{
-                l * w,
-                w * h,
+                l * w, //
+                w * h, //
                 h * l
         };
     }
 
     public int[] perimeters() {
         return new int[]{
-                2 * (l + w),
-                2 * (w + h),
+                2 * (l + w), //
+                2 * (w + h), //
                 2 * (h + l)
         };
     }
