@@ -10,29 +10,23 @@ public class Part1 extends APart<Day3> {
         super(day);
     }
 
-    @Override public String solve() {
+    @Override
+    public String solve() {
+        var presents = day.createMap(1);
 
-        var directions = day.parseDirections();
-        var grid       = day.createGrid();
+        move(presents, day.createSanta());
 
-        var houses = new HashMap<House, Integer>();
-        houses.put(new House(0, 0), 1);
-
-        for (Direction direction: directions) {
-            direction.apply.accept(grid);
-            var house = grid.getHouse();
-
-            if (!houses.containsKey(house)) {
-                houses.put(house, 1);
-            } else {
-                houses.replace(house, houses.get(house) + 1);
-            }
-        }
-
-        return Integer.toString(houses.size());
+        return Integer.toString(presents.size());
     }
 
-    @Override public int partNumber() {
+    private void move(HashMap<Point, Integer> presents, Santa santa) {
+        for (Direction direction : day.parseDirections()) {
+            santa.deliverPresent(direction, presents);
+        }
+    }
+
+    @Override
+    public int partNumber() {
         return 1;
     }
 }

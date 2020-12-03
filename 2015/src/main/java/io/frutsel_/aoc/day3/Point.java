@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.Objects;
 
-@RequiredArgsConstructor public class House {
+@RequiredArgsConstructor public class Point {
 
     private final int x, y;
 
@@ -17,7 +17,7 @@ import java.util.Objects;
             return false;
         }
 
-        House house = (House) o;
+        Point house = (Point) o;
 
         return x == house.x && y == house.y;
     }

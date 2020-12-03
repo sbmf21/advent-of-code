@@ -6,18 +6,18 @@ import java.util.function.Consumer;
 
 @RequiredArgsConstructor public enum Direction {
 
-    NORTH('^', Grid::moveUp),
-    SOUTH('v', Grid::moveDown),
-    EAST('>', Grid::moveRight),
-    WEST('<', Grid::moveLeft);
+    NORTH('^', Santa::moveUp),
+    SOUTH('v', Santa::moveDown),
+    EAST('>', Santa::moveRight),
+    WEST('<', Santa::moveLeft);
 
     /**
      * <code>values()</code> always calculates the values from an enum.
      * Give the fact that enums are constant, this results in many calculations.
      */
-    public static final Direction[]    CACHE = Direction.values();
-    private final       char           c;
-    public final        Consumer<Grid> apply;
+    public static final Direction[]     CACHE = Direction.values();
+    private final       char            c;
+    public final        Consumer<Santa> move;
 
     public static Direction fromChar(char c) {
 
