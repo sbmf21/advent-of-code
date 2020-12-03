@@ -43,7 +43,7 @@ public class Dimension {
     public int size() {
         var size = 0;
 
-        for (var side: sides()) {
+        for (var side : sides()) {
             size += side * 2;
         }
 

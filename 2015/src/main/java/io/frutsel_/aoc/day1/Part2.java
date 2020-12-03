@@ -2,13 +2,16 @@ package io.frutsel_.aoc.day1;
 
 import io.frutsel_.aoc.APart;
 
+import java.io.IOException;
+
 public class Part2 extends APart<Day1> {
 
     public Part2(Day1 day) {
         super(day);
     }
 
-    @Override public String solve() {
+    @Override
+    public String solve() throws IOException {
         return findFloor(day.loadInstructions());
     }
 
@@ -23,7 +26,7 @@ public class Part2 extends APart<Day1> {
             }
         }
 
-        return "404: Not Found";
+        throw new IllegalStateException("Did not reach basement!");
     }
 
     private boolean isFinalFloor(int floor) {
@@ -38,7 +41,8 @@ public class Part2 extends APart<Day1> {
         };
     }
 
-    @Override public int partNumber() {
+    @Override
+    public int partNumber() {
         return 2;
     }
 }

@@ -2,6 +2,7 @@ package io.frutsel_.aoc.day1;
 
 import io.frutsel_.aoc.APart;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 public class Part1 extends APart<Day1> {
@@ -10,16 +11,22 @@ public class Part1 extends APart<Day1> {
         super(day);
     }
 
-    @Override public String solve() {
+    @Override
+    public String solve() throws IOException {
         var map = countChars(day.loadInstructions());
 
-        return Integer.toString(map.getOrDefault('(', 0) - map.getOrDefault(')', 0));
+        return Integer.toString(countDirections(map));
+    }
+
+    private int countDirections(HashMap<Character, Integer> map) {
+        return map.getOrDefault('(', 0) //
+                - map.getOrDefault(')', 0);
     }
 
     private HashMap<Character, Integer> countChars(char[] chars) {
         var map = new HashMap<Character, Integer>();
 
-        for (var c: chars) {
+        for (var c : chars) {
             if (!map.containsKey(c)) {
                 map.put(c, 0);
             }
@@ -30,7 +37,8 @@ public class Part1 extends APart<Day1> {
         return map;
     }
 
-    @Override public int partNumber() {
+    @Override
+    public int partNumber() {
         return 1;
     }
 }

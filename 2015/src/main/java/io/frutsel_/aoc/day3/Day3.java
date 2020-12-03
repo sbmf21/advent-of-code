@@ -1,17 +1,16 @@
 package io.frutsel_.aoc.day3;
 
+import io.frutsel_.aoc.ADay;
 import io.frutsel_.aoc.APart;
-import io.frutsel_.aoc.AdventOfCode;
-import io.frutsel_.aoc.IDay;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Day3 implements IDay {
+public class Day3 extends ADay {
 
     public ArrayList<Direction> parseDirections() {
-        try (var reader = AdventOfCode.getResource("day3/directions")) {
+        try (var reader = getResource()) {
             var directions = new ArrayList<Direction>();
 
             String line;
