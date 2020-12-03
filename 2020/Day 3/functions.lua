@@ -1,22 +1,31 @@
-local function readMap() return io.lines('map.txt') end
-local function sub(index, line) return line:sub(index, index) end
-local function calcIndex(current, line) return (current % #line) + 1 end
--- lua starts at index 1, not at 0
+local function calcIndex(current, line)
+    -- lua starts at index 1, not at 0
+    return (current % #line) + 1
+end
 
-function count (xStep, yStep)
-    local trees = 0; local x = 0; local y = 0
+local function findChar(current, line)
+    local index = calcIndex(current,line)
+
+    return line:sub(index, index)
+end
+
+local function readMap() 
+    local map = {}
+
+    for line in io.lines('map.txt') do
+        map[#map + 1] = line
+    end
+
+    return map
+end
+
+function count(xStep, yStep)
+    local trees = 0; local x = 0;
     local map = readMap()
 
-    for line in map do
-        if(y == 0) then
-            local index = calcIndex(x, line)
-            local char = sub(index, line)
-
-            if char == '#' then trees = trees + 1 end
-            x = x + xStep
-        end
-
-        y = (y + 1) % yStep
+    for y = 1, #map, yStep do
+        if findChar(x, map[y]) == '#' then trees = trees + 1 end
+        x = x + xStep
     end
 
     return trees
