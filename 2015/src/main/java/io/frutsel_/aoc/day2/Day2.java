@@ -11,14 +11,14 @@ public class Day2 implements IDay {
 
     public ArrayList<Dimension> parseDimensions() {
         try (var reader = AdventOfCode.getResource("wrappingPaper")) {
-            var list = new ArrayList<Dimension>();
+            var dimensions = new ArrayList<Dimension>();
 
             String line;
             while ((line = reader.readLine()) != null) {
-                list.add(Dimension.fromLine(line));
+                dimensions.add(Dimension.fromLine(line));
             }
 
-            return list;
+            return dimensions;
         } catch (IOException e) {
             return new ArrayList<>();
         }
@@ -39,7 +39,10 @@ public class Day2 implements IDay {
     }
 
     @Override public APart<?>[] parts() {
-        return new APart[]{new Part1(this), new Part2(this)};
+        return new APart[]{
+                new Part1(this), //
+                new Part2(this)
+        };
     }
 
     @Override public int dayNumber() {
