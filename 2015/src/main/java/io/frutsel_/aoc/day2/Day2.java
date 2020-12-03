@@ -1,16 +1,15 @@
 package io.frutsel_.aoc.day2;
 
+import io.frutsel_.aoc.ADay;
 import io.frutsel_.aoc.APart;
-import io.frutsel_.aoc.AdventOfCode;
-import io.frutsel_.aoc.IDay;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Day2 implements IDay {
+public class Day2 extends ADay {
 
-    public ArrayList<Dimension> parseDimensions() {
-        try (var reader = AdventOfCode.getResource("wrappingPaper")) {
+    public ArrayList<Dimension> parseDimensions() throws IOException {
+        try (var reader = getResource()) {
             var dimensions = new ArrayList<Dimension>();
 
             String line;
@@ -19,8 +18,6 @@ public class Day2 implements IDay {
             }
 
             return dimensions;
-        } catch (IOException e) {
-            return new ArrayList<>();
         }
     }
 
@@ -38,14 +35,16 @@ public class Day2 implements IDay {
         return smallest;
     }
 
-    @Override public APart<?>[] parts() {
+    @Override
+    public APart<?>[] parts() {
         return new APart[]{
                 new Part1(this), //
                 new Part2(this)
         };
     }
 
-    @Override public int dayNumber() {
+    @Override
+    public int dayNumber() {
         return 2;
     }
 }

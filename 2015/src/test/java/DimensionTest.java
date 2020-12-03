@@ -1,5 +1,3 @@
-package test.day2;
-
 import io.frutsel_.aoc.day2.Dimension;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,12 +9,14 @@ public class DimensionTest {
     private Dimension dimension1;
     private Dimension dimension2;
 
-    @Before public void setupDimensions() {
+    @Before
+    public void setupDimensions() {
         dimension1 = Dimension.fromLine("2x3x4");
         dimension2 = Dimension.fromLine("1x1x10");
     }
 
-    @Test public void testDimensionFromLine() {
+    @Test
+    public void testDimensionFromLine() {
         assertEquals(2, dimension1.l);
         assertEquals(3, dimension1.w);
         assertEquals(4, dimension1.h);
@@ -26,7 +26,8 @@ public class DimensionTest {
         assertEquals(10, dimension2.h);
     }
 
-    @Test public void testSides() {
+    @Test
+    public void testSides() {
         var sides = dimension1.sides();
 
         assertEquals(3, sides.length);
@@ -42,7 +43,8 @@ public class DimensionTest {
         assertEquals(10, sides[2]);
     }
 
-    @Test public void testPerimeters() {
+    @Test
+    public void testPerimeters() {
         var perimeters = dimension1.perimeters();
 
         assertEquals(3, perimeters.length);
@@ -58,12 +60,14 @@ public class DimensionTest {
         assertEquals(22, perimeters[2]);
     }
 
-    @Test public void testVolume() {
+    @Test
+    public void testVolume() {
         assertEquals(24, dimension1.volume());
         assertEquals(10, dimension2.volume());
     }
 
-    @Test public void testSize() {
+    @Test
+    public void testSize() {
         assertEquals(52, dimension1.size());
         assertEquals(42, dimension2.size());
     }
