@@ -25,7 +25,10 @@ public class Day1 implements IDay {
     }
 
     @Override public APart<?>[] parts() {
-        return new APart[]{new Part1(this), new Part2(this)};
+        return new APart[]{
+                new Part1(this), //
+                new Part2(this)
+        };
     }
 
     @Override public int dayNumber() {
