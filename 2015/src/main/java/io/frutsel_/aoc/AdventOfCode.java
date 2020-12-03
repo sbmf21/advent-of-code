@@ -29,7 +29,7 @@ public class AdventOfCode {
 
         for (var part: day.parts()) {
             System.out.printf("- Part %d%n", part.partNumber());
-            System.out.printf("  Answer: %d%n",part.solve());
+            System.out.printf("  Answer: %s%n",part.solve());
         }
     }
 }

@@ -8,22 +8,22 @@ public class Part2 extends APart<Day1> {
         super(day);
     }
 
-    @Override public int solve() {
+    @Override public String solve() {
         return findFloor(day.loadInstructions());
     }
 
-    private int findFloor(char[] chars) {
+    private String findFloor(char[] chars) {
         int floor = 0;
 
         for (int i = 0; i < chars.length; ) {
             floor += getDirection(chars[i++]);
 
             if (isFinalFloor(floor)) {
-                break;
+                return Integer.toString(i);
             }
         }
 
-        return floor;
+        return "404: Not Found";
     }
 
     private boolean isFinalFloor(int floor) {
