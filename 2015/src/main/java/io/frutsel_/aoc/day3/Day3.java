@@ -6,6 +6,7 @@ import io.frutsel_.aoc.IDay;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Day3 implements IDay {
 
@@ -15,7 +16,7 @@ public class Day3 implements IDay {
 
             String line;
             while ((line = reader.readLine()) != null) {
-                for (char c: line.toCharArray()) {
+                for (char c : line.toCharArray()) {
                     directions.add(Direction.fromChar(c));
                 }
             }
@@ -26,18 +27,28 @@ public class Day3 implements IDay {
         }
     }
 
-    public Grid createGrid() {
-        return new Grid();
+    public Santa createSanta() {
+        return new Santa();
     }
 
-    @Override public APart<?>[] parts() {
+    public HashMap<Point, Integer> createMap(int initialPresents) {
+        var map = new HashMap<Point, Integer>();
+
+        map.put(new Point(0, 0), initialPresents);
+
+        return map;
+    }
+
+    @Override
+    public APart<?>[] parts() {
         return new APart[]{
                 new Part1(this), //
                 new Part2(this)
         };
     }
 
-    @Override public int dayNumber() {
+    @Override
+    public int dayNumber() {
         return 3;
     }
 }
