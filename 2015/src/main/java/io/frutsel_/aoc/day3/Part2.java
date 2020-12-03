@@ -2,6 +2,7 @@ package io.frutsel_.aoc.day3;
 
 import io.frutsel_.aoc.APart;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -12,7 +13,7 @@ public class Part2 extends APart<Day3> {
     }
 
     @Override
-    public String solve() {
+    public String solve() throws IOException {
 
         Santa santa = day.createSanta(), robotSanta = day.createSanta();
         var directions = day.parseDirections().iterator();

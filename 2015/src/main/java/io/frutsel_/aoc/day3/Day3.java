@@ -9,7 +9,7 @@ import java.util.HashMap;
 
 public class Day3 extends ADay {
 
-    public ArrayList<Direction> parseDirections() {
+    public ArrayList<Direction> parseDirections() throws IOException {
         try (var reader = getResource()) {
             var directions = new ArrayList<Direction>();
 
@@ -21,8 +21,6 @@ public class Day3 extends ADay {
             }
 
             return directions;
-        } catch (IOException e) {
-            return new ArrayList<>();
         }
     }
 

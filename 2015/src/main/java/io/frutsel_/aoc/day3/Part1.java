@@ -2,6 +2,7 @@ package io.frutsel_.aoc.day3;
 
 import io.frutsel_.aoc.APart;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 public class Part1 extends APart<Day3> {
@@ -11,7 +12,7 @@ public class Part1 extends APart<Day3> {
     }
 
     @Override
-    public String solve() {
+    public String solve() throws IOException {
         var presents = day.createMap(1);
 
         move(presents, day.createSanta());
@@ -19,7 +20,7 @@ public class Part1 extends APart<Day3> {
         return Integer.toString(presents.size());
     }
 
-    private void move(HashMap<Point, Integer> presents, Santa santa) {
+    private void move(HashMap<Point, Integer> presents, Santa santa) throws IOException {
         for (Direction direction : day.parseDirections()) {
             santa.deliverPresent(direction, presents);
         }
