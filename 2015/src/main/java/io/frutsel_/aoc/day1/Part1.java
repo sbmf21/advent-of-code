@@ -10,15 +10,10 @@ public class Part1 extends APart<Day1> {
         super(day);
     }
 
-    @Override public void solve() {
-        var chars = day.loadInstructions();
-        var map   = countChars(chars);
+    @Override public int solve() {
+        var map = countChars(day.loadInstructions());
 
-        var up    = map.getOrDefault('(', 0);
-        var down  = map.getOrDefault(')', 0);
-        var floor = up - down;
-
-        System.out.println(floor);
+        return map.getOrDefault('(', 0) - map.getOrDefault(')', 0);
     }
 
     private HashMap<Character, Integer> countChars(char[] chars) {

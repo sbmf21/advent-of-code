@@ -8,7 +8,7 @@ public class Part1 extends APart<Day2> {
         super(day);
     }
 
-    @Override public void solve() {
+    @Override public int solve() {
         var total = 0;
 
         for (var dimension: day.parseDimensions()) {
@@ -16,7 +16,7 @@ public class Part1 extends APart<Day2> {
             total += dimension.size() + smallest;
         }
 
-        System.out.println(total);
+        return total;
     }
 
     @Override public int partNumber() {

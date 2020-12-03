@@ -13,6 +13,7 @@ public class AdventOfCode {
 
         var days = new IDay[]{new Day1(), new Day2()};
 
+        System.out.println("Advent of Code 2015");
         Arrays.asList(days).forEach(AdventOfCode::runDay);
     }
 
@@ -24,13 +25,11 @@ public class AdventOfCode {
     }
 
     private static void runDay(IDay day) {
-        System.out.printf("Day %d%n", day.dayNumber());
+        System.out.printf("%nDay %d%n", day.dayNumber());
 
         for (var part: day.parts()) {
             System.out.printf("- Part %d%n", part.partNumber());
-            part.solve();
-
-            System.out.println();
+            System.out.printf("  Answer: %d%n",part.solve());
         }
     }
 }
