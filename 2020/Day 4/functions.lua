@@ -53,7 +53,13 @@ function countValidPassports(isValid)
     return count
 end
 
-function clamp(value, min, max)
+function subBetween(value, min, max)
+    value = value:sub(0, value:len() - 2)
+
+    return between(value, min, max)
+end
+
+function between(value, min, max)
     value = tonumber(value)
 
     return value >= min and value <= max
