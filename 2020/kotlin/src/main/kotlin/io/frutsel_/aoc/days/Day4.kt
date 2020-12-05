@@ -14,54 +14,30 @@ class Day4(aoc: Aoc) : ADay(aoc) {
 
     override fun part2(): Number = passports.filter { hasValidFields(it) }.size
 
-
     private fun parsePassports(): List<String> {
-
-        val empty = input
+        val emptyLines = input
             .mapIndexedTo(mutableListOf()) { index: Int, _: String -> index }
             .filter { input[it].isBlank() }
             .map { it }
             .toMutableList()
-
-        empty.add(input.size)
-
-        var lastIndex = 0
-        return empty.map {
-            val list = input.subList(lastIndex, it)
+            .plus(input.size)
+        return emptyLines.mapIndexed { index: Int, it: Int ->
+            input.subList(if (index == 0) 0 else emptyLines[index - 1], it)
                 .filter { line -> line.isBlank().not() }
                 .reduce { acc, s -> "$acc $s" }
-
-            lastIndex = it
-
-            list
         }
     }
 
-    private fun hasRequiredFields(passport: String): Boolean {
-        Rules.values()
-            .map { it.name.toLowerCase() }
-            .map { Pattern.compile("$it:.+").matcher(passport) }
-            .forEach {
-                if (it.find().not()) {
-                    return false
-                }
-            }
+    private fun hasRequiredFields(passport: String): Boolean = Rules.values()
+        .map { it.name.toLowerCase() }
+        .map { Pattern.compile("$it:.+").matcher(passport) }
+        .filter { it.find() }.size == Rules.values().size
 
-        return true
-    }
-
-    private fun hasValidFields(passport: String): Boolean {
-        Rules.values().forEach {
-            if (it.isValid(passport).not()) {
-                return false
-            }
-        }
-
-        return true
-    }
+    private fun hasValidFields(passport: String): Boolean =
+        Rules.values().filter { it.isValid(passport) }.size == Rules.values().size
 }
 
-internal enum class Rules(pattern: String, private val validate: (String) -> Boolean = { _ -> true }) {
+internal enum class Rules(var pattern: String, private val validate: (String) -> Boolean = { _ -> true }) {
     BYR("\\d{4}", ::validateByr),
     IYR("\\d{4}", ::validateIyr),
     EYR("\\d{4}", ::validateEyr),
@@ -70,19 +46,10 @@ internal enum class Rules(pattern: String, private val validate: (String) -> Boo
     ECL("amb|blu|brn|gry|grn|hzl|oth"),
     PID("\\d{9}");
 
-    private val completePattern = Pattern.compile("${this.name.toLowerCase()}:(?<value>$pattern) ")
-
     fun isValid(passport: String): Boolean {
-        val matcher = matcher("$passport ") // extra space on the end
-
-        if (matcher.find().not()) {
-            return false
-        }
-
-        return validate(matcher.group("value"))
+        val matcher = Pattern.compile("${this.name.toLowerCase()}:(?<value>$pattern) ").matcher("$passport ")
+        return if (matcher.find()) validate(matcher.group("value")) else false
     }
-
-    private fun matcher(passport: String) = completePattern.matcher(passport)
 }
 
 internal fun findNumber(value: String): Int = Regex("\\d*").find(value)?.value?.toInt()!!
