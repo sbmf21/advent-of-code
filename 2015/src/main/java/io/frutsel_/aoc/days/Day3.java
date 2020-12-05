@@ -67,7 +67,7 @@ public class Day3 extends ADay {
     private ArrayList<Direction> parseDirections() {
         var directions = new ArrayList<Direction>();
 
-        for (var line : input()) {
+        for (var line : input) {
             for (char c : line.toCharArray()) {
                 directions.add(Direction.fromChar(c));
             }

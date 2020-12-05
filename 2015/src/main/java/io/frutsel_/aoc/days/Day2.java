@@ -43,7 +43,7 @@ public class Day2 extends ADay {
     public ArrayList<Dimension> parseDimensions() {
         var dimensions = new ArrayList<Dimension>();
 
-        this.input().forEach(line -> dimensions.add(Dimension.fromLine(line)));
+        input.forEach(line -> dimensions.add(Dimension.fromLine(line)));
 
         return dimensions;
     }
