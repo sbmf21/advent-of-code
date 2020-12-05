@@ -29,5 +29,5 @@ fun main() {
             .appendLine("  Answer: ${day.part2()}")
     }
 
-    println(output)
+    print(output)
 }
