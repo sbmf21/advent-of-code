@@ -6,7 +6,7 @@ abstract class Day {
 
     fun input(): Stream<String> = file(this)
 
-    abstract fun number(): Number
+    abstract fun number(): Int
 
     abstract fun part1(): Number
 

@@ -1,7 +1,11 @@
-package io.frutsel_.aoc
+package io.frutsel_.aoc.days
 
+import io.frutsel_.aoc.Day
+import io.frutsel_.aoc.mapToInt
+
+@Suppress("unused")
 class Day1 : Day() {
-    override fun number(): Number = 1
+    override fun number(): Int = 1
 
     override fun part1(): Number {
         val numbers = numbers()

@@ -1,23 +1,27 @@
 package io.frutsel_.aoc
 
-import java.util.function.Consumer
+import org.reflections.Reflections
 import java.util.stream.Stream
 
 fun main() {
-    val days = setOf(Day1())
-    val builder = StringBuilder("Advent of Code 2020").appendLine()
+    val output = StringBuilder("Advent of Code 2020").appendLine()
 
-    days.forEach(Consumer { day ->
-        builder.appendLine()
+    findDays().forEach { day ->
+        output.appendLine()
             .appendLine("Day ${day.number()}")
             .appendLine("- Part 1")
             .appendLine("  Answer: ${day.part1()}")
             .appendLine("- Part 2")
             .appendLine("  Answer: ${day.part2()}")
-    })
+    }
 
-    println(builder)
+    println(output)
 }
+
+private fun findDays() = Reflections("${Day::class.java.packageName}.days")
+    .getSubTypesOf(Day::class.java)
+    .map { it.getDeclaredConstructor().newInstance() }
+    .sortedBy { it.number() }
 
 fun file(day: Day): Stream<String> = day::class.java
     .getResourceAsStream("/day${day.number()}.txt")
