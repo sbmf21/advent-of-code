@@ -9,10 +9,12 @@ class Aoc {
         .map { it.getDeclaredConstructor(Aoc::class.java).newInstance(this) }
         .sortedBy { it.number() }
 
-    fun file(day: Day): Stream<String> = day.javaClass
+    fun file(day: Day): List<String> = day.javaClass
         .getResourceAsStream("/input/day${day.number()}.txt")
         .bufferedReader()
         .lines()
+        .toArray()
+        .map { it.toString() }
 }
 
 fun main() {
@@ -30,5 +32,3 @@ fun main() {
 
     println(output)
 }
-
-internal fun <T> Array<T>.mapToInt(): List<Int> = this.map { it.toString().toInt() }
