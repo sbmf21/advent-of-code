@@ -4,6 +4,10 @@ variables:
 
 .maven:
   image: maven:latest
+
+# 2015
+
+.maven2015:
   before_script:
     - cd 2015
   cache:
@@ -12,13 +16,39 @@ variables:
       - 2015/target/
 
 compile2015:
-  extends: .maven
+  extends: .maven2015
   stage: build
   script:
     - mvn $MAVEN_CLI_OPTS compile
 
 test2015:
-  extends: .maven
+  extends: .maven2015
+  needs:
+    - compile2015
+  stage: test
+  script:
+    - mvn $MAVEN_CLI_OPTS test
+
+#2020
+
+.maven2020:
+  before_script:
+    - cd 2020
+  cache:
+    paths:
+      - 2020/.m2/repository/
+      - 2020/target/
+
+compile2020:
+  extends: .maven2020
+  stage: build
+  script:
+    - mvn $MAVEN_CLI_OPTS compile
+
+test2020:
+  extends: .maven2020
+  needs:
+    - compile2020
   stage: test
   script:
     - mvn $MAVEN_CLI_OPTS test
