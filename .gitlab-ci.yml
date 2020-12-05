@@ -8,6 +8,7 @@ variables:
 # 2015
 
 .maven2015:
+  extends: .maven
   before_script:
     - cd 2015
   cache:
@@ -32,6 +33,7 @@ test2015:
 #2020
 
 .maven2020:
+  extends: .maven
   before_script:
     - cd 2020
   cache:
