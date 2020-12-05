@@ -38,10 +38,13 @@ class Day4(aoc: Aoc) : ADay(aoc) {
 }
 
 internal enum class Rules(var pattern: String, private val validate: (String) -> Boolean = { _ -> true }) {
-    BYR("\\d{4}", ::validateByr),
-    IYR("\\d{4}", ::validateIyr),
-    EYR("\\d{4}", ::validateEyr),
-    HGT("\\d{3}cm|\\d{2}in", ::validateHgr),
+    BYR("\\d{4}", { it.toInt() in 1920..2002 }),
+    IYR("\\d{4}", { it.toInt() in 2010..2020 }),
+    EYR("\\d{4}", { it.toInt() in 2020..2030 }),
+    HGT("\\d{3}cm|\\d{2}in", { when (Regex("cm|in").find(it)?.value) {
+        "cm" -> findNumber(it) in 150..193
+        else -> findNumber(it) in 59..76
+    } }),
     HCL("#[\\da-f]{6}"),
     ECL("amb|blu|brn|gry|grn|hzl|oth"),
     PID("\\d{9}");
@@ -53,10 +56,3 @@ internal enum class Rules(var pattern: String, private val validate: (String) ->
 }
 
 internal fun findNumber(value: String): Int = Regex("\\d*").find(value)?.value?.toInt()!!
-internal fun validateByr(value: String): Boolean = value.toInt() in 1920..2002
-internal fun validateIyr(value: String): Boolean = value.toInt() in 2010..2020
-internal fun validateEyr(value: String): Boolean = value.toInt() in 2020..2030
-internal fun validateHgr(value: String): Boolean = when (Regex("cm|in").find(value)?.value) {
-    "cm" -> findNumber(value) in 150..193
-    else -> findNumber(value) in 59..76
-}
