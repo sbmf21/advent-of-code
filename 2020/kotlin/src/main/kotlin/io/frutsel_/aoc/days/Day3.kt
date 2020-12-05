@@ -3,7 +3,6 @@ package io.frutsel_.aoc.days
 import io.frutsel_.aoc.ADay
 import io.frutsel_.aoc.Aoc
 
-@Suppress("unused")
 class Day3(aoc: Aoc) : ADay(aoc) {
 
     private val map = input.map { it.toCharArray() }
