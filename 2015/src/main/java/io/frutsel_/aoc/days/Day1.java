@@ -72,7 +72,7 @@ public class Day1 extends ADay {
     private char[] parseInstructions() {
 
         StringBuilder input = new StringBuilder();
-        this.input().forEach(input::append);
+        this.input.forEach(input::append);
 
         return input.toString().toCharArray();
     }
