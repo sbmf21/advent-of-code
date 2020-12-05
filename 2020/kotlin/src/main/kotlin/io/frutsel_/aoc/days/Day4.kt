@@ -5,6 +5,7 @@ import io.frutsel_.aoc.Aoc
 import java.util.regex.Pattern
 
 class Day4(aoc: Aoc) : ADay(aoc) {
+
     private val passports = parsePassports()
 
     override fun number(): Int = 4
@@ -40,10 +41,12 @@ internal enum class Rules(private var pattern: String, private val validate: (St
     BYR("\\d{4}", { it.toInt() in 1920..2002 }),
     IYR("\\d{4}", { it.toInt() in 2010..2020 }),
     EYR("\\d{4}", { it.toInt() in 2020..2030 }),
-    HGT("\\d{3}cm|\\d{2}in", { when (Regex("cm|in").find(it)?.value) {
-        "cm" -> findNumber(it) in 150..193
-        else -> findNumber(it) in 59..76
-    } }),
+    HGT("\\d{3}cm|\\d{2}in", {
+        when (Regex("cm|in").find(it)?.value) {
+            "cm" -> findNumber(it) in 150..193
+            else -> findNumber(it) in 59..76
+        }
+    }),
     HCL("#[\\da-f]{6}"),
     ECL("amb|blu|brn|gry|grn|hzl|oth"),
     PID("\\d{9}");
