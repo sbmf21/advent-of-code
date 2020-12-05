@@ -9,7 +9,7 @@ class AocTest {
 
     private val expectations = listOf(
         /* Day 1 */ Expectation(1019904, 176647680),
-        /* Day 2 */ Expectation(515, 711)
+        /* Day 2 */ Expectation(515, 711),
     )
 
     @Test
