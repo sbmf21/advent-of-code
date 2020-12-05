@@ -1,18 +1,21 @@
 package io.frutsel_.aoc;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import lombok.RequiredArgsConstructor;
 
+import java.util.ArrayList;
+
+@RequiredArgsConstructor
 public abstract class ADay {
 
-    public abstract APart<?>[] parts();
+    protected final Aoc aoc;
 
-    public abstract int dayNumber();
+    public abstract int number();
 
-    protected BufferedReader getResource() {
-        var fileName = String.format("/input/%s.txt", this.getClass().getSimpleName().toLowerCase());
-        var inputStream = AdventOfCode.class.getResourceAsStream(fileName);
+    public abstract int part1();
 
-        return new BufferedReader(new InputStreamReader(inputStream));
+    public abstract int part2();
+
+    protected ArrayList<String> input() {
+        return aoc.file(this);
     }
 }
