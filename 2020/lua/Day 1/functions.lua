@@ -1,4 +1,3 @@
-local functions = {}
 
 function parseNumbers()
     local lines = io.lines('numbers.txt')
@@ -10,3 +9,6 @@ function parseNumbers()
 
     return numbers
 end
+
+require 'part1'
+require 'part2'

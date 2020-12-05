@@ -1,4 +1,3 @@
-require 'functions'
 
 local function sub(password, val)
     return password:sub(val, val)
@@ -15,4 +14,6 @@ local function isValid(password)
     return hasMin or hasMax
 end
 
-print(numValid(isValid))
+function part2()
+    return numValid(isValid)
+end

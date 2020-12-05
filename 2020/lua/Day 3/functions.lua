@@ -1,3 +1,4 @@
+
 local function calcIndex(current, line)
     -- lua starts at index 1, not at 0
     return (current % #line) + 1
@@ -30,3 +31,6 @@ function count(xStep, yStep)
 
     return trees
 end
+
+require 'part1'
+require 'part2'

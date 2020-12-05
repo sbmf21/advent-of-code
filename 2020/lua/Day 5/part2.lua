@@ -1,4 +1,3 @@
-require 'functions'
 
 local function find()
     local ids = parseBoardingPasses()
@@ -12,4 +11,6 @@ local function find()
     error('404')
 end
 
-print(find())
+function part2()
+    return find()
+end

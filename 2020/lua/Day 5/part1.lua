@@ -1,4 +1,5 @@
-require 'functions'
 
-local ids = parseBoardingPasses()
-print(ids[#ids])
+function part1()
+    local ids = parseBoardingPasses()
+    return ids[#ids]
+end
