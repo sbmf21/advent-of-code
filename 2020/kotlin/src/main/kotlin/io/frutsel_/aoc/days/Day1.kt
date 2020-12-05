@@ -1,10 +1,11 @@
 package io.frutsel_.aoc.days
 
+import io.frutsel_.aoc.Aoc
 import io.frutsel_.aoc.Day
 import io.frutsel_.aoc.mapToInt
 
 @Suppress("unused")
-class Day1 : Day() {
+class Day1(aoc: Aoc) : Day(aoc) {
     override fun number(): Int = 1
 
     override fun part1(): Number {

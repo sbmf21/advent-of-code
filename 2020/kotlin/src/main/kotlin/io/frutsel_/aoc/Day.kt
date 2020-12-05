@@ -2,9 +2,9 @@ package io.frutsel_.aoc
 
 import java.util.stream.Stream
 
-abstract class Day {
+abstract class Day(private val aoc: Aoc) {
 
-    fun input(): Stream<String> = file(this)
+    protected fun input(): Stream<String> = aoc.file(this)
 
     abstract fun number(): Int
 
