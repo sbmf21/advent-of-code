@@ -2,12 +2,11 @@ package io.frutsel_.aoc;
 
 import org.reflections.Reflections;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.function.Supplier;
 
 public class Aoc implements Runnable {
 
@@ -88,5 +87,35 @@ public class Aoc implements Runnable {
 
     private void addLine(String format, Object... args) {
         rapport.append(String.format(format, args)).append('\n');
+    }
+
+    public <T extends Serializable> T cache(
+            ADay day,
+            String name,
+            Supplier<T> generator
+    ) throws Exception {
+        var fileName = String.format("./cache/day%d-%s.bin", day.number(), name);
+        var file = new File(fileName);
+
+        if (file.exists()) try (var in = new ObjectInputStream(new FileInputStream(file))) {
+            //noinspection unchecked
+            return (T) in.readObject();
+        }
+        else {
+            System.out.printf("Generating cache for %s...%n", fileName);
+            var value = generator.get();
+
+            if (!file.exists()) {
+                if (!file.getParentFile().mkdirs() && !file.createNewFile()) {
+                    System.out.println("Failed creating file");
+                } else try (var out = new ObjectOutputStream(new FileOutputStream(file))) {
+                    System.out.printf(" - Writing cache %s...%n", fileName);
+                    out.writeObject(value);
+                    System.out.println(" - Done.");
+                }
+            }
+
+            return value;
+        }
     }
 }
