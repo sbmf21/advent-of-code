@@ -7,15 +7,15 @@ function parseBoardingPasses()
 
     table.sort(ids)
 
-    return ids
-end
-
-function has(ids, id)
-    for _, value in ipairs(ids) do
-        if value == id then
-            return true
+    function ids:has (id)
+        for _, value in ipairs(ids) do
+            if value == id then
+                return true
+            end
         end
+    
+        return false
     end
-
-    return false
+    
+    return ids
 end
