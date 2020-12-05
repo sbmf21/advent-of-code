@@ -1,7 +1,9 @@
 #!/usr/local/bin/lua
 
-print('Part 1:')
-require 'part1'
+require 'functions'
 
-print('\nPart 2:')
-require 'part2'
+print '- Part 1:'
+print('  Answer: ' .. part1())
+
+print '\n- Part 2:'
+print('  Answer: ' .. part2())

@@ -2,13 +2,16 @@ variables:
   MAVEN_CLI_OPTS: "--batch-mode"
   MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
 
+.test:
+  stage: test
+
 # Maven
 
 .maven:
   image: maven:latest
 
 .maven:test:
-  stage: test
+  extends: .test
   script:
     - mvn $MAVEN_CLI_OPTS test
 
@@ -29,19 +32,28 @@ variables:
       - 2015/.m2/repository/
       - 2015/target/
 
-compile2015:
+compile:java:2015:
   extends:
     - .maven2015
     - .maven:compile
 
-test2015:
+test:java:2015:
   extends:
     - .maven2015
     - .maven:test
   needs:
-    - compile2015
+    - compile:java:2015
 
 #2020
+
+test:lua:2020:
+  image: superpaintman/lua:5.3.3
+  extends: .test
+  needs: []
+  before_script:
+    - cd 2020/lua
+  script:
+    - ./test.sh
 
 .maven2020:
   extends: .maven
@@ -53,14 +65,14 @@ test2015:
       - 2020/kotlin/.m2/repository/
       - 2020/kotlin/target/
 
-compile2020:
+compile:kotlin:2020:
   extends:
     - .maven2020
     - .maven:compile
 
-test2020:
+test:kotlin:2020:
   extends:
     - .maven2020
     - .maven:test
   needs:
-    - compile2020
+    - compile:kotlin:2020

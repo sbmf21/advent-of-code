@@ -1,3 +1,4 @@
+
 function split(input, match)
     local sparts = {}
 
@@ -64,3 +65,6 @@ function between(value, min, max)
 
     return value >= min and value <= max
 end
+
+require 'part1'
+require 'part2'

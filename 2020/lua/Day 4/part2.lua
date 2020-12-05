@@ -1,4 +1,3 @@
-require 'functions'
 
 local keys = {
     byr = function (value) return between(value, 1920, 2002) end,
@@ -58,4 +57,6 @@ local function isValid(passport)
     return true
 end
 
-print(countValidPassports(isValid))
+function part2()
+    return countValidPassports(isValid)
+end

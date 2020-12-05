@@ -1,4 +1,3 @@
-require 'functions'
 
 local function isValid(passport)
     for _, key in ipairs({'byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid'}) do
@@ -11,4 +10,6 @@ local function isValid(passport)
     return true
 end
 
-print(countValidPassports(isValid))
+function part1()
+    return countValidPassports(isValid)
+end

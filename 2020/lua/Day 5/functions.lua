@@ -1,3 +1,4 @@
+
 function parseBoardingPasses()
     local ids = {}
 
@@ -19,3 +20,6 @@ function parseBoardingPasses()
     
     return ids
 end
+
+require 'part1'
+require 'part2'

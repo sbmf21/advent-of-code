@@ -1,3 +1,4 @@
+
 local function split(input, match)
     local sparts = {}
 
@@ -44,3 +45,6 @@ function numValid(isValid)
 
     return count
 end
+
+require 'part1'
+require 'part2'
