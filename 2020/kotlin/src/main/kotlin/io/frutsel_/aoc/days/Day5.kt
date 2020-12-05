@@ -1,9 +1,10 @@
 package io.frutsel_.aoc.days
 
+import io.frutsel_.aoc.ADay
 import io.frutsel_.aoc.Aoc
-import io.frutsel_.aoc.Day
 
-class Day5(aoc: Aoc) : Day(aoc) {
+@Suppress("unused")
+class Day5(aoc: Aoc) : ADay(aoc) {
     private val passports =
         input.map {
             it.replace(Regex("[FL]"), "0").replace(Regex("[BR]"), "1").toInt(2)
