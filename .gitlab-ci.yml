@@ -2,8 +2,20 @@ variables:
   MAVEN_CLI_OPTS: "--batch-mode"
   MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
 
+# Maven
+
 .maven:
   image: maven:latest
+
+.maven:test:
+  stage: test
+  script:
+    - mvn $MAVEN_CLI_OPTS test
+
+.maven:compile:
+  stage: build
+  script:
+    - mvn $MAVEN_CLI_OPTS compile
 
 # 2015
 
@@ -17,40 +29,36 @@ variables:
       - 2015/target/
 
 compile2015:
-  extends: .maven2015
-  stage: build
-  script:
-    - mvn $MAVEN_CLI_OPTS compile
+  extends:
+    - .maven2015
+    - .maven:compile
 
 test2015:
-  extends: .maven2015
+  extends:
+    - .maven2015
+    - .maven:test
   needs:
     - compile2015
-  stage: test
-  script:
-    - mvn $MAVEN_CLI_OPTS test
 
 #2020
 
 .maven2020:
   extends: .maven
   before_script:
-    - cd 2020
+    - cd 2020/kotlin
   cache:
     paths:
-      - 2020/.m2/repository/
-      - 2020/target/
+      - 2020/kotlin/.m2/repository/
+      - 2020/kotlin/target/
 
 compile2020:
-  extends: .maven2020
-  stage: build
-  script:
-    - mvn $MAVEN_CLI_OPTS compile
+  extends:
+    - .maven2020
+    - .maven:compile
 
 test2020:
-  extends: .maven2020
+  extends:
+    - .maven2020
+    - .maven:test
   needs:
     - compile2020
-  stage: test
-  script:
-    - mvn $MAVEN_CLI_OPTS test
