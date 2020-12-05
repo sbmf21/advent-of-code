@@ -1,15 +1,14 @@
 package io.frutsel_.aoc
 
 import org.reflections.Reflections
-import java.util.stream.Stream
 
 class Aoc {
-    fun findDays() = Reflections("${Day::class.java.packageName}.days")
-        .getSubTypesOf(Day::class.java)
+    fun findDays() = Reflections("${ADay::class.java.packageName}.days")
+        .getSubTypesOf(ADay::class.java)
         .map { it.getDeclaredConstructor(Aoc::class.java).newInstance(this) }
         .sortedBy { it.number() }
 
-    fun file(day: Day): List<String> = day.javaClass
+    fun file(day: ADay): List<String> = day.javaClass
         .getResourceAsStream("/input/day${day.number()}.txt")
         .bufferedReader()
         .lines()

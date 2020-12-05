@@ -1,6 +1,6 @@
 package io.frutsel_.aoc
 
-abstract class Day(private val aoc: Aoc) {
+abstract class ADay(private val aoc: Aoc) {
 
     protected val input = input()
 

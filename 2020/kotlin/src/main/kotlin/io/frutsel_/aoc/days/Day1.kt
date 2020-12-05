@@ -1,10 +1,10 @@
 package io.frutsel_.aoc.days
 
+import io.frutsel_.aoc.ADay
 import io.frutsel_.aoc.Aoc
-import io.frutsel_.aoc.Day
 
 @Suppress("unused")
-class Day1(aoc: Aoc) : Day(aoc) {
+class Day1(aoc: Aoc) : ADay(aoc) {
 
     private val numbers = input.map { it.toInt() }
 

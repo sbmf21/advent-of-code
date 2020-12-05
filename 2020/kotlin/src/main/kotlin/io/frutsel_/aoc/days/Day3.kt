@@ -1,9 +1,10 @@
 package io.frutsel_.aoc.days
 
+import io.frutsel_.aoc.ADay
 import io.frutsel_.aoc.Aoc
-import io.frutsel_.aoc.Day
 
-class Day3(aoc: Aoc) : Day(aoc) {
+@Suppress("unused")
+class Day3(aoc: Aoc) : ADay(aoc) {
 
     private val map = input.map { it.toCharArray() }
 
@@ -11,7 +12,7 @@ class Day3(aoc: Aoc) : Day(aoc) {
 
     override fun part1(): Int = countTrees(3)
 
-    override fun part2(): Number = listOf<Int>(
+    override fun part2(): Number = listOf(
         countTrees(1),
         part1(),
         countTrees(5),
@@ -20,7 +21,7 @@ class Day3(aoc: Aoc) : Day(aoc) {
     ).reduce(Int::times)
 
     private fun countTrees(yStep: Int, xStep: Int = 1): Int {
-        var y = 0;
+        var y = 0
         var count = 0
 
         for (x in map.indices step xStep) {

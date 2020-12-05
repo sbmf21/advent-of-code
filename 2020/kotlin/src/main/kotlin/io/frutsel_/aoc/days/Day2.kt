@@ -1,12 +1,12 @@
 package io.frutsel_.aoc.days
 
+import io.frutsel_.aoc.ADay
 import io.frutsel_.aoc.Aoc
-import io.frutsel_.aoc.Day
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
 @Suppress("unused")
-class Day2(aoc: Aoc) : Day(aoc) {
+class Day2(aoc: Aoc) : ADay(aoc) {
 
     private val pattern = Pattern.compile("(?<min>\\d+)-(?<max>\\d+)\\s(?<char>[a-z]):\\s(?<password>[a-z]+)")
     private val rules = input.map { pattern.matcher(it) }.filter { it.matches() }
