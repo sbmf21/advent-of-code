@@ -24,6 +24,7 @@ variables:
   before_script:
     - cd 2015
   cache:
+    key: 'maven:2015'
     paths:
       - 2015/.m2/repository/
       - 2015/target/
@@ -47,6 +48,7 @@ test2015:
   before_script:
     - cd 2020/kotlin
   cache:
+    key: 'maven:2020'
     paths:
       - 2020/kotlin/.m2/repository/
       - 2020/kotlin/target/
