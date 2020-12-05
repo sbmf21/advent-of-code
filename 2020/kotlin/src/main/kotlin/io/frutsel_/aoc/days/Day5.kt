@@ -6,7 +6,7 @@ import io.frutsel_.aoc.Day
 class Day5(aoc: Aoc) : Day(aoc) {
     private val passports =
         input.map {
-            it.replace("[FL]".toRegex(), "0").replace("[BR]".toRegex(), "1").toInt(2)
+            it.replace(Regex("[FL]"), "0").replace(Regex("[BR]"), "1").toInt(2)
         }.sorted()
 
     override fun number(): Int = 5
