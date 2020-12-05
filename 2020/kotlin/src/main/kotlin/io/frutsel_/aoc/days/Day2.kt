@@ -5,7 +5,6 @@ import io.frutsel_.aoc.Aoc
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
-@Suppress("unused")
 class Day2(aoc: Aoc) : ADay(aoc) {
 
     private val pattern = Pattern.compile("(?<min>\\d+)-(?<max>\\d+)\\s(?<char>[a-z]):\\s(?<password>[a-z]+)")
