@@ -1,6 +1,6 @@
 package io.frutsel_.aoc.common
 
-abstract class ADay(protected val aoc: AocBase) {
+abstract class ADay(private val aoc: AocBase) {
 
     protected val input = input()
 
