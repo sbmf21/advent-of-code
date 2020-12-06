@@ -37,9 +37,6 @@ stages:
 
 .maven:2015:
   extends: .maven
-  only:
-    changes:
-      - 2015/**
   before_script:
     - cd 2015
   cache:
@@ -73,9 +70,6 @@ run:java:2015:
 
 .lua:2020:
   extends: .lua
-  only:
-    changes:
-      - 2020/lua/**
   before_script:
     - cd 2020/lua
 
@@ -98,9 +92,6 @@ run:lua:2020:
 
 .maven:2020:
   extends: .maven
-  only:
-    changes:
-      - 2020/kotlin/**
   before_script:
     - cd 2020/kotlin
   cache:
