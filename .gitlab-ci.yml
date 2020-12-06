@@ -3,6 +3,7 @@ variables:
   MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
 
 stages:
+  - commons
   - build
   - test
   - run
@@ -27,6 +28,21 @@ stages:
   stage: build
   script:
     - mvn $MAVEN_CLI_OPTS compile package
+
+maven:commons:deploy:
+  extends: .maven
+  stage: commons
+  cache:
+    key: 'maven:commons'
+    paths:
+      - aoc-commons/.m2/repository/
+      - aoc-commons/target/
+  before_script:
+    - cd aoc-commons
+  script:
+    - mvn deploy -s ci_settings.xml
+  only:
+    - master
 
 # Lua
 
