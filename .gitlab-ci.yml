@@ -29,6 +29,7 @@ stages:
     - mvn $MAVEN_CLI_OPTS compile package
 
 # Lua
+
 .lua:
   image: superpaintman/lua:5.3.3
 
@@ -38,7 +39,7 @@ stages:
   extends: .maven
   only:
     changes:
-      - 2015/*
+      - 2015/**
   before_script:
     - cd 2015
   cache:
@@ -74,7 +75,7 @@ run:java:2015:
   extends: .lua
   only:
     changes:
-      - 2020/lua/*
+      - 2020/lua/**
   before_script:
     - cd 2020/lua
 
@@ -99,7 +100,7 @@ run:lua:2020:
   extends: .maven
   only:
     changes:
-      - 2020/kotlin/*
+      - 2020/kotlin/**
   before_script:
     - cd 2020/kotlin
   cache:
