@@ -176,4 +176,3 @@ class Point {
         return String.format("House{x=%d, y=%d}", x, y);
     }
 }
-

@@ -17,11 +17,8 @@ public class Day5 extends ADay {
     @Override
     public int part1() {
 
+        var nono = new String[]{"ab", "cd", "pq", "xy"};
         int count = 0;
-
-        var nono = new String[]{
-                "ab", "cd", "pq", "xy"
-        };
 
         for (String line : getInput()) {
             if (line.matches(".*[aeiou].*[aeiou].*[aeiou].*")) {

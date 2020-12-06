@@ -41,8 +41,12 @@ internal class Report(private val aoc: AocBase) {
         addTitle(sizes)
         addHeaders()
         addColumnHeaders(sizes)
-        timings.forEach { addTiming(it) }
-        addLine(sizes.lineSizes)
+
+        if (timings.size > 0) {
+            timings.forEach { addTiming(it) }
+            addLine(sizes.lineSizes)
+        } else addNone(sizes)
+
 
         print(builder)
         builder.clear()
@@ -52,6 +56,12 @@ internal class Report(private val aoc: AocBase) {
         val title = listOf(cell("* Advent of Code ${aoc.name} *", sizes.totalWidth - 2, Align.CENTER))
         addLine(title.map { it.length })
         add(title)
+    }
+
+    private fun addNone(sizes: Sizes) {
+        val title = listOf(cell("No days have ran.", sizes.totalWidth - 2, Align.CENTER))
+        add(title)
+        addLine(title.map { it.length })
     }
 
     private fun addHeaders() {
