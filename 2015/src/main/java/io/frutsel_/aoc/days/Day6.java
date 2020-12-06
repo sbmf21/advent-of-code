@@ -24,16 +24,52 @@ public class Day6 extends ADay {
 
     @Override
     public int part1() {
-        var grid = applyGrid(this::createLitGrid, this::onOrOff);
+        return countLit(applyGrid(() -> {
+            var grid = new Boolean[size][size];
+            for (var booleans : grid) Arrays.fill(booleans, Boolean.FALSE);
+            return grid;
+        }, (matcher, grid, x, y) -> switch (matcher.group("action")) {
+            case "turn" -> matcher.group("switch").equals("on");
+            default -> !grid[x][y];
+        }));
+    }
 
-        return countLit(grid);
+    private int countLit(Boolean[][] grid) {
+        var count = 0;
+
+        for (var column : grid) {
+            for (boolean lit : column) {
+                if (lit) {
+                    count++;
+                }
+            }
+        }
+
+        return count;
     }
 
     @Override
     public int part2() {
-        var grid = applyGrid(this::createBrightnessGrid, this::brightness);
+        return countBrightness(applyGrid(() -> {
+            var grid = new Integer[size][size];
+            for (var ints : grid) Arrays.fill(ints, 0);
+            return grid;
+        }, (matcher, grid, x, y) -> Math.max(0, grid[x][y] + switch (matcher.group("action")) {
+            case "turn" -> matcher.group("switch").equals("on") ? 1 : -1;
+            default -> 2;
+        })));
+    }
 
-        return countBrightness(grid);
+    private int countBrightness(Integer[][] grid) {
+        int brightness = 0;
+
+        for (var column : grid) {
+            for (int bright : column) {
+                brightness += bright;
+            }
+        }
+
+        return brightness;
     }
 
     private <T> T[][] applyGrid(Grid<T> create, Apply<T> function) {
@@ -54,66 +90,6 @@ public class Day6 extends ADay {
         }
 
         return grid;
-    }
-
-    private boolean onOrOff(Matcher matcher, Boolean[][] grid, int x, int y) {
-        return switch (matcher.group("action")) {
-            case "turn" -> matcher.group("switch").equals("on");
-            default -> !grid[x][y];
-        };
-    }
-
-    private int brightness(Matcher matcher, Integer[][] grid, int x, int y) {
-        return Math.max(0, grid[x][y] + switch (matcher.group("action")) {
-            case "turn" -> matcher.group("switch").equals("on") ? 1 : -1;
-            default -> 2;
-        });
-    }
-
-    private int countLit(Boolean[][] grid) {
-        var count = 0;
-
-        for (var column : grid) {
-            for (boolean lit : column) {
-                if (lit) {
-                    count++;
-                }
-            }
-        }
-
-        return count;
-    }
-
-    private int countBrightness(Integer[][] grid) {
-        int brightness = 0;
-
-        for (var column : grid) {
-            for (int bright : column) {
-                brightness += bright;
-            }
-        }
-
-        return brightness;
-    }
-
-    private Boolean[][] createLitGrid() {
-        var arr = new Boolean[size][size];
-
-        for (var booleans : arr) {
-            Arrays.fill(booleans, Boolean.FALSE);
-        }
-
-        return arr;
-    }
-
-    private Integer[][] createBrightnessGrid() {
-        var arr = new Integer[size][size];
-
-        for (var ints : arr) {
-            Arrays.fill(ints, 0);
-        }
-
-        return arr;
     }
 
     private int intFrom(Matcher matcher, String group) {
