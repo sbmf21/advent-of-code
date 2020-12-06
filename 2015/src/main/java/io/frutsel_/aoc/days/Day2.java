@@ -1,7 +1,7 @@
 package io.frutsel_.aoc.days;
 
-import io.frutsel_.aoc.ADay;
 import io.frutsel_.aoc.Aoc;
+import io.frutsel_.aoc.common.ADay;
 
 import java.util.ArrayList;
 
@@ -43,7 +43,7 @@ public class Day2 extends ADay {
     public ArrayList<Dimension> parseDimensions() {
         var dimensions = new ArrayList<Dimension>();
 
-        input.forEach(line -> dimensions.add(Dimension.fromLine(line)));
+        getInput().forEach(line -> dimensions.add(Dimension.fromLine(line)));
 
         return dimensions;
     }

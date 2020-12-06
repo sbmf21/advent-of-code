@@ -1,7 +1,7 @@
 package io.frutsel_.aoc.days;
 
-import io.frutsel_.aoc.ADay;
 import io.frutsel_.aoc.Aoc;
+import io.frutsel_.aoc.common.ADay;
 import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
@@ -67,7 +67,7 @@ public class Day3 extends ADay {
     private ArrayList<Direction> parseDirections() {
         var directions = new ArrayList<Direction>();
 
-        for (var line : input) {
+        for (var line : getInput()) {
             for (char c : line.toCharArray()) {
                 directions.add(Direction.fromChar(c));
             }

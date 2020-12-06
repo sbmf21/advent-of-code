@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Aoc day" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="io.frutsel_.aoc.Aoc" />
+    <module name="2015" />
+    <option name="PROGRAM_PARAMETERS" value="--day" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
