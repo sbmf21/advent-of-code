@@ -2,8 +2,16 @@ variables:
   MAVEN_CLI_OPTS: "--batch-mode"
   MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
 
+stages:
+  - build
+  - test
+  - run
+
 .test:
   stage: test
+
+.run:
+  stage: run
 
 # Maven
 
@@ -18,11 +26,15 @@ variables:
 .maven:compile:
   stage: build
   script:
-    - mvn $MAVEN_CLI_OPTS compile
+    - mvn $MAVEN_CLI_OPTS compile package
+
+# Lua
+.lua:
+  image: superpaintman/lua:5.3.3
 
 # 2015
 
-.maven2015:
+.maven:2015:
   extends: .maven
   before_script:
     - cd 2015
@@ -34,28 +46,50 @@ variables:
 
 compile:java:2015:
   extends:
-    - .maven2015
+    - .maven:2015
     - .maven:compile
 
 test:java:2015:
   extends:
-    - .maven2015
+    - .maven:2015
     - .maven:test
   needs:
     - compile:java:2015
 
+run:java:2015:
+  extends:
+    - .maven:2015
+    - .run
+  needs:
+    - test:java:2015
+  script:
+    - java -jar target/adventofcode.2015-1.0.0-SNAPSHOT-jar-with-dependencies.jar
+
 #2020
 
-test:lua:2020:
-  image: superpaintman/lua:5.3.3
-  extends: .test
-  needs: []
+.lua:2020:
+  extends: .lua
   before_script:
     - cd 2020/lua
+
+test:lua:2020:
+  extends:
+    - .lua:2020
+    - .test
+  needs: []
   script:
     - ./test.sh
 
-.maven2020:
+run:lua:2020:
+  extends:
+    - .lua:2020
+    - .run
+  needs:
+    - test:lua:2020
+  script:
+    - ./run.sh
+
+.maven:2020:
   extends: .maven
   before_script:
     - cd 2020/kotlin
@@ -67,12 +101,21 @@ test:lua:2020:
 
 compile:kotlin:2020:
   extends:
-    - .maven2020
+    - .maven:2020
     - .maven:compile
 
 test:kotlin:2020:
   extends:
-    - .maven2020
+    - .maven:2020
     - .maven:test
   needs:
     - compile:kotlin:2020
+
+run:kotlin:2020:
+  extends:
+    - .maven:2020
+    - .run
+  needs:
+    - test:kotlin:2020
+  script:
+    - java -jar target/adventofcode.2020-1.0.0-SNAPSHOT-jar-with-dependencies.jar
