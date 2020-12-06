@@ -1,7 +1,7 @@
 package io.frutsel_.aoc.days
 
-import io.frutsel_.aoc.ADay
 import io.frutsel_.aoc.Aoc
+import io.frutsel_.aoc.common.ADay
 
 class Day1(aoc: Aoc) : ADay(aoc) {
 
@@ -9,7 +9,7 @@ class Day1(aoc: Aoc) : ADay(aoc) {
 
     override fun number(): Int = 1
 
-    override fun part1(): Number {
+    override fun part1(): Int {
         for (a in numbers)
             for (b in numbers)
                 if (a + b == 2020)
@@ -18,7 +18,7 @@ class Day1(aoc: Aoc) : ADay(aoc) {
         return 0
     }
 
-    override fun part2(): Number {
+    override fun part2(): Int {
         for (a in numbers)
             for (b in numbers)
                 for (c in numbers)

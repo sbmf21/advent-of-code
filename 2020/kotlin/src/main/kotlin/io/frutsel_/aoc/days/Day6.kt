@@ -1,7 +1,7 @@
 package io.frutsel_.aoc.days
 
-import io.frutsel_.aoc.ADay
 import io.frutsel_.aoc.Aoc
+import io.frutsel_.aoc.common.ADay
 
 class Day6(aoc: Aoc) : ADay(aoc) {
 
@@ -9,11 +9,11 @@ class Day6(aoc: Aoc) : ADay(aoc) {
 
     override fun number(): Int = 6
 
-    override fun part1(): Number = lines.map { it.split("\n").joinToString(separator = "") }
+    override fun part1(): Int = lines.map { it.split("\n").joinToString(separator = "") }
         .map { it.toCharArray().distinct().size }
         .sum()
 
-    override fun part2(): Number = lines.map { it.split("\n") }
+    override fun part2(): Int = lines.map { it.split("\n") }
         .map { it.map { ln -> ln.toCharArray().distinct() }.reduce { acc, next -> acc.intersect(next).toList() }.size }
         .sum()
 }

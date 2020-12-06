@@ -1,7 +1,7 @@
 package io.frutsel_.aoc.days
 
-import io.frutsel_.aoc.ADay
 import io.frutsel_.aoc.Aoc
+import io.frutsel_.aoc.common.ADay
 import java.util.regex.Pattern
 
 class Day4(aoc: Aoc) : ADay(aoc) {
@@ -10,13 +10,14 @@ class Day4(aoc: Aoc) : ADay(aoc) {
 
     override fun number(): Int = 4
 
-    override fun part1(): Number = passports.filter { hasRequiredFields(it) }.size
+    override fun part1(): Int = passports.filter { hasRequiredFields(it) }.size
 
-    override fun part2(): Number = passports.filter { hasValidFields(it) }.size
+    override fun part2(): Int = passports.filter { hasValidFields(it) }.size
 
     private fun parsePassports(): List<String> {
         val emptyLines = input
             .mapIndexedTo(mutableListOf()) { index: Int, _: String -> index }
+            .asSequence()
             .filter { input[it].isBlank() }
             .map { it }
             .toMutableList()

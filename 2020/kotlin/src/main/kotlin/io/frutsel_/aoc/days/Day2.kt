@@ -1,7 +1,7 @@
 package io.frutsel_.aoc.days
 
-import io.frutsel_.aoc.ADay
 import io.frutsel_.aoc.Aoc
+import io.frutsel_.aoc.common.ADay
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
@@ -12,7 +12,7 @@ class Day2(aoc: Aoc) : ADay(aoc) {
 
     override fun number(): Int = 2
 
-    override fun part1(): Number {
+    override fun part1(): Int {
         return rules.count { line ->
             val charCount = password(line).filter { it == char(line) }.length
 
@@ -20,7 +20,7 @@ class Day2(aoc: Aoc) : ADay(aoc) {
         }
     }
 
-    override fun part2(): Number {
+    override fun part2(): Int {
         return rules.count {
             val password = password(it)
             val char = char(it)
