@@ -3,8 +3,6 @@ package io.frutsel_.aoc.days;
 import io.frutsel_.aoc.ADay;
 import io.frutsel_.aoc.Aoc;
 
-import java.util.ArrayList;
-
 public class Day5 extends ADay {
 
     public Day5(Aoc aoc) {
