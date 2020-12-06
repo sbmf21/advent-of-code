@@ -1,4 +1,4 @@
-# [Advent of Code](https://adventofcode.com/)
+# [Advent of Code](https://adventofcode.com/about)
 
 My super epic awesome solutions for the hardest puzzles ever.
 
