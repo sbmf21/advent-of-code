@@ -18,8 +18,6 @@ public class Day5 extends ADay {
 
     @Override
     public int part1() {
-        var in = new ArrayList<>(input);
-        var iterator = in.iterator();
 
         int count = 0;
 
@@ -27,53 +25,25 @@ public class Day5 extends ADay {
                 "ab", "cd", "pq", "xy"
         };
 
-        checker:
-        while (iterator.hasNext()) {
-            var line = iterator.next();
+        for (String line : input) {
+            if (line.matches(".*[aeiou].*[aeiou].*[aeiou].*")) {
+                a:
+                for (char c : line.toCharArray()) {
+                    if (line.contains(String.format("%s", c).repeat(2))) {
+                        for (String no : nono) {
+                            if (line.contains(no)) {
+                                break a;
+                            }
+                        }
 
-            if (!line.matches(".*[aeiou].*[aeiou].*[aeiou].*")) {
-                iterator.remove();
-                continue;
-            }
-
-            for (char c : line.toCharArray()) {
-                if (line.contains(String.format("%s", c).repeat(2))) {
-                    break;
-                }
-
-                iterator.remove();
-                continue checker;
-            }
-
-            for (var invalid : nono) {
-                if (line.contains(invalid)) {
-                    iterator.remove();
-                    continue checker;
+                        count++;
+                        break;
+                    }
                 }
             }
-
-            count++;
         }
 
-//        for (String line : input) {
-//            if (line.matches(".*[aeiou].*[aeiou].*[aeiou].*")) {
-//                a:
-//                for (char c : line.toCharArray()) {
-//                    if (line.contains(String.format("%s", c).repeat(2))) {
-//                        for (String no : nono) {
-//                            if (line.contains(no)) {
-//                                break a;
-//                            }
-//                        }
-//
-//                        count++;
-//                        break;
-//                    }
-//                }
-//            }
-//        }
-
-        return in.size();
+        return count;
     }
 
     @Override
