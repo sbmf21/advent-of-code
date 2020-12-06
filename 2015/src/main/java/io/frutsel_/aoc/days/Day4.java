@@ -6,11 +6,10 @@ import io.frutsel_.aoc.Aoc;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.util.HashMap;
-import java.util.Map;
 
 public class Day4 extends ADay {
 
-    private Map<String, Integer> hashes = null;
+    private final HashMap<Integer, String> keys = new HashMap<>();
     private final MessageDigest digester;
     private final String key;
     private final int max;
@@ -30,65 +29,25 @@ public class Day4 extends ADay {
 
     @Override
     public int part1() {
-        try {
-            return aoc.cache(this, cacheKey(1), () -> findLowest(5));
-        } catch (Exception e) {
-            e.printStackTrace();
-            return -1;
-        }
+        return findLowest(5);
     }
 
     @Override
     public int part2() {
-        try {
-            return aoc.cache(this, cacheKey(2), () -> findLowest(6));
-        } catch (Exception e) {
-            e.printStackTrace();
-            return -1;
-        }
+        return findLowest(6);
     }
 
-    private String cacheKey(int part) {
-        return String.format("part%d-%s-%d", part, key, max);
-    }
+    private int findLowest(int num) {
+        for (int i = 0; i <= max; i++) {
+            if (!keys.containsKey(i)) {
+                keys.put(i, toHashString(i));
+            }
 
-    private int findLowest(int length) {
-        var lowest = max;
-
-        this.loadHashes();
-
-        for (String hash : hashes.keySet()) {
-            if (hash.startsWith("0".repeat(length))) {
-                var i = hashes.get(hash);
-
-                if (i < lowest) {
-                    lowest = i;
-                }
+            if (keys.get(i).startsWith("0".repeat(num))) {
+                return i;
             }
         }
-        return lowest;
-    }
-
-    private void loadHashes() {
-        if (hashes != null) {
-            return;
-        }
-
-        var start = System.currentTimeMillis();
-        hashes = this.buildHashCache();
-        var end = System.currentTimeMillis();
-
-        System.out.println(String.format("Generating hashes took %s seconds", (end - start) / 1000));
-    }
-
-    private HashMap<String, Integer> buildHashCache() {
-        var map = new HashMap<String, Integer>();
-
-        for (var i = 0; i < max; i++) {
-            map.put(toHashString(i), i);
-        }
-
-        return map;
+        return -1;
     }
 
     private String toHashString(int number) {
