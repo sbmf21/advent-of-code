@@ -1,7 +1,7 @@
 package io.frutsel_.aoc.days;
 
-import io.frutsel_.aoc.ADay;
 import io.frutsel_.aoc.Aoc;
+import io.frutsel_.aoc.common.ADay;
 
 import java.util.HashMap;
 
@@ -72,7 +72,7 @@ public class Day1 extends ADay {
     private char[] parseInstructions() {
 
         StringBuilder input = new StringBuilder();
-        this.input.forEach(input::append);
+        this.getInput().forEach(input::append);
 
         return input.toString().toCharArray();
     }

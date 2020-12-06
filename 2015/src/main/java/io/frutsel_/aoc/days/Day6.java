@@ -1,7 +1,7 @@
 package io.frutsel_.aoc.days;
 
-import io.frutsel_.aoc.ADay;
 import io.frutsel_.aoc.Aoc;
+import io.frutsel_.aoc.common.ADay;
 
 import java.util.Arrays;
 import java.util.regex.Matcher;
@@ -75,7 +75,7 @@ public class Day6 extends ADay {
     private <T> T[][] applyGrid(Grid<T> create, Apply<T> function) {
         var grid = create.apply();
 
-        for (var line : input) {
+        for (var line : getInput()) {
             var m = pattern.matcher(line);
 
             if (!m.matches()) {

@@ -1,7 +1,7 @@
 package io.frutsel_.aoc.days;
 
-import io.frutsel_.aoc.ADay;
 import io.frutsel_.aoc.Aoc;
+import io.frutsel_.aoc.common.ADay;
 
 public class Day5 extends ADay {
 
@@ -23,7 +23,7 @@ public class Day5 extends ADay {
                 "ab", "cd", "pq", "xy"
         };
 
-        for (String line : input) {
+        for (String line : getInput()) {
             if (line.matches(".*[aeiou].*[aeiou].*[aeiou].*")) {
                 a:
                 for (char c : line.toCharArray()) {
@@ -48,7 +48,7 @@ public class Day5 extends ADay {
     public int part2() {
         int count = 0;
 
-        for (String line : input) {
+        for (String line : getInput()) {
             var m1 = false;
 
             for (int i = 0; i < line.length() - 1; i++) {

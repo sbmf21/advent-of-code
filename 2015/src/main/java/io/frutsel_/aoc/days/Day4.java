@@ -1,7 +1,7 @@
 package io.frutsel_.aoc.days;
 
-import io.frutsel_.aoc.ADay;
 import io.frutsel_.aoc.Aoc;
+import io.frutsel_.aoc.common.ADay;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -17,6 +17,7 @@ public class Day4 extends ADay {
     public Day4(Aoc aoc) throws Exception {
         super(aoc);
 
+        var input = getInput();
         digester = MessageDigest.getInstance("MD5");
         key = input.get(0);
         max = Integer.parseInt(input.get(1));
