@@ -1,7 +1,7 @@
 package io.frutsel_.aoc.days
 
-import io.frutsel_.aoc.ADay
 import io.frutsel_.aoc.Aoc
+import io.frutsel_.aoc.common.ADay
 
 class Day3(aoc: Aoc) : ADay(aoc) {
 
@@ -11,7 +11,7 @@ class Day3(aoc: Aoc) : ADay(aoc) {
 
     override fun part1(): Int = countTrees(3)
 
-    override fun part2(): Number = listOf(
+    override fun part2(): Int = listOf(
         countTrees(1),
         part1(),
         countTrees(5),

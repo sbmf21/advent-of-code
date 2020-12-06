@@ -1,24 +1,15 @@
 package io.frutsel_.aoc
 
-import org.reflections.Reflections
+import io.frutsel_.aoc.common.AocBase
 
-class Aoc {
-    fun findDays() = Reflections("${ADay::class.java.packageName}.days")
-        .getSubTypesOf(ADay::class.java)
-        .map { it.getDeclaredConstructor(Aoc::class.java).newInstance(this) }
-        .sortedBy { it.number() }
+class Aoc : AocBase("2020")
 
-    fun file(day: ADay): List<String> = day.javaClass
-        .getResourceAsStream("/input/day${day.number()}.txt")
-        .bufferedReader()
-        .lines()
-        .toArray()
-        .map { it.toString() }
-}
+fun main(args: Array<String>) {
 
-fun main() {
-    val output = StringBuilder("Advent of Code 2020").appendLine()
     val aoc = Aoc()
+    aoc.init(args)
+
+    val output = StringBuilder("Advent of Code 2020").appendLine()
 
     aoc.findDays().forEach { day ->
         output.appendLine()
