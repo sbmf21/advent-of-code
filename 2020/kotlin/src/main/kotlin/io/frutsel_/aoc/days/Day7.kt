@@ -22,6 +22,7 @@ class Day7(aoc: Aoc) : ADay(aoc) {
 }
 
 internal open class Bag(var bag: String, private var rule: String) {
+
     private val pattern = Pattern.compile("(?<num>\\d+) (?<name>[\\w ]*) bags?")
     private val rules = rules()
 
