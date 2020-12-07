@@ -44,9 +44,8 @@ internal class Report(private val aoc: AocBase) {
 
         if (timings.size > 0) {
             timings.forEach { addTiming(it) }
-            addLine(sizes.lineSizes)
+            addLine(sizes.lineSizes, '┴', '└', '┘')
         } else addNone(sizes)
-
 
         print(builder)
         builder.clear()
@@ -54,14 +53,14 @@ internal class Report(private val aoc: AocBase) {
 
     private fun addTitle(sizes: Sizes) {
         val title = listOf(cell("* Advent of Code ${aoc.name} *", sizes.totalWidth - 2, Align.CENTER))
-        addLine(title.map { it.length })
+        addLine(title.map { it.length }, '┬', '┌', '┐')
         add(title)
     }
 
     private fun addNone(sizes: Sizes) {
         val title = listOf(cell("No days have ran.", sizes.totalWidth - 2, Align.CENTER))
         add(title)
-        addLine(title.map { it.length })
+        addLine(title.map { it.length }, '┴', '└', '┘')
     }
 
     private fun addHeaders() {
@@ -71,7 +70,7 @@ internal class Report(private val aoc: AocBase) {
             cell("Answers", columns.subList(4, 6).map { it.len }.sum() + 3, Align.CENTER)
         )
 
-        addLine(l.map { it.length })
+        addLine(l.map { it.length }, '┬')
         add(l)
     }
 
@@ -81,9 +80,9 @@ internal class Report(private val aoc: AocBase) {
         addLine(sizes.lineSizes)
     }
 
-    private fun addLine(sizes: List<Int>) {
+    private fun addLine(sizes: List<Int>, sep: Char = '┼', left: Char = '├', right: Char = '┤') {
         builder
-            .append(join(sizes.map { "-".repeat(it) }, '+', '-'))
+            .append(join(sizes.map { "─".repeat(it) }, '─', sep, left, right))
             .appendLine()
     }
 
@@ -97,10 +96,16 @@ internal class Report(private val aoc: AocBase) {
 
     private fun cell(value: String, width: Int, align: Align): String = align.render(value, width)
 
-    private fun join(line: List<String>, sep: Char = '|', spa: Char = ' '): String = listOf(
-        "$sep$spa",
-        line.joinToString(separator = "$spa$sep$spa"),
-        "$spa$sep"
+    private fun join(
+        line: List<String>,
+        spacer: Char = ' ',
+        sep: Char = '│',
+        left: Char = sep,
+        right: Char = sep
+    ): String = listOf(
+        "$left$spacer",
+        line.joinToString(separator = "$spacer$sep$spacer"),
+        "$spacer$right"
     ).joinToString(separator = "")
 
     private fun calculateSizes(): Sizes {
