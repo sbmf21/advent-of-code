@@ -39,9 +39,11 @@ maven:commons:deploy:
     paths:
       - aoc-commons/.m2/repository/
       - aoc-commons/target/
+      - .m2/repository
   artifacts:
     paths:
       - aoc-commons/.m2/repository/io/frutsel_/adventofcode.common
+      - .m2/repository/io/frutsel_/adventofcode.common
   before_script:
     - cd aoc-commons
   script:
@@ -66,6 +68,7 @@ maven:commons:deploy:
     paths:
       - 2015/.m2/repository/
       - 2015/target/
+      - .m2/repository
 
 compile:java:2015:
   extends:
@@ -124,6 +127,7 @@ run:lua:2020:
     paths:
       - 2020/kotlin/.m2/repository/
       - 2020/kotlin/target/
+      - .m2/repository
 
 compile:kotlin:2020:
   extends:
