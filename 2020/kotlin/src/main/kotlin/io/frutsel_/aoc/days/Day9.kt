@@ -33,7 +33,7 @@ class Day9(aoc: Aoc) : ADay(aoc) {
 
                 if (acc == weak.toLong()) {
                     val subList = numbers.subList(i, j).map { it.toInt() }
-                    return subList.minOrNull()?.plus(subList.minOrNull()!!)!!
+                    return subList.minOrNull()?.plus(subList.maxOrNull()!!)!!
                 }
             }
         }
