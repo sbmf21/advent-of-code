@@ -45,8 +45,7 @@ maven:commons:deploy:
   before_script:
     - cd aoc-commons
   script:
-    - mvn deploy -s ci_settings.xml
-    - mvn install
+    - mvn deploy install -s ci_settings.xml
   only:
     - master
 
