@@ -27,7 +27,7 @@ stages:
 .maven:compile:
   stage: build
   script:
-    - mvn $MAVEN_CLI_OPTS compile package
+    - mvn $MAVEN_CLI_OPTS compile package -Dmaven.test.skip=true
 
 maven:commons:deploy:
   extends: .maven
@@ -70,6 +70,9 @@ test:java:2015:
   extends:
     - .maven:2015
     - .maven:test
+  artifacts:
+    reports:
+      junit: 2015/target/surefire-reports/TEST-*.xml
   needs:
     - compile:java:2015
 
@@ -125,6 +128,9 @@ test:kotlin:2020:
   extends:
     - .maven:2020
     - .maven:test
+  artifacts:
+    reports:
+      junit: 2020/kotlin/target/surefire-reports/TEST-*.xml
   needs:
     - compile:kotlin:2020
 
