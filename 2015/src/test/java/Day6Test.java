@@ -10,11 +10,11 @@ public class Day6Test {
 
     @Test
     public void testPart1Output() {
-        assertEquals(543903, day.part1());
+        assertEquals(543903, (int) day.part1());
     }
 
     @Test
     public void testPart2Output() {
-        assertEquals(14687245, day.part2());
+        assertEquals(14687245, (int) day.part2());
     }
 }
