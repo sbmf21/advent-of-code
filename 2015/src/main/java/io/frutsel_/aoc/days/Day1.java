@@ -2,6 +2,7 @@ package io.frutsel_.aoc.days;
 
 import io.frutsel_.aoc.Aoc;
 import io.frutsel_.aoc.common.ADay;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 
@@ -19,7 +20,7 @@ public class Day1 extends ADay {
     }
 
     @Override
-    public int part1() {
+    public @NotNull Integer part1() {
         var map = countChars();
 
         return map.getOrDefault('(', 0) //
@@ -27,7 +28,7 @@ public class Day1 extends ADay {
     }
 
     @Override
-    public int part2() {
+    public @NotNull Integer part2() {
         return findFloor();
     }
 

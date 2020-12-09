@@ -9,17 +9,19 @@ class Day9(aoc: Aoc) : ADay(aoc) {
 
     override fun number(): Int = 9
 
-    override fun part1(): Int {
+    override fun part1(): Long {
         for (i in 25 until numbers.size) {
             if (!isSum(i)) {
-                return numbers[i].toInt()
+                return numbers[i]
             }
         }
+
         return -1
     }
 
-    override fun part2(): Int {
-        val weak = part1().toLong()
+    override fun part2(): Long {
+        val weak = part1()
+
         for (i in numbers.indices) {
             var acc = numbers[i]
 
@@ -31,7 +33,7 @@ class Day9(aoc: Aoc) : ADay(aoc) {
                 }
 
                 if (acc == weak) {
-                    val subList = numbers.subList(i, j).map { it.toInt() }
+                    val subList = numbers.subList(i, j)
                     return subList.minOrNull()?.plus(subList.maxOrNull()!!)!!
                 }
             }

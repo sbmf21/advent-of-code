@@ -2,6 +2,7 @@ package io.frutsel_.aoc.days;
 
 import io.frutsel_.aoc.Aoc;
 import io.frutsel_.aoc.common.ADay;
+import org.jetbrains.annotations.NotNull;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -29,12 +30,12 @@ public class Day4 extends ADay {
     }
 
     @Override
-    public int part1() {
+    public @NotNull Integer part1() {
         return findLowest(5);
     }
 
     @Override
-    public int part2() {
+    public @NotNull Integer part2() {
         return findLowest(6);
     }
 
