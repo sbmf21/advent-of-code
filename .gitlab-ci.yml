@@ -59,7 +59,7 @@ maven:commons:deploy:
 .maven:2015:
   extends: .maven
   before_script:
-    - mv aoc-commons/.m2/repository/io/frutsel_/adventofcode.common 2015/.m2/repository/io/frutsel_/
+    - ./ci/aoc2015.sg
     - cd 2015
   cache:
     key: 'maven:2015'
@@ -118,7 +118,7 @@ run:lua:2020:
 .maven:2020:
   extends: .maven
   before_script:
-    - mv aoc-commons/.m2/repository/io/frutsel_/adventofcode.common 2020/kotlin/.m2/repository/io/frutsel_/
+    - ./ci/aoc2020.sg
     - cd 2020/kotlin
   cache:
     key: 'maven:2020'
