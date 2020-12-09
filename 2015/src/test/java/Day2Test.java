@@ -10,12 +10,12 @@ public class Day2Test {
 
     @Test
     public void testPart1Output() {
-        assertEquals(1586300, day.part1());
+        assertEquals(1586300, (int) day.part1());
     }
 
     @Test
     public void testPart2Output() {
-        assertEquals(3737498, day.part2());
+        assertEquals(3737498, (int) day.part2());
     }
 
     @Test
