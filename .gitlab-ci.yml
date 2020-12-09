@@ -26,6 +26,8 @@ stages:
 
 .maven:compile:
   stage: build
+  dependencies:
+    - maven:commons:deploy
   script:
     - mvn $MAVEN_CLI_OPTS compile package -Dmaven.test.skip=true
 
@@ -37,6 +39,9 @@ maven:commons:deploy:
     paths:
       - aoc-commons/.m2/repository/
       - aoc-commons/target/
+  artifacts:
+    paths:
+      - aoc-commons/.m2/repository/io/frutsel_/adventofcode.common
   before_script:
     - cd aoc-commons
   script:
