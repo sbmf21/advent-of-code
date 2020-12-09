@@ -59,7 +59,7 @@ maven:commons:deploy:
 .maven:2015:
   extends: .maven
   before_script:
-    - ./ci/aoc2015.sg
+    - ./ci/aoc2015.sh
     - cd 2015
   cache:
     key: 'maven:2015'
@@ -118,7 +118,7 @@ run:lua:2020:
 .maven:2020:
   extends: .maven
   before_script:
-    - ./ci/aoc2020.sg
+    - ./ci/aoc2020.sh
     - cd 2020/kotlin
   cache:
     key: 'maven:2020'
