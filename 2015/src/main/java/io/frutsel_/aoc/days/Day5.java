@@ -2,6 +2,7 @@ package io.frutsel_.aoc.days;
 
 import io.frutsel_.aoc.Aoc;
 import io.frutsel_.aoc.common.ADay;
+import org.jetbrains.annotations.NotNull;
 
 public class Day5 extends ADay {
 
@@ -15,7 +16,7 @@ public class Day5 extends ADay {
     }
 
     @Override
-    public int part1() {
+    public @NotNull Integer part1() {
 
         var nono = new String[]{"ab", "cd", "pq", "xy"};
         int count = 0;
@@ -42,7 +43,7 @@ public class Day5 extends ADay {
     }
 
     @Override
-    public int part2() {
+    public @NotNull Integer part2() {
         int count = 0;
 
         for (String line : getInput()) {

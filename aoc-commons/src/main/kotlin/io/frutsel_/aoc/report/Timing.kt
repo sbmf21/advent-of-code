@@ -6,8 +6,8 @@ internal class Timing(var day: ADay) {
     internal var totalTime: Long? = null
     internal var part1Time: Long? = null
     internal var part2Time: Long? = null
-    internal var part1Value: Int? = null
-    internal var part2Value: Int? = null
+    internal var part1Value: Number? = null
+    internal var part2Value: Number? = null
 
     fun totalTime(): String = timeString(totalTime)
     fun part1Time(): String = timeString(part1Time)

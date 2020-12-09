@@ -2,6 +2,7 @@ package io.frutsel_.aoc.days;
 
 import io.frutsel_.aoc.Aoc;
 import io.frutsel_.aoc.common.ADay;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
@@ -19,7 +20,7 @@ public class Day2 extends ADay {
     }
 
     @Override
-    public int part1() {
+    public @NotNull Integer part1() {
         var total = 0;
 
         for (var dimension : dimensions) {
@@ -30,7 +31,7 @@ public class Day2 extends ADay {
     }
 
     @Override
-    public int part2() {
+    public @NotNull Integer part2() {
         var total = 0;
 
         for (var dimension : dimensions) {

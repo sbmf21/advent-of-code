@@ -3,6 +3,7 @@ package io.frutsel_.aoc.days;
 import io.frutsel_.aoc.Aoc;
 import io.frutsel_.aoc.common.ADay;
 import lombok.RequiredArgsConstructor;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,7 +25,7 @@ public class Day3 extends ADay {
     }
 
     @Override
-    public int part1() {
+    public @NotNull Integer part1() {
         var presents = createMap(1);
         var santa = new Santa();
 
@@ -34,7 +35,7 @@ public class Day3 extends ADay {
     }
 
     @Override
-    public int part2() {
+    public @NotNull Integer part2() {
         var presents = createMap(2);
 
         move(presents, new Santa(), new Santa());

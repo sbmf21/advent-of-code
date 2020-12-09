@@ -6,9 +6,9 @@ abstract class ADay(private val aoc: AocBase) {
 
     abstract fun number(): Int
 
-    abstract fun part1(): Int
+    abstract fun part1(): Number
 
-    abstract fun part2(): Int
+    abstract fun part2(): Number
 
     private fun input() = aoc.file(this)
 }
