@@ -2,7 +2,7 @@ package io.frutsel_.aoc.report
 
 import io.frutsel_.aoc.common.ADay
 import io.frutsel_.aoc.common.AocBase
-import kotlin.system.measureTimeMillis
+import kotlin.system.measureNanoTime
 
 internal class Report(private val aoc: AocBase) {
 
@@ -22,12 +22,12 @@ internal class Report(private val aoc: AocBase) {
     fun time(day: ADay) {
         val timing = Timing(day)
 
-        timing.totalTime = measureTimeMillis {
-            timing.part1Time = measureTimeMillis {
+        timing.totalTime = measureNanoTime {
+            timing.part1Time = measureNanoTime {
                 timing.part1Value = day.part1()
             }
 
-            timing.part2Time = measureTimeMillis {
+            timing.part2Time = measureNanoTime {
                 timing.part2Value = day.part2()
             }
         }
