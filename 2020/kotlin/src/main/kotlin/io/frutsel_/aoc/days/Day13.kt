@@ -6,7 +6,7 @@ import io.frutsel_.aoc.common.chineseRemainder
 
 class Day13(aoc: Aoc) : ADay(aoc) {
 
-    private val earliest = input[0].toLong()
+    private val start = input[0].toLong()
     private val regex = Regex("\\d+")
     private val scheme = input[1].split(',')
     private val busses = scheme.filter { regex.matches(it) }.map { it.toLong() }
@@ -14,9 +14,9 @@ class Day13(aoc: Aoc) : ADay(aoc) {
 
     override fun number() = 13
 
-    override fun part1() = busses.map { Pair(it - (earliest % it), it) }.minByOrNull { it.first }.prod()
+    // @formatter:off ; This is way to long a one liner but I don't care.
+    override fun part1() = busses.map { Pair(it - (start % it), it) }.minByOrNull { it.first }?.toList()?.fold(1, Long::times)!!
+    // @formatter:on
 
     override fun part2() = chineseRemainder(busses, offsets)
 }
-
-private fun Pair<Long, Long>?.prod() = this!!.first * this.second
