@@ -12,10 +12,5 @@ fun chineseRemainder(n: List<Long>, a: List<Long>): Long {
     return mod(sum, prod)
 }
 
-fun mod(a: Long, b: Long) = a.toBigInteger()
-    .mod(b.toBigInteger())
-    .toLong()
-
-fun modInv(a: Long, b: Long) = a.toBigInteger()
-    .modInverse(b.toBigInteger())
-    .toLong()
+fun mod(a: Long, b: Long) = a.toBigInteger().mod(b.toBigInteger()).toLong()
+fun modInv(a: Long, b: Long) = a.toBigInteger().modInverse(b.toBigInteger()).toLong()
