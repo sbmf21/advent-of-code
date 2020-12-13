@@ -8,7 +8,7 @@ class Day10(aoc: Aoc) : ADay(aoc) {
 
     private val adapters = input.map { it.toInt() }.sortedBy { it }
 
-    override fun number(): Int = 10
+    override fun number() = 10
 
     override fun part1(): Int {
 

@@ -7,7 +7,7 @@ class Day1(aoc: Aoc) : ADay(aoc) {
 
     private val numbers = input.map { it.toInt() }
 
-    override fun number(): Int = 1
+    override fun number() = 1
 
     override fun part1(): Int {
         for (a in numbers)

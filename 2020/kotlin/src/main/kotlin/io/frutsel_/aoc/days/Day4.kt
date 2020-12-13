@@ -8,11 +8,11 @@ class Day4(aoc: Aoc) : ADay(aoc) {
 
     private val passports = parsePassports()
 
-    override fun number(): Int = 4
+    override fun number() = 4
 
-    override fun part1(): Int = passports.filter { hasRequiredFields(it) }.size
+    override fun part1() = passports.filter { hasRequiredFields(it) }.size
 
-    override fun part2(): Int = passports.filter { hasValidFields(it) }.size
+    override fun part2() = passports.filter { hasValidFields(it) }.size
 
     private fun parsePassports(): List<String> {
         val emptyLines = input
@@ -29,12 +29,12 @@ class Day4(aoc: Aoc) : ADay(aoc) {
         }
     }
 
-    private fun hasRequiredFields(passport: String): Boolean = Rules.values()
+    private fun hasRequiredFields(passport: String) = Rules.values()
         .map { it.name.toLowerCase() }
         .map { Pattern.compile("$it:.+").matcher(passport) }
         .filter { it.find() }.size == Rules.values().size
 
-    private fun hasValidFields(passport: String): Boolean =
+    private fun hasValidFields(passport: String) =
         Rules.values().filter { it.isValid(passport) }.size == Rules.values().size
 }
 
@@ -58,4 +58,4 @@ internal enum class Rules(private var pattern: String, private val validate: (St
     }
 }
 
-internal fun findNumber(value: String): Int = Regex("\\d*").find(value)?.value?.toInt()!!
+internal fun findNumber(value: String) = Regex("\\d*").find(value)?.value?.toInt()!!

@@ -7,7 +7,7 @@ import java.util.regex.Pattern
 class Day8(aoc: Aoc) : ADay(aoc) {
 
     private val pattern: Pattern = Pattern.compile("(?<cmd>acc|jmp|nop) (?<val>[-+]\\d+)")
-    override fun number(): Int = 8
+    override fun number() = 8
 
     override fun part1(): Int {
 
