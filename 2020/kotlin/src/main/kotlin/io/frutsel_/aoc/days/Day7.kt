@@ -14,11 +14,11 @@ class Day7(aoc: Aoc) : ADay(aoc) {
         Bag(matcher.group("bag"), matcher.group("rule"))
     }
 
-    override fun number(): Int = 7
+    override fun number() = 7
 
-    override fun part1(): Int = bags.filter { it.canFit(myBag, bags) }.count()
+    override fun part1() = bags.filter { it.canFit(myBag, bags) }.count()
 
-    override fun part2(): Int = bags.find { it.bag == myBag }?.count(bags)!!
+    override fun part2() = bags.find { it.bag == myBag }?.count(bags)!!
 }
 
 internal open class Bag(var bag: String, private var rule: String) {
@@ -41,8 +41,7 @@ internal open class Bag(var bag: String, private var rule: String) {
         rule.value + if (bag!!.rules.isEmpty().not()) rule.value * bag.count(bags) else 0
     }.sum()
 
-    private fun rules(): Map<String, Int> = if (rule == "no other bags") mapOf()
-    else rule
+    private fun rules() = if (rule == "no other bags") mapOf() else rule
         .split(", ")
         .map {
             val matcher = pattern.matcher(it)

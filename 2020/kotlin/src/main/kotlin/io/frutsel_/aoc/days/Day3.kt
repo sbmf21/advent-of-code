@@ -7,11 +7,11 @@ class Day3(aoc: Aoc) : ADay(aoc) {
 
     private val map = input.map { it.toCharArray() }
 
-    override fun number(): Int = 3
+    override fun number() = 3
 
-    override fun part1(): Int = countTrees(3)
+    override fun part1() = countTrees(3)
 
-    override fun part2(): Int = listOf(
+    override fun part2() = listOf(
         countTrees(1),
         part1(),
         countTrees(5),
@@ -32,10 +32,10 @@ class Day3(aoc: Aoc) : ADay(aoc) {
         return count
     }
 
-    private fun countNum(x: Int, y: Int): Int = when (getChar(x, y)) {
+    private fun countNum(x: Int, y: Int) = when (getChar(x, y)) {
         '#' -> 1
         else -> 0
     }
 
-    private fun getChar(x: Int, y: Int): Char = map[x][y % map[x].size]
+    private fun getChar(x: Int, y: Int) = map[x][y % map[x].size]
 }

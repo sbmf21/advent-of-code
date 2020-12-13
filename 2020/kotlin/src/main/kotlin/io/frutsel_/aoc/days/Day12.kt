@@ -14,9 +14,9 @@ class Day12(aoc: Aoc) : ADay(aoc) {
         Pair(matcher.group("action"), matcher.group("value").toInt())
     }
 
-    override fun number(): Int = 12
+    override fun number() = 12
 
-    override fun part1(): Number {
+    override fun part1(): Int {
 
         var ship = Pair(0, 0) // x y
         var direction = 1
@@ -36,7 +36,7 @@ class Day12(aoc: Aoc) : ADay(aoc) {
         return toManhattan(ship)
     }
 
-    override fun part2(): Number {
+    override fun part2(): Int {
         var waypoint = Pair(10, 1); // x y east 10 north 1
         var ship = Pair(0, 0)
 
@@ -85,5 +85,5 @@ class Day12(aoc: Aoc) : ADay(aoc) {
         else -> point
     }
 
-    private fun toManhattan(point: Pair<Int, Int>): Int = abs(point.first) + abs(point.second)
+    private fun toManhattan(point: Pair<Int, Int>) = abs(point.first) + abs(point.second)
 }

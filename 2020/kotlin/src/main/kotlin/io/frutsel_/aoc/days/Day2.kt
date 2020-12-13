@@ -10,23 +10,19 @@ class Day2(aoc: Aoc) : ADay(aoc) {
     private val pattern = Pattern.compile("(?<min>\\d+)-(?<max>\\d+)\\s(?<char>[a-z]):\\s(?<password>[a-z]+)")
     private val rules = input.map { pattern.matcher(it) }.filter { it.matches() }
 
-    override fun number(): Int = 2
+    override fun number() = 2
 
-    override fun part1(): Int {
-        return rules.count { line ->
-            val charCount = password(line).filter { it == char(line) }.length
+    override fun part1() = rules.count { line ->
+        val charCount = password(line).filter { it == char(line) }.length
 
-            (charCount >= min(line)).and(charCount <= max(line))
-        }
+        (charCount >= min(line)).and(charCount <= max(line))
     }
 
-    override fun part2(): Int {
-        return rules.count {
-            val password = password(it)
-            val char = char(it)
+    override fun part2() = rules.count {
+        val password = password(it)
+        val char = char(it)
 
-            (password[min(it) - 1] == char).xor(password[max(it) - 1] == char)
-        }
+        (password[min(it) - 1] == char).xor(password[max(it) - 1] == char)
     }
 
     private fun password(matcher: Matcher): String = matcher.group("password")

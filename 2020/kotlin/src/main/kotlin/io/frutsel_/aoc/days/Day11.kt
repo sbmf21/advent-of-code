@@ -9,9 +9,9 @@ class Day11(aoc: Aoc) : ADay(aoc) {
 
     private val grid = input.map { line -> line.toCharArray().map { it } }
 
-    override fun number(): Int = 11
+    override fun number() = 11
 
-    override fun part1(): Number {
+    override fun part1(): Int {
         var grid = this.grid
         var gridString = toString(grid)
 
@@ -37,7 +37,7 @@ class Day11(aoc: Aoc) : ADay(aoc) {
         return gridString.count { it == '#' }
     }
 
-    override fun part2(): Number {
+    override fun part2(): Int {
         var grid = this.grid
         var gridString = toString(grid)
 
@@ -122,7 +122,7 @@ class Day11(aoc: Aoc) : ADay(aoc) {
         false
     }.count { it }
 
-    private fun toString(grid: List<List<Char>>): String = grid
+    private fun toString(grid: List<List<Char>>) = grid
         .map { line -> line.joinToString("") { it.toString() } }
         .joinToString("") { it }
 }

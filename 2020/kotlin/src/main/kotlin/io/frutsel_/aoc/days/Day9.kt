@@ -7,7 +7,7 @@ class Day9(aoc: Aoc) : ADay(aoc) {
 
     private val numbers = input.map { it.toLong() }
 
-    override fun number(): Int = 9
+    override fun number() = 9
 
     override fun part1(): Long {
         for (i in 25 until numbers.size) {
