@@ -35,7 +35,6 @@ class Day14(aoc: Aoc) : ADay(aoc) {
     }
 
     override fun part2(): Long {
-        // 1788144494578 to low
         var mask: String? = null
         val mem = mutableMapOf<Long, Long>()
 
