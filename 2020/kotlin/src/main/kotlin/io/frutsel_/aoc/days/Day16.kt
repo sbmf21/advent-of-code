@@ -7,9 +7,14 @@ import java.util.regex.Pattern
 
 class Day16(aoc: Aoc) : ADay(aoc) {
 
-    private val rulePattern = Pattern.compile("(?<key>[a-z ]+): (?<srs>[\\d]+)-(?<sre>[\\d]+) or (?<ers>[\\d]+)-(?<ere>[\\d+]+)")
-    private val rules = input.map { rulePattern.matcher(it) }.filter { it.matches() }.map { Rule(it) }
-    private val tickets = input.subList(input.indexOf("nearby tickets:") + 1, input.size).map { line -> line.split(",").map { it.toInt() } }
+    private val pattern = Pattern.compile("(?<key>[a-z ]+): (?<ss>[\\d]+)-(?<se>[\\d]+) or (?<es>[\\d]+)-(?<ee>[\\d+]+)")
+    private val rules = input
+        .map { pattern.matcher(it) }
+        .filter { it.matches() }
+        .map { Rule(it) }
+    private val tickets = input
+        .subList(input.indexOf("nearby tickets:") + 1, input.size)
+        .map { line -> line.split(",").map { it.toInt() } }
 
     override fun number() = 16
 
@@ -19,15 +24,25 @@ class Day16(aoc: Aoc) : ADay(aoc) {
         return unmatched.sum()
     }
 
-    override fun part2() = 0
+    override fun part2(): Int {
+
+        tickets
+            .filter { it.forEach { f -> if (rules.none { r -> r.matches(f) }) return@filter false }; true }
+            .forEachIndexed { index, number ->
+                // per nummer bekijken welke rules hij matched, opslaan op index
+            }
+
+        return 0
+    }
 }
 
 internal class Rule(matcher: Matcher) {
 
-    private val srs: Int = matcher.group("srs").toInt()
-    private val sre: Int = matcher.group("sre").toInt()
-    private val ers: Int = matcher.group("ers").toInt()
-    private val ere: Int = matcher.group("ere").toInt()
+    private val key = matcher.group("key")
+    private val ss = matcher.group("ss").toInt()
+    private val se = matcher.group("se").toInt()
+    private val es = matcher.group("es").toInt()
+    private val ee = matcher.group("ee").toInt()
 
-    fun matches(field: Int) = field in srs..sre || field in ers..ere
+    fun matches(field: Int) = field in ss..se || field in es..ee
 }
