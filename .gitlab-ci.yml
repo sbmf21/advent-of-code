@@ -1,7 +1,3 @@
-variables:
-  MAVEN_CLI_OPTS: "--batch-mode"
-  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
-
 stages:
   - commons
   - build
@@ -18,6 +14,9 @@ stages:
 
 .maven:
   image: maven:latest
+  variables:
+    MAVEN_CLI_OPTS: "--batch-mode"
+    MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
 
 .maven:test:
   extends: .test
