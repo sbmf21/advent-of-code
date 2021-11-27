@@ -7,11 +7,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="2015" />
+        <module name="Advent of Code 2015" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="2015" target="15" />
+      <module name="Advent of Code 2015" target="15" />
     </bytecodeTargetLevel>
   </component>
 </project>
