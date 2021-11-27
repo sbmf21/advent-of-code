@@ -40,7 +40,7 @@ maven:commons:deploy:
       - aoc-commons/target/
   artifacts:
     paths:
-      - aoc-commons/.m2/repository/io/frutsel_/adventofcode.common
+      - aoc-commons/.m2/repository/nl/sbmf21/adventofcode.common
   before_script:
     - cd aoc-commons
   script:

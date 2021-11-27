@@ -1,5 +1,5 @@
-import io.frutsel_.aoc.Aoc
-import io.frutsel_.aoc.days.Day9
+import nl.sbmf21.aoc20.Aoc
+import nl.sbmf21.aoc20.days.Day9
 import org.junit.Test
 import kotlin.test.assertEquals
 

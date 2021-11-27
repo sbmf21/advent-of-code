@@ -1,13 +1,9 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Aoc day" type="JetRunConfigurationType">
+    <option name="MAIN_CLASS_NAME" value="nl.sbmf21.aoc20.AocKt" />
     <module name="Advent of Code 2020" />
-    <option name="VM_PARAMETERS" value="" />
     <option name="PROGRAM_PARAMETERS" value="--day" />
-    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-    <option name="ALTERNATIVE_JRE_PATH" />
-    <option name="PASS_PARENT_ENVS" value="true" />
-    <option name="MAIN_CLASS_NAME" value="io.frutsel_.aoc.AocKt" />
-    <option name="WORKING_DIRECTORY" value="" />
+    <shortenClasspath name="NONE" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>
