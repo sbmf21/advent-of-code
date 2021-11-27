@@ -1,4 +1,4 @@
-import io.frutsel_.aoc.Aoc
+import nl.sbmf21.aoc20.Aoc
 import org.junit.Test
 import kotlin.test.assertEquals
 

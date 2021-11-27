@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>io.sbmf21</groupId>
+    <groupId>nl.sbmf21</groupId>
     <artifactId>adventofcode.2015</artifactId>
     <name>Advent of Code 2015</name>
     <version>1.0.0-SNAPSHOT</version>
@@ -13,7 +13,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>15</maven.compiler.source>
         <maven.compiler.target>15</maven.compiler.target>
-        <main.class>io.frutsel_.aoc.Aoc</main.class>
+        <main.class>nl.sbmf21.aoc15.Aoc</main.class>
     </properties>
 
     <dependencies>
@@ -25,7 +25,7 @@
         </dependency>
 
         <dependency>
-            <groupId>io.frutsel_</groupId>
+            <groupId>nl.sbmf21</groupId>
             <artifactId>adventofcode.common</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>

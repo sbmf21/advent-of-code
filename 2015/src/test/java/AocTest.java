@@ -1,5 +1,5 @@
-import io.frutsel_.aoc.Aoc;
-import io.frutsel_.aoc.common.ADay;
+import nl.sbmf21.aoc15.Aoc;
+import nl.sbmf21.aoc.common.ADay;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
