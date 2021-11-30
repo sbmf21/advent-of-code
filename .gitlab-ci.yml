@@ -1,5 +1,4 @@
 stages:
-  - commons
   - build
   - test
   - run
@@ -12,17 +11,18 @@ stages:
     MAVEN_CLI_OPTS: "--batch-mode"
     MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
 
-.maven:test:
-  stage: test
-  script:
-    - mvn $MAVEN_CLI_OPTS test
-
 .maven:compile:
   stage: build
+  needs: []
   dependencies:
     - commons:kotlin:deploy
   script:
     - mvn $MAVEN_CLI_OPTS compile package -Dmaven.test.skip=true
+
+.maven:test:
+  stage: test
+  script:
+    - mvn $MAVEN_CLI_OPTS test
 
 # Lua
 
