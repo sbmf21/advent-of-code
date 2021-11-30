@@ -1,0 +1,37 @@
+.2015:java:
+  extends: .maven
+  before_script:
+    - cd 2015
+  cache:
+    key: '2015:java'
+    paths:
+      - 2015/.m2/repository/
+      - 2015/target/
+
+2015:java:compile:
+  extends:
+    - .2015:java
+    - .maven:compile
+
+2015:java:test:
+  extends:
+    - .2015:java
+    - .maven:test
+  dependencies:
+    - 2015:java:compile
+  needs:
+    - 2015:java:compile
+  artifacts:
+    reports:
+      junit: 2015/target/surefire-reports/TEST-*.xml
+
+2015:java:run:
+  extends: .2015:java
+  stage: run
+  dependencies:
+    - 2015:java:compile
+  needs:
+    - 2015:java:compile
+    - 2015:java:test
+  script:
+    - java -jar target/adventofcode.2015-1.0.0-SNAPSHOT-jar-with-dependencies.jar
