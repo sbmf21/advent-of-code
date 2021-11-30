@@ -1,0 +1,37 @@
+.2020:kotlin:
+  extends: .maven
+  before_script:
+    - cd 2020/kotlin
+  cache:
+    key: '2020:maven'
+    paths:
+      - 2020/kotlin/.m2/repository/
+      - 2020/kotlin/target/
+
+2020:kotlin:compile:
+  extends:
+    - .2020:kotlin
+    - .maven:compile
+
+2020:kotlin:test:
+  extends:
+    - .2020:kotlin
+    - .maven:test
+  dependencies:
+    - 2020:kotlin:compile
+  needs:
+    - 2020:kotlin:compile
+  artifacts:
+    reports:
+      junit: 2020/kotlin/target/surefire-reports/TEST-*.xml
+
+2020:kotlin:run:
+  extends: .2020:kotlin
+  stage: run
+  dependencies:
+    - 2020:kotlin:compile
+  needs:
+    - 2020:kotlin:compile
+    - 2020:kotlin:test
+  script:
+    - java -jar target/adventofcode.2020-1.0.0-SNAPSHOT-jar-with-dependencies.jar

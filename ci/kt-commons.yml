@@ -1,0 +1,17 @@
+commons:kotlin:deploy:
+  extends: .maven
+  stage: commons
+  cache:
+    key: 'maven:commons'
+    paths:
+      - aoc-commons/.m2/repository/
+      - aoc-commons/target/
+  artifacts:
+    paths:
+      - aoc-commons/.m2/repository/nl/sbmf21/adventofcode.common
+  before_script:
+    - cd aoc-commons
+  script:
+    - mvn deploy install -s ci_settings.xml
+  only:
+    - master

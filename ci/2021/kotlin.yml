@@ -1,7 +1,7 @@
 .2021:kotlin:
   extends: .maven
   before_script:
-    - cd ./2021/kotlin
+    - cd 2021/kotlin
   cache:
     key: '2021:kotlin'
     paths:
@@ -26,10 +26,12 @@
       junit: 2021/kotlin/target/surefire-reports/TEST-*.xml
 
 2021:kotlin:run:
-  extends:
-    - .2021:kotlin
-    - .run
+  extends: .2021:kotlin
+  stage: run
+  dependencies:
+    - 2021:kotlin:compile
   needs:
+    - 2021:kotlin:compile
     - 2021:kotlin:test
   script:
     - java -jar target/adventofcode.2021-1.0.0-SNAPSHOT-jar-with-dependencies.jar

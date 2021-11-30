@@ -1,0 +1,19 @@
+.2020:lua:
+  extends: .lua
+  before_script:
+    - cd 2020/lua
+
+2020:lua:test:
+  extends: .2020:lua
+  stage: test
+  needs: []
+  script:
+    - ./test.sh
+
+2020:lua:run:
+  extends: .2020:lua
+  stage: run
+  needs:
+    - 2020:lua:test
+  script:
+    - ./run.sh
