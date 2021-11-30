@@ -27,7 +27,7 @@ stages:
 # Lua
 
 .lua:
-  image: superpaintman/lua:5.3.3
+  image: registry.gitlab.com/switchware/containers/lua:latest
 
 # Projects
 
