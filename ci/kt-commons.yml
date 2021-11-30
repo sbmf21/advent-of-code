@@ -1,6 +1,6 @@
 commons:kotlin:deploy:
   extends: .maven
-  stage: commons
+  stage: build
   cache:
     key: 'maven:commons'
     paths:
