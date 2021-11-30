@@ -53,12 +53,15 @@ maven:commons:deploy:
 .lua:
   image: superpaintman/lua:5.3.3
 
+include:
+ - local: /ci/2021/kotlin.yml
+
 # 2015
 
 .maven:2015:
   extends: .maven
   before_script:
-    - ./ci/aoc2015.sh
+#    - ./ci/aoc2015.sh
     - cd 2015
   cache:
     key: 'maven:2015'
@@ -117,7 +120,7 @@ run:lua:2020:
 .maven:2020:
   extends: .maven
   before_script:
-    - ./ci/aoc2020.sh
+#    - ./ci/aoc2020.sh
     - cd 2020/kotlin
   cache:
     key: 'maven:2020'
