@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Aoc" type="JetRunConfigurationType">
+    <option name="MAIN_CLASS_NAME" value="nl.sbmf21.aoc21.AocKt" />
+    <module name="Advent of Code 2021" />
+    <shortenClasspath name="NONE" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
