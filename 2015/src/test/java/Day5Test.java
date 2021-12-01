@@ -6,7 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 public class Day5Test {
 
-    private final Day5 day = new Day5(new Aoc());
+    private final Day5 day = new Day5(new Aoc(), 5);
 
     @Test
     public void testPart1Output() {

@@ -14,13 +14,8 @@ public class Day6 extends ADay {
     private final String regex = "(?<action>turn|toggle) ((?<switch>on|off) )?(?<sx>\\d+),(?<sy>\\d+) through (?<ex>\\d+),(?<ey>\\d+)";
     private final Pattern pattern = Pattern.compile(regex);
 
-    public Day6(Aoc aoc) {
-        super(aoc);
-    }
-
-    @Override
-    public int number() {
-        return 6;
+    public Day6(Aoc aoc, int number) {
+        super(aoc, number);
     }
 
     @Override

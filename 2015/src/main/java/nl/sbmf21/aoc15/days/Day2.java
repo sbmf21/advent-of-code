@@ -10,13 +10,8 @@ public class Day2 extends ADay {
 
     private final ArrayList<Dimension> dimensions = parseDimensions();
 
-    public Day2(Aoc aoc) {
-        super(aoc);
-    }
-
-    @Override
-    public int number() {
-        return 2;
+    public Day2(Aoc aoc, int number) {
+        super(aoc, number);
     }
 
     @Override

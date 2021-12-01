@@ -10,13 +10,8 @@ public class Day1 extends ADay {
 
     private final char[] instructions = parseInstructions();
 
-    public Day1(Aoc aoc) {
-        super(aoc);
-    }
-
-    @Override
-    public int number() {
-        return 1;
+    public Day1(Aoc aoc, int number) {
+        super(aoc, number);
     }
 
     @Override

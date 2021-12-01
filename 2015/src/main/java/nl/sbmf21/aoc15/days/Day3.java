@@ -15,13 +15,8 @@ public class Day3 extends ADay {
 
     private final ArrayList<Direction> directions = parseDirections();
 
-    public Day3(Aoc aoc) {
-        super(aoc);
-    }
-
-    @Override
-    public int number() {
-        return 3;
+    public Day3(Aoc aoc, int number) {
+        super(aoc, number);
     }
 
     @Override

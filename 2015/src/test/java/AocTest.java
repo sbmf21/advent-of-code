@@ -11,7 +11,7 @@ public class AocTest {
     @Test
     public void names() {
         for (ADay day : aoc.findDays()) {
-            assertEquals(String.format("Day%s", day.number()), day.getClass().getSimpleName());
+            assertEquals(String.format("Day%s", day.getNumber()), day.getClass().getSimpleName());
         }
     }
 }
