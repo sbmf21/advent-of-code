@@ -3,6 +3,10 @@ stages:
   - test
   - run
 
+# Ada
+.ada:
+  image: registry.gitlab.com/switchware/containers/ada:latest
+
 # Maven
 
 .maven:
@@ -37,4 +41,4 @@ include:
  - local: /ci/2020/kotlin.yml
  - local: /ci/2020/lua.yml
  - local: /ci/2021/kotlin.yml
-#  - local: /ci/2021/ada.yml
+ - local: /ci/2021/ada.yml

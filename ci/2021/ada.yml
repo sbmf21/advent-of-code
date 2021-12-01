@@ -1,0 +1,8 @@
+2021:ada:compile:
+  extends: .ada
+  stage: build
+  script:
+    - cd 2021/ada
+    - mkdir out
+    - gnatmake hello.adb -D out
+    - ./hello
