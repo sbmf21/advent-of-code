@@ -2,7 +2,7 @@
   extends: .maven
   only:
     changes:
-      - 2020/kotlin/*
+      - 2020/kotlin/**/*
       - ci/2020/kotlin.yml
   before_script:
     - cd 2020/kotlin
