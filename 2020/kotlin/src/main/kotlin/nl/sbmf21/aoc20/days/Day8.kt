@@ -4,10 +4,9 @@ import nl.sbmf21.aoc.common.ADay
 import nl.sbmf21.aoc20.Aoc
 import java.util.regex.Pattern
 
-class Day8(aoc: Aoc) : ADay(aoc) {
+class Day8(aoc: Aoc, number: Int) : ADay(aoc, number) {
 
     private val pattern: Pattern = Pattern.compile("(?<cmd>acc|jmp|nop) (?<val>[-+]\\d+)")
-    override fun number() = 8
 
     override fun part1(): Int {
 

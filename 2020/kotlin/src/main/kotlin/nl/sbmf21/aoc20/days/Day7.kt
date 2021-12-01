@@ -4,7 +4,7 @@ import nl.sbmf21.aoc.common.ADay
 import nl.sbmf21.aoc20.Aoc
 import java.util.regex.Pattern
 
-class Day7(aoc: Aoc) : ADay(aoc) {
+class Day7(aoc: Aoc, number: Int) : ADay(aoc, number) {
 
     private val myBag = "shiny gold"
     private val pattern = Pattern.compile("(?<bag>[\\w ]+) bags contain (?<rule>.*)\\.")
@@ -13,8 +13,6 @@ class Day7(aoc: Aoc) : ADay(aoc) {
         matcher.matches()
         Bag(matcher.group("bag"), matcher.group("rule"))
     }
-
-    override fun number() = 7
 
     override fun part1() = bags.count { it.canFit(myBag, bags) }
 

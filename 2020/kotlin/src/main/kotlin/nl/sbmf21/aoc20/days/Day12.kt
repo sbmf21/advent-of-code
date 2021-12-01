@@ -5,7 +5,7 @@ import nl.sbmf21.aoc20.Aoc
 import java.util.regex.Pattern
 import kotlin.math.abs
 
-class Day12(aoc: Aoc) : ADay(aoc) {
+class Day12(aoc: Aoc, number: Int) : ADay(aoc, number) {
 
     private val pattern = Pattern.compile("(?<action>[NSEWLRF])(?<value>\\d+)")
     private val instructions = input.map {
@@ -13,8 +13,6 @@ class Day12(aoc: Aoc) : ADay(aoc) {
         matcher.matches()
         Pair(matcher.group("action"), matcher.group("value").toInt())
     }
-
-    override fun number() = 12
 
     override fun part1(): Int {
 

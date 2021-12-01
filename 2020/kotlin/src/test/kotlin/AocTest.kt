@@ -9,7 +9,7 @@ class AocTest {
     @Test
     fun names() {
         aoc.findDays().forEach { day ->
-            assertEquals("Day${day.number()}", day.javaClass.simpleName)
+            assertEquals("Day${day.number}", day.javaClass.simpleName)
         }
     }
 }

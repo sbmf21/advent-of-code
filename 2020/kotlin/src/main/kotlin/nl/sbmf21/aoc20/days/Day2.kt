@@ -5,12 +5,10 @@ import nl.sbmf21.aoc.common.ADay
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
-class Day2(aoc: Aoc) : ADay(aoc) {
+class Day2(aoc: Aoc, number: Int) : ADay(aoc, number) {
 
     private val pattern = Pattern.compile("(?<min>\\d+)-(?<max>\\d+)\\s(?<char>[a-z]):\\s(?<password>[a-z]+)")
     private val rules = input.map { pattern.matcher(it) }.filter { it.matches() }
-
-    override fun number() = 2
 
     override fun part1() = rules.count { line ->
         val charCount = password(line).filter { it == char(line) }.length

@@ -4,11 +4,9 @@ import nl.sbmf21.aoc.common.ADay
 import nl.sbmf21.aoc20.Aoc
 import java.util.regex.Pattern
 
-class Day4(aoc: Aoc) : ADay(aoc) {
+class Day4(aoc: Aoc, number: Int) : ADay(aoc, number) {
 
     private val passports = parsePassports()
-
-    override fun number() = 4
 
     override fun part1() = passports.filter { hasRequiredFields(it) }.size
 
