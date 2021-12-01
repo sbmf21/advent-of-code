@@ -1,5 +1,9 @@
 .2015:java:
   extends: .maven
+  only:
+    changes:
+      - 2015/*
+      - ci/2015/java.yml
   before_script:
     - cd 2015
   cache:
