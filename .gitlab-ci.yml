@@ -36,9 +36,9 @@ stages:
 # Projects
 
 include:
- - local: /ci/kt-commons.yml
- - local: /ci/2015/java.yml
- - local: /ci/2020/kotlin.yml
- - local: /ci/2020/lua.yml
- - local: /ci/2021/kotlin.yml
- - local: /ci/2021/ada.yml
+ - local: /aoc-commons/.gitlab-ci.yml
+ - local: /2021/ada/.gitlab-ci.yml
+ - local: /2021/kotlin/.gitlab-ci.yml
+ - local: /2020/kotlin/.gitlab-ci.yml
+ - local: /2020/lua/.gitlab-ci.yml
+ - local: /2015/.gitlab-ci.yml
