@@ -3,44 +3,77 @@ package nl.sbmf21.aoc20.days
 import nl.sbmf21.aoc.common.ADay
 import nl.sbmf21.aoc20.Aoc
 import java.util.regex.Matcher
-import java.util.regex.Pattern
+import java.util.regex.Pattern.compile as regex
 
 class Day16(aoc: Aoc, number: Int) : ADay(aoc, number) {
 
-    private val pattern = Pattern.compile("(?<key>[a-z ]+): (?<ss>[\\d]+)-(?<se>[\\d]+) or (?<es>[\\d]+)-(?<ee>[\\d+]+)")
+    // Variables
+
+    private val pattern = regex("(?<key>[a-z ]+): (?<ss>[\\d]+)-(?<se>[\\d]+) or (?<es>[\\d]+)-(?<ee>[\\d+]+)")
+    private val tickets = ticketList("nearby tickets:")
+    private val myTicket = ticketList("your ticket:", true).first()
     private val rules = input
         .map { pattern.matcher(it) }
         .filter { it.matches() }
         .map { Rule(it) }
-    private val tickets = input
-        .subList(input.indexOf("nearby tickets:") + 1, input.size)
-        .map { line -> line.split(",").map { it.toInt() } }
 
-    override fun part1(): Int {
-        val unmatched = mutableListOf<Int>()
-        tickets.forEach { ticket -> ticket.forEach { field -> if (rules.none { it.matches(field) }) unmatched.add(field) } }
-        return unmatched.sum()
-    }
+    // Puzzles
 
-    override fun part2(): Int {
+    override fun part1() = tickets
+        .map { t -> t.filter { f -> rules.none { it.matches(f) } } }
+        .flatten()
+        .sum()
 
-        tickets
-            .filter { it.forEach { f -> if (rules.none { r -> r.matches(f) }) return@filter false }; true }
-            .forEachIndexed { index, number ->
-                // per nummer bekijken welke rules hij matched, opslaan op index
+    override fun part2(): Long {
+
+        val tickets = tickets.filter { t -> t.none { f -> rules.none { it.matches(f) } } }
+        val position = rules
+            .associateBy({ it.key }, {
+                rules
+                    .associateBy { rules.indexOf(it) }
+                    .mapValues { (i, _) -> tickets.filter { t -> it.matches(t[i]) } }
+                    .filterValues { it.count() == tickets.count() }
+                    .map { (i, _) -> i }
+            })
+            .entries
+            .fold(mutableMapOf<Int, MutableList<String>>()) { acc, e ->
+                e.value.forEach { acc.getOrPut(it) { mutableListOf() }.add(e.key) }
+                acc
             }
 
-        return 0
+        return rules
+            .fold(mutableMapOf<String, Int>()) { acc, _ ->
+                position
+                    .filter { (_, l) -> l.size == 1 }
+                    .forEach { (i, l) ->
+                        position
+                            .filter { (oi, _) -> oi != i }
+                            .forEach { (pi, po) -> position[pi] = po.filter { it != l[0] }.toMutableList() }
+
+                        acc[l[0]] = i
+                    }
+
+                acc
+            }
+            .filterKeys { it.startsWith("departure") }
+            .map { (_, i) -> myTicket[i].toLong() }
+            .reduce { acc, x -> acc * x }
     }
+
+    // Helpers
+
+    private fun ticketList(prefix: String, single: Boolean = false) = input
+        .subList(index(prefix), if (single) index(prefix) + 1 else input.size)
+        .map { t -> t.split(',').map { it.toInt() } }
+
+    private fun index(prefix: String) = input.indexOf(prefix) + 1
 }
 
-internal class Rule(matcher: Matcher) {
+private class Rule(matcher: Matcher) {
 
-    private val key = matcher.group("key")
-    private val ss = matcher.group("ss").toInt()
-    private val se = matcher.group("se").toInt()
-    private val es = matcher.group("es").toInt()
-    private val ee = matcher.group("ee").toInt()
+    val key = matcher.group("key")!!
+    private val range1 = matcher.group("ss").toInt()..matcher.group("se").toInt()
+    private val range2 = matcher.group("es").toInt()..matcher.group("ee").toInt()
 
-    fun matches(field: Int) = field in ss..se || field in es..ee
+    fun matches(field: Int) = field in range1 || field in range2
 }
