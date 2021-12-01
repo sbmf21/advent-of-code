@@ -5,7 +5,7 @@ import kotlin.test.assertEquals
 
 class Day2Test {
 
-    private var day = Day2(Aoc())
+    private var day = Day2(Aoc(), 2)
 
     @Test
     fun testPart1Output() = assertEquals(-1, day.part1())
