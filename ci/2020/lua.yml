@@ -2,7 +2,7 @@
   extends: .lua
   only:
     changes:
-      - 2020/lua/*
+      - 2020/lua/**/*
       - ci/2020/lua.yml
   before_script:
     - cd 2020/lua
