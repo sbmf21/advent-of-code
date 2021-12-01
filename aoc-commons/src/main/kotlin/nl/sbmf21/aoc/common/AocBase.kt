@@ -40,7 +40,8 @@ abstract class AocBase(val name: String) {
     fun findDays(): List<ADay> = Reflections("${this::class.java.packageName}.days")
         .getSubTypesOf(ADay::class.java)
         .map {
-            it.getDeclaredConstructor(this::class.java).newInstance(this, it.javaClass.simpleName.substring(3).toInt())
+            it.getDeclaredConstructor(this::class.java, Int::class.java)
+                .newInstance(this, it.simpleName.substring(3).toInt())
         }
         .sortedBy { it.number }
         .filter { if (runDay == null) true else it.number == runDay }
