@@ -4,7 +4,6 @@ commons:kotlin:deploy:
   only:
     changes:
       - aoc-commons/**/*
-      - ci/kt-commons.yml
   cache:
     key: 'maven:commons'
     paths:
