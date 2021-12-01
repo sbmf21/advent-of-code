@@ -1,10 +1,8 @@
 package nl.sbmf21.aoc.common
 
-abstract class ADay(private val aoc: AocBase) {
+abstract class ADay(private val aoc: AocBase, public val number: Int) {
 
     protected val input = input()
-
-    abstract fun number(): Int
 
     abstract fun part1(): Number
 
