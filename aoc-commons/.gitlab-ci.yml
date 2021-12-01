@@ -2,6 +2,8 @@ commons:kotlin:deploy:
   extends: .maven
   stage: build
   only:
+    refs:
+      - master
     changes:
       - aoc-commons/**/*
   cache:
@@ -16,5 +18,3 @@ commons:kotlin:deploy:
     - cd aoc-commons
   script:
     - mvn deploy install -s ci_settings.xml
-  only:
-    - master
