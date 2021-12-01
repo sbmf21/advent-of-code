@@ -11,5 +11,5 @@ class Day16Test {
     fun testPart1Output() = assertEquals(27850, day.part1())
 
     @Test
-    fun testPart2Output() = assertEquals(0, day.part2())
+    fun testPart2Output() = assertEquals(491924517533, day.part2())
 }
