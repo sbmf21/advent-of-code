@@ -9,7 +9,7 @@ public class Day4Test {
     private final Day4 day;
 
     public Day4Test() throws Exception {
-        day = new Day4(new Aoc());
+        day = new Day4(new Aoc(), 4);
     }
 
     @Test

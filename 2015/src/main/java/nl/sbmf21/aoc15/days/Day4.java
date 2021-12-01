@@ -15,18 +15,13 @@ public class Day4 extends ADay {
     private final String key;
     private final int max;
 
-    public Day4(Aoc aoc) throws Exception {
-        super(aoc);
+    public Day4(Aoc aoc, int number) throws Exception {
+        super(aoc, number);
 
         var input = getInput();
         digester = MessageDigest.getInstance("MD5");
         key = input.get(0);
         max = Integer.parseInt(input.get(1));
-    }
-
-    @Override
-    public int number() {
-        return 4;
     }
 
     @Override

@@ -6,13 +6,8 @@ import org.jetbrains.annotations.NotNull;
 
 public class Day5 extends ADay {
 
-    public Day5(Aoc aoc) {
-        super(aoc);
-    }
-
-    @Override
-    public int number() {
-        return 5;
+    public Day5(Aoc aoc, int number) {
+        super(aoc, number);
     }
 
     @Override
