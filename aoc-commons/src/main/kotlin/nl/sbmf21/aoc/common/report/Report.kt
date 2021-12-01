@@ -9,7 +9,7 @@ internal class Report(private val aoc: AocBase) {
     private val builder = StringBuilder()
     private val timings = mutableListOf<Timing>()
     private val columns = listOf(
-        Column("Day") { it.day.number().toString() },
+        Column("Day") { it.day.number.toString() },
         // Timings
         Column("Total") { it.totalTime() },
         Column("Part 1") { it.part1Time() },

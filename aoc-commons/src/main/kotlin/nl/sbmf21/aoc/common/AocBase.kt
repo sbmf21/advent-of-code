@@ -31,7 +31,7 @@ abstract class AocBase(val name: String) {
     fun report() = report.render()
 
     fun file(day: ADay): List<String> = day.javaClass
-        .getResourceAsStream("/input/day${day.number()}.txt")!!
+        .getResourceAsStream("/input/day${day.number}.txt")!!
         .bufferedReader()
         .lines()
         .toArray()
@@ -39,9 +39,11 @@ abstract class AocBase(val name: String) {
 
     fun findDays(): List<ADay> = Reflections("${this::class.java.packageName}.days")
         .getSubTypesOf(ADay::class.java)
-        .map { it.getDeclaredConstructor(this::class.java).newInstance(this) }
-        .sortedBy { it.number() }
-        .filter { if (runDay == null) true else it.number() == runDay }
+        .map {
+            it.getDeclaredConstructor(this::class.java).newInstance(this, it.javaClass.simpleName.substring(3).toInt())
+        }
+        .sortedBy { it.number }
+        .filter { if (runDay == null) true else it.number == runDay }
 
     private fun makeReport(): Report = Report(this)
 }
