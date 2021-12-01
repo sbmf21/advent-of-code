@@ -3,9 +3,7 @@ package nl.sbmf21.aoc21.days
 import nl.sbmf21.aoc.common.ADay
 import nl.sbmf21.aoc21.Aoc
 
-class Day2(aoc: Aoc) : ADay(aoc) {
-
-    override fun number() = 2
+class Day2(aoc: Aoc, number: Int) : ADay(aoc, number) {
 
     override fun part1() = -1
 
