@@ -5,11 +5,9 @@ import nl.sbmf21.aoc20.Aoc
 import kotlin.math.max
 import kotlin.math.min
 
-class Day11(aoc: Aoc) : ADay(aoc) {
+class Day11(aoc: Aoc, number: Int) : ADay(aoc, number) {
 
     private val grid = input.map { line -> line.toCharArray().map { it } }
-
-    override fun number() = 11
 
     override fun part1(): Int {
         var grid = this.grid

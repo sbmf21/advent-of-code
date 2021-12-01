@@ -5,7 +5,7 @@ import nl.sbmf21.aoc20.Aoc
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
-class Day16(aoc: Aoc) : ADay(aoc) {
+class Day16(aoc: Aoc, number: Int) : ADay(aoc, number) {
 
     private val pattern = Pattern.compile("(?<key>[a-z ]+): (?<ss>[\\d]+)-(?<se>[\\d]+) or (?<es>[\\d]+)-(?<ee>[\\d+]+)")
     private val rules = input
@@ -15,8 +15,6 @@ class Day16(aoc: Aoc) : ADay(aoc) {
     private val tickets = input
         .subList(input.indexOf("nearby tickets:") + 1, input.size)
         .map { line -> line.split(",").map { it.toInt() } }
-
-    override fun number() = 16
 
     override fun part1(): Int {
         val unmatched = mutableListOf<Int>()

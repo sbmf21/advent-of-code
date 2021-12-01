@@ -3,11 +3,9 @@ package nl.sbmf21.aoc20.days
 import nl.sbmf21.aoc.common.ADay
 import nl.sbmf21.aoc20.Aoc
 
-class Day3(aoc: Aoc) : ADay(aoc) {
+class Day3(aoc: Aoc, number: Int) : ADay(aoc, number) {
 
     private val map = input.map { it.toCharArray() }
-
-    override fun number() = 3
 
     override fun part1() = countTrees(3)
 

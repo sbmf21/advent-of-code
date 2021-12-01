@@ -6,11 +6,9 @@ import java.lang.Long.toBinaryString
 import java.math.BigInteger
 import java.util.regex.Pattern
 
-class Day14(aoc: Aoc) : ADay(aoc) {
+class Day14(aoc: Aoc, number: Int) : ADay(aoc, number) {
 
     private val regex = Pattern.compile("(?<cmd>mask|mem)(?:\\[(?<mem>\\d+)])? = (?<val>[\\dX]+)")
-
-    override fun number() = 14
 
     override fun part1(): Long {
         var mask: String? = null

@@ -3,11 +3,9 @@ package nl.sbmf21.aoc20.days
 import nl.sbmf21.aoc.common.ADay
 import nl.sbmf21.aoc20.Aoc
 
-class Day10(aoc: Aoc) : ADay(aoc) {
+class Day10(aoc: Aoc, number: Int) : ADay(aoc, number) {
 
     private val adapters = input.map { it.toInt() }.sortedBy { it }
-
-    override fun number() = 10
 
     override fun part1(): Int {
 

@@ -3,11 +3,9 @@ package nl.sbmf21.aoc20.days
 import nl.sbmf21.aoc.common.ADay
 import nl.sbmf21.aoc20.Aoc
 
-class Day15(aoc: Aoc) : ADay(aoc) {
+class Day15(aoc: Aoc, number: Int) : ADay(aoc, number) {
 
     private val numbers = input.joinToString(",").split(",").map { it.toInt() }
-
-    override fun number() = 15
 
     override fun part1() = run(2020)
 
