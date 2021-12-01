@@ -12,10 +12,10 @@ class Day1(aoc: Aoc) : ADay(aoc) {
     override fun part1() = countBigger(numbers)
 
     override fun part2() = countBigger(List(numbers.size - 2) {
-        numbers[it] + numbers[it + 1] + numbers[it + 2]
+        numbers.slice(it..it + 2).sum()
     })
 
     private fun countBigger(items: List<Int>) = items
-        .filterIndexed { index, item -> index > 0 && items[index - 1] < item }
+        .filterIndexed { i, v -> i > 0 && items[i - 1] < v }
         .count()
 }
