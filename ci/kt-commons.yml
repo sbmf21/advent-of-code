@@ -1,6 +1,10 @@
 commons:kotlin:deploy:
   extends: .maven
   stage: build
+  only:
+    changes:
+      - aoc-commons/*
+      - ci/kt-commons.yml
   cache:
     key: 'maven:commons'
     paths:
