@@ -4,10 +4,8 @@ import nl.sbmf21.aoc.common.AocBase
 
 class Aoc : AocBase("2020")
 
-fun main(args: Array<String>) {
-    val aoc = Aoc()
-
-    aoc.init(args)
-    aoc.runDays()
-    aoc.report()
+fun main(args: Array<String>) = Aoc().run {
+    init(args)
+    runDays()
+    report()
 }
