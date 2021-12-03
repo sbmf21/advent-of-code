@@ -7,9 +7,7 @@ typealias Run = (Int) -> Unit
 
 class Day2(aoc: Aoc, number: Int) : ADay(aoc, number) {
 
-    private val actions = input
-        .map { it.split(' ') }
-        .map { Pair(it[0], it[1].toInt()) }
+    private val actions = input.map { it.split(' ') }.map { Pair(it[0], it[1].toInt()) }
 
     override fun part1(): Int {
         var x = 0; var y = 0
