@@ -5,18 +5,11 @@ import nl.sbmf21.aoc21.Aoc
 
 class Day3(aoc: Aoc, number: Int) : ADay(aoc, number) {
 
-    override fun part1(): Number {
-        var g = ""; var e = ""
-
-        for (i in 0 until input[0].length) {
+    override fun part1() = combine(input[0]
+        .mapIndexed { i, _ ->
             val p = count(i)
-
-            g += if (p.first <= p.second) '1' else '0'
-            e += if (p.first > p.second) '1' else '0'
-        }
-
-        return combine(g, e)
-    }
+            Pair(if (p.first <= p.second) '1' else '0', if (p.first > p.second) '1' else '0')
+        }.fold(Pair("", "")) { a, p -> Pair(a.first + p.first, a.second + p.second) })
 
     override fun part2() = combine(
         filter { a, b -> a <= b }[0],
@@ -35,5 +28,6 @@ class Day3(aoc: Aoc, number: Int) : ADay(aoc, number) {
     }
 }
 
+private fun combine(p: Pair<String, String>) = combine(p.first, p.second)
 private fun combine(a: String, b: String) = parse(a) * parse(b)
 private fun parse(n: String) = Integer.parseInt(n, 2)
