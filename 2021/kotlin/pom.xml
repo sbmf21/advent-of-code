@@ -15,7 +15,7 @@
         <kotlin.code.style>official</kotlin.code.style>
         <kotlin.compiler.jvmTarget>11</kotlin.compiler.jvmTarget>
         <kotlin.version>1.6.0</kotlin.version>
-        <junit.version>5.6.0</junit.version>
+        <junit.version>5.8.1</junit.version>
         <main.class>nl.sbmf21.aoc21.AocKt</main.class>
     </properties>
 
