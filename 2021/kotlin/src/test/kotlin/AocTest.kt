@@ -1,14 +1,14 @@
 import nl.sbmf21.aoc.common.ADay
 import nl.sbmf21.aoc.common.buildDay
-import nl.sbmf21.aoc.common.number
 import nl.sbmf21.aoc21.Aoc
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class AocTest {
 
     @Test
-    fun names() = Aoc().findDays().forEach { day -> assertEquals("Day${number(day)}", day.simpleName) }
+    fun names() = Aoc().findDays().forEach { day -> assertTrue(day.simpleName.matches(Regex("Day\\d+"))) }
 }
 
 fun testDay(cls: Class<out ADay>, part1: Int, part2: Int, example: Boolean = false) {
