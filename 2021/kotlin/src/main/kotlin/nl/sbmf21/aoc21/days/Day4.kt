@@ -1,61 +1,42 @@
 package nl.sbmf21.aoc21.days
 
 import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.iterated
 import nl.sbmf21.aoc21.Aoc
 
 class Day4(aoc: Aoc, number: Int) : ADay(aoc, number) {
 
-    private val pattern = Regex("\\d+(,\\d+)+")
-    internal val drawn = input
-        .filter { it.matches(pattern) }
-        .map { it.split(',').map { n -> n.toInt() } }
-        .flatten()
-    private val boardData = input
-        .filter { !it.matches(pattern) }
+    private val drawn = input[0].split(',').map { it.toInt() }
+    private var boards = input.subList(2, input.size).asSequence().filter { it.isNotBlank() }
         .map { it.split(' ').filter { l -> l.isNotBlank() }.map { n -> n.toInt() } }
-        .map { it.toMutableList() }
-    private val boardSize = boardData.size / boardData.filter { it.isEmpty() }.size
-    private var boards = boardData.chunked(boardSize)
-        .map { it.filter { l -> l.isNotEmpty() } }
-        .map { Board(this, it.toMutableList()) }
+        .map { it.toMutableList() }.chunked(5)
+        .map { Board(drawn, it.toMutableList()) }
         .toMutableList()
 
     override fun part1(): Int {
-        drawn.forEach { d -> boards.forEach { b -> b.rows.forEach { it.remove(d); if (it.isEmpty()) return b.s(d) } } }
+        drawn.forEach { d -> boards.forEach { b -> b.rows.forEach { if (it.remove(d) && it.isEmpty()) return b.s(d) } } }
         return -1
     }
 
     override fun part2(): Int {
-        var last: Board? = null
-        var number = -1
-
         drawn.forEach { d ->
-            boards.iterator().run {
-                while (hasNext()) {
-                    val b = next()
-
-                    for (it in b.rows) {
-                        it.remove(d)
-
-                        if (it.isEmpty()) {
-                            remove(); last = b; number = d; break
-                        }
-                    }
+            boards.iterated { iter, b ->
+                for (it in b.rows) if (it.remove(d) && it.isEmpty()) {
+                    iter.remove()
+                    break
                 }
+                if (boards.isEmpty()) return b.s(d)
             }
         }
-
-        return last!!.s(number)
+        return -1
     }
 }
 
-class Board(private val day: Day4, private val original: MutableList<MutableList<Int>>) {
+class Board(private val drawn: List<Int>, private val original: MutableList<MutableList<Int>>) {
 
     val rows = original[0]
         .foldIndexed(mutableListOf<MutableList<Int>>()) { i, a, _ -> a.add(original.map { it[i] }.toMutableList()); a }
         .apply { addAll(original) }
 
-    internal fun s(d: Int) = original.flatten()
-        .filter { !day.drawn.subList(0, day.drawn.indexOf(d)).contains(it) }
-        .sum() * d
+    internal fun s(d: Int) = original.flatten().filter { !drawn.subList(0, drawn.indexOf(d)).contains(it) }.sum() * d
 }
