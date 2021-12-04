@@ -2,9 +2,8 @@ package nl.sbmf21.aoc21.days
 
 import nl.sbmf21.aoc.common.ADay
 import nl.sbmf21.aoc.common.iterated
-import nl.sbmf21.aoc21.Aoc
 
-class Day4(aoc: Aoc, number: Int) : ADay(aoc, number) {
+class Day4(input: List<String>) : ADay(input) {
 
     private val drawn = input[0].split(',').map { it.toInt() }
     private var boards = input.subList(2, input.size).asSequence().filter { it.isNotBlank() }
@@ -21,10 +20,8 @@ class Day4(aoc: Aoc, number: Int) : ADay(aoc, number) {
     override fun part2(): Int {
         drawn.forEach { d ->
             boards.iterated { iter, b ->
-                for (it in b.rows) if (it.remove(d) && it.isEmpty()) {
-                    iter.remove()
-                    break
-                }
+                b.rows.forEach { it.remove(d) }
+                if (b.rows.any { it.isEmpty() }) iter.remove()
                 if (boards.isEmpty()) return b.s(d)
             }
         }
