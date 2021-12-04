@@ -1,4 +1,3 @@
-
 import nl.sbmf21.aoc21.days.Day2
 import org.junit.jupiter.api.Test
 
