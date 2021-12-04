@@ -1,11 +1,8 @@
 package nl.sbmf21.aoc21.days
 
 import nl.sbmf21.aoc.common.ADay
-import nl.sbmf21.aoc21.Aoc
 
-typealias Run = (Int) -> Unit
-
-class Day2(aoc: Aoc, number: Int) : ADay(aoc, number) {
+class Day2(input: List<String>) : ADay(input) {
 
     private val actions = input.map { it.split(' ') }.map { Pair(it[0], it[1].toInt()) }
 
@@ -19,7 +16,7 @@ class Day2(aoc: Aoc, number: Int) : ADay(aoc, number) {
         run({ x += it; y += (p * it) }, { p -= it }, { p += it }).also { return x * y }
     }
 
-    private fun run(forward: Run, up: Run, down: Run) = actions.forEach {
+    private fun run(forward: (Int) -> Unit, up: (Int) -> Unit, down: (Int) -> Unit) = actions.forEach {
         when (it.first) {
             "forward" -> forward(it.second)
             "up" -> up(it.second)
