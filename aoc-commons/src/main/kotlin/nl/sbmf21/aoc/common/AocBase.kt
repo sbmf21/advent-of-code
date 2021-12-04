@@ -10,7 +10,15 @@ abstract class AocBase(val name: String) {
     private var pattern = Pattern.compile("--day(?:=(?<day>\\d+))?")
     private var runDay: Int? = null
 
-    fun init(args: Array<String>) = args.forEach {
+    fun exec(args: Array<String>) {
+        init(args)
+        runDays()
+        report()
+    }
+
+    fun findDays() = Reflections("${this::class.java.packageName}.days").getSubTypesOf(ADay::class.java)
+
+    private fun init(args: Array<String>) = args.forEach {
         val matcher = pattern.matcher(it)
 
         if (matcher.matches()) {
@@ -26,25 +34,27 @@ abstract class AocBase(val name: String) {
         }
     }
 
-    fun runDays() = findDays().forEach { report.time(it) }
-
-    fun report() = report.render()
-
-    fun file(day: ADay): List<String> = day.javaClass
-        .getResourceAsStream("/input/day${day.number}.txt")!!
-        .bufferedReader()
-        .lines()
-        .toArray()
-        .map { it.toString() }
-
-    fun findDays(): List<ADay> = Reflections("${this::class.java.packageName}.days")
-        .getSubTypesOf(ADay::class.java)
-        .map {
-            it.getDeclaredConstructor(this::class.java, Int::class.java)
-                .newInstance(this, it.simpleName.substring(3).toInt())
-        }
+    private fun runDays() = findDays()
+        .filter { runDay == null || it.simpleName.equals("Day$runDay") }
+        .map { buildDay(it) }
         .sortedBy { it.number }
-        .filter { if (runDay == null) true else it.number == runDay }
+        .forEach { report.time(it) }
 
-    private fun makeReport(): Report = Report(this)
+    private fun report() = report.render()
+    private fun makeReport() = Report(this)
 }
+
+fun buildDay(cls: Class<out ADay>, example: Boolean = false) = cls
+    .getDeclaredConstructor(List::class.java).newInstance(file(cls, example))
+    .apply { number = number(cls) }
+
+fun file(cls: Class<out ADay>, example: Boolean) = cls
+    .getResourceAsStream("/${folder(example)}/day${number(cls)}.txt")!!
+    .bufferedReader()
+    .lines()
+    .toArray()
+    .map { it.toString() }
+
+private fun number(cls: Class<out ADay>) = cls.simpleName.substring(3).toInt()
+
+private fun folder(example: Boolean) = if (example) "example" else "input"
