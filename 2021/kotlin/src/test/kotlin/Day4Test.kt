@@ -8,8 +8,8 @@ class Day4Test {
     private var day = Day4(Aoc(), 4)
 
     @Test
-    fun testPart1Output() = assertEquals(-1, day.part1())
+    fun testPart1Output() = assertEquals(55770, day.part1())
 
     @Test
-    fun testPart2Output() = assertEquals(-1, day.part2())
+    fun testPart2Output() = assertEquals(2980, day.part2())
 }
