@@ -55,6 +55,6 @@ fun file(cls: Class<out ADay>, example: Boolean) = cls
     .toArray()
     .map { it.toString() }
 
-private fun number(cls: Class<out ADay>) = cls.simpleName.substring(3).toInt()
+fun number(cls: Class<out ADay>) = cls.simpleName.substring("Day".length).toInt()
 
 private fun folder(example: Boolean) = if (example) "example" else "input"
