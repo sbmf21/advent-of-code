@@ -14,7 +14,7 @@
         <maven.compiler.source>15</maven.compiler.source>
         <maven.compiler.target>15</maven.compiler.target>
         <main.class>nl.sbmf21.aoc20.AocKt</main.class>
-        <kotlin.version>1.6.0</kotlin.version>
+        <kotlin.version>1.5.0</kotlin.version>
         <junit.version>4.13.2</junit.version>
     </properties>
 
