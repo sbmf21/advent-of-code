@@ -1,3 +1,4 @@
-discord.xml
-workspace.xml
 /libraries/**/Maven__*.xml
+discord.xml
+misc.xml
+workspace.xml
