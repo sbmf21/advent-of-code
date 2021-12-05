@@ -1,6 +1,6 @@
 commons:kotlin:deploy:
   extends: .maven
-  stage: build
+  stage: build:commons
   only:
     refs:
       - master
