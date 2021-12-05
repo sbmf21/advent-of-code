@@ -2,7 +2,7 @@ package nl.sbmf21.aoc21.days
 
 import nl.sbmf21.aoc.common.ADay
 import java.lang.Integer.max
-import kotlin.math.abs
+import kotlin.math.sign
 
 class Day5(input: List<String>) : ADay(input) {
 
@@ -35,4 +35,4 @@ data class Line(val x1: Int, val y1: Int, val x2: Int, val y2: Int) {
 private fun i(m: MatchGroup?) = m!!.value.toInt()
 private fun List<Line>.maxX() = map { it.maxX }.maxOf { it } + 1
 private fun List<Line>.maxY() = map { it.maxY }.maxOf { it } + 1
-private fun Vec<Int>.step() = Vec(if (x == 0) 0 else x / abs(x), if (y == 0) 0 else y / abs(y))
+private fun Vec<Int>.step() = Vec(x.sign, y.sign)
