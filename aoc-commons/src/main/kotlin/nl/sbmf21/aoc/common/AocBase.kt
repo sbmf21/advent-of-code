@@ -16,7 +16,9 @@ abstract class AocBase(val name: String) {
         report()
     }
 
-    fun findDays() = Reflections("${this::class.java.packageName}.days").getSubTypesOf(ADay::class.java)
+    fun findDays() = Reflections("${this::class.java.packageName}.days")
+        .getSubTypesOf(ADay::class.java)
+        .filter { it.simpleName.matches(Regex("Day\\d+")) }
 
     private fun init(args: Array<String>) = args.forEach {
         val matcher = pattern.matcher(it)
