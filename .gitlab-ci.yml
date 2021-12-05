@@ -1,4 +1,5 @@
 stages:
+  - build:commons
   - build
   - test
   - run
@@ -17,7 +18,9 @@ stages:
 
 .maven:compile:
   stage: build
-  needs: []
+  needs:
+    - job: commons:kotlin:deploy
+      optional: true
   dependencies:
     - commons:kotlin:deploy
   script:
