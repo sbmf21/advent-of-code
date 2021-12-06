@@ -64,11 +64,11 @@ class AocTest {
 
     @Test
     fun testInput() {
-        val days = aoc.runDays()
+        val days = aoc.apply { runDay = null }.runDays()
 
-        assertEquals(listOf("hi", "bye", "i", "am", "INPUT"), days[0].input)
-        assertEquals(listOf("some", "stuff"), days[1].input)
-        assertEquals(listOf(), days[2].input)
-        assertEquals(listOf("epic,4"), days[3].input)
+        assertEquals(listOf("hi", "bye", "i", "am", "INPUT"), days.first { it is Day1 }.input)
+        assertEquals(listOf("some", "stuff"), days.first { it is Day2 }.input)
+        assertEquals(listOf(), days.first { it is Day7 }.input)
+        assertEquals(listOf("epic,4"), days.first { it is Day23 }.input)
     }
 }
