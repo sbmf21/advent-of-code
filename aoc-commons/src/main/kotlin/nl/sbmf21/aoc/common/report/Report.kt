@@ -2,6 +2,7 @@ package nl.sbmf21.aoc.common.report
 
 import nl.sbmf21.aoc.common.ADay
 import nl.sbmf21.aoc.common.AocBase
+import java.math.BigDecimal
 import kotlin.system.measureNanoTime
 
 internal class Report(private val aoc: AocBase) {
@@ -15,8 +16,8 @@ internal class Report(private val aoc: AocBase) {
         Column("Part 1") { it.part1Time() },
         Column("Part 2") { it.part2Time() },
         // Values
-        Column("Part 1") { it.part1Value.toString() },
-        Column("Part 2") { it.part2Value.toString() }
+        Column("Part 1") { stringifyNumber(it.part1Value!!) },
+        Column("Part 2") { stringifyNumber(it.part2Value!!) }
     )
 
     fun time(day: ADay) {
@@ -107,6 +108,8 @@ internal class Report(private val aoc: AocBase) {
         line.joinToString(separator = "$spacer$sep$spacer"),
         "$spacer$right"
     ).joinToString(separator = "")
+
+    private fun stringifyNumber(n: Number) = if (n is Double) BigDecimal(n).toPlainString() else n.toString()
 
     private fun calculateSizes(): Sizes {
         columns.forEach { it.calculate(timings) }
