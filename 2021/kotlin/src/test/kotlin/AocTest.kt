@@ -11,7 +11,7 @@ class AocTest {
     fun names() = Aoc().findDays().forEach { day -> assertTrue(day.simpleName.matches(Regex("Day\\d+"))) }
 }
 
-fun testDay(cls: Class<out ADay>, part1: Int, part2: Int, example: Boolean = false) {
+fun testDay(cls: Class<out ADay>, part1: Number, part2: Number, example: Boolean = false) {
     val day = buildDay(cls, example)
 
     assertEquals(part1, day.part1())
