@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="AOC Commons" target="15" />
+      <module name="AOC Commons" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

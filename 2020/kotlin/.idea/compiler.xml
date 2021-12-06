@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Advent of Code 2020" target="15" />
+      <module name="Advent of Code 2020" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

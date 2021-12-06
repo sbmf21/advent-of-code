@@ -1,5 +1,5 @@
 import nl.sbmf21.aoc20.Aoc
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
 class AocTest {

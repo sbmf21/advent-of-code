@@ -7,6 +7,7 @@
     - cd 2015
   cache:
     key: '2015:java'
+    policy: pull
     paths:
       - 2015/.m2/repository/
       - 2015/target/
@@ -15,6 +16,12 @@
   extends:
     - .2015:java
     - .maven:compile
+  cache:
+    key: '2015:java'
+    policy: pull-push
+    paths:
+      - 2015/.m2/repository/
+      - 2015/target/
 
 2015:java:test:
   extends:

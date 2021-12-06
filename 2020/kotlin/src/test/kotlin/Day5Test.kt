@@ -1,6 +1,6 @@
 import nl.sbmf21.aoc20.Aoc
 import nl.sbmf21.aoc20.days.Day5
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
 class Day5Test {

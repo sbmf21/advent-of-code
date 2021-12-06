@@ -1,8 +1,8 @@
 import nl.sbmf21.aoc15.Aoc;
 import nl.sbmf21.aoc15.days.Day4;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Day4Test {
 

@@ -1,9 +1,14 @@
-package nl.sbmf21.aoc.common.report
+package nl.sbmf21.aoc.common
 
-import nl.sbmf21.aoc.common.ADay
-import nl.sbmf21.aoc.common.AocBase
-import java.math.BigDecimal
+import kotlin.math.roundToInt
 import kotlin.system.measureNanoTime
+
+internal const val s_ = 1_000_000_000.0
+internal const val ms = 1_000_000.0
+internal const val us = 1_000.0
+
+internal fun space(len: Int) = " ".repeat(len)
+internal fun round(time: Long, value: Double): String = (time / value).roundToInt().toString()
 
 internal class Report(private val aoc: AocBase) {
 
@@ -109,11 +114,79 @@ internal class Report(private val aoc: AocBase) {
         "$spacer$right"
     ).joinToString(separator = "")
 
-    private fun stringifyNumber(n: Number) = if (n is Double) BigDecimal(n).toPlainString() else n.toString()
+    private fun stringifyNumber(n: Number) = when (n) {
+        is Long -> n.toBigInteger().toString()
+        is Double -> n.toBigDecimal().toString()
+        else -> n.toString()
+    }
 
     private fun calculateSizes(): Sizes {
         columns.forEach { it.calculate(timings) }
 
         return Sizes(columns)
     }
+}
+
+internal class Timing(var day: ADay) {
+    internal var totalTime: Long? = null
+    internal var part1Time: Long? = null
+    internal var part2Time: Long? = null
+    internal var part1Value: Number? = null
+    internal var part2Value: Number? = null
+
+    fun totalTime() = timeString(totalTime!!)
+    fun part1Time() = timeString(part1Time!!)
+    fun part2Time() = timeString(part2Time!!)
+
+    private fun timeString(time: Long) = when {
+        time > s_ -> "${round(time, s_)}  s"
+        time > ms -> "${round(time, ms)} ms"
+        time > us -> "${round(time, us)} μs"
+        else -> "$time ns"
+    }
+}
+
+internal enum class Align(val render: (String, Int) -> String) {
+    // LEFT({ value, width -> "$value${space(width - value.length)}" }),
+    RIGHT({ value, width -> "${space(width - value.length)}$value" }),
+    CENTER({ value, width ->
+        val diff = width - value.length
+        val left = diff / 2
+        val right = diff - left
+
+        "${space(left)}$value${space(right)}"
+    })
+}
+
+internal class Column(val header: String, private val get: (Timing) -> String) {
+
+    var len = initial()
+        private set
+
+    private fun initial() = header.length
+
+    fun calculate(timings: List<Timing>): Int {
+        var len = initial()
+
+        timings.forEach {
+            val valLen = get(it).length
+            if (valLen > len) len = valLen
+        }
+
+        this.len = len
+
+        return len
+    }
+
+    fun value(timing: Timing) = get(timing)
+}
+
+internal class Sizes(private var columns: List<Column>) {
+
+    var totalWidth = totalWidth()
+    var lineSizes = lineSizes()
+
+    private fun totalWidth() = columns.sumOf { it.len } + columns.size * 3 - 1
+
+    private fun lineSizes() = columns.map { it.len }
 }

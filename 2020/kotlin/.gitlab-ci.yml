@@ -7,6 +7,7 @@
     - cd 2020/kotlin
   cache:
     key: '2020:maven'
+    policy: pull
     paths:
       - 2020/kotlin/.m2/repository/
       - 2020/kotlin/target/
@@ -15,6 +16,12 @@
   extends:
     - .2020:kotlin
     - .maven:compile
+  cache:
+    key: '2020:maven'
+    policy: pull-push
+    paths:
+      - 2020/kotlin/.m2/repository/
+      - 2020/kotlin/target/
 
 2020:kotlin:test:
   extends:
