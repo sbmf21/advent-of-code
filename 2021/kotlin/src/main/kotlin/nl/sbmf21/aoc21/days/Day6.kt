@@ -11,8 +11,7 @@ class Day6(input: List<String>) : ADay(input) {
     override fun part2() = shuffleFish(256)
 
     private fun shuffleFish(days: Int): Double {
-        val blub = intArrayOf(0, fish.catch(1), fish.catch(2), fish.catch(3), fish.catch(4), fish.catch(5), 0, 0, 0)
-            .map { it.toDouble() }.toMutableList()
+        val blub = doubleArrayOf(0.0, catch(1), catch(2), catch(3), catch(4), catch(5), 0.0, 0.0, 0.0).toMutableList()
 
         for (d in 0 until days) {
             val newBlub = blub[0]
@@ -23,6 +22,6 @@ class Day6(input: List<String>) : ADay(input) {
 
         return blub.sum()
     }
-}
 
-private fun List<Int>.catch(age: Int) = count { it == age }
+    private fun catch(age: Int) = fish.count { it == age }.toDouble()
+}
