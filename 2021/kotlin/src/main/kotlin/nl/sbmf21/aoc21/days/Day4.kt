@@ -2,12 +2,13 @@ package nl.sbmf21.aoc21.days
 
 import nl.sbmf21.aoc.common.ADay
 import nl.sbmf21.aoc.common.iterated
+import nl.sbmf21.aoc.common.mapToInts
 
 class Day4(input: List<String>) : ADay(input) {
 
     private val drawn = input[0].split(',').map { it.toInt() }
     private var boards = input.subList(2, input.size).asSequence().filter { it.isNotBlank() }
-        .map { it.split(' ').filter { l -> l.isNotBlank() }.map { n -> n.toInt() } }
+        .map { it.split(' ').filter { l -> l.isNotBlank() }.mapToInts() }
         .map { it.toMutableList() }.chunked(5)
         .map { Board(drawn, it.toMutableList()) }
         .toMutableList()

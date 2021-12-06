@@ -4,8 +4,8 @@ import org.junit.jupiter.api.Test
 class Day6Test {
 
     @Test
-    fun test() = testDay(Day6::class.java, 374_927.0, 1_687_617_803_407.0)
+    fun test() = testDay(Day6::class.java, 374_927, 1_687_617_803_407)
 
     @Test
-    fun testExample() = testDay(Day6::class.java, 5_934.0, 26_984_457_539.0, true)
+    fun testExample() = testDay(Day6::class.java, 5_934, 26_984_457_539, true)
 }

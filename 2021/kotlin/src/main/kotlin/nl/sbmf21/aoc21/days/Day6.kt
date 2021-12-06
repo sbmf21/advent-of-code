@@ -1,17 +1,18 @@
 package nl.sbmf21.aoc21.days
 
 import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.mapToInts
 
 class Day6(input: List<String>) : ADay(input) {
 
-    private val fish = input[0].split(",").map { it.toInt() }
+    private val fish = input[0].split(",").mapToInts()
 
     override fun part1() = shuffleFish(80)
 
     override fun part2() = shuffleFish(256)
 
-    private fun shuffleFish(days: Int): Double {
-        val fish = doubleArrayOf(0.0, catch(1), catch(2), catch(3), catch(4), catch(5), 0.0, 0.0, 0.0).toMutableList()
+    private fun shuffleFish(days: Int): Long {
+        val fish = longArrayOf(0, catch(1), catch(2), catch(3), catch(4), catch(5), 0, 0, 0).toMutableList()
 
         for (d in 0 until days) {
             val newFish = fish[0]
@@ -23,5 +24,5 @@ class Day6(input: List<String>) : ADay(input) {
         return fish.sum()
     }
 
-    private fun catch(age: Int) = fish.count { it == age }.toDouble()
+    private fun catch(age: Int) = fish.count { it == age }.toLong()
 }

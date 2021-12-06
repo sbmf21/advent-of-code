@@ -1,10 +1,11 @@
 package nl.sbmf21.aoc21.days
 
 import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.mapToInts
 
 class Day1(input: List<String>) : ADay(input) {
 
-    private val numbers = input.map { it.toInt() }
+    private val numbers = input.mapToInts()
 
     override fun part1() = countBigger(numbers)
     override fun part2() = countBigger(List(numbers.size - 2) { numbers.slice(it..it + 2).sum() })
