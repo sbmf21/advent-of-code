@@ -7,3 +7,8 @@ inline fun <T> MutableList<T>.iterated(action: (MutableIterator<T>, T) -> Unit):
 
     return this
 }
+
+fun List<String>.mapToInts() = map { it.toInt() }
+fun List<String>.mapToLongs() = map { it.toLong() }
+fun List<String>.mapToFloats() = map { it.toFloat() }
+fun List<String>.mapToDoubles() = map { it.toDouble() }

@@ -4,6 +4,7 @@
     - cd 2021/kotlin
   cache:
     key: '2021:kotlin'
+    policy: pull
     paths:
       - 2021/kotlin/.m2/repository/
       - 2021/kotlin/target/
@@ -12,6 +13,12 @@
   extends:
     - .2021:kotlin
     - .maven:compile
+  cache:
+    key: '2021:kotlin'
+    policy: pull-push
+    paths:
+      - 2021/kotlin/.m2/repository/
+      - 2021/kotlin/target/
 
 2021:kotlin:test:
   extends:
