@@ -1,6 +1,7 @@
 2021:ada:compile:
   extends: .ada
   stage: build
+  needs: []
   script:
     - cd 2021/ada
     - mkdir out
