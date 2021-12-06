@@ -24,7 +24,7 @@ stages:
   dependencies:
     - commons:kotlin:deploy
   script:
-    - mvn $MAVEN_CLI_OPTS compile package -Dmaven.test.skip=true
+    - mvn $MAVEN_CLI_OPTS clean compile package -Dmaven.test.skip=true
 
 .maven:test:
   stage: test

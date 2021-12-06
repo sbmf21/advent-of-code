@@ -10,7 +10,6 @@
     policy: pull
     paths:
       - 2020/kotlin/.m2/repository/
-      - 2020/kotlin/target/
 
 2020:kotlin:compile:
   extends:
@@ -21,6 +20,8 @@
     policy: pull-push
     paths:
       - 2020/kotlin/.m2/repository/
+  artifacts:
+    paths:
       - 2020/kotlin/target/
 
 2020:kotlin:test:

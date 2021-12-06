@@ -10,7 +10,6 @@
     policy: pull
     paths:
       - aoc-commons/.m2/repository/
-      - aoc-commons/target/
   before_script:
     - cd aoc-commons
 
@@ -22,12 +21,12 @@ commons:kotlin:deploy:
     policy: pull-push
     paths:
       - aoc-commons/.m2/repository/
-      - aoc-commons/target/
   artifacts:
     paths:
       - aoc-commons/.m2/repository/nl/sbmf21/adventofcode.common
+      - 2021/kotlin/target/
   script:
-    - mvn deploy install -s ci_settings.xml
+    - mvn $MAVEN_CLI_OPTS clean deploy install -s ci_settings.xml
 
 commons:kotlin:test:
   extends:
