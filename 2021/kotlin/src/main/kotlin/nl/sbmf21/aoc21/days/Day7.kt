@@ -2,6 +2,7 @@ package nl.sbmf21.aoc21.days
 
 import nl.sbmf21.aoc.common.ADay
 import nl.sbmf21.aoc.common.mapToInts
+import nl.sbmf21.aoc.common.triangular
 
 class Day7(input: List<String>) : ADay(input) {
 
@@ -10,7 +11,7 @@ class Day7(input: List<String>) : ADay(input) {
 
     override fun part1() = run()
 
-    override fun part2() = run { it * (it + 1) / 2 }
+    override fun part2() = run { it.triangular() }
 
     private fun run(c: (i: Int) -> Int = { it }): Int {
         var m = -1

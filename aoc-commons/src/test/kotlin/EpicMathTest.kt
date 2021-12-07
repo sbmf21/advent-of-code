@@ -1,6 +1,5 @@
 import nl.sbmf21.aoc.common.chineseRemainder
-import nl.sbmf21.aoc.common.mod
-import nl.sbmf21.aoc.common.modInv
+import nl.sbmf21.aoc.common.triangular
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -23,29 +22,12 @@ class EpicMathTest {
         )
     )
 
-    @ParameterizedTest(name = "mod({0}, {1}) should be {2}")
-    @MethodSource("dataMod")
-    fun testMod(a: Long, b: Long, output: Long) = assertEquals(output, mod(a, b))
-
-    @ParameterizedTest(name = "modInv({0}, {1}) should be {2}")
-    @MethodSource("dataModInv")
-    fun testModInv(a: Long, b: Long, output: Long) = assertEquals(output, modInv(a, b))
-
-    companion object {
-        @JvmStatic
-        fun dataMod() = Stream.of(
-            Arguments.of(1, 7, 1),
-            Arguments.of(2, 4, 2),
-            Arguments.of(9, 2, 1),
-            Arguments.of(4, 5, 4)
-        )!!
-
-        @JvmStatic
-        fun dataModInv() = Stream.of(
-            Arguments.of(1, 7, 1),
-            Arguments.of(3, 4, 3),
-            Arguments.of(9, 2, 1),
-            Arguments.of(4, 5, 4)
-        )!!
+    @Test
+    fun testTriangular() {
+        /* Short  */ assertEquals((105).toShort(), (14).toShort().triangular())
+        /* Int    */ assertEquals(153, 17.triangular())
+        /* Long   */ assertEquals(248946141, (22313).toLong().triangular())
+        /* Float  */ assertEquals(110.88F, 14.4F.triangular())
+        /* Double */ assertEquals(6.307287406041018E9, 112314.124214.triangular())
     }
 }
