@@ -1,6 +1,6 @@
 # 2021
 
-Day | Kotlin | Ada
+Day | Kotlin | Rust
 --- | --- | ---
 1 | :white_check_mark:
 2 | :white_check_mark:
