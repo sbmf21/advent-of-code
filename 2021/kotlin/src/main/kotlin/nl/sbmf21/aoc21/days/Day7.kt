@@ -15,8 +15,8 @@ class Day7(input: List<String>) : ADay(input) {
     private fun run(c: (i: Int) -> Int = { it }): Int {
         var m = -1
         for (i in crabRange) {
-            val f = crabs.fold(0) { fuel, it -> fuel + c(if (it < i) i - it else it - i) }
-            if (m == -1 || f < m) m = f
+            val f = crabs.sumOf { c(if (it < i) i - it else it - i) }
+            if (f < m || m == -1) m = f
         }
         return m
     }
