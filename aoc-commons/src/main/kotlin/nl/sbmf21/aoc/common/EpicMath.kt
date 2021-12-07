@@ -6,11 +6,20 @@ fun chineseRemainder(n: List<Long>, a: List<Long>): Long {
 
     for (i in n.indices) {
         val p = prod / n[i]
-        sum += a[i] * modInv(p, n[i]) * p
+        sum += a[i] * p.toBigInteger().modInverse(n[i].toBigInteger()).toLong() * p
     }
 
-    return mod(sum, prod)
+    return sum.toBigInteger().mod(prod.toBigInteger()).toLong()
 }
 
-fun mod(a: Long, b: Long) = a.toBigInteger().mod(b.toBigInteger()).toLong()
-fun modInv(a: Long, b: Long) = a.toBigInteger().modInverse(b.toBigInteger()).toLong()
+/*
+ * This function (although valid syntax) can't compile due to BigInteger and BigDecimal not implementing the correct
+ * operator methods.
+ */
+// fun <N : Number> N.triangular() = this * (this + 1) / 2
+
+fun Short.triangular() = (this * (this + 1) / 2).toShort()
+fun Int.triangular() = this * (this + 1) / 2
+fun Long.triangular() = this * (this + 1) / 2
+fun Float.triangular() = this * (this + 1) / 2
+fun Double.triangular() = this * (this + 1) / 2
