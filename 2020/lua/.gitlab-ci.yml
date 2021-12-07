@@ -1,5 +1,5 @@
 .2020:lua:
-  extends: .lua
+  image: registry.gitlab.com/switchware/containers/lua:latest
   only:
     changes:
       - 2020/lua/**/*
