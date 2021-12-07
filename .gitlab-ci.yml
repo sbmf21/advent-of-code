@@ -4,10 +4,6 @@ stages:
   - test
   - run
 
-# Ada
-.ada:
-  image: registry.gitlab.com/switchware/containers/ada:latest
-
 # Maven
 
 .maven:
@@ -31,16 +27,10 @@ stages:
   script:
     - mvn $MAVEN_CLI_OPTS test
 
-# Lua
-
-.lua:
-  image: registry.gitlab.com/switchware/containers/lua:latest
-
 # Projects
 
 include:
  - local: /aoc-commons/.gitlab-ci.yml
- - local: /2021/ada/.gitlab-ci.yml
  - local: /2021/kotlin/.gitlab-ci.yml
  - local: /2020/kotlin/.gitlab-ci.yml
  - local: /2020/lua/.gitlab-ci.yml
