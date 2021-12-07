@@ -14,25 +14,20 @@ class Day5(input: List<String>) : ADay(input) {
 
     override fun part2() = run()
 
-    private fun run(l: List<Line> = this.lines) = l.fold(Array(l.maxX()) { IntArray(l.maxY()) }) { m, v ->
-        val p = Vec(v.x1, v.y1)
-        while (true) {
-            m[p.x][p.y]++
-            if ((p.x == v.x2 && p.y == v.y2)) break
-            p.x += v.step.x; p.y += v.step.y
-        }; m
-    }.sumOf { it.filter { p -> p >= 2 }.size }
+    private fun run(l: List<Line> = this.lines) = l
+        .fold(Array(l.maxOf { max(it.x1, it.x2) } + 1) { IntArray(l.maxOf { max(it.y1, it.y2) } + 1) }) { m, v ->
+            val p = Vec(v.x1, v.y1)
+            while (true) {
+                m[p.x][p.y]++
+                if ((p.x == v.x2 && p.y == v.y2)) break
+                p.x += v.step.x; p.y += v.step.y
+            }; m
+        }.sumOf { it.filter { p -> p >= 2 }.size }
 }
 
 data class Vec<N : Number>(var x: N, var y: N)
 data class Line(val x1: Int, val y1: Int, val x2: Int, val y2: Int) {
-
-    val step = Vec(x2 - x1, y2 - y1).step()
-    val maxX = max(x1, x2)
-    val maxY = max(y1, y2)
+    val step = Vec((x2 - x1).sign, (y2 - y1).sign)
 }
 
 private fun i(m: MatchGroup?) = m!!.value.toInt()
-private fun List<Line>.maxX() = map { it.maxX }.maxOf { it } + 1
-private fun List<Line>.maxY() = map { it.maxY }.maxOf { it } + 1
-private fun Vec<Int>.step() = Vec(x.sign, y.sign)
