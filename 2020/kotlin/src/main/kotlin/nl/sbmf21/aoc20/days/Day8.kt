@@ -1,10 +1,9 @@
 package nl.sbmf21.aoc20.days
 
 import nl.sbmf21.aoc.common.ADay
-import nl.sbmf21.aoc20.Aoc
 import java.util.regex.Pattern
 
-class Day8(aoc: Aoc, number: Int) : ADay(aoc, number) {
+class Day8(input: List<String>) : ADay(input) {
 
     private val pattern: Pattern = Pattern.compile("(?<cmd>acc|jmp|nop) (?<val>[-+]\\d+)")
 

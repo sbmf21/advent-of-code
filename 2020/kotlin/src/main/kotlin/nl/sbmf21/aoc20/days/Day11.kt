@@ -1,11 +1,10 @@
 package nl.sbmf21.aoc20.days
 
 import nl.sbmf21.aoc.common.ADay
-import nl.sbmf21.aoc20.Aoc
 import kotlin.math.max
 import kotlin.math.min
 
-class Day11(aoc: Aoc, number: Int) : ADay(aoc, number) {
+class Day11(input: List<String>) : ADay(input) {
 
     private val grid = input.map { line -> line.toCharArray().map { it } }
 

@@ -1,10 +1,9 @@
 package nl.sbmf21.aoc20.days
 
 import nl.sbmf21.aoc.common.ADay
-import nl.sbmf21.aoc20.Aoc
 import java.util.regex.Pattern
 
-class Day4(aoc: Aoc, number: Int) : ADay(aoc, number) {
+class Day4(input: List<String>) : ADay(input) {
 
     private val passports = parsePassports()
 

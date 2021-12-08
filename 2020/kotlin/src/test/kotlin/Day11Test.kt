@@ -1,15 +1,8 @@
-import nl.sbmf21.aoc20.Aoc
 import nl.sbmf21.aoc20.days.Day11
 import org.junit.jupiter.api.Test
-import kotlin.test.assertEquals
 
 class Day11Test {
 
-    private var day = Day11(Aoc(), 11)
-
     @Test
-    fun testPart1Output() = assertEquals(2468, day.part1())
-
-    @Test
-    fun testPart2Output() = assertEquals(2214, day.part2())
+    fun testInput() = testDay(Day11::class.java, 2468, 2214)
 }
