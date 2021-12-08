@@ -35,8 +35,7 @@ class Day8(input: List<String>) : ADay(input) {
     private val lines = input.map { it.split("|") }
         .map { Pair(it[0].trim().split(" "), it[1].trim().split(" ")) }
 
-    override fun part1() =
-        run { it.second.count { d -> d.length == 2 || d.length == 4 || d.length == 3 || d.length == 7 } }
+    override fun part1() = run { it.second.count { d -> listOf(2, 4, 3, 7).contains(d.length) } }
 
     override fun part2() = run { line ->
         val one = line.first.first { it.length == 2 }
