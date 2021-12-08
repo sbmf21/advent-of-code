@@ -1,11 +1,10 @@
 package nl.sbmf21.aoc20.days
 
 import nl.sbmf21.aoc.common.ADay
-import nl.sbmf21.aoc20.Aoc
 import java.util.regex.Matcher
 import java.util.regex.Pattern.compile as regex
 
-class Day16(aoc: Aoc, number: Int) : ADay(aoc, number) {
+class Day16(input: List<String>) : ADay(input) {
 
     // Variables
 

@@ -1,15 +1,16 @@
-import nl.sbmf21.aoc20.Aoc
-import org.junit.jupiter.api.Test
+import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.DayMeta
 import kotlin.test.assertEquals
 
-class AocTest {
+fun <N : Number> testDay(
+    clazz: Class<out ADay>,
+    part1: N,
+    part2: N,
+    example: Boolean = false,
+    filename: String? = null
+) {
+    val day = DayMeta(clazz).build(example, filename)
 
-    private var aoc = Aoc()
-
-    @Test
-    fun names() {
-        aoc.findDays().forEach { day ->
-            assertEquals("Day${day.number}", day.javaClass.simpleName)
-        }
-    }
+    assertEquals(part1, day.part1())
+    assertEquals(part2, day.part2())
 }
