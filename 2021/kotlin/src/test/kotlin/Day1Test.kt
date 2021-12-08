@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test
 class Day1Test {
 
     @Test
-    fun test() = testDay(Day1::class.java, 1759, 1805)
+    fun testInput() = testDay(Day1::class.java, 1759, 1805)
 
     @Test
     fun testExample() = testDay(Day1::class.java, 7, 5, true)
