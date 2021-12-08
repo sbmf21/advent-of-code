@@ -66,7 +66,7 @@ class Day8(input: List<String>) : ADay(input) {
             else if (it.length == 3) "7"
             else if (it.length == 7) "8"
             else if (it.length == 6 && !it.contains(bl)) "9"
-            else throw IllegalArgumentException("Digit not found")
+            else ""
         }.toInt()
     }
 
