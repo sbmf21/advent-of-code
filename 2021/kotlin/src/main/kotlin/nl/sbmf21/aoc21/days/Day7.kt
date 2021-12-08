@@ -15,11 +15,9 @@ class Day7(input: List<String>) : ADay(input) {
     override fun part2() = run { it.triangular() }
 
     private fun run(c: (i: Int) -> Int = { it }): Int {
-        var m = -1
-        for (i in crabRange) {
+        var m = -1; for (i in crabRange) {
             val f = crabs.sumOf { c(abs(it - i)) }
             if (f < m || m == -1) m = f
-        }
-        return m
+        }; return m
     }
 }
