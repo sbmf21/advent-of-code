@@ -8,4 +8,7 @@ class Day8Test {
 
     @Test
     fun testExample() = testDay(Day8::class.java, 26, 61_229, true)
+
+    @Test
+    fun testSingleExample() = testDay(Day8::class.java, 0, 5_353, true, "single")
 }

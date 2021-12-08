@@ -21,8 +21,8 @@ internal class Report(private val aoc: AocBase) {
         Column("Part 1") { it.part1Time() },
         Column("Part 2") { it.part2Time() },
         // Values
-        Column("Part 1") { stringifyNumber(it.part1Value!!) },
-        Column("Part 2") { stringifyNumber(it.part2Value!!) }
+        Column("Part 1") { stringifyNumber(it.part1Value) },
+        Column("Part 2") { stringifyNumber(it.part2Value) }
     )
 
     fun time(day: ADay) {
@@ -114,7 +114,8 @@ internal class Report(private val aoc: AocBase) {
         "$spacer$right"
     ).joinToString(separator = "")
 
-    private fun stringifyNumber(n: Number) = when (n) {
+    private fun stringifyNumber(n: Any?) = when (n) {
+        null -> "none"
         is Long -> n.toBigInteger().toString()
         is Double -> n.toBigDecimal().toString()
         else -> n.toString()
@@ -131,14 +132,15 @@ internal class Timing(var day: ADay) {
     internal var totalTime: Long? = null
     internal var part1Time: Long? = null
     internal var part2Time: Long? = null
-    internal var part1Value: Number? = null
-    internal var part2Value: Number? = null
+    internal var part1Value: Any? = null
+    internal var part2Value: Any? = null
 
-    fun totalTime() = timeString(totalTime!!)
-    fun part1Time() = timeString(part1Time!!)
-    fun part2Time() = timeString(part2Time!!)
+    fun totalTime() = timeString(totalTime)
+    fun part1Time() = timeString(part1Time)
+    fun part2Time() = timeString(part2Time)
 
-    private fun timeString(time: Long) = when {
+    private fun timeString(time: Long?) = when {
+        time == null -> "NaN   "
         time > s_ -> "${round(time, s_)}  s"
         time > ms -> "${round(time, ms)} ms"
         time > us -> "${round(time, us)} μs"
