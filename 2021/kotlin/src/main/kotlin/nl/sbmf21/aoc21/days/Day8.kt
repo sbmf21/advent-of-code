@@ -55,19 +55,19 @@ class Day8(input: List<String>) : ADay(input) {
         val tl = four.toCharArray().first { it != m && it != tr && it != br }
         val bl = eight.toCharArray().first { !nine.contains(it) }
 
-        line.second.map {
-            if (it.length == 6 && !it.contains(m)) 0
-            else if (it.length == 2) 1
-            else if (it.length == 5 && it.contains(tr) && it.contains(bl)) 2
-            else if (it.length == 5 && it.contains(tr) && it.contains(br)) 3
-            else if (it.length == 4) 4
-            else if (it.length == 5 && it.contains(tl) && it.contains(br)) 5
-            else if (it.length == 6 && !it.contains(tr)) 6
-            else if (it.length == 3) 7
-            else if (it.length == 7) 8
-            else if (it.length == 6 && !it.contains(bl)) 9
-            else throw IllegalArgumentException("YEET")
-        }.joinToString("") { it.toString() }.toInt()
+        line.second.joinToString("") {
+            if (it.length == 6 && !it.contains(m)) "0"
+            else if (it.length == 2) "1"
+            else if (it.length == 5 && it.contains(tr) && it.contains(bl)) "2"
+            else if (it.length == 5 && it.contains(tr) && it.contains(br)) "3"
+            else if (it.length == 4) "4"
+            else if (it.length == 5 && it.contains(tl) && it.contains(br)) "5"
+            else if (it.length == 6 && !it.contains(tr)) "6"
+            else if (it.length == 3) "7"
+            else if (it.length == 7) "8"
+            else if (it.length == 6 && !it.contains(bl)) "9"
+            else throw IllegalArgumentException("Digit not found")
+        }.toInt()
     }
 
     private fun isSix(sixDigits: CharArray, oneDigits: CharArray) =
