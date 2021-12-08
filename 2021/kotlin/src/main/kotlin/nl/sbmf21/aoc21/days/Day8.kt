@@ -35,7 +35,7 @@ class Day8(input: List<String>) : ADay(input) {
     private val lines = input.map { it.split("|") }
         .map { Pair(it[0].trim().split(" "), it[1].trim().split(" ")) }
 
-    override fun part1() = run { it.second.count { d -> listOf(2, 4, 3, 7).contains(d.length) } }
+    override fun part1() = run { it.second.count { d -> !listOf(5, 6).contains(d.length) } }
 
     override fun part2() = run { line ->
         val one = line.first.first { it.length == 2 }
@@ -55,17 +55,19 @@ class Day8(input: List<String>) : ADay(input) {
         val bl = eight.toCharArray().first { !nine.contains(it) }
 
         line.second.joinToString("") {
-            if (it.length == 6 && !it.contains(m)) "0"
-            else if (it.length == 2) "1"
-            else if (it.length == 5 && it.contains(tr) && it.contains(bl)) "2"
-            else if (it.length == 5 && it.contains(tr) && it.contains(br)) "3"
-            else if (it.length == 4) "4"
-            else if (it.length == 5 && it.contains(tl) && it.contains(br)) "5"
-            else if (it.length == 6 && !it.contains(tr)) "6"
-            else if (it.length == 3) "7"
-            else if (it.length == 7) "8"
-            else if (it.length == 6 && !it.contains(bl)) "9"
-            else ""
+            when {
+                it.length == 6 && !it.contains(m) -> "0"
+                it.length == 2 -> "1"
+                it.length == 5 && it.contains(tr) && it.contains(bl) -> "2"
+                it.length == 5 && it.contains(tr) && it.contains(br) -> "3"
+                it.length == 4 -> "4"
+                it.length == 5 && it.contains(tl) && it.contains(br) -> "5"
+                it.length == 6 && !it.contains(tr) -> "6"
+                it.length == 3 -> "7"
+                it.length == 7 -> "8"
+                it.length == 6 && !it.contains(bl) -> "9"
+                else -> ""
+            }
         }.toInt()
     }
 
