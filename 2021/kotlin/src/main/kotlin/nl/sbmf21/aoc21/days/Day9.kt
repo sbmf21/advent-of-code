@@ -29,11 +29,8 @@ class Day9(input: List<String>) : ADay(input) {
         && checkLower(x, y, x, y - 1)
         && checkLower(x, y, x, y + 1)
 
-    private fun checkLower(x: Int, y: Int, cx: Int, cy: Int) = try {
-        map[x][y] < map[cx][cy]
-    } catch (e: Exception) {
-        true
-    }
+    private fun checkLower(x: Int, y: Int, cx: Int, cy: Int) = bound(x, y) && bound(cx, cy) && map[x][y] < map[cx][cy]
+    private fun bound(x: Int, y: Int) = x in map.indices && y in map[x].indices
 
     private fun count(checked: List<MutableList<Boolean>>, x: Int, y: Int): Int = if (contains(checked, x, y)) 1 +
         count(checked, x - 1, y) +
@@ -42,13 +39,8 @@ class Day9(input: List<String>) : ADay(input) {
         count(checked, x, y + 1)
     else 0
 
-    private fun contains(checked: List<MutableList<Boolean>>, cx: Int, cy: Int): Boolean {
-        try {
-            if (checked[cx][cy]) return false
-            checked[cx][cy] = true
-            return map[cx][cy] < 9
-        } catch (e: Exception) {
-            return false
-        }
+    private fun contains(checked: List<MutableList<Boolean>>, cx: Int, cy: Int) = when {
+        !bound(cx, cy) || checked[cx][cy] -> false
+        else -> { checked[cx][cy] = true; map[cx][cy] < 9 }
     }
 }
