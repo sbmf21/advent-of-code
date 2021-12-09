@@ -11,6 +11,5 @@ data class DayMeta<T : ADay>(val clazz: Class<out T>) {
         .getResourceAsStream("/${if (example) "example" else "input"}/day$number${if (filename == null) "" else "-$filename"}.txt")!!
         .bufferedReader()
         .lines()
-        .toArray()
-        .map { it.toString() }
+        .toList()
 }

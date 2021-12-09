@@ -1,45 +1,24 @@
 package nl.sbmf21.aoc.common
 
-import kotlin.math.roundToInt
-import kotlin.system.measureNanoTime
-
-internal const val s_ = 1_000_000_000.0
-internal const val ms = 1_000_000.0
-internal const val us = 1_000.0
-
 internal fun space(len: Int) = " ".repeat(len)
-internal fun round(time: Long, value: Double): String = (time / value).roundToInt().toString()
 
 internal class Report(private val aoc: AocBase) {
 
     private val builder = StringBuilder()
-    private val timings = mutableListOf<Timing>()
+    private val timings = mutableListOf<TimedRunner>()
     private val columns = listOf(
-        Column("Day") { it.day.number.toString() },
+        Column("Day") { it.meta.number.toString() },
         // Timings
         Column("Total") { it.totalTime() },
+        Column("Setup") { it.setupTime() },
         Column("Part 1") { it.part1Time() },
         Column("Part 2") { it.part2Time() },
         // Values
-        Column("Part 1") { stringifyNumber(it.part1Value) },
-        Column("Part 2") { stringifyNumber(it.part2Value) }
+        Column("Part 1") { it.part1Value() },
+        Column("Part 2") { it.part2Value() }
     )
 
-    fun time(day: ADay) {
-        val timing = Timing(day)
-
-        timing.totalTime = measureNanoTime {
-            timing.part1Time = measureNanoTime {
-                timing.part1Value = day.part1()
-            }
-
-            timing.part2Time = measureNanoTime {
-                timing.part2Value = day.part2()
-            }
-        }
-
-        timings.add(timing)
-    }
+    fun run(meta: DayMeta<ADay>) = TimedRunner(meta).also { timings.add(it); it.run() }.day()
 
     fun render() {
         val sizes = calculateSizes()
@@ -72,8 +51,8 @@ internal class Report(private val aoc: AocBase) {
     private fun addHeaders() {
         val l = listOf(
             cell("Day", columns[0].len, Align.CENTER),
-            cell("Timings", columns.subList(1, 4).sumOf { it.len } + 6, Align.CENTER),
-            cell("Answers", columns.subList(4, 6).sumOf { it.len } + 3, Align.CENTER)
+            cell("Timings", columns.subList(1, 5).sumOf { it.len } + 9, Align.CENTER),
+            cell("Answers", columns.subList(5, 7).sumOf { it.len } + 3, Align.CENTER)
         )
 
         addLine(l.map { it.length }, '┬')
@@ -92,7 +71,7 @@ internal class Report(private val aoc: AocBase) {
             .appendLine()
     }
 
-    private fun addTiming(timing: Timing) {
+    private fun addTiming(timing: TimedRunner) {
         add(columns.map { cell(it.value(timing), it.len, Align.RIGHT) })
     }
 
@@ -114,37 +93,10 @@ internal class Report(private val aoc: AocBase) {
         "$spacer$right"
     ).joinToString(separator = "")
 
-    private fun stringifyNumber(n: Any?) = when (n) {
-        null -> "none"
-        is Long -> n.toBigInteger().toString()
-        is Double -> n.toBigDecimal().toString()
-        else -> n.toString()
-    }
-
     private fun calculateSizes(): Sizes {
         columns.forEach { it.calculate(timings) }
 
         return Sizes(columns)
-    }
-}
-
-internal class Timing(var day: ADay) {
-    internal var totalTime: Long? = null
-    internal var part1Time: Long? = null
-    internal var part2Time: Long? = null
-    internal var part1Value: Any? = null
-    internal var part2Value: Any? = null
-
-    fun totalTime() = timeString(totalTime)
-    fun part1Time() = timeString(part1Time)
-    fun part2Time() = timeString(part2Time)
-
-    private fun timeString(time: Long?) = when {
-        time == null -> "NaN   "
-        time > s_ -> "${round(time, s_)}  s"
-        time > ms -> "${round(time, ms)} ms"
-        time > us -> "${round(time, us)} μs"
-        else -> "$time ns"
     }
 }
 
@@ -160,14 +112,14 @@ internal enum class Align(val render: (String, Int) -> String) {
     })
 }
 
-internal class Column(val header: String, private val get: (Timing) -> String) {
+internal class Column(val header: String, private val get: (TimedRunner) -> String) {
 
     var len = initial()
         private set
 
     private fun initial() = header.length
 
-    fun calculate(timings: List<Timing>): Int {
+    fun calculate(timings: List<TimedRunner>): Int {
         var len = initial()
 
         timings.forEach {
@@ -180,7 +132,7 @@ internal class Column(val header: String, private val get: (Timing) -> String) {
         return len
     }
 
-    fun value(timing: Timing) = get(timing)
+    fun value(timing: TimedRunner) = get(timing)
 }
 
 internal class Sizes(private var columns: List<Column>) {
