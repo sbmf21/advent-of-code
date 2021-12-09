@@ -5,6 +5,8 @@ import java.io.BufferedReader
 import java.io.InputStream
 import java.io.InputStreamReader
 import java.util.regex.Pattern
+import kotlin.math.round
+import kotlin.system.measureNanoTime
 
 abstract class AocBase(val name: String) {
 
@@ -45,9 +47,56 @@ abstract class AocBase(val name: String) {
 
     internal fun runDays() = days
         .filter { runDay == null || it.clazz.simpleName.equals("Day$runDay") }
-        .map { it.build() }
-        .onEach { report.time(it) }
+        .map { report.run(it) }
 
     private fun report() = report.render()
     private fun makeReport() = Report(this)
+}
+
+internal const val s_ = 1_000_000_000.0
+internal const val ms = 1_000_000.0
+internal const val us = 1_000.0
+
+internal class TimedRunner(internal val meta: DayMeta<ADay>) {
+
+    private lateinit var day: ADay
+    private var totalTime: Long? = null
+    private var setupTime: Long? = null
+    private var part1Time: Long? = null
+    private var part2Time: Long? = null
+    private lateinit var part1Value: Any
+    private lateinit var part2Value: Any
+
+    fun day() = day
+    fun totalTime() = timeString(totalTime)
+    fun setupTime() = timeString(setupTime)
+    fun part1Time() = timeString(part1Time)
+    fun part2Time() = timeString(part2Time)
+    fun part1Value() = stringifyNumber(part1Value)
+    fun part2Value() = stringifyNumber(part2Value)
+
+    internal fun run() {
+        totalTime = measureNanoTime {
+            setupTime = measureNanoTime { day = meta.build() }
+            part1Time = measureNanoTime { part1Value = day.part1() }
+            part2Time = measureNanoTime { part2Value = day.part2() }
+        }
+    }
+
+    private fun timeString(time: Long?) = when {
+        time == null -> "NaN   "
+        time > s_ -> "${format(time, s_)}  s"
+        time > ms -> "${format(time, ms)} ms"
+        time > us -> "${format(time, us)} μs"
+        else -> "$time ns"
+    }
+
+    private fun format(time: Long, value: Double): String = (round((time / value) * 100) / 100).toString()
+
+    private fun stringifyNumber(n: Any?) = when (n) {
+        null -> "none"
+        is Long -> n.toBigInteger().toString()
+        is Double -> n.toBigDecimal().toString()
+        else -> n.toString()
+    }
 }
