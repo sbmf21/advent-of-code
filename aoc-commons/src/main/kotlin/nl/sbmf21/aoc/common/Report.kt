@@ -8,14 +8,14 @@ internal class Report(private val aoc: AocBase) {
     private val timings = mutableListOf<TimedRunner>()
     private val columns = listOf(
         Column("Day") { it.meta.number.toString() },
+        // Values
+        Column("Part 1") { it.part1Value() },
+        Column("Part 2") { it.part2Value() },
         // Timings
         Column("Total") { it.totalTime() },
         Column("Setup") { it.setupTime() },
         Column("Part 1") { it.part1Time() },
         Column("Part 2") { it.part2Time() },
-        // Values
-        Column("Part 1") { it.part1Value() },
-        Column("Part 2") { it.part2Value() }
     )
 
     fun run(meta: DayMeta<ADay>) = TimedRunner(meta).also { timings.add(it); it.run() }.day()
@@ -51,8 +51,8 @@ internal class Report(private val aoc: AocBase) {
     private fun addHeaders() {
         val l = listOf(
             cell("Day", columns[0].len, Align.CENTER),
-            cell("Timings", columns.subList(1, 5).sumOf { it.len } + 9, Align.CENTER),
-            cell("Answers", columns.subList(5, 7).sumOf { it.len } + 3, Align.CENTER)
+            cell("Answers", columns.subList(1, 3).sumOf { it.len } + 3, Align.CENTER),
+            cell("Timings", columns.subList(3, 7).sumOf { it.len } + 9, Align.CENTER)
         )
 
         addLine(l.map { it.length }, '┬')
