@@ -43,4 +43,7 @@ class EpicUtilTest {
         listOf(2.5, 214.125, 1.24125612312312336E17, 5.124, 814.2, 456.0),
         listOf("2.5", "214.125", "124125612312312343.412", "5.124", "814.2", "456.0").mapToDoubles()
     )
+
+    @Test
+    fun testProd() = assertEquals(770040, listOf(2, 62, 15, 23, 6, 3).prod())
 }
