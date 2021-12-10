@@ -8,7 +8,7 @@ class Day10(input: List<String>) : ADay(input) {
     private val closing = mapOf('(' to ')', '[' to ']', '{' to '}', '<' to '>')
     private val points = mapOf(')' to Pair(3, 1), ']' to Pair(57, 2), '}' to Pair(1197, 3), '>' to Pair(25137, 4))
 
-    override fun part1() = run({ it }, { null }).sorted()
+    override fun part1() = run({ it }, { null })
         .fold(mutableMapOf(')' to 0, ']' to 0, '}' to 0, '>' to 0)) { acc, c -> acc[c] = acc[c]!! + 1; acc }
         .map { it.value * points[it.key]!!.first }
         .sum()
