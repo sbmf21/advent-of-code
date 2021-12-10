@@ -14,7 +14,7 @@ class Day10(input: List<String>) : ADay(input) {
 
     override fun part2() = run({ null }, { it })
         .map { it.reversed().fold(0L) { acc, c -> acc * 5 + points(closing[c], 1, 2, 3, 4) } }
-        .sorted().run { this[size / 2] }
+        .run { sorted()[size / 2] }
 
     private fun <C> run(c: (c: Char) -> C?, b: (b: List<Char>) -> C?): List<C> = input.map { line ->
         val blocks = mutableListOf<Char>()
