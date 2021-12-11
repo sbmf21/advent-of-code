@@ -9,7 +9,7 @@ class Day11(input: List<String>) : ADay(input) {
 
     override fun part1(): Any {
         val octi = mapOctopodes(); var count = 0
-        for (s in 1..100) step(octi) { for (y in it.indices) for (x in it[y].indices) if (it[y][x]) count++ }
+        for (s in 1..100) step(octi) { count += it.sumOf { r -> r.count { f -> f } } }
         return count
     }
 
