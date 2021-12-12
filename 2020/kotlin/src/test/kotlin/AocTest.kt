@@ -2,10 +2,10 @@ import nl.sbmf21.aoc.common.ADay
 import nl.sbmf21.aoc.common.DayMeta
 import kotlin.test.assertEquals
 
-fun <N : Number> testDay(
+fun <A : Any, B : Any> testDay(
     clazz: Class<out ADay>,
-    part1: N,
-    part2: N,
+    part1: A,
+    part2: B,
     example: Boolean = false,
     filename: String? = null
 ) {
