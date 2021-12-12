@@ -4,5 +4,5 @@ import org.junit.jupiter.api.Test
 class Day13Test {
 
     @Test
-    fun testInput() = testDay(Day13::class.java, 156, 404_517_869_995_362)
+    fun testInput() = testDay(Day13::class.java, 156L, 404_517_869_995_362)
 }
