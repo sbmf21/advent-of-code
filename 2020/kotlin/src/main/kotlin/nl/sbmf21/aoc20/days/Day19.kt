@@ -60,19 +60,11 @@ internal interface BaseRule {
 }
 
 internal data class MessageRule(val match: Char) : BaseRule {
-    override fun matches(message: String, index: Int) =
-        if (index > message.length) null
-        else if (message[index] == match) index + 1
-        else null
+    override fun matches(message: String, index: Int) = if (message[index] == match) index + 1 else null
 }
 
 internal data class RuleRule(val match: List<List<BaseRule>>) : BaseRule {
-    override fun matches(message: String, index: Int) = match
-        .mapNotNull {
-            it.fold(index) { acc: Int?, r ->
-                if (acc == null) return@fold null
-                r.matches(message, acc)
-            }
-        }
-        .firstOrNull()
+    override fun matches(message: String, index: Int) = match.firstNotNullOfOrNull {
+        it.fold(index) { acc: Int?, r -> if (acc != null) r.matches(message, acc) else null }
+    }
 }
