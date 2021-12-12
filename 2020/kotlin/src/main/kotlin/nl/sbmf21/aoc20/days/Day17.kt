@@ -1,16 +1,8 @@
 package nl.sbmf21.aoc20.days
 
 import nl.sbmf21.aoc.common.ADay
-
-internal data class Vector3(val x: Int, val y: Int, val z: Int) {
-    override fun equals(other: Any?) = other is Vector3 && x == other.x && y == other.y && z == other.z
-    override fun hashCode() = "$x $y $z".hashCode()
-}
-
-internal data class Vector4(val x: Int, val y: Int, val z: Int, val w: Int) {
-    override fun equals(other: Any?) = other is Vector4 && x == other.x && y == other.y && z == other.z && w == other.w
-    override fun hashCode() = "$x $y $z $w".hashCode()
-}
+import nl.sbmf21.aoc.common.Vector3
+import nl.sbmf21.aoc.common.Vector4
 
 class Day17(input: List<String>) : ADay(input) {
 
