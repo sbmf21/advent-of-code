@@ -14,7 +14,7 @@ class Day16(input: List<String>) : ADay(input) {
     private val rules = input
         .map { pattern.matcher(it) }
         .filter { it.matches() }
-        .map { Rule(it) }
+        .map { TicketRule(it) }
 
     // Puzzles
 
@@ -68,7 +68,7 @@ class Day16(input: List<String>) : ADay(input) {
     private fun index(prefix: String) = input.indexOf(prefix) + 1
 }
 
-private class Rule(matcher: Matcher) {
+internal class TicketRule(matcher: Matcher) {
 
     val key = matcher.group("key")!!
     private val range1 = matcher.group("ss").toInt()..matcher.group("se").toInt()
