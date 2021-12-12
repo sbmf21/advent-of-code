@@ -27,7 +27,7 @@ class Day12(input: List<String>) : ADay(input) {
 
         while (queue.isNotEmpty()) queue.removeLast().run {
             steps.last().options
-                .filter { it.fat || !contains(it) || (it == fatCave && containsTimes(it) < 2) }
+                .filter { it.fat || !steps.contains(it) || (it == fatCave && steps.filter { c -> c == it }.size < 2) }
                 .forEach { val path = next(it); (if (path.steps.last().cave == "end") paths else queue).add(path) }
         }
 
@@ -38,8 +38,6 @@ class Day12(input: List<String>) : ADay(input) {
 internal class Path(cave: Cave? = null) {
     val steps = mutableListOf<Cave>().also { if (cave != null) it.add(cave) }
 
-    fun contains(cave: Cave) = steps.contains(cave)
-    fun containsTimes(cave: Cave) = steps.filter { it == cave }.size
     fun next(cave: Cave) = Path().also { steps.forEach { s -> it.steps.add(s) }; it.steps.add(cave) }
     override fun toString() = steps.joinToString(",") { it.cave }
 }
