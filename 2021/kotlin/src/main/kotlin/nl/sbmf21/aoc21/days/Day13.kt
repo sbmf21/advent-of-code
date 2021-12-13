@@ -21,7 +21,7 @@ class Day13(input: List<String>) : ADay(input) {
 
     private fun run(stopAtFirst: Boolean = false): Scrabble {
         var width = dots.maxOf { it.first }; var height = dots.maxOf { it.second }
-        val paper = map(width + 1, height + 1)
+        val paper = scrabble(width + 1, height + 1)
 
         input.filter { it.startsWith("fold along ") }.map { it.removePrefix("fold along ").split('=') }.forEach {
             val fold = it[1].toInt()
@@ -33,17 +33,14 @@ class Day13(input: List<String>) : ADay(input) {
         return Scrabble(paper, width, height)
     }
 
-    private fun foldX(map: List<MutableList<Boolean>>, width: Int, height: Int, fold: Int) {
-        for (x in fold..width) for (y in 0..height) if (map[y][x]) map[y][fold - (x - fold)] = true
-    }
+    private fun foldX(map: List<MutableList<Boolean>>, width: Int, height: Int, fold: Int) =
+        (fold..width).forEach { x -> (0..height).forEach { y -> if (map[y][x]) map[y][fold - (x - fold)] = true } }
 
-    private fun foldY(map: List<MutableList<Boolean>>, width: Int, height: Int, fold: Int) {
-        for (y in fold..height) for (x in 0..width) if (map[y][x]) map[fold - (y - fold)][x] = true
-    }
+    private fun foldY(map: List<MutableList<Boolean>>, width: Int, height: Int, fold: Int) =
+        (fold..height).forEach { y -> (0..width).forEach { x -> if (map[y][x]) map[fold - (y - fold)][x] = true } }
 
-    private fun map(width: Int, height: Int) = dots.fold(List(height) { MutableList(width) { false } }) { m, d ->
-        m[d.second][d.first] = true; m
-    }
+    private fun scrabble(width: Int, height: Int) = dots
+        .fold(List(height) { MutableList(width) { false } }) { map, dot -> map[dot.second][dot.first] = true; map }
 }
 
 internal data class Scrabble(val paper: List<MutableList<Boolean>>, val width: Int, val height: Int)
