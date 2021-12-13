@@ -24,7 +24,6 @@ commons:kotlin:deploy:
   artifacts:
     paths:
       - aoc-commons/.m2/repository/nl/sbmf21/adventofcode.common
-      - 2021/kotlin/target/
   script:
     - mvn $MAVEN_CLI_OPTS clean deploy install -s ci_settings.xml
 
