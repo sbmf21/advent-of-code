@@ -7,7 +7,7 @@
     <groupId>nl.sbmf21</groupId>
     <artifactId>adventofcode.common</artifactId>
     <name>AOC Commons</name>
-    <version>4.5.0-SNAPSHOT</version>
+    <version>4.5.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -140,6 +140,41 @@
                     <execution>
                         <id>java-test-compile</id>
                         <phase>none</phase>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.2.1</version>
+
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>deploy</phase>
+
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <!-- explicitly define maven-deploy-plugin after other to force exec order -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.7</version>
+
+                <executions>
+                    <execution>
+                        <id>deploy</id>
+                        <phase>deploy</phase>
+
+                        <goals>
+                            <goal>deploy</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
