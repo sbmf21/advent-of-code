@@ -1,5 +1,11 @@
 package nl.sbmf21.aoc.common
 
+data class Vector2(val x: Int, val y: Int) {
+    operator fun plus(pos: Vector2) = Vector2(x + pos.x, y + pos.y)
+    override fun equals(other: Any?) = other is Vector2 && x == other.x && y == other.y
+    override fun hashCode() = "$x $y".hashCode()
+}
+
 data class Vector3(val x: Int, val y: Int, val z: Int) {
     override fun equals(other: Any?) = other is Vector3 && x == other.x && y == other.y && z == other.z
     override fun hashCode() = "$x $y $z".hashCode()
