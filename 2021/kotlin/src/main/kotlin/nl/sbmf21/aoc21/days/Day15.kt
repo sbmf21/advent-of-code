@@ -7,6 +7,8 @@ import nl.sbmf21.aoc.common.mapToInts
 class Day15(input: List<String>) : ADay(input) {
 
     private val map = input.map { it.toCharArray().map { c -> "$c" }.mapToInts() }
+    private val fatMap = buildFatMap()
+
     private val neighbors = listOf(
         Vector2(1, 0),
         Vector2(0, 1),
@@ -14,9 +16,9 @@ class Day15(input: List<String>) : ADay(input) {
         Vector2(0, -1),
     )
 
-    override fun part1() = run()
+    override fun part1() = aStar(map)
 
-    override fun part2() = run(buildFatMap())
+    override fun part2() = aStar(fatMap)
 
     private fun buildFatMap(): List<List<Int>> {
         val fatMap = List(map.size * 5) { y -> MutableList(map[y % map.size].size * 5) { -1 } }
@@ -28,25 +30,35 @@ class Day15(input: List<String>) : ADay(input) {
         return fatMap
     }
 
-    private fun run(map: List<List<Int>> = this.map): Int {
-
+    private fun aStar(map: List<List<Int>>): Int {
         val start = Vector2(0, 0)
         val end = Vector2(map[map.lastIndex].lastIndex, map.lastIndex)
 
-        val expenses = List(map.size) { y -> MutableList(map[y].size) { -1 } }.also { it[start.y][start.x] = 0 }
-        val queue = mutableListOf(start)
+        val costs = List(map.size) { y -> MutableList(map[y].size) { -1 } }.also { it[start.y][start.x] = 0 }
+        val queue = mutableListOf(ChitonStep(start, 0))
 
-        while (queue.isNotEmpty()) queue.removeLast().run {
-            neighbors.map { this + it }.filter { it.y in expenses.indices && it.x in expenses[it.y].indices }.forEach {
-                (expenses[y][x] + map[it.y][it.x]).run {
-                    if (this < expenses[it.y][it.x] || expenses[it.y][it.x] == -1) {
-                        expenses[it.y][it.x] = this
-                        queue.add(it)
+        while (queue.isNotEmpty()) {
+            val check = queue.minByOrNull { it.cost }!!
+            if (check.pos == end) return check.cost
+
+            queue.remove(check)
+            getSteps(check, map).forEach { (p, c) ->
+                costs[p.y][p.x].also {
+                    if (it == -1 || it > c) {
+                        costs[p.y][p.x] = c
+                        queue.add(ChitonStep(p, c))
                     }
                 }
             }
         }
 
-        return expenses[end.y][end.x]
+        return -1
     }
+
+    private fun getSteps(current: ChitonStep, map: List<List<Int>>) = neighbors
+        .map { current.pos + it }
+        .filter { it.y in map.indices && it.x in map[it.y].indices }
+        .map { ChitonStep(it, current.cost + map[it.y][it.x]) }
 }
+
+internal data class ChitonStep(val pos: Vector2, val cost: Int)

@@ -7,7 +7,7 @@
     <groupId>nl.sbmf21</groupId>
     <artifactId>adventofcode.common</artifactId>
     <name>AOC Commons</name>
-    <version>4.7.0-SNAPSHOT</version>
+    <version>4.7.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <properties>
