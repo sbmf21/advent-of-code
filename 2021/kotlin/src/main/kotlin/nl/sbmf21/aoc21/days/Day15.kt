@@ -7,8 +7,6 @@ import nl.sbmf21.aoc.common.mapToInts
 class Day15(input: List<String>) : ADay(input) {
 
     private val map = input.map { it.toCharArray().map { c -> "$c" }.mapToInts() }
-    private val start = Vector2(0, 0)
-    private val end = Vector2(map[map.lastIndex].lastIndex, map.lastIndex)
     private val neighbors = listOf(
         Vector2(1, 0),
         Vector2(0, 1),
@@ -16,7 +14,24 @@ class Day15(input: List<String>) : ADay(input) {
         Vector2(0, -1),
     )
 
-    override fun part1(): Any {
+    override fun part1() = run()
+
+    override fun part2() = run(buildFatMap())
+
+    private fun buildFatMap(): List<List<Int>> {
+        val fatMap = List(map.size * 5) { y -> MutableList(map[y % map.size].size * 5) { -1 } }
+
+        for (yScale in 0 until 5) for (xScale in 0 until 5) for (y in map.indices) for (x in map[y].indices)
+            fatMap[y + map.size * yScale][x + map[y].size * xScale] = (map[y][x] + (yScale + xScale))
+                .run { if (this > 9) this - 9 else this }
+
+        return fatMap
+    }
+
+    private fun run(map: List<List<Int>> = this.map): Int {
+
+        val start = Vector2(0, 0)
+        val end = Vector2(map[map.lastIndex].lastIndex, map.lastIndex)
 
         val expenses = List(map.size) { y -> MutableList(map[y].size) { -1 } }.also { it[start.y][start.x] = 0 }
         val queue = mutableListOf(start)
@@ -33,34 +48,5 @@ class Day15(input: List<String>) : ADay(input) {
         }
 
         return expenses[end.y][end.x]
-    }
-
-    override fun part2(): Any {
-
-        val fatMap = buildFatMap()
-
-        return -1
-    }
-
-    private fun buildFatMap(): List<MutableList<Int>> {
-        val fatMap = List(map.size * 5) { y -> MutableList(map[y % map.size].size * 5) { -1 } }
-
-        for (yScale in 0 until 5) {
-            for (xScale in 0 until 5) {
-                for (y in map.indices) {
-                    for (x in map[y].indices) {
-                        val cy = y + (map.size * yScale)
-                        val cx = x + (map[y].size * xScale)
-
-                        var new = map[y][x] + (yScale + xScale)
-                        if (new > 9) new -= 9
-
-                        fatMap[cy][cx] = new
-                    }
-                }
-            }
-        }
-
-        return fatMap
     }
 }
