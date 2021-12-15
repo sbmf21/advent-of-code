@@ -23,7 +23,7 @@
 
         <!-- Versions -->
         <kotlin.version>1.6.10</kotlin.version>
-        <commons.version>4.7.0-SNAPSHOT</commons.version>
+        <commons.version>4.7.1-SNAPSHOT</commons.version>
         <junit.version>5.6.0</junit.version>
     </properties>
 

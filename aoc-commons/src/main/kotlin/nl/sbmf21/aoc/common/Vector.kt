@@ -1,7 +1,8 @@
 package nl.sbmf21.aoc.common
 
 data class Vector2(val x: Int, val y: Int) {
-    operator fun plus(pos: Vector2) = Vector2(x + pos.x, y + pos.y)
+    operator fun plus(other: Vector2) = Vector2(x + other.x, y + other.y)
+    operator fun minus(other: Vector2) = Vector2(x - other.x, y - other.y)
     override fun equals(other: Any?) = other is Vector2 && x == other.x && y == other.y
     override fun hashCode() = "$x $y".hashCode()
 }
