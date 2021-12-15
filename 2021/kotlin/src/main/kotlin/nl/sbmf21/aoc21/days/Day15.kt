@@ -31,25 +31,22 @@ class Day15(input: List<String>) : ADay(input) {
     }
 
     private fun aStar(map: List<List<Int>>): Int {
-        val start = Vector2(0, 0)
         val end = Vector2(map[map.lastIndex].lastIndex, map.lastIndex)
 
-        val costs = List(map.size) { y -> MutableList(map[y].size) { -1 } }.also { it[start.y][start.x] = 0 }
-        val queue = mutableListOf(ChitonStep(start, 0))
+        val costs = List(map.size) { y -> MutableList(map[y].size) { -1 } }
+        val queue = mutableListOf(ChitonStep(Vector2(0, 0), 0))
 
         while (queue.isNotEmpty()) {
-            val check = queue.minByOrNull { it.cost }!!
+            val check = queue.minByOrNull { it.cost }!!; queue.remove(check)
+
             if (check.pos == end) return check.cost
 
-            queue.remove(check)
-            getSteps(check, map).forEach { (p, c) ->
-                costs[p.y][p.x].also {
-                    if (it == -1 || it > c) {
-                        costs[p.y][p.x] = c
-                        queue.add(ChitonStep(p, c))
-                    }
+            getSteps(check, map)
+                .forEach { s ->
+                    costs[s.pos.y][s.pos.x]
+                        .takeIf { it == -1 || it > s.cost }
+                        ?.also { costs[s.pos.y][s.pos.x] = s.cost; queue.add(s) }
                 }
-            }
         }
 
         return -1
