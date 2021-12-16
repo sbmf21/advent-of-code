@@ -9,8 +9,8 @@ internal class Report(private val aoc: AocBase) {
     private val columns = listOf(
         Column("Day") { it.meta.number.toString() },
         // Values
-        Column("Part 1") { it.part1Value() },
-        Column("Part 2") { it.part2Value() },
+        Column("Part 1", true) { it.part1Value() },
+        Column("Part 2", true) { it.part2Value() },
         // Timings
         Column("Total") { it.totalTime() },
         Column("Setup") { it.setupTime() },
@@ -72,7 +72,15 @@ internal class Report(private val aoc: AocBase) {
     }
 
     private fun addTiming(timing: TimedRunner) {
-        add(columns.map { cell(it.value(timing), it.len, Align.RIGHT) })
+        add(columns.map {
+            var value = it.value(timing)
+
+            if (it.canHide && aoc.hideAnswers) {
+                value = "█".repeat(value.length)
+            }
+
+            cell(value, it.len, Align.RIGHT)
+        })
     }
 
     private fun add(line: List<String>) {
@@ -112,7 +120,7 @@ internal enum class Align(val render: (String, Int) -> String) {
     })
 }
 
-internal class Column(val header: String, private val get: (TimedRunner) -> String) {
+internal class Column(val header: String, val canHide: Boolean = false, private val get: (TimedRunner) -> String) {
 
     var len = initial()
         private set

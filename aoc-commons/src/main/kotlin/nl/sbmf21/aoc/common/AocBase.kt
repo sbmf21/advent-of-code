@@ -13,6 +13,9 @@ abstract class AocBase(val name: String) {
     private var report: Report = makeReport()
     private var pattern = Pattern.compile("--day(?:=(?<day>\\d+))?")
     internal var runDay: Int? = null
+    internal var hideAnswers = false
+        private set
+
     val days = Reflections("${this::class.java.packageName}.days")
         .getSubTypesOf(ADay::class.java)
         .filter { it.simpleName.matches(Regex("Day\\d+")) }
@@ -42,6 +45,10 @@ abstract class AocBase(val name: String) {
 
         if (it.matches(Regex("--latest"))) {
             this.runDay = days.last().number
+        }
+
+        if (it.matches(Regex("--hide"))) {
+            this.hideAnswers = true
         }
     }
 

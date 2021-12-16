@@ -14,3 +14,5 @@ fun <A : Any, B : Any> testDay(
     assertEquals(part1, day.part1())
     assertEquals(part2, day.part2())
 }
+
+fun buildWithInput(clazz: Class<out ADay>, input: List<String>) = DayMeta(clazz).build(input)
