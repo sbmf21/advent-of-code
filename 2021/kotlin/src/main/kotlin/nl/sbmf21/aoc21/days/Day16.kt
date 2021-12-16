@@ -13,32 +13,32 @@ class Day16(input: List<String>) : ADay(input) {
 internal class BitsPacket(input: String, start: Int = 0) {
     private val version = input.substring(start, start + 3).toInt(2)
     private val typeId = input.substring(start + 3, start + 6).toInt(2)
-    private val length: Int
+    private val end: Int
     private val packets = mutableListOf<BitsPacket>()
     private var value = 0L
 
     init {
-        var length = start + 6
+        var end = start + 6
 
-        if (typeId == 4) value = input.substring(length).chunked(5)
-            .run { subList(0, indexOfFirst { it[0] == '0' } + 1).joinToString("") { length += 5; it.substring(1) } }
+        if (typeId == 4) value = input.substring(end).chunked(5)
+            .run { subList(0, indexOfFirst { it[0] == '0' } + 1).joinToString("") { end += 5; it.substring(1) } }
             .toLong(2)
-        else length = (length++).run {
+        else end = (end++).run {
             var next = this
             if (input[next++] == '0') {
                 next += 15
-                val end = next + input.substring(length, next).toInt(2)
-                while (next < end) next = add(input, next)
+                val max = next + input.substring(end, next).toInt(2)
+                while (next < max) next = add(input, next)
             } else {
                 next += 11
-                for (i in 0 until input.substring(length, next).toLong(2)) next = add(input, next)
+                for (i in 0 until input.substring(end, next).toLong(2)) next = add(input, next)
             }; next
         }
 
-        this.length = length
+        this.end = end
     }
 
-    private fun add(input: String, next: Int) = BitsPacket(input, next).also { packets.add(it) }.length
+    private fun add(input: String, next: Int) = BitsPacket(input, next).also { packets.add(it) }.end
 
     fun exec(): Long = packets.map { it.exec() }.run {
         when (typeId) {
