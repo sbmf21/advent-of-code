@@ -4,9 +4,7 @@ import nl.sbmf21.aoc.common.ADay
 
 class Day16(input: List<String>) : ADay(input) {
 
-    private val initial = input[0]
-        .map { Integer.toBinaryString("$it".toInt(16)).run { padStart(4, '0') } }
-        .joinToString("")
+    private val initial = input[0].map { Integer.toBinaryString("$it".toInt(16)).padStart(4, '0') }.joinToString("")
 
     override fun part1() = getVersion(decryptPacket())
 
