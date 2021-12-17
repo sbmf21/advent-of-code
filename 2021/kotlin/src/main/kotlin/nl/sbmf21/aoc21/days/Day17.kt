@@ -27,11 +27,9 @@ class Day17(input: List<String>) : ADay(input) {
         }
 }
 
+internal data class ProbeTarget(val minX: Int, val maxX: Int, val minY: Int, val maxY: Int)
 internal data class Probe(var pos: Vector2 = Vector2(0, 0), var velocity: Vector2) {
     fun step() = also { pos += velocity; velocity += Vector2(-velocity.x.sign, -1) }
-    fun isIn(target: ProbeTarget) = pos.x in target.minX..target.maxX && pos.y in target.minY..target.maxY
-    fun isPast(target: ProbeTarget) = (velocity.x == 0 && pos.x < target.minX)
-        || pos.x > target.maxX || pos.y < target.minY
+    fun isIn(t: ProbeTarget) = pos.x in t.minX..t.maxX && pos.y in t.minY..t.maxY
+    fun isPast(t: ProbeTarget) = velocity.x == 0 && pos.x < t.minX || pos.x > t.maxX || pos.y < t.minY
 }
-
-internal data class ProbeTarget(val minX: Int, val maxX: Int, val minY: Int, val maxY: Int)
