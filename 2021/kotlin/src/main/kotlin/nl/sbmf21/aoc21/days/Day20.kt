@@ -18,5 +18,5 @@ class Day20(input: List<String>) : ADay(input) {
 
     private fun check(y: Int, x: Int, img: List<List<Int>>, pass: Int) = algo[neigh.map { Vector2(x - 1, y - 1) + it }
         .map { if (it.y in img.indices && it.x in img[it.y].indices) img[it.y][it.x] else algo[if (algo[0] == 1) pass % 2 * algo.lastIndex else 0] }
-        .joinToString("").toInt(2)]
+        .fold(0) { acc, p -> (acc shl 1) + p }]
 }
