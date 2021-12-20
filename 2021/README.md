@@ -20,7 +20,7 @@ Day | Kotlin | Rust
 16 | :white_check_mark:
 17 | :white_check_mark:
 18 | :white_check_mark:
-19
+19 | :white_check_mark:
 20 | :white_check_mark:
 21
 22
