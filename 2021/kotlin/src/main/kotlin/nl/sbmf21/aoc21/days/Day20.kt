@@ -17,8 +17,7 @@ class Day20(input: List<String>) : ADay(input) {
     private fun check(y: Int, x: Int, image: List<List<Int>>, pass: Int) = algorithm[(y - 1..y + 1).map { cy ->
         (x - 1..x + 1).map { cx ->
             if (cy in image.indices && cx in image[cy].indices) image[cy][cx]
-            else if (pass % 2 == 1 && algorithm[0] == 1) algorithm[algorithm.lastIndex]
-            else algorithm[0]
+            else algorithm[if (algorithm[0] == 1) pass % 2 * algorithm.lastIndex else 0]
         }
     }.flatten().joinToString("").toInt(2)]
 }
