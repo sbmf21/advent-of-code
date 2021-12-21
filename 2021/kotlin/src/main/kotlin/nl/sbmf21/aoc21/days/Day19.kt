@@ -86,5 +86,3 @@ internal data class Scanner(
     var rotation: Vector3 = Vector3(0, 0, 0),
     val beacons: List<Vector3>,
 )
-
-internal fun MatchResult.toInt(name: String) = this.groups[name]!!.value.toInt()

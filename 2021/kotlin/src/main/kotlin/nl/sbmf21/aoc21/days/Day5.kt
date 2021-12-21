@@ -7,8 +7,8 @@ import kotlin.math.sign
 class Day5(input: List<String>) : ADay(input) {
 
     private val pattern = Regex("(?<x1>\\d+),(?<y1>\\d+)\\s+->\\s+(?<x2>\\d+),(?<y2>\\d+)")
-    private val lines = input.map { pattern.matchEntire(it)!!.groups }
-        .map { Line(i(it["x1"]), i(it["y1"]), i(it["x2"]), i(it["y2"])) }
+    private val lines = input.map { pattern.matchEntire(it)!! }
+        .map { Line(it.toInt("x1"), it.toInt("y1"), it.toInt("x2"), it.toInt("y2")) }
 
     override fun part1() = run(lines.filter { it.x1 == it.x2 || it.y1 == it.y2 })
 
@@ -29,5 +29,3 @@ data class Vec<N : Number>(var x: N, var y: N)
 data class Line(val x1: Int, val y1: Int, val x2: Int, val y2: Int) {
     val step = Vec((x2 - x1).sign, (y2 - y1).sign)
 }
-
-private fun i(m: MatchGroup?) = m!!.value.toInt()
