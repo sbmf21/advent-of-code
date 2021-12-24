@@ -4,7 +4,10 @@ import org.reflections.Reflections
 import java.io.BufferedReader
 import java.io.InputStream
 import java.io.InputStreamReader
+import java.util.*
 import java.util.regex.Pattern
+import kotlin.concurrent.thread
+import kotlin.math.min
 import kotlin.math.round
 import kotlin.system.measureNanoTime
 
@@ -52,9 +55,20 @@ abstract class AocBase(val name: String) {
         }
     }
 
-    internal fun runDays() = days
-        .filter { runDay == null || it.clazz.simpleName.equals("Day$runDay") }
-        .map { report.run(it) }
+    private fun runDays() {
+        if (runDay == null) {
+            val threads = mutableListOf<Thread>()
+            val concurrentDays = Collections.synchronizedList(days.toMutableList())
+            val threadCount = min(days.size, Runtime.getRuntime().availableProcessors())
+
+            println("Running in $threadCount thread${if (threadCount == 1) "" else "s"}")
+            for (t in 1..threadCount) threads.add(thread {
+                while (concurrentDays.isNotEmpty()) report.run(concurrentDays.removeFirst())
+            })
+
+            while (threads.any { it.isAlive }) Thread.sleep(10)
+        } else days.filter { it.clazz.simpleName.equals("Day$runDay") }.forEach { report.run(it) }
+    }
 
     private fun report() = report.render()
     private fun makeReport() = Report(this)

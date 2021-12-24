@@ -28,7 +28,7 @@ internal class Report(private val aoc: AocBase) {
         addColumnHeaders(sizes)
 
         if (timings.size > 0) {
-            timings.forEach { addTiming(it) }
+            timings.sortedBy { it.meta.number }.forEach { addTiming(it) }
             addLine(sizes.lineSizes, '┴', '└', '┘')
         } else addNone(sizes)
 
