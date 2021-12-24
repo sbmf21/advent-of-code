@@ -61,14 +61,4 @@ class AocTest {
         assertEquals(aoc.days[3].clazz, Day23::class.java)
         assertEquals(aoc.days[3].number, 23)
     }
-
-    @Test
-    fun testInput() {
-        val days = aoc.apply { runDay = null }.runDays()
-
-        assertEquals(listOf("hi", "bye", "i", "am", "INPUT"), days.first { it is Day1 }.input)
-        assertEquals(listOf("some", "stuff"), days.first { it is Day2 }.input)
-        assertEquals(listOf(), days.first { it is Day7 }.input)
-        assertEquals(listOf("epic,4"), days.first { it is Day23 }.input)
-    }
 }
