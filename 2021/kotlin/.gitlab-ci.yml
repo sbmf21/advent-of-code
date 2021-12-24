@@ -42,4 +42,4 @@
     - 2021:kotlin:compile
     - 2021:kotlin:test
   script:
-    - java -jar target/adventofcode.2021-1.0.0-SNAPSHOT-jar-with-dependencies.jar
+    - java -jar target/adventofcode.2021-1.0.0-SNAPSHOT-jar-with-dependencies.jar --hide
