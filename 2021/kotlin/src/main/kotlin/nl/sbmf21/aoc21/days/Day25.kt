@@ -18,9 +18,7 @@ class Day25(input: List<String>) : ADay(input) {
     }
 
     override fun part1(): Int {
-        var step = 0
-        var moved = true
-        var map = this.map
+        var step = 0; var moved = true; var map = this.map
 
         while (moved) {
             move(map, EAST).also { map = it.first; moved = it.second }
