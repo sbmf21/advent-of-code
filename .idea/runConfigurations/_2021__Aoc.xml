@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="[2021] Aoc" type="JetRunConfigurationType">
+    <option name="MAIN_CLASS_NAME" value="nl.sbmf21.aoc21.AocKt" />
+    <module name="AOC 2021" />
+    <shortenClasspath name="NONE" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/2021/kotlin" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

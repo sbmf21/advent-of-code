@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="AOC 2020" />
+        <module name="AOC 2015" />
+        <module name="Commons" />
+        <module name="AOC 2021" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="AOC 2015" target="15" />
+      <module name="AOC 2020" target="11" />
+      <module name="AOC 2021" target="11" />
+      <module name="Commons" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/2015/AOC 2015.iml" filepath="$PROJECT_DIR$/2015/AOC 2015.iml" />
+      <module fileurl="file://$PROJECT_DIR$/2020/kotlin/AOC 2020.iml" filepath="$PROJECT_DIR$/2020/kotlin/AOC 2020.iml" />
+      <module fileurl="file://$PROJECT_DIR$/2021/kotlin/AOC 2021.iml" filepath="$PROJECT_DIR$/2021/kotlin/AOC 2021.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Advent of Code.iml" filepath="$PROJECT_DIR$/.idea/Advent of Code.iml" />
+      <module fileurl="file://$PROJECT_DIR$/aoc-commons/Commons.iml" filepath="$PROJECT_DIR$/aoc-commons/Commons.iml" />
+    </modules>
+  </component>
+</project>
