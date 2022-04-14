@@ -1,6 +1,6 @@
 
 function parseNumbers()
-    local lines = io.lines('numbers.txt')
+    local lines = io.lines('input/day1.txt')
     local numbers = {}
 
     for line in lines do
@@ -10,5 +10,5 @@ function parseNumbers()
     return numbers
 end
 
-require 'part1'
-require 'part2'
+require 'day1.part1'
+require 'day1.part2'

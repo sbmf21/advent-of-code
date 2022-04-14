@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="[2020] Aoc" type="JetRunConfigurationType">
+  <configuration default="false" name="[2020/Kotlin] Aoc" type="JetRunConfigurationType">
     <option name="MAIN_CLASS_NAME" value="nl.sbmf21.aoc20.AocKt" />
     <module name="AOC 2020" />
     <shortenClasspath name="NONE" />

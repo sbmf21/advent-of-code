@@ -1,5 +1,5 @@
 #!/bin/bash
-for d in ./Day*; do
+for d in ./src/Day*; do
   if [ -d "$d" ]; then
     cd "$d"
 

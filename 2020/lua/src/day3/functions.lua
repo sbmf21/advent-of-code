@@ -13,7 +13,7 @@ end
 local function readMap() 
     local map = {}
 
-    for line in io.lines('map.txt') do
+    for line in io.lines('input/day3.txt') do
         map[#map + 1] = line
     end
 
@@ -32,5 +32,5 @@ function count(xStep, yStep)
     return trees
 end
 
-require 'part1'
-require 'part2'
+require 'day3.part1'
+require 'day3.part2'
