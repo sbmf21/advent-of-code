@@ -4,14 +4,14 @@
     changes:
       - 2020/lua/**/*
   before_script:
-    - cd 2020/lua
+    - cd 2020/lua/src
 
 2020:lua:test:
   extends: .2020:lua
   stage: test
   needs: []
   script:
-    - ./test.sh
+    - lua test.lua
 
 2020:lua:run:
   extends: .2020:lua
@@ -19,4 +19,4 @@
   needs:
     - 2020:lua:test
   script:
-    - ./run.sh
+    - lua main.lua

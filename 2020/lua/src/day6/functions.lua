@@ -22,7 +22,7 @@ end
 function parseGroups()
     local groups = {}; local group = {}
 
-    for line in io.lines('groups.txt') do
+    for line in io.lines('input/day6.txt') do
         if line == '' then
             groups[#groups + 1] = group
             group = {}
@@ -36,5 +36,5 @@ function parseGroups()
     return groups
 end
 
-require 'part1'
-require 'part2'
+require 'day6.part1'
+require 'day6.part2'

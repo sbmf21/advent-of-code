@@ -26,7 +26,7 @@ local function parseLine(current, line)
 end
 
 function parsePassports()
-    local lines = io.lines('passports.txt')
+    local lines = io.lines('input/day4.txt')
     local passports = {}; local current = {}
 
     for line in lines do
@@ -66,5 +66,5 @@ function between(value, min, max)
     return value >= min and value <= max
 end
 
-require 'part1'
-require 'part2'
+require 'day4.part1'
+require 'day4.part2'

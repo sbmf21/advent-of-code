@@ -1,4 +1,3 @@
-
 local function split(input, match)
     local sparts = {}
 
@@ -14,7 +13,7 @@ local function split(input, match)
 end
 
 local function parsePasswords()
-    local lines = io.lines('passwords.txt')
+    local lines = io.lines('input/day2.txt')
     local passwords = {}
 
     for line in lines do
@@ -38,7 +37,7 @@ function numValid(isValid)
     local passwords = parsePasswords()
 
     for _, password in ipairs(passwords) do
-        if(isValid(password)) then
+        if (isValid(password)) then
             count = count + 1
         end
     end
@@ -46,5 +45,5 @@ function numValid(isValid)
     return count
 end
 
-require 'part1'
-require 'part2'
+require 'day2.part1'
+require 'day2.part2'
