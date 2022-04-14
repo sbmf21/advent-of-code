@@ -17,7 +17,7 @@ local function testDay(day, expect1, expect2)
 end
 
 for day = 1, #days do
-    data = days[day]
+    local data = days[day]
     print(('Testing day %d'):format(data.nr))
     testDay(data.nr, data.part1, data.part2)
 end
