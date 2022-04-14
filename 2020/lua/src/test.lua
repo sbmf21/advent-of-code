@@ -8,7 +8,7 @@ end
 
 local function testDay(day, expect1, expect2)
 
-    require('day' .. day .. '.functions')
+    require(('day%d.functions'):format(day))
 
     test(1, part1(), expect1)
     test(2, part2(), expect2)
