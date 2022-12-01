@@ -30,7 +30,7 @@ stages:
 # Gradle
 
 .gradle:
-  image: openjdk:11-jdk-slim
+  image: openjdk:17.0.2-jdk-slim
 
 .gradle:compile:
   extends: .gradle
