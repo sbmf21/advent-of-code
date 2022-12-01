@@ -6,7 +6,8 @@
     key: '2022:kotlin'
     policy: pull
     paths:
-      - 2022/kotlin/.m2/repository/
+      - 2022/kotlin/.gradle/wrapper
+      - 2022/kotlin/.gradle/caches
 
 2022:kotlin:compile:
   extends:
@@ -16,10 +17,11 @@
     key: '2022:kotlin'
     policy: pull-push
     paths:
-      - 2022/kotlin/.m2/repository/
+      - 2022/kotlin/.gradle/wrapper
+      - 2022/kotlin/.gradle/caches
   artifacts:
     paths:
-      - 2022/kotlin/target/
+      - 2022/kotlin/build/
 
 2022:kotlin:test:
   extends:
