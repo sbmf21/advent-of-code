@@ -16,8 +16,8 @@
         <main.class>nl.sbmf21.aoc15.Aoc</main.class>
 
         <!-- Compiler -->
-        <maven.compiler.source>15</maven.compiler.source>
-        <maven.compiler.target>15</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
 
         <!-- Versions -->
         <commons.version>2.0.0-SNAPSHOT</commons.version>
