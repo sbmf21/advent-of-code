@@ -6,16 +6,12 @@ class Day1(input: List<String>) : ADay(input) {
 
     private val elves = getElves(input)
 
-    override fun part1(): Any {
-        return elves.maxOf { it.sum() }
-    }
+    override fun part1() = elves.maxOf { it.sum() }
 
-    override fun part2(): Any {
-        return elves.map { it.sum() }
-            .sortedDescending()
-            .subList(0, 3)
-            .sum()
-    }
+    override fun part2() = elves.map { it.sum() }
+        .sortedDescending()
+        .subList(0, 3)
+        .sum()
 }
 
 private fun getElves(input: List<String>): List<List<Int>> {
