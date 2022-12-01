@@ -1,0 +1,45 @@
+.2022:kotlin:
+  extends: .gradle
+  before_script:
+    - cd 2022/kotlin
+  cache:
+    key: '2022:kotlin'
+    policy: pull
+    paths:
+      - 2022/kotlin/.m2/repository/
+
+2022:kotlin:compile:
+  extends:
+    - .2022:kotlin
+    - .gradle:compile
+  cache:
+    key: '2022:kotlin'
+    policy: pull-push
+    paths:
+      - 2022/kotlin/.m2/repository/
+  artifacts:
+    paths:
+      - 2022/kotlin/target/
+
+2022:kotlin:test:
+  extends:
+    - .2022:kotlin
+    - .gradle:test
+  dependencies:
+    - 2022:kotlin:compile
+  needs:
+    - 2022:kotlin:compile
+  artifacts:
+    reports:
+      junit: 2022/kotlin/build/test-results/test/TEST-*.xml
+
+2022:kotlin:run:
+  extends: .2022:kotlin
+  stage: run
+  dependencies:
+    - 2022:kotlin:compile
+  needs:
+    - 2022:kotlin:compile
+    - 2022:kotlin:test
+  script:
+    - java -jar build/libs/aoc2022-1.0.0-SNAPSHOT-shaded.jar --hide
