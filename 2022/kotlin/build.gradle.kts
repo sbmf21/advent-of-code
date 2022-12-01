@@ -1,4 +1,5 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm") version "1.7.21"
@@ -20,6 +21,7 @@ dependencies {
 }
 
 tasks {
+    withType<KotlinCompile> { kotlinOptions.jvmTarget = "11" }
     withType<Jar> { archiveBaseName.set("aoc2022") }
     withType<ShadowJar> {
         archiveClassifier.set("shaded")

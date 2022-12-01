@@ -30,7 +30,7 @@ stages:
 # Gradle
 
 .gradle:
-  image: java:8-jdk
+  image: openjdk:11-jdk-slim
 
 .gradle:compile:
   extends: .gradle
@@ -41,12 +41,12 @@ stages:
   dependencies:
     - commons:kotlin:deploy
   script:
-    - ./gradlew clean build -x test
+    - ./gradlew clean build -x check
 
 .gradle:test:
   stage: test
   script:
-    - ./gradlew test
+    - ./gradlew check
 
 # Projects
 
