@@ -21,7 +21,7 @@ dependencies {
 }
 
 tasks {
-    withType<KotlinCompile> { kotlinOptions.jvmTarget = "11" }
+    withType<KotlinCompile> { kotlinOptions.jvmTarget = "17" }
     withType<Jar> { archiveBaseName.set("aoc2022") }
     withType<ShadowJar> {
         archiveClassifier.set("shaded")
