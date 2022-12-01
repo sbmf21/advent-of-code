@@ -1,4 +1,4 @@
-import nl.sbmf.aoc22.days.Day1
+import nl.sbmf21.aoc22.days.Day1
 import org.junit.jupiter.api.Test
 
 class Day1Test {

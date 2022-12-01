@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="[2022:Kotlin] Aoc" type="JetRunConfigurationType">
-    <option name="MAIN_CLASS_NAME" value="nl.sbmf.aoc22.AocKt" />
+    <option name="MAIN_CLASS_NAME" value="nl.sbmf21.aoc22.AocKt" />
     <module name="AOC_2022-Kotlin.main" />
     <shortenClasspath name="NONE" />
     <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/2022/kotlin" />

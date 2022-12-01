@@ -1,4 +1,4 @@
-package nl.sbmf.aoc22.days
+package nl.sbmf21.aoc22.days
 
 import nl.sbmf21.aoc.common.ADay
 
