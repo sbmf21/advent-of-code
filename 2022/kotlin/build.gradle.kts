@@ -1,5 +1,9 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
 plugins {
     kotlin("jvm") version "1.7.21"
+    id("com.github.johnrengelman.shadow") version "7.1.2"
+    application
 }
 
 group = "nl.sbmf21"
@@ -11,10 +15,20 @@ repositories {
 }
 
 dependencies {
-    testImplementation(kotlin("test"))
     implementation("nl.sbmf21:adventofcode.common:5.0.0")
+    testImplementation(kotlin("test"))
 }
 
-tasks.test {
-    useJUnitPlatform()
+tasks {
+    withType<Jar> { archiveBaseName.set("aoc2022") }
+    withType<ShadowJar> {
+        archiveClassifier.set("shaded")
+        mergeServiceFiles()
+    }
+    jar { dependsOn(shadowJar) }
+    test { useJUnitPlatform() }
+}
+
+application {
+    mainClass.set("nl.sbmf21.aoc22.AocKt")
 }

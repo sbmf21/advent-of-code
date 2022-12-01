@@ -1,5 +1,8 @@
 .2021:kotlin:
   extends: .maven
+  only:
+    changes:
+      - 2021/kotlin/**/*
   before_script:
     - cd 2021/kotlin
   cache:
