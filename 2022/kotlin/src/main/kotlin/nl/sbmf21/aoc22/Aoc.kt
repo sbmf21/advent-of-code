@@ -1,4 +1,4 @@
-package nl.sbmf.aoc22
+package nl.sbmf21.aoc22
 
 import nl.sbmf21.aoc.common.AocBase
 
