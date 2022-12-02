@@ -1,11 +1,13 @@
 package nl.sbmf21.aoc.common
 
+import java.util.*
+
 internal fun space(len: Int) = " ".repeat(len)
 
 internal class Report(private val aoc: AocBase) {
 
     private val builder = StringBuilder()
-    private val timings = mutableListOf<TimedRunner>()
+    private val timings = Collections.synchronizedList(mutableListOf<TimedRunner>())
     private val columns = listOf(
         Column("Day") { it.meta.number.toString() },
         // Values
