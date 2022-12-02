@@ -12,11 +12,12 @@ version = "1.0.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
+    mavenLocal()
     maven("https://gitlab.com/api/v4/projects/22815243/packages/maven")
 }
 
 dependencies {
-    implementation("nl.sbmf21:adventofcode.common:5.0.0")
+    implementation("nl.sbmf21:adventofcode.common:5.0.1-SNAPSHOT")
     testImplementation(kotlin("test"))
 }
 

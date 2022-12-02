@@ -65,8 +65,7 @@ abstract class AocBase(val name: String) {
             for (t in 1..threadCount) threads.add(thread {
                 while (concurrentDays.isNotEmpty()) report.run(concurrentDays.removeFirst())
             })
-
-            while (threads.any { it.isAlive }) Thread.sleep(10)
+            for (thread in threads) thread.join()
         } else days.filter { it.clazz.simpleName.equals("Day$runDay") }.forEach { report.run(it) }
     }
 
