@@ -17,7 +17,7 @@ repositories {
 }
 
 dependencies {
-    implementation("nl.sbmf21:adventofcode.common:5.0.1-SNAPSHOT")
+    implementation("nl.sbmf21:adventofcode.common:5.0.1")
     testImplementation(kotlin("test"))
 }
 
