@@ -1,27 +1,23 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="[Commons] Test" type="MavenRunConfiguration" factoryName="Maven">
-    <MavenSettings>
-      <option name="myGeneralSettings" />
-      <option name="myRunnerSettings" />
-      <option name="myRunnerParameters">
-        <MavenRunnerParameters>
-          <option name="profiles">
-            <set />
-          </option>
-          <option name="goals">
-            <list>
-              <option value="test" />
-            </list>
-          </option>
-          <option name="pomFileName" value="pom.xml" />
-          <option name="profilesMap">
-            <map />
-          </option>
-          <option name="resolveToWorkspace" value="false" />
-          <option name="workingDirPath" value="$PROJECT_DIR$/aoc-commons" />
-        </MavenRunnerParameters>
+  <configuration default="false" name="[Commons] Test" type="GradleRunConfiguration" factoryName="Gradle">
+    <ExternalSystemSettings>
+      <option name="executionName" />
+      <option name="externalProjectPath" value="$PROJECT_DIR$/aoc-commons" />
+      <option name="externalSystemIdString" value="GRADLE" />
+      <option name="scriptParameters" value="" />
+      <option name="taskDescriptions">
+        <list />
       </option>
-    </MavenSettings>
+      <option name="taskNames">
+        <list>
+          <option value="check" />
+        </list>
+      </option>
+      <option name="vmOptions" />
+    </ExternalSystemSettings>
+    <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+    <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+    <DebugAllEnabled>false</DebugAllEnabled>
     <method v="2" />
   </configuration>
 </component>

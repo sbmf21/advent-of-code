@@ -1,40 +1,42 @@
 .2020:kotlin:
-  extends: .maven
+  extends: .gradle
   only:
     changes:
       - 2020/kotlin/**/*
   before_script:
     - cd 2020/kotlin
+    - export GRADLE_USER_HOME=`pwd`/.gradle
   cache:
-    key: '2020:maven'
+    key: '2020:kotlin'
     policy: pull
     paths:
-      - 2020/kotlin/.m2/repository/
+      - 2020/kotlin/.gradle/wrapper
+      - 2020/kotlin/.gradle/caches
+      - 2020/kotlin/build
 
 2020:kotlin:compile:
   extends:
     - .2020:kotlin
-    - .maven:compile
+    - .gradle:compile
   cache:
-    key: '2020:maven'
+    key: '2020:kotlin'
     policy: pull-push
     paths:
-      - 2020/kotlin/.m2/repository/
-  artifacts:
-    paths:
-      - 2020/kotlin/target/
+      - 2020/kotlin/.gradle/wrapper
+      - 2020/kotlin/.gradle/caches
+      - 2020/kotlin/build
 
 2020:kotlin:test:
   extends:
     - .2020:kotlin
-    - .maven:test
+    - .gradle:test
   dependencies:
     - 2020:kotlin:compile
   needs:
     - 2020:kotlin:compile
   artifacts:
     reports:
-      junit: 2020/kotlin/target/surefire-reports/TEST-*.xml
+      junit: 2020/kotlin/build/test-results/test/TEST-*.xml
 
 2020:kotlin:run:
   extends: .2020:kotlin
@@ -45,4 +47,4 @@
     - 2020:kotlin:compile
     - 2020:kotlin:test
   script:
-    - java -jar target/adventofcode.2020-1.0.0-SNAPSHOT-jar-with-dependencies.jar
+    - java -jar build/libs/aoc2020-shaded.jar --hide

@@ -1,20 +1,10 @@
-import nl.sbmf21.aoc15.Aoc;
 import nl.sbmf21.aoc15.days.Day6;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-public class Day6Test {
-
-    private final Day6 day = new Day6(new Aoc(), 6);
+public class Day6Test extends AocTest {
 
     @Test
-    public void testPart1Output() {
-        assertEquals(543903, (int) day.part1());
-    }
-
-    @Test
-    public void testPart2Output() {
-        assertEquals(14687245, (int) day.part2());
+    public void testInput() {
+        testDay(Day6.class, 543_903, 14_687_245);
     }
 }

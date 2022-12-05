@@ -1,40 +1,60 @@
 .commons:kotlin:
-  extends: .maven
+  extends: .gradle
+  only:
+    changes:
+      - aoc-commons/**/*
+  before_script:
+    - cd aoc-commons
+    - export GRADLE_USER_HOME=`pwd`/.gradle
+  cache:
+    key: 'commons:kotlin'
+    policy: pull
+    paths:
+      - aoc-commons/.gradle/wrapper
+      - aoc-commons/.gradle/caches
+      - aoc-commons/build
+
+commons:kotlin:compile:
+  extends:
+    - .commons:kotlin
+    - .gradle:compile
+  stage: commons:build
+  needs: []
+  dependencies: []
+  cache:
+    key: 'commons:kotlin'
+    policy: pull-push
+    paths:
+      - aoc-commons/.gradle/wrapper
+      - aoc-commons/.gradle/caches
+      - aoc-commons/build
+
+commons:kotlin:test:
+  extends:
+    - .commons:kotlin
+    - .gradle:test
+  stage: commons:test
+  dependencies:
+    - commons:kotlin:compile
+  needs:
+    - commons:kotlin:compile
+  artifacts:
+    reports:
+      junit: aoc-commons/build/test-results/test/TEST-*.xml
+
+commons:kotlin:deploy:
+  extends: .commons:kotlin
+  stage: commons:deploy
   only:
     refs:
       - master
     changes:
       - aoc-commons/**/*
-  cache:
-    key: 'maven:commons'
-    policy: pull
-    paths:
-      - aoc-commons/.m2/repository/
-  before_script:
-    - cd aoc-commons
-
-commons:kotlin:deploy:
-  extends: .commons:kotlin
-  stage: build:commons
-  cache:
-    key: 'maven:commons'
-    policy: pull-push
-    paths:
-      - aoc-commons/.m2/repository/
-  artifacts:
-    paths:
-      - aoc-commons/.m2/repository/nl/sbmf21/adventofcode.common
-  script:
-    - mvn $MAVEN_CLI_OPTS clean deploy install -s ci_settings.xml
-
-commons:kotlin:test:
-  extends:
-    - .commons:kotlin
-    - .maven:test
-  dependencies:
-    - commons:kotlin:deploy
   needs:
-    - commons:kotlin:deploy
-  artifacts:
-    reports:
-      junit: aoc-commons/target/surefire-reports/TEST-*.xml
+    - commons:kotlin:compile
+    - commons:kotlin:test
+  dependencies:
+    - commons:kotlin:compile
+    - commons:kotlin:test
+  script:
+    - ./gradlew publish

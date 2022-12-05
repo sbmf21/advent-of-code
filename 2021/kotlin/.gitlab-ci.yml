@@ -1,40 +1,42 @@
 .2021:kotlin:
-  extends: .maven
+  extends: .gradle
   only:
     changes:
       - 2021/kotlin/**/*
   before_script:
     - cd 2021/kotlin
+    - export GRADLE_USER_HOME=`pwd`/.gradle
   cache:
     key: '2021:kotlin'
     policy: pull
     paths:
-      - 2021/kotlin/.m2/repository/
+      - 2021/kotlin/.gradle/wrapper
+      - 2021/kotlin/.gradle/caches
+      - 2021/kotlin/build
 
 2021:kotlin:compile:
   extends:
     - .2021:kotlin
-    - .maven:compile
+    - .gradle:compile
   cache:
     key: '2021:kotlin'
     policy: pull-push
     paths:
-      - 2021/kotlin/.m2/repository/
-  artifacts:
-    paths:
-      - 2021/kotlin/target/
+      - 2021/kotlin/.gradle/wrapper
+      - 2021/kotlin/.gradle/caches
+      - 2021/kotlin/build
 
 2021:kotlin:test:
   extends:
     - .2021:kotlin
-    - .maven:test
+    - .gradle:test
   dependencies:
     - 2021:kotlin:compile
   needs:
     - 2021:kotlin:compile
   artifacts:
     reports:
-      junit: 2021/kotlin/target/surefire-reports/TEST-*.xml
+      junit: 2021/kotlin/build/test-results/test/TEST-*.xml
 
 2021:kotlin:run:
   extends: .2021:kotlin
@@ -45,4 +47,4 @@
     - 2021:kotlin:compile
     - 2021:kotlin:test
   script:
-    - java -jar target/adventofcode.2021-1.0.0-SNAPSHOT-jar-with-dependencies.jar --hide
+    - java -jar build/libs/aoc2021-shaded.jar --hide

@@ -1,31 +1,10 @@
 stages:
-  - build:commons
+  - commons:build
+  - commons:test
+  - commons:deploy
   - build
   - test
   - run
-
-# Maven
-
-.maven:
-  image: maven:latest
-  variables:
-    MAVEN_CLI_OPTS: "--batch-mode"
-    MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository -Dstyle.color=always -Djansi.force=true"
-
-.maven:compile:
-  stage: build
-  needs:
-    - job: commons:kotlin:deploy
-      optional: true
-  dependencies:
-    - commons:kotlin:deploy
-  script:
-    - mvn $MAVEN_CLI_OPTS clean compile package -Dmaven.test.skip=true
-
-.maven:test:
-  stage: test
-  script:
-    - mvn $MAVEN_CLI_OPTS test
 
 # Gradle
 
