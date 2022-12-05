@@ -1,2 +1,4 @@
-/out
-/target
+# Gradle
+.gradle
+build/
+gradlew.bat

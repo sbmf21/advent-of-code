@@ -1,17 +1,17 @@
 package nl.sbmf21.aoc15.days;
 
-import nl.sbmf21.aoc15.Aoc;
 import nl.sbmf21.aoc.common.ADay;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class Day1 extends ADay {
 
     private final char[] instructions = parseInstructions();
 
-    public Day1(Aoc aoc, int number) {
-        super(aoc, number);
+    public Day1(List<String> input) {
+        super(input);
     }
 
     @Override

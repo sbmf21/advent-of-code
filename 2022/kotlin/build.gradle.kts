@@ -8,7 +8,6 @@ plugins {
 }
 
 group = "nl.sbmf21"
-version = "1.0.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
@@ -17,7 +16,7 @@ repositories {
 }
 
 dependencies {
-    implementation("nl.sbmf21:adventofcode.common:5.0.1")
+    implementation("nl.sbmf21:adventofcode.common:5.1.0-SNAPSHOT")
     testImplementation(kotlin("test"))
 }
 

@@ -11,8 +11,6 @@ public class Aoc extends AocBase {
     public static void main(String[] args) {
         var aoc = new Aoc();
 
-        aoc.init(args);
-        aoc.runDays();
-        aoc.report();
+        aoc.exec(args);
     }
 }

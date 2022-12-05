@@ -1,22 +1,17 @@
 package nl.sbmf21.aoc15.days;
 
-import lombok.RequiredArgsConstructor;
-import nl.sbmf21.aoc15.Aoc;
 import nl.sbmf21.aoc.common.ADay;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Objects;
+import java.util.*;
 import java.util.function.Consumer;
 
 public class Day3 extends ADay {
 
     private final ArrayList<Direction> directions = parseDirections();
 
-    public Day3(Aoc aoc, int number) {
-        super(aoc, number);
+    public Day3(List<String> input) {
+        super(input);
     }
 
     @Override
@@ -73,7 +68,6 @@ public class Day3 extends ADay {
     }
 }
 
-@RequiredArgsConstructor
 enum Direction {
 
     NORTH('^', Santa::moveUp),
@@ -86,13 +80,18 @@ enum Direction {
      * Give the fact that enums are constant, this results in many calculations.
      */
     public static final Direction[] CACHE = Direction.values();
-    private final char c;
+    private final char key;
     public final Consumer<Santa> move;
+
+    Direction(char key, Consumer<Santa> move) {
+        this.key = key;
+        this.move = move;
+    }
 
     public static Direction fromChar(char c) {
 
         for (Direction direction : CACHE) {
-            if (direction.c == c) {
+            if (direction.key == c) {
                 return direction;
             }
         }
@@ -142,10 +141,14 @@ class Santa {
     }
 }
 
-@RequiredArgsConstructor
 class Point {
 
     private final int x, y;
+
+    public Point(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
 
     @Override
     public boolean equals(Object o) {

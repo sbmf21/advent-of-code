@@ -9,6 +9,7 @@
     paths:
       - 2022/kotlin/.gradle/wrapper
       - 2022/kotlin/.gradle/caches
+      - 2022/kotlin/build
 
 2022:kotlin:compile:
   extends:
@@ -20,9 +21,7 @@
     paths:
       - 2022/kotlin/.gradle/wrapper
       - 2022/kotlin/.gradle/caches
-  artifacts:
-    paths:
-      - 2022/kotlin/build/
+      - 2022/kotlin/build
 
 2022:kotlin:test:
   extends:
@@ -45,4 +44,4 @@
     - 2022:kotlin:compile
     - 2022:kotlin:test
   script:
-    - java -jar build/libs/aoc2022-1.0.0-SNAPSHOT-shaded.jar --hide
+    - java -jar build/libs/aoc2022-shaded.jar --hide

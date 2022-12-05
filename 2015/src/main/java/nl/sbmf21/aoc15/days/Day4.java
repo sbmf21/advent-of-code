@@ -1,12 +1,12 @@
 package nl.sbmf21.aoc15.days;
 
-import nl.sbmf21.aoc15.Aoc;
 import nl.sbmf21.aoc.common.ADay;
 import org.jetbrains.annotations.NotNull;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.util.HashMap;
+import java.util.List;
 
 public class Day4 extends ADay {
 
@@ -15,10 +15,9 @@ public class Day4 extends ADay {
     private final String key;
     private final int max;
 
-    public Day4(Aoc aoc, int number) throws Exception {
-        super(aoc, number);
+    public Day4(List<String> input) throws Exception {
+        super(input);
 
-        var input = getInput();
         digester = MessageDigest.getInstance("MD5");
         key = input.get(0);
         max = Integer.parseInt(input.get(1));
