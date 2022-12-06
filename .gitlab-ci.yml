@@ -20,7 +20,7 @@ stages:
   dependencies:
     - commons:kotlin:deploy
   script:
-    - ./gradlew clean build -x check
+    - ./gradlew clean dependencies build -x check
 
 .gradle:test:
   stage: test
