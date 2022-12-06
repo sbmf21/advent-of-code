@@ -15,9 +15,7 @@
       - aoc-commons/build
 
 commons:kotlin:compile:
-  extends:
-    - .commons:kotlin
-    - .gradle:compile
+  extends: .commons:kotlin
   stage: commons:build
   needs: []
   dependencies: []
@@ -28,6 +26,8 @@ commons:kotlin:compile:
       - aoc-commons/.gradle/wrapper
       - aoc-commons/.gradle/caches
       - aoc-commons/build
+  script:
+    - ./gradlew clean dependencies build kotlinSourcesJar -x check
 
 commons:kotlin:test:
   extends:
