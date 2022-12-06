@@ -75,10 +75,10 @@ internal class Report(private val aoc: AocBase) {
 
     private fun addTiming(timing: TimedRunner) {
         add(columns.map {
-            var value = it.value(timing)
-
-            if (it.canHide && aoc.hideAnswers) {
-                value = "█".repeat(value.length)
+            val value = if (it.canHide && aoc.hideAnswers) {
+                "█".repeat(it.len)
+            } else {
+                it.value(timing)
             }
 
             cell(value, it.len, Align.RIGHT)
