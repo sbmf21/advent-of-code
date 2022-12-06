@@ -9,7 +9,9 @@ stages:
 # Gradle
 
 .gradle:
-  image: openjdk:17.0.2-jdk-slim
+  image: gradle:7-jdk17
+  variables:
+    GRADLE_OPTS: -Dorg.gradle.daemon=false
 
 .gradle:compile:
   extends: .gradle
@@ -20,12 +22,12 @@ stages:
   dependencies:
     - commons:kotlin:deploy
   script:
-    - ./gradlew clean dependencies build -x check
+    - gradle clean dependencies build -x check
 
 .gradle:test:
   stage: test
   script:
-    - ./gradlew check
+    - gradle check
 
 # Projects
 

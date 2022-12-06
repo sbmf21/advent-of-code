@@ -10,7 +10,6 @@
     key: '2021:kotlin'
     policy: pull
     paths:
-      - 2021/kotlin/.gradle/wrapper
       - 2021/kotlin/.gradle/caches
       - 2021/kotlin/build
 
@@ -22,7 +21,6 @@
     key: '2021:kotlin'
     policy: pull-push
     paths:
-      - 2021/kotlin/.gradle/wrapper
       - 2021/kotlin/.gradle/caches
       - 2021/kotlin/build
 
