@@ -10,7 +10,6 @@
     key: '2015:java'
     policy: pull
     paths:
-      - 2015/.gradle/wrapper
       - 2015/.gradle/caches
       - 2015/build
 
@@ -22,7 +21,6 @@
     key: '2015:java'
     policy: pull-push
     paths:
-      - 2015/.gradle/wrapper
       - 2015/.gradle/caches
       - 2015/build
 

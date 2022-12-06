@@ -10,7 +10,6 @@
     key: 'commons:kotlin'
     policy: pull
     paths:
-      - aoc-commons/.gradle/wrapper
       - aoc-commons/.gradle/caches
       - aoc-commons/build
 
@@ -23,11 +22,10 @@ commons:kotlin:compile:
     key: 'commons:kotlin'
     policy: pull-push
     paths:
-      - aoc-commons/.gradle/wrapper
       - aoc-commons/.gradle/caches
       - aoc-commons/build
   script:
-    - ./gradlew clean dependencies build kotlinSourcesJar -x check
+    - gradle clean dependencies build kotlinSourcesJar -x check
 
 commons:kotlin:test:
   extends:
@@ -57,4 +55,4 @@ commons:kotlin:deploy:
     - commons:kotlin:compile
     - commons:kotlin:test
   script:
-    - ./gradlew publish
+    - gradle publish
