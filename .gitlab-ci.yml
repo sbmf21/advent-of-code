@@ -22,12 +22,12 @@ stages:
   dependencies:
     - commons:kotlin:deploy
   script:
-    - gradle clean dependencies build -x check
+    - gradle --build-cache dependencies build -x check
 
 .gradle:test:
   stage: test
   script:
-    - gradle check
+    - gradle --build-cache check
 
 # Projects
 
