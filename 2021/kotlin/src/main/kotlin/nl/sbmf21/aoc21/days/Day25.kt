@@ -1,17 +1,17 @@
 package nl.sbmf21.aoc21.days
 
 import nl.sbmf21.aoc.common.ADay
-import nl.sbmf21.aoc.common.Vector2
 import nl.sbmf21.aoc21.days.Direction.EAST
 import nl.sbmf21.aoc21.days.Direction.SOUTH
+import nl.sbmf21.math.Vector2i
 
 class Day25(input: List<String>) : ADay(input) {
 
     private val map = input.mapIndexed { y, row ->
         row.toCharArray().mapIndexed { x, pos ->
             when (pos) {
-                '>' -> Cucumber(EAST, Vector2(x, y))
-                'v' -> Cucumber(SOUTH, Vector2(x, y))
+                '>' -> Cucumber(EAST, Vector2i(x, y))
+                'v' -> Cucumber(SOUTH, Vector2i(x, y))
                 else -> null
             }
         }
@@ -49,15 +49,15 @@ class Day25(input: List<String>) : ADay(input) {
 }
 
 internal enum class Direction { EAST, SOUTH }
-internal data class Cucumber(val direction: Direction, val pos: Vector2) {
+internal data class Cucumber(val direction: Direction, val pos: Vector2i) {
     fun next(map: List<List<Cucumber?>>) = when (direction) {
         EAST -> {
             val cx = if (pos.x + 1 in map[pos.y].indices) pos.x + 1 else 0
-            if (map[pos.y][cx] == null) Cucumber(direction, Vector2(cx, pos.y)) else null
+            if (map[pos.y][cx] == null) Cucumber(direction, Vector2i(cx, pos.y)) else null
         }
         SOUTH -> {
             val cy = if (pos.y + 1 in map.indices) pos.y + 1 else 0
-            if (map[cy][pos.x] == null) Cucumber(direction, Vector2(pos.x, cy)) else null
+            if (map[cy][pos.x] == null) Cucumber(direction, Vector2i(pos.x, cy)) else null
         }
     }
 }

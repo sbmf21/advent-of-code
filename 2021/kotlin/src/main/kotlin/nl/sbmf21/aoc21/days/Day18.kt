@@ -1,7 +1,7 @@
 package nl.sbmf21.aoc21.days
 
 import nl.sbmf21.aoc.common.ADay
-import nl.sbmf21.aoc.common.Vector2
+import nl.sbmf21.math.Vector2i
 import kotlin.math.ceil
 import kotlin.math.floor
 
@@ -14,7 +14,7 @@ class Day18(input: List<String>) : ADay(input) {
     override fun part1() = list.map { it.clone() }.reduce { left, right -> reduce(left, right) }.value()
 
     override fun part2() = list.run {
-        List(size) { x -> List(size) { y -> Vector2(x, y) } }.flatten().filter { it.x != it.y }
+        List(size) { x -> List(size) { y -> Vector2i(x, y) } }.flatten().filter { it.x != it.y }
             .maxOf { reduce(this[it.x].clone(), this[it.y].clone()).value() }
     }
 

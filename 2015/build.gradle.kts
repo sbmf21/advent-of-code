@@ -15,7 +15,7 @@ repositories {
 }
 
 dependencies {
-    implementation("nl.sbmf21:adventofcode.common:5.1.0-SNAPSHOT")
+    implementation("nl.sbmf21:adventofcode.common:6.0.0-SNAPSHOT")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.0")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.0")
 }
