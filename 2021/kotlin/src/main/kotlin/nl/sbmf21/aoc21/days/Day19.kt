@@ -1,8 +1,8 @@
 package nl.sbmf21.aoc21.days
 
 import nl.sbmf21.aoc.common.ADay
-import nl.sbmf21.aoc.common.Vector3
 import nl.sbmf21.aoc.common.iterated
+import nl.sbmf21.math.Vector3i
 import kotlin.math.abs
 
 class Day19(input: List<String>) : ADay(input) {
@@ -11,13 +11,13 @@ class Day19(input: List<String>) : ADay(input) {
     private val beaconPattern = Regex("(?<x>-?\\d+),(?<y>-?\\d+),(?<z>-?\\d+)")
     private val scanners: List<Scanner>
     private val rotations = listOf(
-        Vector3(0, 0, 0),
-        Vector3(0, 1, 0),
-        Vector3(0, 2, 0),
-        Vector3(0, 3, 0),
-        Vector3(0, 0, 1),
-        Vector3(0, 0, 3),
-    ).map { (0..3).map { x -> Vector3(x, it.y, it.z) } }.flatten()
+        Vector3i(0, 0, 0),
+        Vector3i(0, 1, 0),
+        Vector3i(0, 2, 0),
+        Vector3i(0, 3, 0),
+        Vector3i(0, 0, 1),
+        Vector3i(0, 0, 3),
+    ).map { (0..3).map { x -> Vector3i(x, it.y, it.z) } }.flatten()
 
     init {
         val scanners = input
@@ -31,7 +31,7 @@ class Day19(input: List<String>) : ADay(input) {
             .windowed(2, 2) { (from, to) -> input.slice(from..to) }
             .map {
                 Scanner(scannerPattern.matchEntire(it[0])!!.toInt("id"), beacons = it.subList(1, it.size).map { b ->
-                    beaconPattern.matchEntire(b)!!.run { Vector3(toInt("x"), toInt("y"), toInt("z")) }
+                    beaconPattern.matchEntire(b)!!.run { Vector3i(toInt("x"), toInt("y"), toInt("z")) }
                 })
             }
             .toMutableList()
@@ -61,9 +61,9 @@ class Day19(input: List<String>) : ADay(input) {
     override fun part2() = scanners.map { left -> scanners.map { right -> left.position - right.position } }.flatten()
         .maxOf { abs(it.x) + abs(it.y) + abs(it.z) }
 
-    private fun findOffset(good: Scanner, bad: Scanner): Pair<Vector3, Vector3>? {
+    private fun findOffset(good: Scanner, bad: Scanner): Pair<Vector3i, Vector3i>? {
         rotations.forEach { rotation ->
-            val offsets = mutableMapOf<Vector3, Int>()
+            val offsets = mutableMapOf<Vector3i, Int>()
             good.beacons.forEach { goodBeacon ->
                 bad.beacons.forEach { badBeacon ->
                     val offset = goodBeacon - rotate(badBeacon, rotation)
@@ -74,15 +74,15 @@ class Day19(input: List<String>) : ADay(input) {
         }; return null
     }
 
-    private fun rotate(beacon: Vector3, rotation: Vector3) = beacon
-        .run { (0 until rotation.z).fold(this) { beacon, _ -> Vector3(-beacon.y, beacon.x, beacon.z) } }
-        .run { (0 until rotation.y).fold(this) { beacon, _ -> Vector3(beacon.z, beacon.y, -beacon.x) } }
-        .run { (0 until rotation.x).fold(this) { beacon, _ -> Vector3(beacon.x, -beacon.z, beacon.y) } }
+    private fun rotate(beacon: Vector3i, rotation: Vector3i) = beacon
+        .run { (0 until rotation.z).fold(this) { beacon, _ -> Vector3i(-beacon.y, beacon.x, beacon.z) } }
+        .run { (0 until rotation.y).fold(this) { beacon, _ -> Vector3i(beacon.z, beacon.y, -beacon.x) } }
+        .run { (0 until rotation.x).fold(this) { beacon, _ -> Vector3i(beacon.x, -beacon.z, beacon.y) } }
 }
 
 internal data class Scanner(
     val id: Int,
-    var position: Vector3 = Vector3(0, 0, 0),
-    var rotation: Vector3 = Vector3(0, 0, 0),
-    val beacons: List<Vector3>,
+    var position: Vector3i = Vector3i(0, 0, 0),
+    var rotation: Vector3i = Vector3i(0, 0, 0),
+    val beacons: List<Vector3i>,
 )

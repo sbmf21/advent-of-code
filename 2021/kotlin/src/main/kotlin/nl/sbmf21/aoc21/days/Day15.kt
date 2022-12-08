@@ -1,8 +1,8 @@
 package nl.sbmf21.aoc21.days
 
 import nl.sbmf21.aoc.common.ADay
-import nl.sbmf21.aoc.common.Vector2
 import nl.sbmf21.aoc.common.mapToInts
+import nl.sbmf21.math.Vector2i
 
 class Day15(input: List<String>) : ADay(input) {
 
@@ -10,10 +10,10 @@ class Day15(input: List<String>) : ADay(input) {
     private val fatMap = buildFatMap()
 
     private val neighbors = listOf(
-        Vector2(1, 0),
-        Vector2(0, 1),
-        Vector2(-1, 0),
-        Vector2(0, -1),
+        Vector2i(1, 0),
+        Vector2i(0, 1),
+        Vector2i(-1, 0),
+        Vector2i(0, -1),
     )
 
     override fun part1() = aStar(map)
@@ -31,10 +31,10 @@ class Day15(input: List<String>) : ADay(input) {
     }
 
     private fun aStar(map: List<List<Int>>): Int {
-        val end = Vector2(map[map.lastIndex].lastIndex, map.lastIndex)
+        val end = Vector2i(map[map.lastIndex].lastIndex, map.lastIndex)
 
         val costs = List(map.size) { y -> MutableList(map[y].size) { -1 } }
-        val queue = mutableListOf(ChitonStep(Vector2(0, 0), 0))
+        val queue = mutableListOf(ChitonStep(Vector2i(0, 0), 0))
 
         while (queue.isNotEmpty()) {
             val check = queue.minByOrNull { it.cost }!!; queue.remove(check)
@@ -58,4 +58,4 @@ class Day15(input: List<String>) : ADay(input) {
         .map { ChitonStep(it, current.cost + map[it.y][it.x]) }
 }
 
-internal data class ChitonStep(val pos: Vector2, val cost: Int)
+internal data class ChitonStep(val pos: Vector2i, val cost: Int)
