@@ -7,9 +7,9 @@
 | 3   | :white_check_mark: |
 | 4   | :white_check_mark: |
 | 5   | :white_check_mark: |
-| 6   |                    |
-| 7   |                    |
-| 8   |                    |
+| 6   | :white_check_mark: |
+| 7   | :white_check_mark: |
+| 8   | :white_check_mark: |
 | 9   |                    |
 | 10  |                    |
 | 11  |                    |
