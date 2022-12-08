@@ -1,1 +1,12 @@
+# Gradle/Kotlin/Java
+/**/.gradle/
+/**/build/
+/**/gradle/wrapper/
+/**/gradlew.bat
+/**/gradlew
+
+# Cargo/Rust
+/**/target/
+
+# Mac
 /**/.DS_Store
