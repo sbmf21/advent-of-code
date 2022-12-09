@@ -29,7 +29,7 @@ Made in Kotlin. Used to find day classes and load input files for Java/Kotlin pr
 | 6   | :white_check_mark: |
 | 7   | :white_check_mark: |
 | 8   | :white_check_mark: |
-| 9   |                    |
+| 9   | :white_check_mark: |
 | 10  |                    |
 | 11  |                    |
 | 12  |                    |
