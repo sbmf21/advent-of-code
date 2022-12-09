@@ -7,6 +7,7 @@ private typealias Stack = ArrayDeque<Char>
 
 class Day5(input: List<String>) : ADay(input) {
 
+    var store: ((frame: Int, stacks: List<Stack>) -> Unit)? = null
     private val pattern = Regex("move (\\d+) from (\\d+) to (\\d+)")
     private val stackData = input.subList(0, input.indexOf("")).reversed()
     private val actions = input.subList(input.indexOf("") + 1, input.size).map {
@@ -19,10 +20,16 @@ class Day5(input: List<String>) : ADay(input) {
 
     private fun move(index: (i: Int, s: Stack) -> Int): String {
         val stacks = getStacks()
+        var frame = 0
+        store?.invoke(frame, stacks)
         actions.forEach {
             val from = stacks[it[1] - 1]
             val to = stacks[it[2] - 1]
-            for (i in 0 until it[0]) to.add(index(i, to), from.removeLast())
+            for (i in 0 until it[0]) {
+                frame++
+                store?.invoke(frame, stacks)
+                to.add(index(i, to), from.removeLast())
+            }
         }
         return stacks.map { it.last() }.joinToString("")
     }
