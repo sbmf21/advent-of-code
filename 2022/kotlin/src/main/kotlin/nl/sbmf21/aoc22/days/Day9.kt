@@ -6,10 +6,10 @@ import nl.sbmf21.math.clamp
 
 class Day9(input: List<String>) : ADay(input) {
 
+    var store: ((frame: Int, index: Int, pos: Vector2i) -> Unit)? = null
     private val actions = input
         .map { it.split(" ") }
         .map { RopeAction(RopeDirection.from(it[0]), it[1].toInt()) }
-
     private val valid = listOf(
         Vector2i(-1, 1), Vector2i(0, 1), Vector2i(1, 1),
         Vector2i(-1, 0), Vector2i(0, 0), Vector2i(1, 0),
@@ -18,16 +18,20 @@ class Day9(input: List<String>) : ADay(input) {
 
     override fun part1() = run(1)
 
-    override fun part2() = run(9)
+    override fun part2() = run()
 
-    private fun run(knotCount: Int): Int {
+    fun run(knotCount: Int = 9): Int {
         val head = Vector2i()
         val knots = List(knotCount) { Vector2i() }
         val visited = mutableSetOf(Vector2i())
+        var frame = 0
+        store?.invoke(frame, 0, Vector2i())
 
         actions.forEach {
             (1..it.distance).forEach { _ ->
+                frame++
                 head += it.direction.vec
+                store?.invoke(frame, 0, Vector2i(head.x, head.y))
                 var prev = head
                 knots.forEachIndexed { i, knot ->
                     val diff = prev - knot
@@ -35,6 +39,7 @@ class Day9(input: List<String>) : ADay(input) {
                         knot += Vector2i(clamp(diff.x, -1, 1), clamp(diff.y, -1, 1))
                         if (i == knotCount - 1) visited.add(Vector2i(knot.x, knot.y))
                     }
+                    store?.invoke(frame, i + 1, Vector2i(knot.x, knot.y))
                     prev = knot
                 }
             }
