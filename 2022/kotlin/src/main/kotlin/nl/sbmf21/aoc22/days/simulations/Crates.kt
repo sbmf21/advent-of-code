@@ -1,5 +1,6 @@
 package nl.sbmf21.aoc22.days.simulations
 
+import nl.sbmf21.aoc.common.*
 import nl.sbmf21.aoc22.days.Day5
 
 class Crates(day: Day5) : Simulation<Day5>() {
@@ -21,10 +22,13 @@ class Crates(day: Day5) : Simulation<Day5>() {
     }
 }
 
-private class CraneFrame(part1stacks: List<ArrayDeque<Char>>, part2stacks: List<ArrayDeque<Char>>, height: Int) :
-    Frame {
+private class CraneFrame(
+    part1stacks: List<ArrayDeque<Char>>,
+    part2stacks: List<ArrayDeque<Char>>,
+    height: Int,
+) : Frame() {
 
-    private val content: String
+    override val content: String
 
     init {
         val part1lines = mapStacks(part1stacks, height)
@@ -38,8 +42,6 @@ private class CraneFrame(part1stacks: List<ArrayDeque<Char>>, part2stacks: List<
         lines.add("#".repeat(width))
         content = lines.joinToString("\n")
     }
-
-    override fun print() = println(content)
 
     private fun partHeader(part: Int, lines: List<String>): String {
         val gap = lines[0].length / 2

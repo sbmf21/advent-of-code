@@ -13,7 +13,7 @@ All subprojects in this repository.
 
 ### [AOC Commons](aoc-commons)
 
-Made in Kotlin. Used to find day classes and load input files for Java/Kotlin projects.
+Made in Kotlin. Used to find day classes and load input files for Java/Kotlin projects. Also used to run simulations.
 
 # [2022](https://adventofcode.com/2022)
 
@@ -30,7 +30,7 @@ Made in Kotlin. Used to find day classes and load input files for Java/Kotlin pr
 | 7   | :white_check_mark: |
 | 8   | :white_check_mark: |
 | 9   | :white_check_mark: |
-| 10  |                    |
+| 10  | :white_check_mark: |
 | 11  |                    |
 | 12  |                    |
 | 13  |                    |
