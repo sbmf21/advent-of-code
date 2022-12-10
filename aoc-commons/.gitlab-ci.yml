@@ -25,7 +25,7 @@ commons:kotlin:compile:
       - aoc-commons/.gradle/caches
       - aoc-commons/build
   script:
-    - gradle clean dependencies build kotlinSourcesJar -x check
+    - gradle --build-cache clean dependencies build kotlinSourcesJar -x check
 
 commons:kotlin:test:
   extends:
@@ -55,4 +55,4 @@ commons:kotlin:deploy:
     - commons:kotlin:compile
     - commons:kotlin:test
   script:
-    - gradle publish
+    - gradle --build-cache publish
