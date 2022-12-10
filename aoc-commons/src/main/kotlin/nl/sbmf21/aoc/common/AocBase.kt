@@ -11,11 +11,14 @@ import kotlin.math.min
 import kotlin.math.round
 import kotlin.system.measureNanoTime
 
-abstract class AocBase(val name: String) {
+abstract class AocBase(val name: String, val simulations: Map<String, (AocBase) -> Simulation<*>> = mapOf()) {
 
     private var report: Report = makeReport()
     private var pattern = Pattern.compile("--day(?:=(?<day>\\d+))?")
     internal var runDay: Int? = null
+        private set
+    internal var runSim: String? = null
+        private set
     internal var hideAnswers = false
         private set
 
@@ -31,32 +34,57 @@ abstract class AocBase(val name: String) {
         report()
     }
 
-    internal fun init(args: Array<String>, inputStream: InputStream = System.`in`) = args.forEach {
-        val matcher = pattern.matcher(it)
+    internal fun init(args: Array<String>, inputStream: InputStream = System.`in`) = args.forEach { arg ->
+        val matcher = pattern.matcher(arg)
 
-        if (matcher.matches()) {
-            val day = matcher.group("day")
-
-            if (day == null) {
-                print("Enter day to run: ")
-
-                this.runDay = BufferedReader(InputStreamReader(inputStream)).readLine()?.toInt()
-            } else {
-                this.runDay = day.toInt()
+        simulations.keys.forEach { sim ->
+            if (args.contains("--$sim")) {
+                setSim(sim)
             }
         }
 
-        if (it.matches(Regex("--latest"))) {
-            this.runDay = days.last().number
+        if (matcher.matches()) {
+            val day = matcher.group("day")
+            if (day == null) {
+                print("Enter day to run: ")
+                setDay(BufferedReader(InputStreamReader(inputStream)).readLine()?.toInt())
+            } else {
+                setDay(day.toInt())
+            }
         }
 
-        if (it.matches(Regex("--hide"))) {
-            this.hideAnswers = true
+        if (arg.matches(Regex("--latest"))) {
+            setDay(days.last().number)
+        }
+
+        if (arg.matches(Regex("--hide"))) {
+            hideAnswers = true
         }
     }
 
+    private fun setDay(day: Int?) {
+        checkRunning()
+        runDay = day
+    }
+
+    private fun setSim(sim: String?) {
+        checkRunning()
+        runSim = sim
+    }
+
+    private fun checkRunning() {
+        if (runSim != null) throw Error("Already running a simulation")
+        if (runDay != null) throw Error("Already running a specific day")
+    }
+
     private fun runDays() {
-        if (runDay == null) {
+        if (runSim != null) {
+            simulations.firstNotNullOf { if (it.key == runSim) it.value else null }
+                .invoke(this)
+                .simulate()
+        } else if (runDay != null) {
+            days.filter { it.number == runDay }.forEach { report.run(it) }
+        } else {
             val threads = mutableListOf<Thread>()
             val concurrentDays = Collections.synchronizedList(days.toMutableList())
             val threadCount = min(days.size, Runtime.getRuntime().availableProcessors())
@@ -66,11 +94,20 @@ abstract class AocBase(val name: String) {
                 while (concurrentDays.isNotEmpty()) report.run(concurrentDays.removeFirst())
             })
             for (thread in threads) thread.join()
-        } else days.filter { it.clazz.simpleName.equals("Day$runDay") }.forEach { report.run(it) }
+        }
     }
 
     private fun report() = report.render()
     private fun makeReport() = Report(this)
+}
+
+inline fun <reified T : ADay, reified S : Simulation<T>> buildSimulation(crossinline build: (T) -> S): (AocBase) -> S {
+
+    return {
+        val day = it.days.first { it.clazz == T::class.java }.build() as T
+        println("Simulating day ${day.number}")
+        build.invoke(day)
+    }
 }
 
 internal const val s_ = 1_000_000_000.0

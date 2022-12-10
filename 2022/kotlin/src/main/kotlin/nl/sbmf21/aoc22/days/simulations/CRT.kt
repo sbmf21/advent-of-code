@@ -1,5 +1,6 @@
 package nl.sbmf21.aoc22.days.simulations
 
+import nl.sbmf21.aoc.common.*
 import nl.sbmf21.aoc22.days.Day10
 
 class CRT(day: Day10) : Simulation<Day10>() {
@@ -26,16 +27,18 @@ class CRT(day: Day10) : Simulation<Day10>() {
 
 private const val CRT_BLOCK = "█"
 
-private data class CRTFrameData(
+private class CRTFrameData(
     val cycle: Int,
     val operation: String,
     val operationPart: Int,
     val x: Int,
     val strength: Int,
-    val crt: List<List<Int>>,
+    crt: List<List<Int>>,
     val row: Int,
     val i: Int,
 ) {
+    val crt = crt.map { l -> l.map { it } }
+
     fun toFrame(maxCycle: Int, maxX: Int, maxStrength: Int, maxI: Int): CRTFrame {
         val lines = mutableListOf<String>()
         lines += headers(10, 11)
@@ -43,7 +46,7 @@ private data class CRTFrameData(
 
         lines += crt
             .map { it.joinToString("") { digit -> if (digit == 1) CRT_BLOCK else " " } }
-            .map { line(CRT_BLOCK + BACK_WHITE + BLACK + it + RESET + GRAY + CRT_BLOCK) }
+            .map { line(CRT_BLOCK + BACK_DARK_GREEN + LIGHT_GREEN + it + RESET + GRAY + CRT_BLOCK) }
         lines += line()
         lines += line()
 
@@ -78,6 +81,4 @@ private data class CRTFrameData(
     }
 }
 
-private class CRTFrame(private val content: String) : Frame {
-    override fun print() = println(content)
-}
+private class CRTFrame(override val content: String) : Frame()

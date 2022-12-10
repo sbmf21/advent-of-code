@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "nl.sbmf21"
-version = "6.0.1-SNAPSHOT"
+version = "6.1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()

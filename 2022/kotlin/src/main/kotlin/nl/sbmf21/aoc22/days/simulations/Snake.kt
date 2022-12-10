@@ -1,5 +1,6 @@
 package nl.sbmf21.aoc22.days.simulations
 
+import nl.sbmf21.aoc.common.*
 import nl.sbmf21.aoc22.days.Day9
 import nl.sbmf21.math.Vector2i
 
@@ -22,9 +23,9 @@ private val center = Vector2i()
 private const val OFFSET_X = 8
 private const val OFFSET_Y = 5
 
-private class SnakeFrame(frame: Int, maxFrames: Int, content: Map<Vector2i, Int>) : Frame {
+private class SnakeFrame(frame: Int, maxFrames: Int, content: Map<Vector2i, Int>) : Frame() {
 
-    private val content: String
+    override val content: String
 
     init {
         val centerX = (content.keys.maxOf { it.x } + content.keys.minOf { it.x }) / 2
@@ -59,6 +60,4 @@ private class SnakeFrame(frame: Int, maxFrames: Int, content: Map<Vector2i, Int>
 
         this.content = lines.joinToString("\n")
     }
-
-    override fun print() = println(content)
 }
