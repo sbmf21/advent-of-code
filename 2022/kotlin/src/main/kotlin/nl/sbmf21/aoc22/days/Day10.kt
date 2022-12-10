@@ -29,7 +29,6 @@ class Day10(input: List<String>) : ADay(input) {
             crt[row][i] = if (i in x - 1..x + 1) '#' else '.'
         }
 
-        println(crt.joinToString("\n") { it.joinToString("") })
         return crt
             .foldIndexed(List(8) { List(6) { MutableList(5) { 0 } } }) { y, letters, chars ->
                 chars.forEachIndexed { lineX, char ->
