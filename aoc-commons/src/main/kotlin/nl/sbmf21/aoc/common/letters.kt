@@ -181,3 +181,8 @@ val AOC_LETTERS = listOf(
         )
     ),
 )
+
+fun aocLetter(letter: List<List<Int>>): Char? {
+    val data = if (letter.none { it.size > 4 && it[4] == 1 }) letter.map { it.subList(0, 4) } else letter
+    return AOC_LETTERS.firstOrNull { it.second == data }?.first
+}
