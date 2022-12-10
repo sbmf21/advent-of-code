@@ -31,7 +31,6 @@ abstract class AocBase(val name: String, val simulations: Map<String, (AocBase) 
     fun exec(args: Array<String>) {
         init(args)
         runDays()
-        report()
     }
 
     internal fun init(args: Array<String>, inputStream: InputStream = System.`in`) = args.forEach { arg ->
@@ -84,6 +83,7 @@ abstract class AocBase(val name: String, val simulations: Map<String, (AocBase) 
                 .simulate()
         } else if (runDay != null) {
             days.filter { it.number == runDay }.forEach { report.run(it) }
+            report()
         } else {
             val threads = mutableListOf<Thread>()
             val concurrentDays = Collections.synchronizedList(days.toMutableList())
@@ -94,6 +94,7 @@ abstract class AocBase(val name: String, val simulations: Map<String, (AocBase) 
                 while (concurrentDays.isNotEmpty()) report.run(concurrentDays.removeFirst())
             })
             for (thread in threads) thread.join()
+            report()
         }
     }
 
