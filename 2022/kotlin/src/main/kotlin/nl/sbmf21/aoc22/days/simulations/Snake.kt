@@ -18,8 +18,6 @@ class Snake(day: Day9) : Simulation<Day9>() {
     }
 }
 
-// ASCI colors https://www.lihaoyi.com/post/BuildyourownCommandLinewithANSIescapecodes.html
-
 private val center = Vector2i()
 private const val OFFSET_X = 8
 private const val OFFSET_Y = 5

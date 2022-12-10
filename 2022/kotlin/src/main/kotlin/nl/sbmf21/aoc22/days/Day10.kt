@@ -6,60 +6,68 @@ import kotlin.math.floor
 
 class Day10(input: List<String>) : ADay(input) {
 
-    override fun part1(): Any {
+    var store: ((
+        cycle: Int,
+        operation: String,
+        operationPart: Int,
+        x: Int,
+        strength: Int,
+        crt: List<List<Int>>,
+        row: Int,
+        i: Int,
+    ) -> Unit)? = null
+
+    override fun part1() = run().first
+
+    override fun part2() = run().second
+        .foldIndexed(List(8) { List(6) { MutableList(5) { 0 } } }) { y, letters, bits ->
+            bits.forEachIndexed { lineX, bit ->
+                val index = (lineX / 5f).toInt()
+                val x = lineX % 5
+                letters[index][y][x] = bit
+            }
+            letters
+        }
+        .map { aocLetter(it) ?: '_' }
+        .joinToString("")
+
+    fun run(): Pair<Int, List<MutableList<Int>>> {
+        val crt = List(6) { MutableList(40) { 0 } }
+
+        var cycle = 0
+        var x = 1
+
         var strength = 0
         var check = 20
 
-        run { cycle, x ->
-            if (cycle + 1 == check) {
-                strength += check * x
-                check += 40
-            }
-        }
-
-        return strength
-    }
-
-    override fun part2(): Any {
-        val crt = List(6) { MutableList(40) { '.' } }
-
-        run { cycle, x ->
-            val row = floor(cycle / 40f).toInt()
-            val i = cycle % 40
-            crt[row][i] = if (i in x - 1..x + 1) '#' else '.'
-        }
-
-        return crt
-            .foldIndexed(List(8) { List(6) { MutableList(5) { 0 } } }) { y, letters, chars ->
-                chars.forEachIndexed { lineX, char ->
-                    val index = (lineX / 5f).toInt()
-                    val x = lineX % 5
-                    letters[index][y][x] = if (char == '#') 1 else 0
-                }
-                letters
-            }
-            .map { aocLetter(it) ?: '_' }
-            .joinToString("")
-    }
-
-    private fun run(check: (cycle: Int, x: Int) -> Unit) {
-        var cycles = 0
-        var x = 1
-
         val ops = ArrayDeque(input)
+        lateinit var op: String
+        var opPart: Int
         var next: (() -> Unit)? = null
 
         while (ops.isNotEmpty() || next != null) {
-            check.invoke(cycles++, x)
+            val row = floor(cycle / 40f).toInt()
+            val i = cycle % 40
+            if (i in x - 1..x + 1) crt[row][i] = 1
+
+            if (++cycle == check) {
+                strength += check * x
+                check += 40
+            }
 
             if (next != null) {
+                opPart = 0
                 next.invoke()
                 next = null
             } else {
-                val op = ops.removeFirst()
-                if (op == "noop") continue
-                else next = { x += op.split(" ")[1].toInt() }
+                opPart = 1
+                op = ops.removeFirst()
+                if (op != "noop") next = { x += op.split(" ")[1].toInt() }
             }
+
+            store?.invoke(cycle, op, opPart, x, strength, crt, row, i)
         }
+
+        return strength to crt
     }
 }
