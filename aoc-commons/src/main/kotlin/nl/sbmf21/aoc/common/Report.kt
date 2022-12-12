@@ -33,6 +33,7 @@ internal class Report(private val aoc: AocBase) {
             timings.sortedBy { it.meta.number }.forEach { addTiming(it) }
             addLine(sizes.lineSizes, '┴', '└', '┘')
         } else addNone(sizes)
+        builder.append("Total: " + timeString(timings.sumOf { it.totalTime ?: 0 }))
 
         print(builder)
         builder.clear()

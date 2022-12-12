@@ -118,7 +118,7 @@ internal const val us = 1_000.0
 internal class TimedRunner(internal val meta: DayMeta<ADay>) {
 
     private lateinit var day: ADay
-    private var totalTime: Long? = null
+    internal var totalTime: Long? = null
     private var setupTime: Long? = null
     private var part1Time: Long? = null
     private var part2Time: Long? = null
@@ -140,21 +140,21 @@ internal class TimedRunner(internal val meta: DayMeta<ADay>) {
             part2Time = measureNanoTime { part2Value = day.part2() }
         }
     }
+}
 
-    private fun timeString(time: Long?) = when {
-        time == null -> "NaN   "
-        time > s_ -> "${format(time, s_)}  s"
-        time > ms -> "${format(time, ms)} ms"
-        time > us -> "${format(time, us)} μs"
-        else -> "$time ns"
-    }
+internal fun timeString(time: Long?) = when {
+    time == null -> "NaN   "
+    time > s_ -> "${format(time, s_)}  s"
+    time > ms -> "${format(time, ms)} ms"
+    time > us -> "${format(time, us)} μs"
+    else -> "$time ns"
+}
 
-    private fun format(time: Long, value: Double): String = (round((time / value) * 100) / 100).toString()
+private fun format(time: Long, value: Double): String = (round((time / value) * 100) / 100).toString()
 
-    private fun stringifyNumber(n: Any?) = when (n) {
-        null -> "none"
-        is Long -> n.toBigInteger().toString()
-        is Double -> n.toBigDecimal().toString()
-        else -> n.toString()
-    }
+private fun stringifyNumber(n: Any?) = when (n) {
+    null -> "none"
+    is Long -> n.toBigInteger().toString()
+    is Double -> n.toBigDecimal().toString()
+    else -> n.toString()
 }
