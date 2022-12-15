@@ -1,7 +1,4 @@
 stages:
-  - commons:build
-  - commons:test
-  - commons:deploy
   - build
   - test
   - run
@@ -16,18 +13,13 @@ stages:
 .gradle:compile:
   extends: .gradle
   stage: build
-  needs:
-    - job: commons:kotlin:deploy
-      optional: true
-  dependencies:
-    - commons:kotlin:deploy
   script:
     - gradle --build-cache dependencies build -x check
 
 .gradle:test:
   stage: test
   script:
-    - gradle --build-cache check
+    - gradle --build-cache check -x commons:check
 
 # Projects
 
