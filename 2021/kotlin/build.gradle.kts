@@ -11,14 +11,12 @@ group = "nl.sbmf21"
 
 repositories {
     mavenCentral()
-    mavenLocal()
-    maven("https://gitlab.com/api/v4/projects/22815243/packages/maven") // commons
     maven("https://gitlab.com/api/v4/projects/32373878/packages/maven") // sbmathf
 }
 
 dependencies {
-    implementation("nl.sbmf21:adventofcode.common:6.0.0-SNAPSHOT")
-    implementation("nl.sbmf21:sbmathf:1.2.0")
+    implementation(project(":commons"))
+    implementation("nl.sbmf21:sbmathf:1.2.1")
     testImplementation(kotlin("test"))
 }
 

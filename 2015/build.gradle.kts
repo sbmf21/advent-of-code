@@ -10,12 +10,10 @@ group = "nl.sbmf21"
 
 repositories {
     mavenCentral()
-    mavenLocal()
-    maven("https://gitlab.com/api/v4/projects/22815243/packages/maven")
 }
 
 dependencies {
-    implementation("nl.sbmf21:adventofcode.common:6.0.0-SNAPSHOT")
+    implementation(project(":commons"))
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.0")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.0")
 }

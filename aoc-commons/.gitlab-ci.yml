@@ -14,24 +14,20 @@
       - aoc-commons/build
 
 commons:kotlin:compile:
-  extends: .commons:kotlin
-  stage: commons:build
-  needs: []
-  dependencies: []
+  extends:
+    - .commons:kotlin
+    - .gradle:compile
   cache:
     key: 'commons:kotlin'
     policy: pull-push
     paths:
       - aoc-commons/.gradle/caches
       - aoc-commons/build
-  script:
-    - gradle --build-cache clean dependencies build kotlinSourcesJar -x check
 
 commons:kotlin:test:
   extends:
     - .commons:kotlin
     - .gradle:test
-  stage: commons:test
   dependencies:
     - commons:kotlin:compile
   needs:
@@ -39,20 +35,5 @@ commons:kotlin:test:
   artifacts:
     reports:
       junit: aoc-commons/build/test-results/test/TEST-*.xml
-
-commons:kotlin:deploy:
-  extends: .commons:kotlin
-  stage: commons:deploy
-  only:
-    refs:
-      - master
-    changes:
-      - aoc-commons/**/*
-  needs:
-    - commons:kotlin:compile
-    - commons:kotlin:test
-  dependencies:
-    - commons:kotlin:compile
-    - commons:kotlin:test
   script:
-    - gradle --build-cache publish
+    - gradle --build-cache check
