@@ -35,7 +35,7 @@ Made in Kotlin. Used to find day classes and load input files for Java/Kotlin pr
 | 12  | :white_check_mark: |
 | 13  | :white_check_mark: |
 | 14  | :white_check_mark: |
-| 15  |                    |
+| 15  | :white_check_mark: |
 | 16  |                    |
 | 17  |                    |
 | 18  |                    |
