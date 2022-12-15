@@ -3,10 +3,10 @@ package nl.sbmf21.aoc22.days
 import nl.sbmf21.aoc.common.ADay
 import nl.sbmf21.aoc22.days.CaveMaterial.*
 import nl.sbmf21.math.Vector2i
-import kotlin.math.min
+import nl.sbmf21.math.towards
 
 private enum class CaveMaterial { AIR, STONE, SAND; }
-private typealias Cave = MutableMap<Int, MutableMap<Int, CaveMaterial>>
+private typealias Cave = MutableMap<Vector2i, CaveMaterial>
 
 class Day14(input: List<String>) : ADay(input) {
 
@@ -23,14 +23,12 @@ class Day14(input: List<String>) : ADay(input) {
         Vector2i(1, 1),
     )
 
-    override fun part1() = run { grid, point, count ->
-        if (point.y !in grid || point.x !in grid[point.y]!!) return count
-        else grid[point.y]!![point.x] == AIR
+    override fun part1() = run { cave, point, count ->
+        if (point !in cave) return count
+        cave[point] == AIR
     }
 
-    override fun part2() = run(true) { grid, point, _ ->
-        point.y in grid && point.x in grid[point.y]!! && grid[point.y]!![point.x] == AIR
-    }
+    override fun part2() = run(true) { cave, point, _ -> cave[point] == AIR }
 
     private inline fun run(floor: Boolean = false, predicate: (Cave, Vector2i, Int) -> Boolean): Int {
         val cave = buildCave(floor)
@@ -42,7 +40,7 @@ class Day14(input: List<String>) : ADay(input) {
                 .firstOrNull { v -> predicate(cave, v, count) }
                 ?: break
 
-            cave[lastStep.y]!![lastStep.x] = SAND
+            cave[lastStep] = SAND
             count++
 
             if (lastStep == start) return count
@@ -53,24 +51,18 @@ class Day14(input: List<String>) : ADay(input) {
 
         val cave: Cave = mutableMapOf()
         val maxY = paths.flatten().maxOf { it.y }.run { if (floor) this + 2 else this }
-        val minY = min(0, paths.flatten().minOf { it.y })
         val maxX = if (floor) start.x + maxY else paths.flatten().maxOf { it.x }
         val minX = if (floor) start.x - maxY else paths.flatten().minOf { it.x }
 
-        for (y in minY..maxY) {
-            cave[y] = mutableMapOf()
-            for (x in minX..maxX) cave[y]!![x] = AIR
-        }
-        if (floor) for (x in minX..maxX) cave[maxY]!![x] = STONE
+        for (y in 0..maxY) for (x in minX..maxX) cave[Vector2i(x, y)] = AIR
+        if (floor) for (x in minX..maxX) cave[Vector2i(x, maxY)] = STONE
 
         paths.forEach { steps ->
-            var first = steps[0]
+            var left = steps[0]
             for (i in 1 until steps.size) {
-                val second = steps[i]
-                val yRange = if (first.y > second.y) first.y downTo second.y else first.y..second.y
-                val xRange = if (first.x > second.x) first.x downTo second.x else first.x..second.x
-                for (cy in yRange) for (cx in xRange) cave[cy]!![cx] = STONE
-                first = second
+                val right = steps[i]
+                for (y in left.y towards right.y) for (x in left.x towards right.x) cave[Vector2i(x, y)] = STONE
+                left = right
             }
         }
 
