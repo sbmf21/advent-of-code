@@ -18,7 +18,7 @@ repositories {
 
 dependencies {
     implementation("nl.sbmf21:adventofcode.common:6.1.1-SNAPSHOT")
-    implementation("nl.sbmf21:sbmathf:1.2.0")
+    implementation("nl.sbmf21:sbmathf:1.2.1")
     testImplementation(kotlin("test"))
 }
 
