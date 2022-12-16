@@ -3,6 +3,8 @@ import org.junit.jupiter.api.Test
 
 class Day16Test {
 
+    // 1596 too low
+
     @Test
     fun testInput() {
         testDay(Day16::class.java, -1, -1)

@@ -44,7 +44,7 @@ class Day12(input: List<String>) : ADay(input) {
         val open = ArrayDeque(start.map { 0 to it })
         val closed = mutableSetOf<Vector2i>()
 
-        while (open.size > 0) {
+        while (open.isNotEmpty()) {
             val current = open.removeFirst()
             if (current.second == target) return current.first
             if (current.second in closed) continue
