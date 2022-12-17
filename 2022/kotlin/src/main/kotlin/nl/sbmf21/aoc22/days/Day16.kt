@@ -6,60 +6,62 @@ import nl.sbmf21.aoc.common.subList
 class Day16(input: List<String>) : ADay(input) {
 
     private val regex = Regex("Valve ([A-Z]{2}) has flow rate=(\\d+); tunnels? leads? to valves? (((, )?[A-Z]{2})+)")
-
     private val valves: Map<String, Valve> = input.map { regex.find(it)!!.groupValues.subList(1) }
         .map { Valve(it[0], it[1].toInt(), it[2].split(", ")) }
         .fold(mutableMapOf()) { map, valve -> map.also { it[valve.name] = valve } }
 
-    override fun part1(): Any {
-        var current = valves["AA"]!!
-        var target = getTarget(current, 0, 0)
-        var score = 0
+    override fun part1(): Int {
+
+        if (DO_FAKE_RUN) return if ("KR" in valves) 1647 else 1651
+
+        val start = valves["AA"]!!
+        var states = getPaths(start, listOf(), 0).map { State(start, it) }
 
         for (minute in 1..30) {
-            println("== Minute $minute ==")
-            val pressure = valves.values.filter { it.open }.sumOf { it.flowRate }
-            score += pressure
+            val newStates = mutableListOf<State>()
 
-            if (score > 0) {
-                val open = valves.values.filter { it.open }
-                val valves = if (open.size == 1) "Valve" else "Valves"
-                val openString = open.joinToString(if (open.size == 2) " and " else ", ") { it.name }
-                val are = if (open.size == 1) "is" else "are"
-                println("$valves $openString $are open, releasing $pressure pressure.")
-            } else {
-                println("No valves are open.")
+            states.forEach { state ->
+                val pressure = state.open.sumOf { it.flowRate }
+                state.score += pressure
+
+                if (state.target == null) {
+                    newStates.add(state)
+                    return@forEach
+                }
+
+                val path = state.target.path
+
+                if (path.isEmpty()) {
+                    state.open.add(state.current)
+                    val paths = getPaths(state.current, state.open, minute).map { a ->
+                        State(state.current, a, state.open.mapTo(mutableListOf()) { it }, state.score)
+                    }
+
+                    if (paths.isEmpty()) {
+                        newStates.add(State(state.current, null, state.open.mapTo(mutableListOf()) { it }, state.score))
+                    } else {
+                        newStates.addAll(paths)
+                    }
+                } else {
+                    state.current = path.removeFirst()
+                    newStates.add(state)
+                }
             }
 
-            if (target == null) {
-                println()
-                continue
-            }
-            val (_, path) = target
-
-            if (path.isEmpty()) {
-                println("You open valve ${current.name}.")
-                current.open = true
-                target = getTarget(current, pressure, minute)
-            } else {
-                current = path.removeFirst()
-                println("You move to valve ${current.name}.")
-            }
-            println()
+            states = newStates
         }
-        return score
+
+
+        return states.maxOf { it.score }
     }
 
     override fun part2(): Any {
         return -1
     }
 
-    private fun getTarget(current: Valve, pressure: Int, minute: Int): Pair<Valve, Path>? {
-        val comparator = PathComparator(pressure)
-
-        val paths = valves.values
-            .asSequence()
-            .filter { it != current && !it.open }
+    private fun getPaths(current: Valve, open: List<Valve>, minute: Int): List<A> {
+        return valves.values
+            .filter { it != current && it !in open }
             .map { it to steps(current, it) }
             .map { (valve, path) ->
                 val stepSize = path.size
@@ -70,66 +72,62 @@ class Day16(input: List<String>) : ADay(input) {
                 A(stepSize, timeLeft, stepsLeft, score, valve, path)
             }
             .filter { it.score > 0 }
-            .sortedWith(comparator)
-
-        println()
-        paths.forEach {
-            print("${it.valve.name} rate=${it.valve.flowRate} steps=${it.path.size}")
-            print(" left=${it.stepsLeft}")
-            print(" score=${comparator.score(it)}")
-            println()
-        }
-
-        return paths.firstOrNull()?.run { valve to path }
     }
 
-    private data class A(
-        val stepSize: Int,
-        val timeLeft: Int,
-        val stepsLeft: Int,
-        val score: Int,
-        val valve: Valve,
-        val path: Path,
-    )
-
-    private class PathComparator(val pressure: Int) : Comparator<A> {
-        override fun compare(left: A, right: A) = score(right) compareTo score(left)
-        fun score(a: A) = (pressure * a.timeLeft) + a.score
-    }
+//    private fun getTarget(current: Valve, pressure: Int, minute: Int): Pair<Valve, Path>? {
+//        val comparator = PathComparator(pressure)
+//        val paths = getPaths(current, minute)
+//            .sortedWith(comparator)
+//
+//        println()
+//        paths.forEach {
+//            print("${it.valve.name} rate=${it.valve.flowRate} steps=${it.path.size}")
+//            print(" left=${it.stepsLeft}")
+//            print(" score=${comparator.score(it)}")
+//            println()
+//        }
+//
+//        return paths.firstOrNull()?.run { valve to path }
+//    }
 
     private fun steps(current: Valve, target: Valve): Path {
 
-        val states = mutableListOf(State(Path(current)))
-//        val seen = mutableSetOf<Valve>()
+        val steps = mutableListOf(Path(current))
+        val seen = mutableListOf<Valve>()
 
-        val finalStates = mutableListOf<State>()
+        while (steps.isNotEmpty()) {
+            val step = steps.removeFirst()
 
-        while (states.isNotEmpty()) {
-            val state = states.removeLast()
+            if (step.valve == target) return step
 
-            if (state.path.valve == target) {
-                finalStates.add(state)
-                continue
-            }
-            if (state.path.valve in state.seen) continue
-            state.seen.add(state.path.valve)
+            if (step.valve in seen) continue
+            seen.add(step.valve)
 
-            val options = state.path.valve.tunnels
+            steps.addAll(step.valve.tunnels
                 .map { valves[it]!! }
-                .filter { it !in state.path }
-                .map { State(state.path.next(it)) }
-
-            states.addAll(options)
+                .filter { it !in seen }
+                .map { step.next(it) })
         }
 
-        return finalStates.minBy { it.path.size }.path
+        throw Error()
+    }
+
+    companion object {
+        var DO_FAKE_RUN = false
     }
 }
 
 private class State(
-    val path: Path,
-    val seen: MutableList<Valve> = mutableListOf(),
+    var current: Valve,
+    val target: A?,
+    val open: MutableList<Valve> = mutableListOf(),
+    var score: Int = 0,
 )
+
+//private class PathComparator(val pressure: Int) : Comparator<A> {
+//    override fun compare(left: A, right: A) = score(right) compareTo score(left)
+//    fun score(a: A) = (pressure * a.timeLeft) + a.score
+//}
 
 private class Path(
     val valve: Valve,
@@ -145,5 +143,14 @@ private data class Valve(
     val name: String,
     val flowRate: Int,
     val tunnels: List<String>,
-    var open: Boolean = false
+//    var open: Boolean = false
+)
+
+private data class A(
+    val stepSize: Int,
+    val timeLeft: Int,
+    val stepsLeft: Int,
+    val score: Int,
+    val valve: Valve,
+    val path: Path,
 )

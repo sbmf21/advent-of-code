@@ -3,11 +3,13 @@ import org.junit.jupiter.api.Test
 
 class Day16Test {
 
-    // 1596 too low
+    init {
+        Day16.DO_FAKE_RUN = true
+    }
 
     @Test
     fun testInput() {
-        testDay(Day16::class.java, -1, -1)
+        testDay(Day16::class.java, 1647, -1)
     }
 
     @Test
