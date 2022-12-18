@@ -9,7 +9,10 @@ const val LIGHT_GREEN = "\u001b[38;5;46m"
 const val GRAY = "\u001B[38;5;245m"
 const val WHITE = "\u001b[38;5;255m"
 
+const val BACK_DARK_RED = "\u001B[48;5;52m"
 const val BACK_DARK_GREEN = "\u001b[48;5;22m"
+const val BACK_BLACK = "\u001b[48;5;0m"
+const val BACK_WHITE = "\u001b[48;5;15m"
 
 const val RESET = "\u001b[0m"
 
@@ -25,7 +28,7 @@ abstract class Simulation<T : ADay> {
     protected abstract val frames: List<Frame>
     protected var framesCount: Long = 60
 
-    fun simulate() = frames.forEach {
+    open fun simulate() = frames.forEach {
         println("\u001b\u0063")
         it.print()
         Thread.sleep(1000 / framesCount) // 60 fps
@@ -34,7 +37,7 @@ abstract class Simulation<T : ADay> {
 
 abstract class Frame {
 
-    protected abstract val content: String
+    abstract val content: String
 
     fun print() = println(content)
 }
