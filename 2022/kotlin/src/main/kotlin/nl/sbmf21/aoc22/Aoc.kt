@@ -3,10 +3,12 @@ package nl.sbmf21.aoc22
 import nl.sbmf21.aoc.common.AocBase
 import nl.sbmf21.aoc.common.buildSimulation
 import nl.sbmf21.aoc22.days.Day10
+import nl.sbmf21.aoc22.days.Day18
 import nl.sbmf21.aoc22.days.Day5
 import nl.sbmf21.aoc22.days.Day9
 import nl.sbmf21.aoc22.days.simulations.CRT
 import nl.sbmf21.aoc22.days.simulations.Crates
+import nl.sbmf21.aoc22.days.simulations.LavaDroplet
 import nl.sbmf21.aoc22.days.simulations.Snake
 
 class Aoc : AocBase(
@@ -14,6 +16,7 @@ class Aoc : AocBase(
         "crates" to buildSimulation<Day5, Crates> { Crates(it) },
         "snake" to buildSimulation<Day9, Snake> { Snake(it) },
         "crt" to buildSimulation<Day10, CRT> { CRT(it) },
+        "lava" to buildSimulation<Day18, LavaDroplet> { LavaDroplet(it) }
     )
 )
 

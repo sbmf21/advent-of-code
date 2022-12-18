@@ -6,7 +6,8 @@ import nl.sbmf21.math.Vector3i as vec
 
 class Day18(input: List<String>) : ADay(input) {
 
-    private val droplets = input.map { it.split(",").mapToInts() }.map { vec(it[0], it[1], it[2]) }
+    var store: ((Set<vec>, Set<vec>, Int, Int, Int, Int, Int, Int) -> Unit)? = null
+    private val droplets = input.map { it.split(",").mapToInts() }.mapTo(mutableSetOf()) { vec(it[0], it[1], it[2]) }
     private val neighbours = listOf(
         vec(1, 0, 0), vec(-1, 0, 0),
         vec(0, 1, 0), vec(0, -1, 0),
@@ -29,9 +30,12 @@ class Day18(input: List<String>) : ADay(input) {
             vec(maxX, minY, minZ), vec(minX, minY, minZ),
         )
 
+        store?.invoke(droplets, steamMap, maxX, minX, maxY, minY, maxZ, minZ)
+
         while (points.isNotEmpty()) {
             val point = points.removeFirst()
             steamMap.add(point)
+            store?.invoke(droplets, steamMap, maxX, minX, maxY, minY, maxZ, minZ)
             points.addAll(neighbours.map { point + it }.filter {
                 it.x in minX..maxX && it.y in minY..maxY && it.z in minZ..maxZ && it !in steamMap && it !in points && it !in droplets
             })
