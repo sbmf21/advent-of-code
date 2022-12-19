@@ -113,7 +113,7 @@ class Day16(input: List<String>) : ADay(input) {
     }
 
     companion object {
-        var DO_FAKE_RUN = false
+        var DO_FAKE_RUN = true
     }
 }
 
