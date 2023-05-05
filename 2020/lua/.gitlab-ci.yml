@@ -1,5 +1,5 @@
 .2020:lua:
-  image: registry.gitlab.com/switchware/containers/lua:latest
+  image: registry.sbmf21.nl/templates/containers/lua:latest
   only:
     changes:
       - 2020/lua/**/*
