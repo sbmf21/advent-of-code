@@ -10,6 +10,7 @@ group = "nl.sbmf21"
 
 repositories {
     mavenCentral()
+    maven("https://gitlab.sbmf21.nl/api/v4/projects/13/packages/maven") // sbmathf
 }
 
 dependencies {
