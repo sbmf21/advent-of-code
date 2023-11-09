@@ -1,25 +1,27 @@
+variables:
+  PROJECT: '2023'
+
+.2023:kotlin:caches:
+  key: '2023:kotlin'
+  paths:
+    - .gradle/caches
+    - 2023/kotlin/build
+
 .2023:kotlin:
   extends: .gradle
-  before_script:
-    - cd 2023/kotlin
-    - export GRADLE_USER_HOME=`pwd`/.gradle
   cache:
-    key: '2023:kotlin'
+    key: !reference [.2023:kotlin:caches, key]
     policy: pull
-    paths:
-      - 2023/kotlin/.gradle/caches
-      - 2023/kotlin/build
+    paths: !reference [.2023:kotlin:caches, paths]
 
 2023:kotlin:compile:
   extends:
     - .2023:kotlin
     - .gradle:compile
   cache:
-    key: '2023:kotlin'
+    key: !reference [.2023:kotlin:caches, key]
     policy: pull-push
-    paths:
-      - 2023/kotlin/.gradle/caches
-      - 2023/kotlin/build
+    paths: !reference [.2023:kotlin:caches, paths]
 
 2023:kotlin:test:
   extends:
@@ -42,4 +44,4 @@
     - 2023:kotlin:compile
     - 2023:kotlin:test
   script:
-    - java -jar build/libs/aoc2023-shaded.jar --hide
+    - java -jar 2023/kotlin/build/libs/aoc2023-shaded.jar --hide

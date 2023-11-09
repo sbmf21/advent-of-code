@@ -4,9 +4,11 @@ plugins {
     kotlin("jvm")
 }
 
+val sbmfMathVersion: String by rootProject.extra
+
 dependencies {
     implementation(project(":aoc-commons"))
-    implementation("nl.sbmf21:math:1.4.0")
+    implementation("nl.sbmf21:math:$sbmfMathVersion")
     testImplementation(kotlin("test"))
 }
 

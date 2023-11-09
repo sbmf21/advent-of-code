@@ -1,28 +1,30 @@
+variables:
+  PROJECT: '2015'
+
+.2015:java:caches:
+  key: '2015:java'
+  paths:
+    - .gradle/caches
+    - 2015/build
+
 .2015:java:
   extends: .gradle
   only:
     changes:
       - 2015/**/*
-  before_script:
-    - cd 2015
-    - export GRADLE_USER_HOME=`pwd`/.gradle
   cache:
-    key: '2015:java'
+    key: !reference [.2015:java:caches, key]
     policy: pull
-    paths:
-      - 2015/.gradle/caches
-      - 2015/build
+    paths: !reference [.2015:java:caches, paths]
 
 2015:java:compile:
   extends:
     - .2015:java
     - .gradle:compile
   cache:
-    key: '2015:java'
+    key: !reference [.2015:java:caches, key]
     policy: pull-push
-    paths:
-      - 2015/.gradle/caches
-      - 2015/build
+    paths: !reference [.2015:java:caches, paths]
 
 2015:java:test:
   extends:
@@ -45,4 +47,4 @@
     - 2015:java:compile
     - 2015:java:test
   script:
-    - java -jar build/libs/aoc2015-shaded.jar --hide
+    - java -jar 2015/build/libs/aoc2015-shaded.jar --hide
