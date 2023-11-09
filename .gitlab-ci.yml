@@ -21,6 +21,10 @@ stages:
   script:
     - gradle --build-cache :$PROJECT:check
 
+# Lua
+.lua:
+  image: registry.sbmf21.nl/templates/containers/lua:latest
+
 # Projects
 
 include:
