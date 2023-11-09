@@ -7,7 +7,8 @@ import kotlin.math.min
 
 class Day22(input: List<String>) : ADay(input) {
 
-    private val rebootRegex = Regex("(?<s>o(n|ff)) x=(?<x1>-?\\d+)..(?<x2>-?\\d+),y=(?<y1>-?\\d+)..(?<y2>-?\\d+),z=(?<z1>-?\\d+)..(?<z2>-?\\d+)")
+    private val rebootRegex =
+        Regex("(?<s>o(n|ff)) x=(?<x1>-?\\d+)..(?<x2>-?\\d+),y=(?<y1>-?\\d+)..(?<y2>-?\\d+),z=(?<z1>-?\\d+)..(?<z2>-?\\d+)")
     private val rebootSteps = input.map { rebootRegex.matchEntire(it)!! }.map {
         RebootStep(
             it.groups["s"]!!.value == "on",
@@ -41,6 +42,5 @@ internal data class RebootStep(
     val bz = max(minZ, -50)..min(maxZ, 50)
     val x = minX..maxX
     val y = minY..maxY
-    val z = minZ..maxZ
+    // val z = minZ..maxZ
 }
-

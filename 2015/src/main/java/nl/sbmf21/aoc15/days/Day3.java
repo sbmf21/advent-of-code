@@ -66,112 +66,113 @@ public class Day3 extends ADay {
 
         return directions;
     }
-}
 
-enum Direction {
+    public enum Direction {
 
-    NORTH('^', Santa::moveUp),
-    SOUTH('v', Santa::moveDown),
-    EAST('>', Santa::moveRight),
-    WEST('<', Santa::moveLeft);
+        NORTH('^', Santa::moveUp),
+        SOUTH('v', Santa::moveDown),
+        EAST('>', Santa::moveRight),
+        WEST('<', Santa::moveLeft);
 
-    /**
-     * <code>values()</code> always calculates the values from an enum.
-     * Give the fact that enums are constant, this results in many calculations.
-     */
-    public static final Direction[] CACHE = Direction.values();
-    private final char key;
-    public final Consumer<Santa> move;
+        /**
+         * <code>values()</code> always calculates the values from an enum.
+         * Give the fact that enums are constant, this results in many calculations.
+         */
+        public static final Direction[] CACHE = Direction.values();
+        private final char key;
+        public final Consumer<Santa> move;
 
-    Direction(char key, Consumer<Santa> move) {
-        this.key = key;
-        this.move = move;
+        Direction(char key, Consumer<Santa> move) {
+            this.key = key;
+            this.move = move;
+        }
+
+        public static Direction fromChar(char c) {
+
+            for (Direction direction : CACHE) {
+                if (direction.key == c) {
+                    return direction;
+                }
+            }
+
+            throw new IllegalArgumentException(String.format("'%s' is not a valid %s", c, Direction.class.getName()));
+        }
     }
 
-    public static Direction fromChar(char c) {
+    public static class Santa {
 
-        for (Direction direction : CACHE) {
-            if (direction.key == c) {
-                return direction;
+        private int x = 0, y = 0;
+
+        public void moveUp() {
+            x++;
+        }
+
+        public void moveDown() {
+            x--;
+        }
+
+        public void moveRight() {
+            y++;
+        }
+
+        public void moveLeft() {
+            y--;
+        }
+
+        public void deliverPresent(Direction direction, HashMap<Point, Integer> presents) {
+
+            direction.move.accept(this);
+            var point = getPoint();
+
+            if (!presents.containsKey(point)) {
+                presents.put(point, 1);
+            } else {
+                presents.replace(point, presents.get(point) + 1);
             }
         }
 
-        throw new IllegalArgumentException(String.format("'%s' is not a valid %s", c, Direction.class.getName()));
-    }
-}
+        public void deliverPresent(Iterator<Direction> directions, HashMap<Point, Integer> presents) {
+            deliverPresent(directions.next(), presents);
+        }
 
-class Santa {
-
-    private int x = 0, y = 0;
-
-    public void moveUp() {
-        x++;
-    }
-
-    public void moveDown() {
-        x--;
-    }
-
-    public void moveRight() {
-        y++;
-    }
-
-    public void moveLeft() {
-        y--;
-    }
-
-    public void deliverPresent(Direction direction, HashMap<Point, Integer> presents) {
-
-        direction.move.accept(this);
-        var point = getPoint();
-
-        if (!presents.containsKey(point)) {
-            presents.put(point, 1);
-        } else {
-            presents.replace(point, presents.get(point) + 1);
+        public Point getPoint() {
+            return new Point(x, y);
         }
     }
 
-    public void deliverPresent(Iterator<Direction> directions, HashMap<Point, Integer> presents) {
-        deliverPresent(directions.next(), presents);
-    }
+    public static class Point {
 
-    public Point getPoint() {
-        return new Point(x, y);
-    }
-}
+        private final int x, y;
 
-class Point {
-
-    private final int x, y;
-
-    public Point(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
+        public Point(int x, int y) {
+            this.x = x;
+            this.y = y;
         }
 
-        if (o == null || getClass() != o.getClass()) {
-            return false;
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) {
+                return true;
+            }
+
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
+
+            Point house = (Point) o;
+
+            return x == house.x
+                && y == house.y;
         }
 
-        Point house = (Point) o;
+        @Override
+        public int hashCode() {
+            return Objects.hash(x, y);
+        }
 
-        return x == house.x && y == house.y;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(x, y);
-    }
-
-    @Override
-    public String toString() {
-        return String.format("House{x=%d, y=%d}", x, y);
+        @Override
+        public String toString() {
+            return String.format("House{x=%d, y=%d}", x, y);
+        }
     }
 }

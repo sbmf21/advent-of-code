@@ -58,6 +58,6 @@ private enum class RopeDirection(val string: String, val vec: Vector2i) {
     RIGHT("R", Vector2i(1, 0));
 
     companion object {
-        fun from(string: String) = RopeDirection.values().first { it.string == string }
+        fun from(string: String) = entries.first { it.string == string }
     }
 }

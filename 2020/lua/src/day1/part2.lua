@@ -1,4 +1,3 @@
-
 local function find2020(numbers)
     for x, a in ipairs(numbers) do
         for y, b in ipairs(numbers) do

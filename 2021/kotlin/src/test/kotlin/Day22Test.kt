@@ -15,5 +15,6 @@ class Day22Test {
     fun testExampleLarge() = assertEquals(590_784, DayMeta(Day22::class.java).build(true, "large").part1())
 
     @Test
-    fun testExampleHuge() = assertEquals(-1L /*2_758_514_936_282_235*/, DayMeta(Day22::class.java).build(true, "huge").part2())
+    fun testExampleHuge() =
+        assertEquals(-1L /*2_758_514_936_282_235*/, DayMeta(Day22::class.java).build(true, "huge").part2())
 }

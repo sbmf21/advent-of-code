@@ -26,13 +26,13 @@ class Day4(input: List<String>) : ADay(input) {
         }
     }
 
-    private fun hasRequiredFields(passport: String) = Rules.values()
+    private fun hasRequiredFields(passport: String) = Rules.entries
         .map { it.name.lowercase() }
         .map { Pattern.compile("$it:.+").matcher(passport) }
-        .filter { it.find() }.size == Rules.values().size
+        .filter { it.find() }.size == Rules.entries.size
 
     private fun hasValidFields(passport: String) =
-        Rules.values().filter { it.isValid(passport) }.size == Rules.values().size
+        Rules.entries.filter { it.isValid(passport) }.size == Rules.entries.size
 }
 
 internal enum class Rules(private var pattern: String, private val validate: (String) -> Boolean = { _ -> true }) {

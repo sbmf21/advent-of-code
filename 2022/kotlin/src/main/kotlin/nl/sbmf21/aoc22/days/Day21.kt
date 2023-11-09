@@ -87,7 +87,7 @@ class Day21(input: List<String>) : ADay(input) {
     private class NumberNode(override val name: String, override val value: Long) : Node
 
     private inner class OperationNode(override val name: String, operator: String, left: String, right: String) : Node {
-        val operator = Operator.values().first { it.key == operator }
+        val operator = entries.first { it.key == operator }
         val left by lazy { monkeys[left]!! }
         val right by lazy { monkeys[right]!! }
         override val value by lazy { operator(this.left.value, this.right.value) }

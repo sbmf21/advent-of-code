@@ -1,4 +1,3 @@
-
 function table_has(table, val)
     for _, value in ipairs(table) do
         if value == val then
@@ -14,13 +13,14 @@ function table_sum(table)
 
     for _, val in ipairs(table) do
         acc = acc + val
-    end 
-    
-    return acc 
+    end
+
+    return acc
 end
 
 function parseGroups()
-    local groups = {}; local group = {}
+    local groups = {};
+    local group = {}
 
     for line in io.lines('input/day6.txt') do
         if line == '' then

@@ -107,15 +107,14 @@ public class Day6 extends ADay {
     private int ey(Matcher matcher) {
         return intFrom(matcher, "ey");
     }
-}
 
+    @FunctionalInterface
+    public interface Grid<T> {
+        T[][] apply();
+    }
 
-@FunctionalInterface
-interface Grid<T> {
-    T[][] apply();
-}
-
-@FunctionalInterface
-interface Apply<T> {
-    T apply(Matcher matcher, T[][] grid, int x, int y);
+    @FunctionalInterface
+    public interface Apply<T> {
+        T apply(Matcher matcher, T[][] grid, int x, int y);
+    }
 }

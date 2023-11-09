@@ -1,16 +1,15 @@
-
 local function calcIndex(current, line)
     -- lua starts at index 1, not at 0
     return (current % #line) + 1
 end
 
 local function findChar(current, line)
-    local index = calcIndex(current,line)
+    local index = calcIndex(current, line)
 
     return line:sub(index, index)
 end
 
-local function readMap() 
+local function readMap()
     local map = {}
 
     for line in io.lines('input/day3.txt') do
@@ -21,11 +20,14 @@ local function readMap()
 end
 
 function count(xStep, yStep)
-    local trees = 0; local x = 0;
+    local trees = 0;
+    local x = 0;
     local map = readMap()
 
     for y = 1, #map, yStep do
-        if findChar(x, map[y]) == '#' then trees = trees + 1 end
+        if findChar(x, map[y]) == '#' then
+            trees = trees + 1
+        end
         x = x + xStep
     end
 

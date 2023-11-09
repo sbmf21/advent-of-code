@@ -4,7 +4,7 @@ import nl.sbmf21.aoc.common.ADay
 
 /*
  * Here are all the calculated digits for part 2. I don't need them all, so I have removed them from the code.
- * But I am too proud of all of these to completely delete them :').
+ * But I am too proud of all of these to completely delete them :-).
  *
  * val one = input.first { it.length == 2 }
  * val four = input.first { it.length == 4 }
@@ -73,7 +73,7 @@ class Day8(input: List<String>) : ADay(input) {
 
     private fun isSix(sixDigits: CharArray, oneDigits: CharArray) =
         (sixDigits.contains(oneDigits[0]) && !sixDigits.contains(oneDigits[1]))
-                || (sixDigits.contains(oneDigits[1]) && !sixDigits.contains(oneDigits[0]))
+            || (sixDigits.contains(oneDigits[1]) && !sixDigits.contains(oneDigits[0]))
 
     private fun matchesFour(nineDigits: CharArray, fourDigits: CharArray) =
         nineDigits.filter { fourDigits.contains(it) }.size == fourDigits.size

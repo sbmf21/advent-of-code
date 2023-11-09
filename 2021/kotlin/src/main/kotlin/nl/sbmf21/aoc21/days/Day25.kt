@@ -18,7 +18,9 @@ class Day25(input: List<String>) : ADay(input) {
     }
 
     override fun part1(): Int {
-        var step = 0; var moved = true; var map = this.map
+        var step = 0
+        var moved = true
+        var map = this.map
 
         while (moved) {
             move(map, EAST).also { map = it.first; moved = it.second }
@@ -55,6 +57,7 @@ internal data class Cucumber(val direction: Direction, val pos: Vector2i) {
             val cx = if (pos.x + 1 in map[pos.y].indices) pos.x + 1 else 0
             if (map[pos.y][cx] == null) Cucumber(direction, Vector2i(cx, pos.y)) else null
         }
+
         SOUTH -> {
             val cy = if (pos.y + 1 in map.indices) pos.y + 1 else 0
             if (map[cy][pos.x] == null) Cucumber(direction, Vector2i(pos.x, cy)) else null

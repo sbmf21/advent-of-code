@@ -48,7 +48,7 @@ internal class Wall : Tile {
     override fun canMoveTo() = false
 }
 
-internal class Floor(val pos: Vector2i, var occupant: Amphipod? = null) : Tile {
+internal class Floor(val pos: Vector2i, private var occupant: Amphipod? = null) : Tile {
     val neighbours = mutableListOf<Floor>()
     override fun canMoveTo() = occupant == null
 }
@@ -62,7 +62,7 @@ internal enum class AmphipodType(val type: Char, val cost: Int) {
     Desert('D', 1000);
 
     companion object {
-        val types = values().associateBy(AmphipodType::type)
+        val types = entries.associateBy(AmphipodType::type)
         fun fromType(type: Char) = types[type]!!
     }
 }

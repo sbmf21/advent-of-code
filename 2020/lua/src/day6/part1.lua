@@ -1,4 +1,3 @@
-
 function part1()
     local groups = parseGroups()
 

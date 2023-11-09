@@ -1,6 +1,6 @@
 package nl.sbmf21.aoc.common
 
-// ASCI colors https://www.lihaoyi.com/post/BuildyourownCommandLinewithANSIescapecodes.html
+// ASCII colors https://www.lihaoyi.com/post/BuildyourownCommandLinewithANSIescapecodes.html
 
 const val GREEN = "\u001b[32m"
 const val YELLOW = "\u001b[33m"
