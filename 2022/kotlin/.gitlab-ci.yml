@@ -1,28 +1,30 @@
+variables:
+  PROJECT: '2022'
+
+.2022:kotlin:caches:
+  key: '2022:kotlin'
+  paths:
+    - .gradle/caches
+    - 2022/kotlin/build
+
 .2022:kotlin:
   extends: .gradle
   only:
     changes:
       - 2022/kotlin/**/*
-  before_script:
-    - cd 2022/kotlin
-    - export GRADLE_USER_HOME=`pwd`/.gradle
   cache:
-    key: '2022:kotlin'
+    key: !reference [.2022:kotlin:caches, key]
     policy: pull
-    paths:
-      - 2022/kotlin/.gradle/caches
-      - 2022/kotlin/build
+    paths: !reference [.2022:kotlin:caches, paths]
 
 2022:kotlin:compile:
   extends:
     - .2022:kotlin
     - .gradle:compile
   cache:
-    key: '2022:kotlin'
+    key: !reference [.2022:kotlin:caches, key]
     policy: pull-push
-    paths:
-      - 2022/kotlin/.gradle/caches
-      - 2022/kotlin/build
+    paths: !reference [.2022:kotlin:caches, paths]
 
 2022:kotlin:test:
   extends:
@@ -45,4 +47,4 @@
     - 2022:kotlin:compile
     - 2022:kotlin:test
   script:
-    - java -jar build/libs/aoc2022-shaded.jar --hide
+    - java -jar 2022/kotlin/build/libs/aoc2022-shaded.jar --hide

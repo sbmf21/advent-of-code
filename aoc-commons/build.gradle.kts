@@ -2,9 +2,12 @@ plugins {
     kotlin("jvm")
 }
 
+val sbmfMathVersion: String by rootProject.extra
+val reflectionsVersion: String by rootProject.extra
+
 dependencies {
-    implementation("org.reflections:reflections:0.10.2")
-    implementation("nl.sbmf21:math:1.4.0")
+    implementation("nl.sbmf21:math:$sbmfMathVersion")
+    implementation("org.reflections:reflections:$reflectionsVersion")
     testImplementation(kotlin("test"))
 }
 

@@ -14,12 +14,12 @@ stages:
   extends: .gradle
   stage: build
   script:
-    - gradle --build-cache dependencies build -x check
+    - gradle --build-cache :$PROJECT:build -x :$PROJECT:check :$PROJECT:dependencies
 
 .gradle:test:
   stage: test
   script:
-    - gradle --build-cache check -x commons:check
+    - gradle --build-cache :$PROJECT:check
 
 # Projects
 
