@@ -1,7 +1,7 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="[2015:Java] Aoc" type="Application" factoryName="Application">
     <option name="MAIN_CLASS_NAME" value="nl.sbmf21.aoc15.Aoc" />
-    <module name="2015-Java.main" />
+    <module name="advent-of-code.2015.main" />
     <extension name="coverage">
       <pattern>
         <option name="PATTERN" value="nl.sbmf21.aoc15.*" />

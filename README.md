@@ -15,6 +15,38 @@ All subprojects in this repository.
 
 Made in Kotlin. Used to find day classes and load input files for Java/Kotlin projects. Also used to run simulations.
 
+# [2023](https://adventofcode.com/2023)
+
+[`kotlin`](2023/kotlin)
+
+| Day | Kotlin |
+|-----|--------|
+| 1   |        |
+| 2   |        |
+| 3   |        |
+| 4   |        |
+| 5   |        |
+| 6   |        |
+| 7   |        |
+| 8   |        |
+| 9   |        |
+| 10  |        |
+| 11  |        |
+| 12  |        |
+| 13  |        |
+| 14  |        |
+| 15  |        |
+| 16  |        |
+| 17  |        |
+| 18  |        |
+| 19  |        |
+| 20  |        |
+| 21  |        |
+| 22  |        |
+| 23  |        |
+| 24  |        |
+| 25  |        |
+
 # [2022](https://adventofcode.com/2022)
 
 [`kotlin`](2022/kotlin)
@@ -49,35 +81,35 @@ Made in Kotlin. Used to find day classes and load input files for Java/Kotlin pr
 
 ### [2021](https://adventofcode.com/2021)
 
-[`kotlin`](2021/kotlin) [`rust`](2021/rust)
+[`kotlin`](2021/kotlin)
 
-| Day | Kotlin             | Rust |
-|-----|--------------------|------|
-| 1   | :white_check_mark: |      |
-| 2   | :white_check_mark: |      |
-| 3   | :white_check_mark: |      |
-| 4   | :white_check_mark: |      |
-| 5   | :white_check_mark: |      |
-| 6   | :white_check_mark: |      |
-| 7   | :white_check_mark: |      |
-| 8   | :white_check_mark: |      |
-| 9   | :white_check_mark: |      |
-| 10  | :white_check_mark: |      |
-| 11  | :white_check_mark: |      |
-| 12  | :white_check_mark: |      |
-| 13  | :white_check_mark: |      |
-| 14  | :white_check_mark: |      |
-| 15  | :white_check_mark: |      |
-| 16  | :white_check_mark: |      |
-| 17  | :white_check_mark: |      |
-| 18  | :white_check_mark: |      |
-| 19  | :white_check_mark: |      |
-| 20  | :white_check_mark: |      |
-| 21  | :white_check_mark: |      |
-| 22  |                    |      |
-| 23  |                    |      |
-| 24  |                    |      |
-| 25  |                    |      |
+| Day | Kotlin             |
+|-----|--------------------|
+| 1   | :white_check_mark: |
+| 2   | :white_check_mark: |
+| 3   | :white_check_mark: |
+| 4   | :white_check_mark: |
+| 5   | :white_check_mark: |
+| 6   | :white_check_mark: |
+| 7   | :white_check_mark: |
+| 8   | :white_check_mark: |
+| 9   | :white_check_mark: |
+| 10  | :white_check_mark: |
+| 11  | :white_check_mark: |
+| 12  | :white_check_mark: |
+| 13  | :white_check_mark: |
+| 14  | :white_check_mark: |
+| 15  | :white_check_mark: |
+| 16  | :white_check_mark: |
+| 17  | :white_check_mark: |
+| 18  | :white_check_mark: |
+| 19  | :white_check_mark: |
+| 20  | :white_check_mark: |
+| 21  | :white_check_mark: |
+| 22  |                    |
+| 23  |                    |
+| 24  |                    |
+| 25  |                    |
 
 ### [2020](https://adventofcode.com/2020)
 
