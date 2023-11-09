@@ -4,7 +4,7 @@ variables:
 .2022:kotlin:caches:
   key: '2022:kotlin'
   paths:
-    - .gradle/caches
+    - .gradle
     - 2022/kotlin/build
 
 .2022:kotlin:

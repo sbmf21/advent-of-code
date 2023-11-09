@@ -4,7 +4,7 @@ variables:
 .2015:java:caches:
   key: '2015:java'
   paths:
-    - .gradle/caches
+    - .gradle
     - 2015/build
 
 .2015:java:
