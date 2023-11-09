@@ -1,6 +1,3 @@
-variables:
-  PROJECT: '2020'
-
 .2020:kotlin:caches:
   key: '2020:kotlin'
   paths:
@@ -13,23 +10,27 @@ variables:
     changes:
       - 2020/kotlin/**/*
   cache:
-    key: !reference [.2020:kotlin:caches, key]
+    key: !reference [ .2020:kotlin:caches, key ]
     policy: pull
-    paths: !reference [.2020:kotlin:caches, paths]
+    paths: !reference [ .2020:kotlin:caches, paths ]
 
 2020:kotlin:compile:
   extends:
     - .2020:kotlin
     - .gradle:compile
+  variables:
+    PROJECT: '2020'
   cache:
-    key: !reference [.2020:kotlin:caches, key]
+    key: !reference [ .2020:kotlin:caches, key ]
     policy: pull-push
-    paths: !reference [.2020:kotlin:caches, paths]
+    paths: !reference [ .2020:kotlin:caches, paths ]
 
 2020:kotlin:test:
   extends:
     - .2020:kotlin
     - .gradle:test
+  variables:
+    PROJECT: '2020'
   dependencies:
     - 2020:kotlin:compile
   needs:
