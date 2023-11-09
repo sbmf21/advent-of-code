@@ -24,10 +24,10 @@ stages:
 # Projects
 
 include:
-  - local: /aoc-commons/.gitlab-ci.yml
-  - local: /2023/kotlin/.gitlab-ci.yml
-  - local: /2022/kotlin/.gitlab-ci.yml
-  - local: /2021/kotlin/.gitlab-ci.yml
+  - local: /2015/.gitlab-ci.yml
   - local: /2020/kotlin/.gitlab-ci.yml
   - local: /2020/lua/.gitlab-ci.yml
-  - local: /2015/.gitlab-ci.yml
+  - local: /2021/kotlin/.gitlab-ci.yml
+  - local: /2022/kotlin/.gitlab-ci.yml
+  - local: /2023/kotlin/.gitlab-ci.yml
+  - local: /aoc-commons/.gitlab-ci.yml
