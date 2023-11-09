@@ -1,6 +1,3 @@
-variables:
-  PROJECT: 'aoc-commons'
-
 .commons:kotlin:caches:
   key: 'commons:kotlin'
   paths:
@@ -13,23 +10,27 @@ variables:
     changes:
       - aoc-commons/**/*
   cache:
-    key: !reference [.commons:kotlin:caches, key]
+    key: !reference [ .commons:kotlin:caches, key ]
     policy: pull
-    paths: !reference [.commons:kotlin:caches, paths]
+    paths: !reference [ .commons:kotlin:caches, paths ]
 
 commons:kotlin:compile:
   extends:
     - .commons:kotlin
     - .gradle:compile
+  variables:
+    PROJECT: 'aoc-commons'
   cache:
-    key: !reference [.commons:kotlin:caches, key]
+    key: !reference [ .commons:kotlin:caches, key ]
     policy: pull-push
-    paths: !reference [.commons:kotlin:caches, paths]
+    paths: !reference [ .commons:kotlin:caches, paths ]
 
 commons:kotlin:test:
   extends:
     - .commons:kotlin
     - .gradle:test
+  variables:
+    PROJECT: 'aoc-commons'
   dependencies:
     - commons:kotlin:compile
   needs:

@@ -1,6 +1,3 @@
-variables:
-  PROJECT: '2015'
-
 .2015:java:caches:
   key: '2015:java'
   paths:
@@ -13,23 +10,27 @@ variables:
     changes:
       - 2015/**/*
   cache:
-    key: !reference [.2015:java:caches, key]
+    key: !reference [ .2015:java:caches, key ]
     policy: pull
-    paths: !reference [.2015:java:caches, paths]
+    paths: !reference [ .2015:java:caches, paths ]
 
 2015:java:compile:
   extends:
     - .2015:java
     - .gradle:compile
+  variables:
+    PROJECT: '2015'
   cache:
-    key: !reference [.2015:java:caches, key]
+    key: !reference [ .2015:java:caches, key ]
     policy: pull-push
-    paths: !reference [.2015:java:caches, paths]
+    paths: !reference [ .2015:java:caches, paths ]
 
 2015:java:test:
   extends:
     - .2015:java
     - .gradle:test
+  variables:
+    PROJECT: '2015'
   dependencies:
     - 2015:java:compile
   needs:
