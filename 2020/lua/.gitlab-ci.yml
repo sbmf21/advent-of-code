@@ -9,7 +9,7 @@
 2020:lua:test:
   extends: .2020:lua
   stage: test
-  needs: []
+  needs: [ ]
   script:
     - lua test.lua
 

@@ -1,5 +1,8 @@
 .2022:kotlin:
   extends: .gradle
+  only:
+    changes:
+      - 2022/kotlin/**/*
   before_script:
     - cd 2022/kotlin
     - export GRADLE_USER_HOME=`pwd`/.gradle

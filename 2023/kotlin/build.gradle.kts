@@ -1,17 +1,17 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 plugins {
-    id("java")
+    kotlin("jvm")
 }
 
 dependencies {
     implementation(project(":aoc-commons"))
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.0")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.0")
+    implementation("nl.sbmf21:math:1.4.0")
+    testImplementation(kotlin("test"))
 }
 
 tasks {
-    withType<Jar> { archiveBaseName.set("aoc2015") }
+    withType<Jar> { archiveBaseName.set("aoc2023") }
     withType<ShadowJar> {
         archiveClassifier.set("shaded")
         mergeServiceFiles()
@@ -21,5 +21,5 @@ tasks {
 }
 
 application {
-    mainClass.set("nl.sbmf21.aoc15.Aoc")
+    mainClass.set("nl.sbmf21.aoc23.AocKt")
 }

@@ -1,0 +1,45 @@
+.2023:kotlin:
+  extends: .gradle
+  before_script:
+    - cd 2023/kotlin
+    - export GRADLE_USER_HOME=`pwd`/.gradle
+  cache:
+    key: '2023:kotlin'
+    policy: pull
+    paths:
+      - 2023/kotlin/.gradle/caches
+      - 2023/kotlin/build
+
+2023:kotlin:compile:
+  extends:
+    - .2023:kotlin
+    - .gradle:compile
+  cache:
+    key: '2023:kotlin'
+    policy: pull-push
+    paths:
+      - 2023/kotlin/.gradle/caches
+      - 2023/kotlin/build
+
+2023:kotlin:test:
+  extends:
+    - .2023:kotlin
+    - .gradle:test
+  dependencies:
+    - 2023:kotlin:compile
+  needs:
+    - 2023:kotlin:compile
+  artifacts:
+    reports:
+      junit: 2023/kotlin/build/test-results/test/TEST-*.xml
+
+2023:kotlin:run:
+  extends: .2023:kotlin
+  stage: run
+  dependencies:
+    - 2023:kotlin:compile
+  needs:
+    - 2023:kotlin:compile
+    - 2023:kotlin:test
+  script:
+    - java -jar build/libs/aoc2023-shaded.jar --hide
