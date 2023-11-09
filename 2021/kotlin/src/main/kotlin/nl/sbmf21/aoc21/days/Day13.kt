@@ -20,7 +20,8 @@ class Day13(input: List<String>) : ADay(input) {
     }
 
     private fun run(stopAtFirst: Boolean = false): Scrabble {
-        var width = dots.maxOf { it.first }; var height = dots.maxOf { it.second }
+        var width = dots.maxOf { it.first }
+        var height = dots.maxOf { it.second }
         val paper = scrabble(width + 1, height + 1)
 
         input.filter { it.startsWith("fold along ") }.map { it.removePrefix("fold along ").split('=') }.forEach {

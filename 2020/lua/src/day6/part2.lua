@@ -1,4 +1,3 @@
-
 function part2()
     local groups = parseGroups()
 
@@ -20,7 +19,7 @@ function part2()
                     newChars[#newChars + 1] = c
                 end
             end
-            chars = newChars        
+            chars = newChars
         end
 
         groups[key] = #chars

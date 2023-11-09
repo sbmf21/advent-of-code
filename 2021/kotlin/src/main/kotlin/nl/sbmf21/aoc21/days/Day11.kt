@@ -8,13 +8,15 @@ internal typealias FlashMap = List<MutableList<Boolean>>
 class Day11(input: List<String>) : ADay(input) {
 
     override fun part1(): Int {
-        val octi = mapOctopodes(); var count = 0
+        val octi = mapOctopodes()
+        var count = 0
         for (s in 1..100) step(octi) { count += it.sumOf { r -> r.count { f -> f } } }
         return count
     }
 
     override fun part2(): Int {
-        val grid = mapOctopodes(); var step = 0
+        val grid = mapOctopodes()
+        var step = 0
         while (true) step(grid) { step++; if (it.sumOf { r -> r.count { f -> !f } } == 0) return step }
     }
 

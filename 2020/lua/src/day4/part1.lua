@@ -1,6 +1,5 @@
-
 local function isValid(passport)
-    for _, key in ipairs({'byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid'}) do
+    for _, key in ipairs({ 'byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid' }) do
         if passport[key] ~= null then
         else
             return false

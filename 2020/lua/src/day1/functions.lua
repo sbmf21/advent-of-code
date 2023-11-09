@@ -1,4 +1,3 @@
-
 function parseNumbers()
     local lines = io.lines('input/day1.txt')
     local numbers = {}

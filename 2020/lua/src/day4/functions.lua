@@ -1,4 +1,3 @@
-
 function split(input, match)
     local sparts = {}
 
@@ -17,17 +16,18 @@ end
 
 local function parseLine(current, line)
     local fields = split(line, ' ')
- 
+
     for _, field in ipairs(fields) do
         local parts = split(field, ':')
-       
+
         current[parts[1]] = parts[2]
     end
 end
 
 function parsePassports()
     local lines = io.lines('input/day4.txt')
-    local passports = {}; local current = {}
+    local passports = {};
+    local current = {}
 
     for line in lines do
         if line == '' then

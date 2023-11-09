@@ -1,4 +1,3 @@
-
 local function find()
     local ids = parseBoardingPasses()
 

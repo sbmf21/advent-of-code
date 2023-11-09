@@ -61,10 +61,10 @@ class Day11(input: List<String>) : ADay(input) {
     }
 
     private fun canSitAdjacent(grid: List<List<Char>>, current: Char, x: Int, y: Int) = current == 'L'
-            && findAdjacent(grid, x, y) == 0
+        && findAdjacent(grid, x, y) == 0
 
     private fun shouldBecomeEmptyAdjacent(grid: List<List<Char>>, current: Char, x: Int, y: Int) = current == '#'
-            && findAdjacent(grid, x, y) >= 4
+        && findAdjacent(grid, x, y) >= 4
 
     private fun findAdjacent(grid: List<List<Char>>, x: Int, y: Int): Int {
         var adjacent = 0
@@ -86,10 +86,10 @@ class Day11(input: List<String>) : ADay(input) {
     }
 
     private fun canSitInSight(grid: List<List<Char>>, current: Char, x: Int, y: Int) = current == 'L'
-            && findInSight(grid, x, y) == 0
+        && findInSight(grid, x, y) == 0
 
     private fun shouldBecomeEmptyInSight(grid: List<List<Char>>, current: Char, x: Int, y: Int) = current == '#'
-            && findInSight(grid, x, y) >= 5
+        && findInSight(grid, x, y) >= 5
 
     private fun findInSight(grid: List<List<Char>>, x: Int, y: Int) = listOf(
         Pair(-1, -1),

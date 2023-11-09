@@ -1,6 +1,6 @@
 # [Advent of Code](https://adventofcode.com/about)
 
-Hi! And welcome to my advent of code project! Here you can find all my solutions for the AOC puzzels.
+Hi! And welcome to my advent of code project! Here you can find all my solutions for the AOC puzzles.
 
 I use advent of code to compete with coworkers and friends, to see which one of use can produce the most efficient or
 the most pretty looking code, but also to learn new languages!

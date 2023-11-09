@@ -1,4 +1,3 @@
-
 local function countSlopes()
     local total = count(1, 1)
     local counts = {

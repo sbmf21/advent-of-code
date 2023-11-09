@@ -1,4 +1,3 @@
-
 function parseBoardingPasses()
     local ids = {}
 
@@ -14,10 +13,10 @@ function parseBoardingPasses()
                 return true
             end
         end
-    
+
         return false
     end
-    
+
     return ids
 end
 

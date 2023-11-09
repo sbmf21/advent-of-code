@@ -41,6 +41,8 @@ class Day9(input: List<String>) : ADay(input) {
 
     private fun contains(checked: List<MutableList<Boolean>>, cx: Int, cy: Int) = when {
         !bound(cx, cy) || checked[cx][cy] -> false
-        else -> { checked[cx][cy] = true; map[cx][cy] < 9 }
+        else -> {
+            checked[cx][cy] = true; map[cx][cy] < 9
+        }
     }
 }

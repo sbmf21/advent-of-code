@@ -43,7 +43,7 @@ internal class Block(val parent: Block? = null) : Expr {
             val pref = parts[i] as ValExpr
             val next = parts[i + 2] as ValExpr
 
-            parts.removeAll(listOf(pref, e, next))
+            parts.removeAll(setOf(pref, e, next))
             parts.add(i, e.exec(pref, next))
         }
 
