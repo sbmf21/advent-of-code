@@ -2,6 +2,7 @@
   key: '2015:java'
   paths:
     - .gradle
+    - aoc-commons/build
     - 2015/build
 
 .2015:java:

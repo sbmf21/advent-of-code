@@ -2,6 +2,7 @@
   key: '2023:kotlin'
   paths:
     - .gradle
+    - aoc-commons/build
     - 2023/kotlin/build
 
 .2023:kotlin:

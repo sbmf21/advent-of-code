@@ -2,6 +2,7 @@
   key: '2020:kotlin'
   paths:
     - .gradle
+    - aoc-commons/build
     - 2020/kotlin/build
 
 .2020:kotlin:

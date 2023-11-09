@@ -2,6 +2,7 @@
   key: '2022:kotlin'
   paths:
     - .gradle
+    - aoc-commons/build
     - 2022/kotlin/build
 
 .2022:kotlin:
