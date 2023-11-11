@@ -38,15 +38,13 @@ class Day15(input: List<String>) : ADay(input) {
 
         while (queue.isNotEmpty()) {
             val check = queue.minByOrNull { it.cost }!!; queue.remove(check)
-
             if (check.pos == end) return check.cost
 
-            getSteps(check, map)
-                .forEach { s ->
-                    costs[s.pos.y][s.pos.x]
-                        .takeIf { it == -1 || it > s.cost }
-                        ?.also { costs[s.pos.y][s.pos.x] = s.cost; queue.add(s) }
-                }
+            getSteps(check, map).forEach { s ->
+                costs[s.pos.y][s.pos.x]
+                    .takeIf { it == -1 || it > s.cost }
+                    ?.also { costs[s.pos.y][s.pos.x] = s.cost; queue.add(s) }
+            }
         }
 
         return -1
@@ -56,6 +54,6 @@ class Day15(input: List<String>) : ADay(input) {
         .map { current.pos + it }
         .filter { it.y in map.indices && it.x in map[it.y].indices }
         .map { ChitonStep(it, current.cost + map[it.y][it.x]) }
-}
 
-internal data class ChitonStep(val pos: Vector2i, val cost: Int)
+    private data class ChitonStep(val pos: Vector2i, val cost: Int)
+}
