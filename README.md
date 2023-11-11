@@ -10,14 +10,13 @@ Feel free to take a look around and judge my code :smiling_imp:
 <table>
 <thead>
 <tr>
-<th colspan="7">
+<th colspan="7" style="text-align: center">
 <h2 style="padding: 0; margin: 0">Projects</h2>
-<hr style="margin: 0.5rem auto; width: 280px">
 <i>All subprojects in this repository.</i>
 </th>
 </tr>
 
-<tr>
+<tr style="text-align: center">
 <th></th>
 <th><a href="https://adventofcode.com/2023">2023</a></th>
 <th><a href="https://adventofcode.com/2022">2022</a></th>
@@ -26,7 +25,7 @@ Feel free to take a look around and judge my code :smiling_imp:
 <th><a href="https://adventofcode.com/2015">2015</a></th>
 </tr>
 
-<tr>
+<tr style="text-align: center">
 <th>Day</th>
 <th><a href="2023/kotlin"><i>Kotlin</i></a></th>
 <th><a href="2022/kotlin"><i>Kotlin</i></a></th>
