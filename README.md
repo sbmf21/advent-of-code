@@ -18,11 +18,11 @@ Feel free to take a look around and judge my code :smiling_imp:
 
 <tr style="text-align: center">
 <th></th>
-<th><a href="https://adventofcode.com/2023">2023</a></th>
-<th><a href="https://adventofcode.com/2022">2022</a></th>
-<th><a href="https://adventofcode.com/2021">2021</a></th>
-<th colspan="2"><a href="https://adventofcode.com/2020">2020</a></th>
-<th><a href="https://adventofcode.com/2015">2015</a></th>
+<th style="text-align: center"><a href="https://adventofcode.com/2023">2023</a></th>
+<th style="text-align: center"><a href="https://adventofcode.com/2022">2022</a></th>
+<th style="text-align: center"><a href="https://adventofcode.com/2021">2021</a></th>
+<th style="text-align: center" colspan="2"><a href="https://adventofcode.com/2020">2020</a></th>
+<th style="text-align: center"><a href="https://adventofcode.com/2015">2015</a></th>
 </tr>
 
 <tr>
