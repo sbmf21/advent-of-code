@@ -7,170 +7,289 @@ the most pretty looking code, but also to learn new languages!
 
 Feel free to take a look around and judge my code :smiling_imp:
 
-## Projects
+<table>
+<thead>
+<tr>
+<th colspan="7">
+<h2 style="padding: 0; margin: 0">Projects</h2>
+<hr style="margin: 0.5rem auto; width: 280px">
+<i>All subprojects in this repository.</i>
+</th>
+</tr>
 
-All subprojects in this repository.
+<tr>
+<th></th>
+<th><a href="https://adventofcode.com/2023">2023</a></th>
+<th><a href="https://adventofcode.com/2022">2022</a></th>
+<th><a href="https://adventofcode.com/2021">2021</a></th>
+<th colspan="2"><a href="https://adventofcode.com/2020">2020</a></th>
+<th><a href="https://adventofcode.com/2015">2015</a></th>
+</tr>
+
+<tr>
+<th>Day</th>
+<th><a href="2023/kotlin"><i>Kotlin</i></a></th>
+<th><a href="2022/kotlin"><i>Kotlin</i></a></th>
+<th><a href="2021/kotlin"><i>Kotlin</i></a></th>
+<th><a href="2020/kotlin"><i>Kotlin</i></a></th>
+<th><a href="2020/lua"><i>Lua</i></a></th>
+<th><a href="2015"><i>Java</i></a></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<th>1</th>
+<td></td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+</tr>
+
+<tr>
+<th>2</th>
+<td></td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+</tr>
+
+<tr>
+<th>3</th>
+<td></td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+</tr>
+
+<tr>
+<th>4</th>
+<td></td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+</tr>
+
+<tr>
+<th>5</th>
+<td></td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+</tr>
+
+<tr>
+<th>6</th>
+<td></td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+</tr>
+
+<tr>
+<th>7</th>
+<td></td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<th>8</th>
+<td></td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<th>9</th>
+<td></td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<th>10</th>
+<td></td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<th>11</th>
+<td></td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<th>12</th>
+<td></td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<th>13</th>
+<td></td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<th>14</th>
+<td></td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<th>15</th>
+<td></td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<th>16</th>
+<td></td>
+<td></td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<th>17</th>
+<td></td>
+<td></td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<th>18</th>
+<td></td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<th>19</th>
+<td></td>
+<td>:white_check_mark:</td>
+<td>:white_check_mark:</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<th>20</th>
+<td></td>
+<td></td>
+<td>:white_check_mark:</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<th>21</th>
+<td></td>
+<td></td>
+<td>:white_check_mark:</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<th>22</th>
+<td></td>
+<td></td>
+<td>:white_check_mark:</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<th>23</th>
+<td></td>
+<td></td>
+<td>:white_check_mark:</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<th>24</th>
+<td></td>
+<td></td>
+<td>:white_check_mark:</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<th>25</th>
+<td></td>
+<td></td>
+<td>:white_check_mark:</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 
 ### [AOC Commons](aoc-commons)
 
 Made in Kotlin. Used to find day classes and load input files for Java/Kotlin projects. Also used to run simulations.
-
-# [2023](https://adventofcode.com/2023)
-
-[`kotlin`](2023/kotlin)
-
-| Day | Kotlin |
-|-----|--------|
-| 1   |        |
-| 2   |        |
-| 3   |        |
-| 4   |        |
-| 5   |        |
-| 6   |        |
-| 7   |        |
-| 8   |        |
-| 9   |        |
-| 10  |        |
-| 11  |        |
-| 12  |        |
-| 13  |        |
-| 14  |        |
-| 15  |        |
-| 16  |        |
-| 17  |        |
-| 18  |        |
-| 19  |        |
-| 20  |        |
-| 21  |        |
-| 22  |        |
-| 23  |        |
-| 24  |        |
-| 25  |        |
-
-# [2022](https://adventofcode.com/2022)
-
-[`kotlin`](2022/kotlin)
-
-| Day | Kotlin             |
-|-----|--------------------|
-| 1   | :white_check_mark: |
-| 2   | :white_check_mark: |
-| 3   | :white_check_mark: |
-| 4   | :white_check_mark: |
-| 5   | :white_check_mark: |
-| 6   | :white_check_mark: |
-| 7   | :white_check_mark: |
-| 8   | :white_check_mark: |
-| 9   | :white_check_mark: |
-| 10  | :white_check_mark: |
-| 11  | :white_check_mark: |
-| 12  | :white_check_mark: |
-| 13  | :white_check_mark: |
-| 14  | :white_check_mark: |
-| 15  | :white_check_mark: |
-| 16  |                    |
-| 17  |                    |
-| 18  | :white_check_mark: |
-| 19  | :white_check_mark: |
-| 20  |                    |
-| 21  |                    |
-| 22  |                    |
-| 23  |                    |
-| 24  |                    |
-| 25  |                    |
-
-### [2021](https://adventofcode.com/2021)
-
-[`kotlin`](2021/kotlin)
-
-| Day | Kotlin             |
-|-----|--------------------|
-| 1   | :white_check_mark: |
-| 2   | :white_check_mark: |
-| 3   | :white_check_mark: |
-| 4   | :white_check_mark: |
-| 5   | :white_check_mark: |
-| 6   | :white_check_mark: |
-| 7   | :white_check_mark: |
-| 8   | :white_check_mark: |
-| 9   | :white_check_mark: |
-| 10  | :white_check_mark: |
-| 11  | :white_check_mark: |
-| 12  | :white_check_mark: |
-| 13  | :white_check_mark: |
-| 14  | :white_check_mark: |
-| 15  | :white_check_mark: |
-| 16  | :white_check_mark: |
-| 17  | :white_check_mark: |
-| 18  | :white_check_mark: |
-| 19  | :white_check_mark: |
-| 20  | :white_check_mark: |
-| 21  | :white_check_mark: |
-| 22  | :white_check_mark: |
-| 23  | :white_check_mark: |
-| 24  | :white_check_mark: |
-| 25  | :white_check_mark: |
-
-### [2020](https://adventofcode.com/2020)
-
-[`kotlin`](2020/kotlin) [`lua`](2020/lua)
-
-| Day | Kotlin             | Lua                |
-|-----|--------------------|--------------------|
-| 1   | :white_check_mark: | :white_check_mark: |
-| 2   | :white_check_mark: | :white_check_mark: |
-| 3   | :white_check_mark: | :white_check_mark: |
-| 4   | :white_check_mark: | :white_check_mark: |
-| 5   | :white_check_mark: | :white_check_mark: |
-| 6   | :white_check_mark: | :white_check_mark: |
-| 7   | :white_check_mark: |                    |
-| 8   | :white_check_mark: |                    |
-| 9   | :white_check_mark: |                    |
-| 10  | :white_check_mark: |                    |
-| 11  | :white_check_mark: |                    |
-| 12  | :white_check_mark: |                    |
-| 13  | :white_check_mark: |                    |
-| 14  | :white_check_mark: |                    |
-| 15  | :white_check_mark: |                    |
-| 16  | :white_check_mark: |                    |
-| 17  | :white_check_mark: |                    |
-| 18  | :white_check_mark: |                    |
-| 19  |                    |                    |
-| 20  |                    |                    |
-| 21  |                    |                    |
-| 22  |                    |                    |
-| 23  |                    |                    |
-| 24  |                    |                    |
-| 25  |                    |                    |
-
-### [2015](https://adventofcode.com/2015)
-
-[`java`](2015)
-
-| Day | Java               |
-|-----|--------------------|
-| 1   | :white_check_mark: |
-| 2   | :white_check_mark: |
-| 3   | :white_check_mark: |
-| 4   | :white_check_mark: |
-| 5   | :white_check_mark: |
-| 6   | :white_check_mark: |
-| 7   |                    |
-| 8   |                    |
-| 9   |                    |
-| 10  |                    |
-| 11  |                    |
-| 12  |                    |
-| 13  |                    |
-| 14  |                    |
-| 15  |                    |
-| 16  |                    |
-| 17  |                    |
-| 18  |                    |
-| 19  |                    |
-| 20  |                    |
-| 21  |                    |
-| 22  |                    |
-| 23  |                    |
-| 24  |                    |
-| 25  |                    |
