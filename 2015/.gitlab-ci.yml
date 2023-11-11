@@ -9,6 +9,7 @@
   extends: .gradle
   only:
     changes:
+      - aoc-commons/**/*
       - 2015/**/*
   cache:
     key: !reference [ .2015:java:caches, key ]

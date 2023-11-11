@@ -9,6 +9,7 @@
   extends: .gradle
   only:
     changes:
+      - aoc-commons/**/*
       - 2023/kotlin/**/*
   cache:
     key: !reference [ .2023:kotlin:caches, key ]
