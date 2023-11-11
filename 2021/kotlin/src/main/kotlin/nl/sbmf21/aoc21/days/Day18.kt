@@ -79,26 +79,26 @@ class Day18(input: List<String>) : ADay(input) {
         if (number is SFPair) (findSplit(number.left) ?: findSplit(number.right))?.also { return it }
         return null
     }
-}
 
-internal interface SFNumber {
-    fun value(): Int
-    fun clone(parent: SFPair? = null): SFNumber
-}
+    private interface SFNumber {
+        fun value(): Int
+        fun clone(parent: SFPair? = null): SFNumber
+    }
 
-internal class SFPair(var parent: SFPair? = null) : SFNumber {
-    var left: SFNumber? = null
-    var right: SFNumber? = null
+    private class SFPair(var parent: SFPair? = null) : SFNumber {
+        var left: SFNumber? = null
+        var right: SFNumber? = null
 
-    fun set(number: SFNumber) = if (left == null) left = number else right = number
-    fun update(old: SFNumber, new: SFNumber) = if (left == old) left = new else right = new
-    override fun value() = 3 * left!!.value() + 2 * right!!.value()
-    override fun clone(parent: SFPair?) = SFPair(parent)
-        .also { it.left = left!!.clone(it) }
-        .also { it.right = right!!.clone(it) }
-}
+        fun set(number: SFNumber) = if (left == null) left = number else right = number
+        fun update(old: SFNumber, new: SFNumber) = if (left == old) left = new else right = new
+        override fun value() = 3 * left!!.value() + 2 * right!!.value()
+        override fun clone(parent: SFPair?) = SFPair(parent)
+            .also { it.left = left!!.clone(it) }
+            .also { it.right = right!!.clone(it) }
+    }
 
-internal class SFRegular(val parent: SFPair?, var value: Int) : SFNumber {
-    override fun value() = value
-    override fun clone(parent: SFPair?) = SFRegular(parent, value)
+    private class SFRegular(val parent: SFPair?, var value: Int) : SFNumber {
+        override fun value() = value
+        override fun clone(parent: SFPair?) = SFRegular(parent, value)
+    }
 }

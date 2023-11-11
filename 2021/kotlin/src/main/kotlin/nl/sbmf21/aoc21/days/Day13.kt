@@ -1,7 +1,7 @@
 package nl.sbmf21.aoc21.days
 
 import nl.sbmf21.aoc.common.ADay
-import nl.sbmf21.aoc.common.AOC_LETTERS
+import nl.sbmf21.aoc.common.aocLetter
 import nl.sbmf21.aoc.common.mapToInts
 
 class Day13(input: List<String>) : ADay(input) {
@@ -15,7 +15,7 @@ class Day13(input: List<String>) : ADay(input) {
         (0 until 8).fold("") { code, i ->
             val letter = List(6) { MutableList(4) { 0 } }
             for (y in 0 until 6) for (x in 0 until 4) letter[y][x] = if (paper[y][i * 5 + x]) 1 else 0
-            code + (AOC_LETTERS.firstOrNull { it.second == letter }?.first ?: "")
+            code + aocLetter(letter)
         }
     }
 
@@ -42,6 +42,6 @@ class Day13(input: List<String>) : ADay(input) {
 
     private fun scrabble(width: Int, height: Int) = dots
         .fold(List(height) { MutableList(width) { false } }) { map, dot -> map[dot.second][dot.first] = true; map }
-}
 
-internal data class Scrabble(val paper: List<MutableList<Boolean>>, val width: Int, val height: Int)
+    private data class Scrabble(val paper: List<MutableList<Boolean>>, val width: Int, val height: Int)
+}

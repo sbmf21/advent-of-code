@@ -33,19 +33,19 @@ class Day12(input: List<String>) : ADay(input) {
 
         return paths
     }
-}
 
-internal class Path(cave: Cave? = null) {
-    val steps = mutableListOf<Cave>().also { if (cave != null) it.add(cave) }
+    private class Path(cave: Cave? = null) {
+        val steps = mutableListOf<Cave>().also { if (cave != null) it.add(cave) }
 
-    fun next(cave: Cave) = Path().also { steps.forEach { s -> it.steps.add(s) }; it.steps.add(cave) }
-    override fun toString() = steps.joinToString(",") { it.cave }
-}
+        fun next(cave: Cave) = Path().also { steps.forEach { s -> it.steps.add(s) }; it.steps.add(cave) }
+        override fun toString() = steps.joinToString(",") { it.cave }
+    }
 
-internal data class Cave(val cave: String) {
-    val options = mutableSetOf<Cave>()
-    val fat = cave[0].isUpperCase()
+    private data class Cave(val cave: String) {
+        val options = mutableSetOf<Cave>()
+        val fat = cave[0].isUpperCase()
 
-    override fun equals(other: Any?) = other is Cave && other.cave == cave
-    override fun hashCode() = cave.hashCode()
+        override fun equals(other: Any?) = other is Cave && other.cave == cave
+        override fun hashCode() = cave.hashCode()
+    }
 }

@@ -23,9 +23,10 @@ class Day5(input: List<String>) : ADay(input) {
                 p.x += v.step.x; p.y += v.step.y
             }; m
         }.sumOf { it.filter { p -> p >= 2 }.size }
-}
 
-data class Vec<N : Number>(var x: N, var y: N)
-data class Line(val x1: Int, val y1: Int, val x2: Int, val y2: Int) {
-    val step = Vec((x2 - x1).sign, (y2 - y1).sign)
+    private data class Vec<N : Number>(var x: N, var y: N)
+
+    private data class Line(val x1: Int, val y1: Int, val x2: Int, val y2: Int) {
+        val step = Vec((x2 - x1).sign, (y2 - y1).sign)
+    }
 }
