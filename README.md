@@ -37,8 +37,8 @@ Feel free to take a look around and judge my code :smiling_imp:
 </thead>
 
 <tbody>
-<tr>
-<th>1</th>
+<tr style="text-align: center">
+<td><b>1</b></td>
 <td></td>
 <td>:white_check_mark:</td>
 <td>:white_check_mark:</td>
@@ -47,8 +47,8 @@ Feel free to take a look around and judge my code :smiling_imp:
 <td>:white_check_mark:</td>
 </tr>
 
-<tr>
-<th>2</th>
+<tr style="text-align: center">
+<td><b>2</b></td>
 <td></td>
 <td>:white_check_mark:</td>
 <td>:white_check_mark:</td>
