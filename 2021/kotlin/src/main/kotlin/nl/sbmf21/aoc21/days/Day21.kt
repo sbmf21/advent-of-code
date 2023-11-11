@@ -31,24 +31,24 @@ class Day21(input: List<String>) : ADay(input) {
 
         return Pair(win, loss)
     }
-}
 
-internal data class Player(private var position: Int) {
-    var score = 0
-        private set
+    private data class Player(private var position: Int) {
+        var score = 0
+            private set
 
-    fun copy() = Player(position).also { it.score = score }
-    fun step(step: Int) {
-        position += step
-        while (position > 10) position -= 10
-        score += position
+        fun copy() = Player(position).also { it.score = score }
+        fun step(step: Int) {
+            position += step
+            while (position > 10) position -= 10
+            score += position
+        }
     }
-}
 
-internal class DeterministicDice {
-    private var last = 0
-    var rolls = 0
-        private set
+    private class DeterministicDice {
+        private var last = 0
+        var rolls = 0
+            private set
 
-    fun roll() = (++last).also { rolls++; last %= 100 }
+        fun roll() = (++last).also { rolls++; last %= 100 }
+    }
 }

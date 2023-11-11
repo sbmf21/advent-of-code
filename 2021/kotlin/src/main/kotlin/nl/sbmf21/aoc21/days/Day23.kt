@@ -1,7 +1,8 @@
 package nl.sbmf21.aoc21.days
 
 import nl.sbmf21.aoc.common.ADay
-import nl.sbmf21.aoc21.days.Day23.Tile.Companion.tile
+import nl.sbmf21.aoc21.days.Day23.AmphiAction.IN
+import nl.sbmf21.aoc21.days.Day23.AmphiAction.OUT
 import java.util.*
 import kotlin.math.abs
 
@@ -20,11 +21,11 @@ class Day23(input: List<String>) : ADay(input) {
         while (steps.isNotEmpty()) {
             val current = steps.poll()
             visited.add(current.diagram)
-            current.diagram.steps().filterNot { visited.contains(it.diagram) }.forEach { (diagram, cost) ->
-                val stepCost = current.cost + cost
-                if (stepCost < (costs[diagram] ?: Int.MAX_VALUE)) {
-                    costs[diagram] = stepCost
-                    steps.add(diagram.priced(stepCost))
+            current.diagram.steps().filterNot { visited.contains(it.diagram) }.forEach {
+                val stepCost = current.cost + it.cost
+                if (stepCost < (costs[it.diagram] ?: Int.MAX_VALUE)) {
+                    costs[it.diagram] = stepCost
+                    steps.add(it.diagram.priced(stepCost))
                 }
             }
         }
@@ -34,9 +35,7 @@ class Day23(input: List<String>) : ADay(input) {
 
     private data class Diagram(private val diagram: List<List<Char>>) {
         private val hallway = diagram[0]
-        private val destinations = Amphipod.entries.associate { type ->
-            type.char to Room(type, diagram.subList(1, diagram.size).map { tile(it[type.roomIndex]) })
-        }
+        private val destinations = Amphipod.entries.associate { type -> type.char to Room(type, diagram) }
 
         private val possibleIndices
             get() = hallway.indices
@@ -50,28 +49,35 @@ class Day23(input: List<String>) : ADay(input) {
         fun steps() = buildList {
             hallway.withIndex().filter { it.value.isLetter() && destinations.getValue(it.value).emptyOrValid }.forEach {
                 val room = destinations.getValue(it.value)
-                if (isPathClear(it.index, room.index)) {
-                    val y = room.content.lastIndexOf(Empty) + 1
-                    val cost = (abs(it.index - room.index) + y) * Amphipod.fromType(it.value).cost
-                    add(PricedDiagram(diagram.map { row -> row.toMutableList() }.apply {
-                        get(0)[it.index] = Empty.char
-                        get(y)[room.index] = it.value
-                    }, cost))
+                move(it.index, room.index, OUT, { room.content.lastIndexOf(Empty) }, { Amphipod(it.value) }, ::add)
+            }
+            destinations.values.filter(Room::invalid).forEach { room ->
+                val amphiTile = room.content.withIndex().first { it.value != Empty }
+                possibleIndices.forEach {
+                    move(room.index, it, IN, { amphiTile.index }, { amphiTile.value as Amphipod }, ::add)
                 }
             }
-            destinations.values.filter { it.invalid }.forEach { room ->
-                val toMove = room.content.withIndex().first { it.value != Empty }
-                possibleIndices.forEach { index ->
-                    if (isPathClear(index, room.index)) {
-                        val y = toMove.index + 1
-                        val cost = (abs(room.index - index) + y) * (toMove.value as Amphipod).cost
-                        add(PricedDiagram(diagram.map { row -> row.toMutableList() }.apply {
-                            get(y)[room.index] = Empty.char
-                            get(0)[index] = toMove.value.char
-                        }, cost))
-                    }
-                }
-            }
+        }
+
+        private fun move(
+            start: Int,
+            end: Int,
+            action: AmphiAction,
+            y: () -> Int,
+            amphi: () -> Amphipod,
+            add: (PricedDiagram) -> Unit,
+        ) {
+            if (!isPathClear(start, end)) return
+
+            val row = y() + 1
+            val amphipod = amphi()
+
+            add(PricedDiagram(diagram.map { it.toMutableList() }.apply {
+                // @formatter:off
+                this[when (action) { IN -> row; OUT -> 0 }][start] = Empty.char
+                this[when (action) { IN -> 0; OUT -> row }][end] = amphipod.char
+                // @formatter:on
+            }, (abs(start - end) + row) * amphipod.cost))
         }
 
         private fun isPathClear(start: Int, end: Int) =
@@ -81,12 +87,11 @@ class Day23(input: List<String>) : ADay(input) {
     private class PricedDiagram(input: List<List<Char>>, val cost: Int = 0) : Comparable<PricedDiagram> {
         val diagram = Diagram(input)
         override fun compareTo(other: PricedDiagram) = cost.compareTo(other.cost)
-        operator fun component1() = diagram
-        operator fun component2() = cost
     }
 
-    private class Room(val type: Amphipod, val content: List<Tile>) {
+    private class Room(private val type: Amphipod, diagram: List<List<Char>>) {
         val index = type.roomIndex
+        val content: List<Tile> = diagram.subList(1, diagram.size).map { Tile(it[type.roomIndex]) }
         val valid get() = content.all { it == type }
         val emptyOrValid get() = content.all { it == Empty || it == type }
         val invalid get() = !emptyOrValid
@@ -96,7 +101,7 @@ class Day23(input: List<String>) : ADay(input) {
         val char: Char
 
         companion object {
-            fun tile(type: Char) = if (type in Amphipod.types) Amphipod.fromType(type) else Empty
+            operator fun invoke(type: Char) = if (type in Amphipod.types) Amphipod(type) else Empty
         }
     }
 
@@ -109,11 +114,13 @@ class Day23(input: List<String>) : ADay(input) {
         companion object {
             val indices = entries.map(Amphipod::roomIndex)
             val types = entries.associateBy(Amphipod::char)
-            fun fromType(type: Char) = types[type]!!
+            operator fun invoke(type: Char) = types[type]!!
         }
     }
 
     private object Empty : Tile {
         override val char: Char = '.'
     }
+
+    private enum class AmphiAction { IN, OUT }
 }

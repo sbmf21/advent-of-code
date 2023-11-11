@@ -1,7 +1,7 @@
 package nl.sbmf21.aoc21.days
 
 import nl.sbmf21.aoc.common.ADay
-import nl.sbmf21.math.Vector3i
+import nl.sbmf21.math.Vector3l
 import kotlin.math.max
 import kotlin.math.min
 
@@ -21,9 +21,8 @@ class Day22(input: List<String>) : ADay(input) {
         )
     }
 
-    override fun part1() = steps.fold(mutableMapOf<Vector3i, Boolean>()) { map, it ->
-        // TODO use Vector3l instead of Vector3i
-        for (x in it.x) for (y in it.y) for (z in it.z) map[Vector3i(x.toInt(), y.toInt(), z.toInt())] = it.state
+    override fun part1() = steps.fold(mutableMapOf<Vector3l, Boolean>()) { map, it ->
+        for (x in it.x) for (y in it.y) for (z in it.z) map[Vector3l(x, y, z)] = it.state
         map
     }.count { it.value }
 
