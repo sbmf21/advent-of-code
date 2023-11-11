@@ -25,14 +25,14 @@ Feel free to take a look around and judge my code :smiling_imp:
 <th><a href="https://adventofcode.com/2015">2015</a></th>
 </tr>
 
-<tr style="text-align: center">
+<tr>
 <th>Day</th>
-<th><a href="2023/kotlin"><i>Kotlin</i></a></th>
-<th><a href="2022/kotlin"><i>Kotlin</i></a></th>
-<th><a href="2021/kotlin"><i>Kotlin</i></a></th>
-<th><a href="2020/kotlin"><i>Kotlin</i></a></th>
-<th><a href="2020/lua"><i>Lua</i></a></th>
-<th><a href="2015"><i>Java</i></a></th>
+<th style="text-align: center"><a href="2023/kotlin"><i>Kotlin</i></a></th>
+<th style="text-align: center"><a href="2022/kotlin"><i>Kotlin</i></a></th>
+<th style="text-align: center"><a href="2021/kotlin"><i>Kotlin</i></a></th>
+<th style="text-align: center"><a href="2020/kotlin"><i>Kotlin</i></a></th>
+<th style="text-align: center"><a href="2020/lua"><i>Lua</i></a></th>
+<th style="text-align: center"><a href="2015"><i>Java</i></a></th>
 </tr>
 </thead>
 
