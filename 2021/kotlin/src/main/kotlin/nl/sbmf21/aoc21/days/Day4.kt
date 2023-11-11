@@ -28,13 +28,15 @@ class Day4(input: List<String>) : ADay(input) {
         }
         return -1
     }
-}
 
-class Board(private val drawn: List<Int>, private val original: MutableList<MutableList<Int>>) {
+    private class Board(private val drawn: List<Int>, private val original: MutableList<MutableList<Int>>) {
 
-    val rows = original[0]
-        .foldIndexed(mutableListOf<MutableList<Int>>()) { i, a, _ -> a.add(original.map { it[i] }.toMutableList()); a }
-        .apply { addAll(original) }
+        val rows = original[0]
+            .foldIndexed(mutableListOf<MutableList<Int>>()) { i, a, _ ->
+                a.add(original.map { it[i] }.toMutableList()); a
+            }
+            .apply { addAll(original) }
 
-    internal fun s(d: Int) = original.flatten().filter { !drawn.subList(0, drawn.indexOf(d)).contains(it) }.sum() * d
+        fun s(d: Int) = original.flatten().filter { !drawn.subList(0, drawn.indexOf(d)).contains(it) }.sum() * d
+    }
 }

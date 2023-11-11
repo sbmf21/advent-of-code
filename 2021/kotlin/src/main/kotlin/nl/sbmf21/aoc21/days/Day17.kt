@@ -25,11 +25,12 @@ class Day17(input: List<String>) : ADay(input) {
             while (!probe.isPast(target) && !probe.isIn(target)) positions.add(probe.step().pos)
             successful.also { if (probe.isIn(target)) it[probe] = positions.maxOf { p -> p.y } }
         }
-}
 
-internal data class ProbeTarget(val minX: Int, val maxX: Int, val minY: Int, val maxY: Int)
-internal data class Probe(var pos: Vector2i = Vector2i(0, 0), var velocity: Vector2i) {
-    fun step() = also { pos = pos + velocity; velocity = velocity + Vector2i(-velocity.x.sign, -1) }
-    fun isIn(t: ProbeTarget) = pos.x in t.minX..t.maxX && pos.y in t.minY..t.maxY
-    fun isPast(t: ProbeTarget) = velocity.x == 0 && pos.x < t.minX || pos.x > t.maxX || pos.y < t.minY
+    private data class ProbeTarget(val minX: Int, val maxX: Int, val minY: Int, val maxY: Int)
+
+    private data class Probe(var pos: Vector2i = Vector2i(0, 0), var velocity: Vector2i) {
+        fun step() = also { pos = pos + velocity; velocity = velocity + Vector2i(-velocity.x.sign, -1) }
+        fun isIn(t: ProbeTarget) = pos.x in t.minX..t.maxX && pos.y in t.minY..t.maxY
+        fun isPast(t: ProbeTarget) = velocity.x == 0 && pos.x < t.minX || pos.x > t.maxX || pos.y < t.minY
+    }
 }

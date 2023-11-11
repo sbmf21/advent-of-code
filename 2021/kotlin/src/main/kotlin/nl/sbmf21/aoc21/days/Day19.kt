@@ -78,11 +78,11 @@ class Day19(input: List<String>) : ADay(input) {
         .run { (0 until rotation.z).fold(this) { beacon, _ -> Vector3i(-beacon.y, beacon.x, beacon.z) } }
         .run { (0 until rotation.y).fold(this) { beacon, _ -> Vector3i(beacon.z, beacon.y, -beacon.x) } }
         .run { (0 until rotation.x).fold(this) { beacon, _ -> Vector3i(beacon.x, -beacon.z, beacon.y) } }
-}
 
-internal data class Scanner(
-    val id: Int,
-    var position: Vector3i = Vector3i(0, 0, 0),
-    var rotation: Vector3i = Vector3i(0, 0, 0),
-    val beacons: List<Vector3i>,
-)
+    private data class Scanner(
+        val id: Int,
+        var position: Vector3i = Vector3i(0, 0, 0),
+        var rotation: Vector3i = Vector3i(0, 0, 0),
+        val beacons: List<Vector3i>,
+    )
+}
