@@ -16,7 +16,7 @@ Feel free to take a look around and judge my code :smiling_imp:
 </th>
 </tr>
 
-<tr style="text-align: center">
+<tr>
 <th></th>
 <th style="text-align: center"><a href="https://adventofcode.com/2023">2023</a></th>
 <th style="text-align: center"><a href="https://adventofcode.com/2022">2022</a></th>
@@ -37,254 +37,254 @@ Feel free to take a look around and judge my code :smiling_imp:
 </thead>
 
 <tbody>
-<tr style="text-align: center">
-<td><b>1</b></td>
-<td></td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
-</tr>
-
-<tr style="text-align: center">
-<td><b>2</b></td>
-<td></td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
+<tr>
+<td style="text-align: center"><b>1</b></td>
+<td style="text-align: center"></td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
 </tr>
 
 <tr>
-<th>3</th>
-<td></td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
+<td style="text-align: center"><b>2</b></td>
+<td style="text-align: center"></td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
 </tr>
 
 <tr>
-<th>4</th>
-<td></td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
+<td style="text-align: center"><b>3</b></td>
+<td style="text-align: center"></td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
 </tr>
 
 <tr>
-<th>5</th>
-<td></td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
+<td style="text-align: center"><b>4</b></td>
+<td style="text-align: center"></td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
 </tr>
 
 <tr>
-<th>6</th>
-<td></td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
+<td style="text-align: center"><b>5</b></td>
+<td style="text-align: center"></td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
 </tr>
 
 <tr>
-<th>7</th>
-<td></td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
-<td></td>
-<td></td>
+<td style="text-align: center"><b>6</b></td>
+<td style="text-align: center"></td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
 </tr>
 
 <tr>
-<th>8</th>
-<td></td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
-<td></td>
-<td></td>
+<td style="text-align: center"><b>7</b></td>
+<td style="text-align: center"></td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
 </tr>
 
 <tr>
-<th>9</th>
-<td></td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
-<td></td>
-<td></td>
+<td style="text-align: center"><b>8</b></td>
+<td style="text-align: center"></td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
 </tr>
 
 <tr>
-<th>10</th>
-<td></td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
-<td></td>
-<td></td>
+<td style="text-align: center"><b>9</b></td>
+<td style="text-align: center"></td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
 </tr>
 
 <tr>
-<th>11</th>
-<td></td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
-<td></td>
-<td></td>
+<td style="text-align: center"><b>10</b></td>
+<td style="text-align: center"></td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
 </tr>
 
 <tr>
-<th>12</th>
-<td></td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
-<td></td>
-<td></td>
+<td style="text-align: center"><b>11</b></td>
+<td style="text-align: center"></td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
 </tr>
 
 <tr>
-<th>13</th>
-<td></td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
-<td></td>
-<td></td>
+<td style="text-align: center"><b>12</b></td>
+<td style="text-align: center"></td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
 </tr>
 
 <tr>
-<th>14</th>
-<td></td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
-<td></td>
-<td></td>
+<td style="text-align: center"><b>13</b></td>
+<td style="text-align: center"></td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
 </tr>
 
 <tr>
-<th>15</th>
-<td></td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
-<td></td>
-<td></td>
+<td style="text-align: center"><b>14</b></td>
+<td style="text-align: center"></td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
 </tr>
 
 <tr>
-<th>16</th>
-<td></td>
-<td></td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
-<td></td>
-<td></td>
+<td style="text-align: center"><b>15</b></td>
+<td style="text-align: center"></td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
 </tr>
 
 <tr>
-<th>17</th>
-<td></td>
-<td></td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
-<td></td>
-<td></td>
+<td style="text-align: center"><b>16</b></td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
 </tr>
 
 <tr>
-<th>18</th>
-<td></td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
-<td></td>
-<td></td>
+<td style="text-align: center"><b>17</b></td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
 </tr>
 
 <tr>
-<th>19</th>
-<td></td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align: center"><b>18</b></td>
+<td style="text-align: center"></td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
 </tr>
 
 <tr>
-<th>20</th>
-<td></td>
-<td></td>
-<td>:white_check_mark:</td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align: center"><b>19</b></td>
+<td style="text-align: center"></td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
 </tr>
 
 <tr>
-<th>21</th>
-<td></td>
-<td></td>
-<td>:white_check_mark:</td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align: center"><b>20</b></td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
 </tr>
 
 <tr>
-<th>22</th>
-<td></td>
-<td></td>
-<td>:white_check_mark:</td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align: center"><b>21</b></td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
 </tr>
 
 <tr>
-<th>23</th>
-<td></td>
-<td></td>
-<td>:white_check_mark:</td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align: center"><b>22</b></td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
 </tr>
 
 <tr>
-<th>24</th>
-<td></td>
-<td></td>
-<td>:white_check_mark:</td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align: center"><b>23</b></td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
 </tr>
 
 <tr>
-<th>25</th>
-<td></td>
-<td></td>
-<td>:white_check_mark:</td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align: center"><b>24</b></td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
+</tr>
+
+<tr>
+<td style="text-align: center"><b>25</b></td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
+<td style="text-align: center">:white_check_mark:</td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
+<td style="text-align: center"></td>
 </tr>
 </tbody>
 </table>
