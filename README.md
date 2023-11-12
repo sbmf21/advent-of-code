@@ -7,6 +7,9 @@ the most pretty looking code, but also to learn new languages!
 
 Feel free to take a look around and judge my code :smiling_imp:
 
+Finished days are marked by :heavy_check_mark: if only part 1 has been finished, and :white_check_mark: if both parts
+are done.
+
 <table>
 <thead>
 <tr>
@@ -200,7 +203,7 @@ Feel free to take a look around and judge my code :smiling_imp:
 <tr>
 <td style="text-align: center"><b>17</b></td>
 <td style="text-align: center"></td>
-<td style="text-align: center"></td>
+<td style="text-align: center">:heavy_check_mark:</td>
 <td style="text-align: center">:white_check_mark:</td>
 <td style="text-align: center">:white_check_mark:</td>
 <td style="text-align: center"></td>
@@ -222,7 +225,7 @@ Feel free to take a look around and judge my code :smiling_imp:
 <td style="text-align: center"></td>
 <td style="text-align: center">:white_check_mark:</td>
 <td style="text-align: center">:white_check_mark:</td>
-<td style="text-align: center"></td>
+<td style="text-align: center">:heavy_check_mark:</td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
 </tr>
@@ -250,7 +253,7 @@ Feel free to take a look around and judge my code :smiling_imp:
 <tr>
 <td style="text-align: center"><b>22</b></td>
 <td style="text-align: center"></td>
-<td style="text-align: center"></td>
+<td style="text-align: center">:heavy_check_mark:</td>
 <td style="text-align: center">:white_check_mark:</td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
