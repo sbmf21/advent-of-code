@@ -31,10 +31,7 @@ class Day25(input: List<String>) : ADay(input) {
         return step
     }
 
-    override fun part2(): Any {
-
-        return -1
-    }
+    override fun part2() = 50
 
     private fun move(map: List<List<Cucumber?>>, direction: Direction) =
         List(map.size) { y -> MutableList(map[y].size) { x -> map[y][x] } }.run {
