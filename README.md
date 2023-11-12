@@ -273,7 +273,7 @@ are done.
 <tr>
 <td style="text-align: center"><b>24</b></td>
 <td style="text-align: center"></td>
-<td style="text-align: center"></td>
+<td style="text-align: center">✅</td>
 <td style="text-align: center">✅</td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
