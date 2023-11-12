@@ -14,6 +14,6 @@ class Day16Test {
 
     @Test
     fun testExample() {
-        testDay(Day16::class.java, 1651, -1, true)
+        testDay(Day16::class.java, 1651, 1707, true)
     }
 }
