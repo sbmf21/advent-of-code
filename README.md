@@ -193,7 +193,7 @@ are done.
 <tr>
 <td style="text-align: center"><b>16</b></td>
 <td style="text-align: center"></td>
-<td style="text-align: center"></td>
+<td style="text-align: center">:heavy_check_mark:</td>
 <td style="text-align: center">:white_check_mark:</td>
 <td style="text-align: center">:white_check_mark:</td>
 <td style="text-align: center"></td>
@@ -233,7 +233,7 @@ are done.
 <tr>
 <td style="text-align: center"><b>20</b></td>
 <td style="text-align: center"></td>
-<td style="text-align: center"></td>
+<td style="text-align: center">:white_check_mark:</td>
 <td style="text-align: center">:white_check_mark:</td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
@@ -243,7 +243,7 @@ are done.
 <tr>
 <td style="text-align: center"><b>21</b></td>
 <td style="text-align: center"></td>
-<td style="text-align: center"></td>
+<td style="text-align: center">:white_check_mark:</td>
 <td style="text-align: center">:white_check_mark:</td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
@@ -263,7 +263,7 @@ are done.
 <tr>
 <td style="text-align: center"><b>23</b></td>
 <td style="text-align: center"></td>
-<td style="text-align: center"></td>
+<td style="text-align: center">:white_check_mark:</td>
 <td style="text-align: center">:white_check_mark:</td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
