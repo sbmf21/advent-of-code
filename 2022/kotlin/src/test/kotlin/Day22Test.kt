@@ -5,7 +5,7 @@ class Day22Test {
 
     @Test
     fun testInput() {
-        testDay(Day22::class.java, 149_250, -1)
+        testDay(Day22::class.java, 149_250, 12462)
     }
 
     @Test
