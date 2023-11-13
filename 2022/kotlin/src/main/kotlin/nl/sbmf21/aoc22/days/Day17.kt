@@ -1,84 +1,112 @@
 package nl.sbmf21.aoc22.days
 
 import nl.sbmf21.aoc.common.ADay
-import nl.sbmf21.math.Vector2i
+import nl.sbmf21.aoc.common.by
+import nl.sbmf21.math.Vector2l
 
 class Day17(input: List<String>) : ADay(input) {
 
+    private companion object {
+        val left = Vector2l(-1, 0)
+        val right = Vector2l(1, 0)
+        val down = Vector2l(0, -1)
+
+        val rocks = listOf(
+            listOf(2L by 3L, 3L by 3L, 4L by 3L, 5L by 3L),
+            listOf(3L by 5L, 2L by 4L, 3L by 4L, 4L by 4L, 3L by 3L),
+            listOf(4L by 5L, 4L by 4L, 2L by 3L, 3L by 3L, 4L by 3L),
+            listOf(2L by 6L, 2L by 5L, 2L by 4L, 2L by 3L),
+            listOf(2L by 4L, 3L by 4L, 2L by 3L, 3L by 3L),
+        )
+    }
+
     private val jet = input[0]
 
-    override fun part1(): Any {
+    override fun part1() = drop(2022)
+    override fun part2() = drop(1_000_000_000_000)
 
+    private fun drop(maxRocks: Long): Long {
         val tetris = Tetris()
-        var rock = tetris.next()
-        var rockCount = 0
-        var index = 0
+        val seen = hashMapOf<State, Pair<Long, Long>>()
 
-        while (rockCount < 2022) {
-            when (jet[index++]) {
-                '<' -> rock.moveLeft()
-                '>' -> rock.moveRight()
+        while (tetris.rockCount < maxRocks) {
+            val state = tetris.state()
+
+            seen[state]?.let { (oldRockCount, oldHeight) ->
+                val cyclePeriod = tetris.rockCount - oldRockCount
+                if (tetris.rockCount % cyclePeriod == maxRocks % cyclePeriod) {
+                    return oldHeight + (tetris.height - oldHeight) * ((maxRocks - tetris.rockCount) / cyclePeriod + 1)
+                }
             }
-            index %= jet.length
+            seen[state] = tetris.rockCount to tetris.height
 
-            if (!rock.moveDown()) {
-                rock.place()
-                rock = tetris.next()
-                rockCount++
+            val rock = tetris.nextRock()
+            while (true) if (!rock.move()) {
+                rock.settle()
+                break
             }
         }
 
-        return tetris.maxOf { it.y } + 1
+        return tetris.height
     }
 
-    override fun part2(): Any {
-        return -1
-    }
-}
+    private data class State(private val jetIndex: Int, private val rockIndex: Int)
 
-private class Tetris : MutableList<Vector2i> by mutableListOf() {
-    private var rockIndex = 0
-    private val rocks = listOf(
-        { listOf(Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0)) },
-        { listOf(Vector2i(1, 0), Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(1, 2)) },
-        { listOf(Vector2i(2, 2), Vector2i(2, 1), Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0)) },
-        { listOf(Vector2i(0, 0), Vector2i(0, 1), Vector2i(0, 2), Vector2i(0, 3)) },
-        { listOf(Vector2i(0, 0), Vector2i(1, 0), Vector2i(0, 1), Vector2i(1, 1)) },
-    )
+    private inner class Tetris : MutableSet<Vector2l> by mutableSetOf() {
 
-    fun next(): Rock {
-        val rock = rocks[rockIndex++]
-        rockIndex %= rocks.size
-        return Rock(this, rock.invoke(), Vector2i(2, (maxOfOrNull { it.y } ?: -1) + 4))
-    }
-}
+        var height: Long = 0
+            private set
 
-private class Rock(
-    val tetris: Tetris,
-    val data: List<Vector2i>,
-    position: Vector2i,
-) {
-    init {
-        data.forEach { it += position }
-    }
+        var rockCount: Long = 0
+            private set
 
-    fun moveLeft() {
-        if (data.map { it - Vector2i(1, 0) }.any { it.x < 0 || it in tetris }) return
-        data.forEach { it -= Vector2i(1, 0) }
-    }
+        private var jetIndex: Int = 0
+            set(value) {
+                field = value % jet.length
+            }
 
-    fun moveRight() {
-        if (data.map { it + Vector2i(1, 0) }.any { it.x > 6 || it in tetris }) return
-        data.forEach { it += Vector2i(1, 0) }
-    }
+        private var rockIndex: Int = 0
+            set(value) {
+                field = value % rocks.size
+            }
 
-    fun moveDown(): Boolean {
-        if (data.map { it - Vector2i(0, 1) }.any { it in tetris || it.y < 0 }) return false
-        data.forEach { it -= Vector2i(0, 1) }
-        return true
-    }
+        fun state() = State(jetIndex, rockIndex)
 
-    fun place() {
-        tetris.addAll(data)
+        fun nextRock() = Rock(rocks[rockIndex++].map { Vector2l(it.x, it.y + height) })
+
+        private fun nextOperation() = jet[jetIndex++]
+
+        inner class Rock(private val data: List<Vector2l>) {
+
+            fun settle() {
+                addAll(data.map { Vector2l(it.x, it.y) })
+                height = groupBy { it.y }.count().toLong()
+                rockCount++
+            }
+
+            fun move(): Boolean {
+                when (nextOperation()) {
+                    '<' -> moveLeft()
+                    '>' -> moveRight()
+                }
+                return moveDown()
+            }
+
+            private fun moveLeft() {
+                if (data.map { it + left }.any { it.x < 0 || it in this@Tetris }) return
+                data.forEach { it += left }
+            }
+
+            private fun moveRight() {
+                if (data.map { it + right }.any { it.x > 6 || it in this@Tetris }) return
+                data.forEach { it += right }
+            }
+
+            private fun moveDown(): Boolean {
+                if (data.map { it + down }.any { it.y < 0 || it in this@Tetris }) return false
+                data.forEach { it += down }
+                return true
+            }
+        }
     }
 }

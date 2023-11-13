@@ -1,8 +1,6 @@
 package nl.sbmf21.aoc22.days
 
 import nl.sbmf21.aoc.common.ADay
-import nl.sbmf21.aoc.common.mapToInts
-import nl.sbmf21.aoc.common.subList
 import nl.sbmf21.math.Vector2i
 import nl.sbmf21.math.clamp
 import kotlin.math.abs
@@ -12,8 +10,8 @@ class Day15(input: List<String>) : ADay(input) {
 
     private val regex = Regex(".*x=(-?\\d+), y=(-?\\d+).*x=(-?\\d+), y=(-?\\d+)")
     private val sensors: List<Pair<Vector2i, Vector2i>> = input
-        .map { regex.find(it)!!.groupValues.subList(1).mapToInts() }
-        .map { Vector2i(it[0], it[1]) to Vector2i(it[2], it[3]) }
+        .map { regex.find(it)!!.groupValues }
+        .map { Vector2i(it[1].toInt(), it[2].toInt()) to Vector2i(it[3].toInt(), it[4].toInt()) }
         .fold(mutableListOf()) { sensors, map -> sensors.also { it.add(map) } }
 
     override fun part1() = sensors.fold(mutableMapOf<Int, Boolean>()) { row, (sensor, beacon) ->

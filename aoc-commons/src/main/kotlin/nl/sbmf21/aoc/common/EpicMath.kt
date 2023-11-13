@@ -1,5 +1,11 @@
 package nl.sbmf21.aoc.common
 
+import nl.sbmf21.math.Vector2i
+import nl.sbmf21.math.Vector2l
+
+infix fun Int.by(other: Int) = Vector2i(this, other)
+infix fun Long.by(other: Long) = Vector2l(this, other)
+
 fun chineseRemainder(n: List<Long>, a: List<Long>): Long {
     val prod = n.fold(1L) { acc, i -> acc * i }
     var sum = 0L
