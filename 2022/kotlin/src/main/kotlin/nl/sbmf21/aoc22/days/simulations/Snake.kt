@@ -1,6 +1,9 @@
 package nl.sbmf21.aoc22.days.simulations
 
-import nl.sbmf21.aoc.common.*
+import nl.sbmf21.aoc.common.Color.GRAY
+import nl.sbmf21.aoc.common.Color.RESET
+import nl.sbmf21.aoc.common.Frame
+import nl.sbmf21.aoc.common.Simulation
 import nl.sbmf21.aoc22.days.Day9
 import nl.sbmf21.math.Vector2i
 
@@ -57,7 +60,7 @@ class Snake(day: Day9) : Simulation<Day9>() {
             }
             xAxis.forEachIndexed { i, s -> xAxis[i] = s + RESET }
             lines.addAll(xAxis)
-            lines.add("\n      ${GRAY}Frame $frame/$maxFrames${RESET}")
+            lines.add("\n      ${GRAY}Frame $frame/$maxFrames$RESET")
 
             this.content = lines.joinToString("\n")
         }

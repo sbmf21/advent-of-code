@@ -1,6 +1,6 @@
 package nl.sbmf21.aoc.common
 
-abstract class ADay {
+abstract class Day {
 
     val number: Int
     val input: List<String>

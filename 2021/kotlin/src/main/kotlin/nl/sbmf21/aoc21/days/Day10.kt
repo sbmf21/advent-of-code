@@ -1,8 +1,8 @@
 package nl.sbmf21.aoc21.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 
-class Day10 : ADay() {
+class Day10 : Day() {
 
     private val opening = listOf('(', '[', '{', '<')
     private val closing = mapOf('(' to ')', '[' to ']', '{' to '}', '<' to '>')

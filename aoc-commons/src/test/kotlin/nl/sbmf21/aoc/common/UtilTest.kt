@@ -3,7 +3,7 @@ package nl.sbmf21.aoc.common
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
-class EpicUtilTest {
+class UtilTest {
 
     @Test
     fun testIterated() {

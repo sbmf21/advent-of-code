@@ -1,157 +1,68 @@
 package nl.sbmf21.aoc.common
 
-import java.util.*
-
-internal fun space(len: Int) = " ".repeat(len)
+import nl.sbmf21.aoc.common.Format.stringifyNumber
+import nl.sbmf21.aoc.common.Format.timeString
+import nl.sbmf21.aoc.common.report.Align.CENTER
+import nl.sbmf21.aoc.common.report.Align.RIGHT
+import nl.sbmf21.aoc.common.report.table
+import java.util.Collections.synchronizedList
 
 internal class Report(private val aoc: AocBase) {
 
-    private val builder = StringBuilder()
-    private val timings = Collections.synchronizedList(mutableListOf<TimedRunner>())
-    private val columns = listOf(
-        Column("Day") { it.meta.number.toString() },
-        // Values
-        Column("Part 1", true) { it.part1Value() },
-        Column("Part 2", true) { it.part2Value() },
-        // Timings
-        Column("Total") { it.totalTime() },
-        Column("Setup") { it.setupTime() },
-        Column("Part 1") { it.part1Time() },
-        Column("Part 2") { it.part2Time() },
-    )
+    private val timings = synchronizedList(mutableListOf<TimedRunner>())
 
-    fun run(meta: DayMeta<ADay>) = TimedRunner(meta).also { timings.add(it); it.run() }.day()
+    fun run(meta: DayMeta<Day>): Day {
+        val runner = TimedRunner(meta)
+        runner.run()
+        timings.add(runner)
+        return runner.day
+    }
 
     fun render() {
-        val sizes = calculateSizes()
 
-        addTitle(sizes)
-        addHeaders()
-        addColumnHeaders(sizes)
-
-        if (timings.size > 0) {
-            timings.sortedBy { it.meta.number }.forEach { addTiming(it) }
-            addLine(sizes.lineSizes, '┴', '└', '┘')
-        } else addNone(sizes)
-        builder.append("Total: " + timeString(timings.sumOf { it.totalTime ?: 0 }))
-
-        print(builder)
-        builder.clear()
-    }
-
-    private fun addTitle(sizes: Sizes) {
-        val title = listOf(cell("* Advent of Code ${aoc.name} *", sizes.totalWidth - 2, Align.CENTER))
-        addLine(title.map { it.length }, '┬', '┌', '┐')
-        add(title)
-    }
-
-    private fun addNone(sizes: Sizes) {
-        val title = listOf(cell("No days have ran.", sizes.totalWidth - 2, Align.CENTER))
-        add(title)
-        addLine(title.map { it.length }, '┴', '└', '┘')
-    }
-
-    private fun addHeaders() {
-        val l = listOf(
-            cell("Day", columns[0].len, Align.CENTER),
-            cell("Answers", columns.subList(1, 3).sumOf { it.len } + 3, Align.CENTER),
-            cell("Timings", columns.subList(3, 7).sumOf { it.len } + 9, Align.CENTER)
-        )
-
-        addLine(l.map { it.length }, '┬')
-        add(l)
-    }
-
-    private fun addColumnHeaders(sizes: Sizes) {
-        addLine(sizes.lineSizes)
-        add(columns.map { cell(it.header, it.len, Align.CENTER) })
-        addLine(sizes.lineSizes)
-    }
-
-    private fun addLine(sizes: List<Int>, sep: Char = '┼', left: Char = '├', right: Char = '┤') {
-        builder
-            .append(join(sizes.map { "─".repeat(it) }, '─', sep, left, right))
-            .appendLine()
-    }
-
-    private fun addTiming(timing: TimedRunner) {
-        add(columns.map {
-            val value = if (it.canHide && aoc.hideAnswers) {
-                "█".repeat(it.len)
-            } else {
-                it.value(timing)
+        val table2 = table {
+            headers {
+                cell { text = "* Advent of Code ${aoc.name} *"; align = CENTER; colspan = 7 }
+            }
+            headers {
+                cell()
+                cell { text = "Answers"; align = CENTER; colspan = 2 }
+                cell { text = "Timings"; align = CENTER; colspan = 4 }
+            }
+            headers {
+                cell { text = "Day"; align = CENTER }
+                cell { text = "Part 1"; align = CENTER }
+                cell { text = "Part 2"; align = CENTER }
+                cell { text = "Total"; align = CENTER }
+                cell { text = "Setup"; align = CENTER }
+                cell { text = "Part 1"; align = CENTER }
+                cell { text = "Part 2"; align = CENTER }
             }
 
-            cell(value, it.len, Align.RIGHT)
-        })
-    }
+            if (timings.isEmpty()) row {
+                cell { text = "No days have run."; colspan = 7 }
+            }
+            else timings.sortedBy { it.day.number }.forEach {
+                row {
+                    cell { text = "${it.day.number}"; align = RIGHT }
+                    cell { text = stringifyNumber(it.part1Value); align = RIGHT }
+                    cell { text = stringifyNumber(it.part2Value); align = RIGHT }
+                    cell { text = timeString(it.totalTime); align = RIGHT }
+                    cell { text = timeString(it.setupTime); align = RIGHT }
+                    cell { text = timeString(it.part1Time); align = RIGHT }
+                    cell { text = timeString(it.part2Time); align = RIGHT }
+                }
+            }
 
-    private fun add(line: List<String>) {
-        builder.append(join(line)).appendLine()
-    }
-
-    private fun cell(value: String, width: Int, align: Align): String = align.render(value, width)
-
-    private fun join(
-        line: List<String>,
-        spacer: Char = ' ',
-        sep: Char = '│',
-        left: Char = sep,
-        right: Char = sep
-    ): String = listOf(
-        "$left$spacer",
-        line.joinToString(separator = "$spacer$sep$spacer"),
-        "$spacer$right"
-    ).joinToString(separator = "")
-
-    private fun calculateSizes(): Sizes {
-        columns.forEach { it.calculate(timings) }
-
-        return Sizes(columns)
-    }
-}
-
-internal enum class Align(val render: (String, Int) -> String) {
-    // LEFT({ value, width -> "$value${space(width - value.length)}" }),
-    RIGHT({ value, width -> "${space(width - value.length)}$value" }),
-    CENTER({ value, width ->
-        val diff = width - value.length
-        val left = diff / 2
-        val right = diff - left
-
-        "${space(left)}$value${space(right)}"
-    })
-}
-
-internal class Column(val header: String, val canHide: Boolean = false, private val get: (TimedRunner) -> String) {
-
-    var len = initial()
-        private set
-
-    private fun initial() = header.length
-
-    fun calculate(timings: List<TimedRunner>): Int {
-        var len = initial()
-
-        timings.forEach {
-            val valLen = get(it).length
-            if (valLen > len) len = valLen
+            aggregate {
+                cell {
+                    text = "Total: " + timeString(timings.sumOf(TimedRunner::totalTime))
+                    align = RIGHT
+                    colspan = 7
+                }
+            }
         }
 
-        this.len = len
-
-        return len
+        println(table2)
     }
-
-    fun value(timing: TimedRunner) = get(timing)
-}
-
-internal class Sizes(private var columns: List<Column>) {
-
-    var totalWidth = totalWidth()
-    var lineSizes = lineSizes()
-
-    private fun totalWidth() = columns.sumOf { it.len } + columns.size * 3 - 1
-
-    private fun lineSizes() = columns.map { it.len }
 }

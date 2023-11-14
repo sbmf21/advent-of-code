@@ -1,11 +1,11 @@
 package nl.sbmf21.aoc15.days;
 
-import nl.sbmf21.aoc.common.ADay;
+import nl.sbmf21.aoc.common.Day;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-public class Day2 extends ADay {
+public class Day2 extends Day {
 
     private final ArrayList<Dimension> dimensions = parseDimensions();
 

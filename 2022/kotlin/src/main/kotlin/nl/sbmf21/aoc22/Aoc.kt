@@ -1,7 +1,7 @@
 package nl.sbmf21.aoc22
 
 import nl.sbmf21.aoc.common.AocBase
-import nl.sbmf21.aoc.common.buildSimulation
+import nl.sbmf21.aoc.common.simulate
 import nl.sbmf21.aoc22.days.simulations.CRT
 import nl.sbmf21.aoc22.days.simulations.Crates
 import nl.sbmf21.aoc22.days.simulations.LavaDroplet
@@ -9,10 +9,10 @@ import nl.sbmf21.aoc22.days.simulations.Snake
 
 class Aoc : AocBase(
     "2022", mapOf(
-        "crates" to buildSimulation(::Crates),
-        "snake" to buildSimulation(::Snake),
-        "crt" to buildSimulation(::CRT),
-        "lava" to buildSimulation(::LavaDroplet),
+        "crates" to simulate(::Crates),
+        "snake" to simulate(::Snake),
+        "crt" to simulate(::CRT),
+        "lava" to simulate(::LavaDroplet),
     )
 )
 

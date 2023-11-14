@@ -1,6 +1,6 @@
 package nl.sbmf21.aoc22.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 import nl.sbmf21.aoc.common.prod
 import nl.sbmf21.aoc22.days.Day19.Blueprint.*
 import nl.sbmf21.aoc22.days.Day19.GeodeState.Minerals
@@ -9,7 +9,7 @@ import nl.sbmf21.aoc22.days.Day19.MineralMiningRobot.*
 import kotlin.math.max
 import kotlin.math.min
 
-class Day19 : ADay() {
+class Day19 : Day() {
 
     private val blueprints = input.map { it.split(" ") }.map { parts ->
         Blueprint(

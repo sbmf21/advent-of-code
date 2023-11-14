@@ -1,8 +1,8 @@
 package nl.sbmf21.aoc22.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 
-class Day6 : ADay() {
+class Day6 : Day() {
 
     private val dataStream = input[0]
 

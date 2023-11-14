@@ -1,6 +1,6 @@
 package nl.sbmf21.aoc22.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 import nl.sbmf21.aoc22.days.Day22.CubeEdge.*
 import nl.sbmf21.aoc22.days.Day22.CubeFace.*
 import nl.sbmf21.aoc22.days.Day22.Direction.*
@@ -10,7 +10,7 @@ import nl.sbmf21.math.Vector2i
 import nl.sbmf21.math.by
 import kotlin.math.abs
 
-class Day22 : ADay() {
+class Day22 : Day() {
 
     private val regex = Regex("(\\d+)([A-Z])?")
     private val actions = buildList {

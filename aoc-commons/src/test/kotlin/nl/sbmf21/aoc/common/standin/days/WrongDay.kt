@@ -1,8 +1,8 @@
 package nl.sbmf21.aoc.common.standin.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 
-class WrongDay : ADay() {
+class WrongDay : Day() {
     override fun part1(): Number {
         TODO("No need :)")
     }

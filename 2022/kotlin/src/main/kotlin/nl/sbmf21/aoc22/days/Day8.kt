@@ -1,9 +1,9 @@
 package nl.sbmf21.aoc22.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 import nl.sbmf21.math.Vector2i
 
-class Day8 : ADay() {
+class Day8 : Day() {
 
     private val grid = input.foldIndexed(mutableListOf<List<Int>>()) { y, grid, row ->
         grid.add(y, row.map { it.toString().toInt() })

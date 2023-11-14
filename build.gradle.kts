@@ -5,9 +5,11 @@ plugins {
 
 group = "nl.sbmf21.aoc"
 
+val asciiTableVersion by extra { "0.3.2" }
 val junitJupiterVersion by extra { "5.10.1" }
 val reflectionsVersion by extra { "0.10.2" }
-val sbmfMathVersion by extra { "1.4.1" }
+val sbmfMathVersion by extra { "1.4.2" }
+val slf4jVersion by extra { "2.0.9" }
 
 repositories {
     mavenCentral()

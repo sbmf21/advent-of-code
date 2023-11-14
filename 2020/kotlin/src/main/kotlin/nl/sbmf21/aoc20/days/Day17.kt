@@ -1,10 +1,10 @@
 package nl.sbmf21.aoc20.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 import nl.sbmf21.math.Vector3i
 import nl.sbmf21.math.Vector4i
 
-class Day17 : ADay() {
+class Day17 : Day() {
 
     private val bootRange = -12..12
     private val neighbors = -1..1

@@ -1,8 +1,8 @@
 package nl.sbmf21.aoc22.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 
-class Day20 : ADay() {
+class Day20 : Day() {
 
     private val numbers = input.mapIndexed { index, value -> MixNumber(index, value.toLong()) }
 

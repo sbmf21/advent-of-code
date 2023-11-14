@@ -1,11 +1,11 @@
 package nl.sbmf21.aoc21.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 import nl.sbmf21.math.Vector2i
 import kotlin.math.ceil
 import kotlin.math.floor
 
-class Day18 : ADay() {
+class Day18 : Day() {
 
     private val list = buildList()
     private var indices = mutableListOf<SFRegular>()

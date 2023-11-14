@@ -50,4 +50,4 @@
     - 2020:kotlin:compile
     - 2020:kotlin:test
   script:
-    - java -jar 2020/kotlin/build/libs/aoc2020-shaded.jar --hide
+    - java -jar 2020/kotlin/build/libs/aoc2020-shaded.jar

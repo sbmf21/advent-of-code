@@ -1,11 +1,11 @@
 package nl.sbmf21.aoc22.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 import nl.sbmf21.aoc.common.mapToInts
 
 private typealias Stack = ArrayDeque<Char>
 
-class Day5 : ADay() {
+class Day5 : Day() {
 
     var store: ((frame: Int, stacks: List<Stack>) -> Unit)? = null
     private val pattern = Regex("move (\\d+) from (\\d+) to (\\d+)")

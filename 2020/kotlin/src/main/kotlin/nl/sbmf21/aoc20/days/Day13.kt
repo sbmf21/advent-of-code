@@ -1,9 +1,9 @@
 package nl.sbmf21.aoc20.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 import nl.sbmf21.aoc.common.chineseRemainder
 
-class Day13 : ADay() {
+class Day13 : Day() {
 
     private val start = input[0].toLong()
     private val regex = Regex("\\d+")

@@ -13,9 +13,15 @@ fun chineseRemainder(n: List<Long>, a: List<Long>): Long {
 }
 
 fun Short.triangular() = (this * (this + 1) / 2).toShort()
+
 fun Int.triangular() = this * (this + 1) / 2
+
 fun Long.triangular() = this * (this + 1) / 2
+
 fun Float.triangular() = this * (this + 1) / 2
+
 fun Double.triangular() = this * (this + 1) / 2
+
 fun UInt.triangular() = this * (this + 1u) / 2u
+
 fun ULong.triangular() = this * (this + 1u) / 2u

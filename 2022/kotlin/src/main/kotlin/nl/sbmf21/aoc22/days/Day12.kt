@@ -1,9 +1,9 @@
 package nl.sbmf21.aoc22.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 import nl.sbmf21.math.Vector2i
 
-class Day12 : ADay() {
+class Day12 : Day() {
 
     private val steps = listOf(
         Vector2i(-1, 0),

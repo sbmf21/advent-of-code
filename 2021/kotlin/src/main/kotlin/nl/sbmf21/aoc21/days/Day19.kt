@@ -1,11 +1,11 @@
 package nl.sbmf21.aoc21.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 import nl.sbmf21.aoc.common.iterated
 import nl.sbmf21.math.Vector3i
 import kotlin.math.abs
 
-class Day19 : ADay() {
+class Day19 : Day() {
 
     private val scannerPattern = Regex("--- scanner (?<id>\\d+) ---")
     private val beaconPattern = Regex("(?<x>-?\\d+),(?<y>-?\\d+),(?<z>-?\\d+)")

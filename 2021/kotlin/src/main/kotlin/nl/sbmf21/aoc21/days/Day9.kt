@@ -1,10 +1,10 @@
 package nl.sbmf21.aoc21.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 import nl.sbmf21.aoc.common.mapToInts
 import nl.sbmf21.aoc.common.prod
 
-class Day9 : ADay() {
+class Day9 : Day() {
 
     private val map = input.fold(mutableListOf<List<Int>>()) { acc, s ->
         acc.add(s.toCharArray().map { it.toString() }.mapToInts()); acc

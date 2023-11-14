@@ -1,13 +1,13 @@
 package nl.sbmf21.aoc15.days;
 
-import nl.sbmf21.aoc.common.ADay;
+import nl.sbmf21.aoc.common.Day;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Day6 extends ADay {
+public class Day6 extends Day {
 
     private final int size = 1000;
     private final String regex = "(?<action>turn|toggle) ((?<switch>on|off) )?(?<sx>\\d+),(?<sy>\\d+) through (?<ex>\\d+),(?<ey>\\d+)";

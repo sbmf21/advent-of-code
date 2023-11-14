@@ -1,10 +1,10 @@
 package nl.sbmf21.aoc21.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 import kotlin.math.ceil
 import kotlin.streams.toList
 
-class Day14 : ADay() {
+class Day14 : Day() {
 
     private val template = input[0]
     private val rules = input.subList(2, input.size).map { it.split(" -> ") }

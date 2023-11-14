@@ -1,11 +1,11 @@
 package nl.sbmf21.aoc20.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 import java.lang.Long.toBinaryString
 import java.math.BigInteger
 import java.util.regex.Pattern
 
-class Day14 : ADay() {
+class Day14 : Day() {
 
     private val regex = Pattern.compile("(?<cmd>mask|mem)(?:\\[(?<mem>\\d+)])? = (?<val>[\\dX]+)")
 

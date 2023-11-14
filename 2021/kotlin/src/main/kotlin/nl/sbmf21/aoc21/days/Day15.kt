@@ -1,10 +1,10 @@
 package nl.sbmf21.aoc21.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 import nl.sbmf21.aoc.common.mapToInts
 import nl.sbmf21.math.Vector2i
 
-class Day15 : ADay() {
+class Day15 : Day() {
 
     private val map = input.map { it.toCharArray().map { c -> "$c" }.mapToInts() }
     private val fatMap = buildFatMap()

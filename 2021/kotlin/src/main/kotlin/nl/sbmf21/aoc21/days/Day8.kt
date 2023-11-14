@@ -1,6 +1,6 @@
 package nl.sbmf21.aoc21.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 
 /*
  * Here are all the calculated digits for part 2. I don't need them all, so I have removed them from the code.
@@ -30,7 +30,7 @@ import nl.sbmf21.aoc.common.ADay
  * val bottomLeft = eight.toCharArray().first { !nine.contains(it) }
  */
 
-class Day8 : ADay() {
+class Day8 : Day() {
 
     private val lines = input.map { it.split("|") }
         .map { Pair(it[0].trim().split(" "), it[1].trim().split(" ")) }

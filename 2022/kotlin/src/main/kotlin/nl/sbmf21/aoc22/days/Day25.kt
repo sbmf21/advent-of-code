@@ -1,8 +1,8 @@
 package nl.sbmf21.aoc22.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 
-class Day25 : ADay() {
+class Day25 : Day() {
 
     override fun part1() = encode(input.map(::decode).sum())
     override fun part2() = 50

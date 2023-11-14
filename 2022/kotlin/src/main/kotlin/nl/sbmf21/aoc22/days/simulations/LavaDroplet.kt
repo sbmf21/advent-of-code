@@ -1,6 +1,8 @@
 package nl.sbmf21.aoc22.days.simulations
 
-import nl.sbmf21.aoc.common.*
+import nl.sbmf21.aoc.common.Color.*
+import nl.sbmf21.aoc.common.Frame
+import nl.sbmf21.aoc.common.Simulation
 import nl.sbmf21.aoc22.days.Day18
 import nl.sbmf21.math.Vector3i
 import java.io.BufferedReader

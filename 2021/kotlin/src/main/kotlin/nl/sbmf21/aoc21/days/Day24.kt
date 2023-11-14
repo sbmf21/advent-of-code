@@ -1,8 +1,8 @@
 package nl.sbmf21.aoc21.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 
-class Day24 : ADay() {
+class Day24 : Day() {
 
     private val instructions = input
         .filterIndexed { index, _ -> index % 18 == 15 || index % 18 == 5 }
