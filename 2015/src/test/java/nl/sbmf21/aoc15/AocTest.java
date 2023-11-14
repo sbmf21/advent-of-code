@@ -3,6 +3,8 @@ package nl.sbmf21.aoc15;
 import nl.sbmf21.aoc.common.Day;
 import nl.sbmf21.aoc.common.DayMeta;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AocTest {
@@ -24,6 +26,10 @@ public class AocTest {
 
     public <T extends Day> T buildDay(Class<T> clazz) {
         return buildDay(clazz, false, null);
+    }
+
+    public <T extends Day> T buildDay(Class<T> clazz, List<String> input) {
+        return new DayMeta<>(clazz).build(input);
     }
 
     public <T extends Day> T buildDay(Class<T> clazz, Boolean example, String filename) {
