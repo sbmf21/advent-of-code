@@ -11,6 +11,10 @@ public class AocTest {
         testDay(clazz, part1, part2, false, null);
     }
 
+    public <T extends Day, A, B> void testDay(Class<T> clazz, A part1, B part2, Boolean example) {
+        testDay(clazz, part1, part2, example, null);
+    }
+
     public <T extends Day, A, B> void testDay(Class<T> clazz, A part1, B part2, Boolean example, String filename) {
         var day = buildDay(clazz, example, filename);
 
