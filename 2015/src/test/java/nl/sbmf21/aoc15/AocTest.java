@@ -32,6 +32,10 @@ public class AocTest {
         return new DayMeta<>(clazz).build(input);
     }
 
+    public <T extends Day> T buildDay(Class<T> clazz, Boolean example) {
+        return new DayMeta<>(clazz).build(example, null);
+    }
+
     public <T extends Day> T buildDay(Class<T> clazz, Boolean example, String filename) {
         return new DayMeta<>(clazz).build(example, filename);
     }
