@@ -1,4 +1,4 @@
-package nl.sbmf21.aoc.common.report
+package nl.sbmf21.aoc.common.table
 
 internal enum class Align {
     CENTER,
