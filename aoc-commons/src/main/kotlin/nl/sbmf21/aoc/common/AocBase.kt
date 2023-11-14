@@ -75,17 +75,17 @@ abstract class AocBase(val name: String, val simulations: Map<String, (AocBase) 
         } else {
             val threads = mutableListOf<Thread>()
             val concurrentDays = Collections.synchronizedList(days.toMutableList())
-            val threadCount = min(days.size, Runtime.getRuntime().availableProcessors())
+            val maxThreads = Runtime.getRuntime().availableProcessors()
+            val threadCount = min(days.size, maxThreads)
 
-            println("Running in $threadCount thread${if (threadCount == 1) "" else "s"}")
             for (t in 1..threadCount) threads.add(thread {
                 while (concurrentDays.isNotEmpty()) report.run(concurrentDays.removeFirst())
             })
             for (thread in threads) thread.join()
-            report()
+            report("$threadCount / $maxThreads")
         }
     }
 
-    private fun report() = report.render()
+    private fun report(threads: String = "1") = report.render(threads)
     private fun makeReport() = Report(this)
 }

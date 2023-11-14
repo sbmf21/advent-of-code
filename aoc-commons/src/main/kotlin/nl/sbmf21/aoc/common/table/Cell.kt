@@ -1,6 +1,6 @@
-package nl.sbmf21.aoc.common.report
+package nl.sbmf21.aoc.common.table
 
-import nl.sbmf21.aoc.common.report.Align.LEFT
+import nl.sbmf21.aoc.common.table.Align.LEFT
 
 internal class Cell {
     var text = ""

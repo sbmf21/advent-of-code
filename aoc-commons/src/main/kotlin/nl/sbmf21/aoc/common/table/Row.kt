@@ -1,6 +1,6 @@
-package nl.sbmf21.aoc.common.report
+package nl.sbmf21.aoc.common.table
 
-internal class Row {
+internal class Row : Line {
 
     private val _cells = mutableListOf<Cell>()
     val cells get() = _cells.toList()
