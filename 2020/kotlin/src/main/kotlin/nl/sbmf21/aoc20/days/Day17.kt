@@ -4,7 +4,7 @@ import nl.sbmf21.aoc.common.ADay
 import nl.sbmf21.math.Vector3i
 import nl.sbmf21.math.Vector4i
 
-class Day17(input: List<String>) : ADay(input) {
+class Day17 : ADay() {
 
     private val bootRange = -12..12
     private val neighbors = -1..1

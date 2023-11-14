@@ -6,7 +6,7 @@ import nl.sbmf21.math.clamp
 import kotlin.math.abs
 import kotlin.math.max
 
-class Day15(input: List<String>) : ADay(input) {
+class Day15 : ADay() {
 
     private val regex = Regex(".*x=(-?\\d+), y=(-?\\d+).*x=(-?\\d+), y=(-?\\d+)")
     private val sensors: List<Pair<Vector2i, Vector2i>> = input

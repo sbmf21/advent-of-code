@@ -3,16 +3,15 @@ package nl.sbmf21.aoc15.days;
 import nl.sbmf21.aoc.common.ADay;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Objects;
 import java.util.function.Consumer;
 
 public class Day3 extends ADay {
 
     private final ArrayList<Direction> directions = parseDirections();
-
-    public Day3(List<String> input) {
-        super(input);
-    }
 
     @Override
     public @NotNull Integer part1() {

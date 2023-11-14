@@ -4,7 +4,7 @@ import nl.sbmf21.aoc.common.ADay
 import java.lang.Integer.max
 import kotlin.math.sign
 
-class Day5(input: List<String>) : ADay(input) {
+class Day5 : ADay() {
 
     private val pattern = Regex("(?<x1>\\d+),(?<y1>\\d+)\\s+->\\s+(?<x2>\\d+),(?<y2>\\d+)")
     private val lines = input.map { pattern.matchEntire(it)!! }

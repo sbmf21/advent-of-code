@@ -4,7 +4,7 @@ import nl.sbmf21.aoc.common.ADay
 import nl.sbmf21.aoc.common.mapToInts
 import nl.sbmf21.math.Vector2i
 
-class Day15(input: List<String>) : ADay(input) {
+class Day15 : ADay() {
 
     private val map = input.map { it.toCharArray().map { c -> "$c" }.mapToInts() }
     private val fatMap = buildFatMap()

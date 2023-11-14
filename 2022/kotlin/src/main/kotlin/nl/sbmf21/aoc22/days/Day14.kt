@@ -8,7 +8,7 @@ import nl.sbmf21.math.towards
 private enum class CaveMaterial { AIR, STONE, SAND; }
 private typealias Cave = MutableMap<Vector2i, CaveMaterial>
 
-class Day14(input: List<String>) : ADay(input) {
+class Day14 : ADay() {
 
     private val paths = input.map { line ->
         line

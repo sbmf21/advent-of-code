@@ -6,7 +6,6 @@ import org.jetbrains.annotations.NotNull;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.util.HashMap;
-import java.util.List;
 
 public class Day4 extends ADay {
 
@@ -15,12 +14,10 @@ public class Day4 extends ADay {
     private final String key;
     private final int max;
 
-    public Day4(List<String> input) throws Exception {
-        super(input);
-
+    public Day4() throws Exception {
         digester = MessageDigest.getInstance("MD5");
-        key = input.get(0);
-        max = Integer.parseInt(input.get(1));
+        key = getInput().get(0);
+        max = Integer.parseInt(getInput().get(1));
     }
 
     @Override

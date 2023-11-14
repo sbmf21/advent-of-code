@@ -4,7 +4,7 @@ import nl.sbmf21.aoc.common.ADay
 import nl.sbmf21.aoc.common.mapToInts
 import nl.sbmf21.math.Vector3i as vec
 
-class Day18(input: List<String>) : ADay(input) {
+class Day18 : ADay() {
 
     var store: ((Set<vec>, Set<vec>, Int, Int, Int, Int, Int, Int) -> Unit)? = null
     private val droplets = input.map { it.split(",").mapToInts() }.mapTo(mutableSetOf()) { vec(it[0], it[1], it[2]) }

@@ -2,7 +2,7 @@ package nl.sbmf21.aoc21.days
 
 import nl.sbmf21.aoc.common.ADay
 
-class Day12(input: List<String>) : ADay(input) {
+class Day12 : ADay() {
 
     private val options = input.asSequence()
         .map { it.split("-") }

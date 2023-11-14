@@ -4,7 +4,7 @@ import nl.sbmf21.aoc.common.ADay
 import nl.sbmf21.aoc.common.mapToInts
 import nl.sbmf21.aoc.common.prod
 
-class Day9(input: List<String>) : ADay(input) {
+class Day9 : ADay() {
 
     private val map = input.fold(mutableListOf<List<Int>>()) { acc, s ->
         acc.add(s.toCharArray().map { it.toString() }.mapToInts()); acc

@@ -30,7 +30,7 @@ import nl.sbmf21.aoc.common.ADay
  * val bottomLeft = eight.toCharArray().first { !nine.contains(it) }
  */
 
-class Day8(input: List<String>) : ADay(input) {
+class Day8 : ADay() {
 
     private val lines = input.map { it.split("|") }
         .map { Pair(it[0].trim().split(" "), it[1].trim().split(" ")) }

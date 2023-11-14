@@ -2,7 +2,7 @@ package nl.sbmf21.aoc22.days
 
 import nl.sbmf21.aoc.common.ADay
 
-class Day20(input: List<String>) : ADay(input) {
+class Day20 : ADay() {
 
     private val numbers = input.mapIndexed { index, value -> MixNumber(index, value.toLong()) }
 
@@ -26,8 +26,8 @@ class Day20(input: List<String>) : ADay(input) {
     private fun groveCoordinate(numbers: List<MixNumber>) = numbers.indexOfFirst { it.value == 0L }.let { start ->
         listOf(1000, 2000, 3000).sumOf { numbers[(start + it) % numbers.size].value }
     }
-}
 
-private data class MixNumber(val index: Int, val value: Long) {
-    operator fun times(other: Long) = MixNumber(index, value * other)
+    private data class MixNumber(val index: Int, val value: Long) {
+        operator fun times(other: Long) = MixNumber(index, value * other)
+    }
 }

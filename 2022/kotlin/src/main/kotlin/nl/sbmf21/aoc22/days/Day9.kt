@@ -4,7 +4,7 @@ import nl.sbmf21.aoc.common.ADay
 import nl.sbmf21.math.Vector2i
 import nl.sbmf21.math.clamp
 
-class Day9(input: List<String>) : ADay(input) {
+class Day9 : ADay() {
 
     var store: ((frame: Int, index: Int, pos: Vector2i) -> Unit)? = null
     private val actions = input
@@ -47,17 +47,17 @@ class Day9(input: List<String>) : ADay(input) {
 
         return visited.size
     }
-}
 
-private data class RopeAction(val direction: RopeDirection, val distance: Int)
+    private data class RopeAction(val direction: RopeDirection, val distance: Int)
 
-private enum class RopeDirection(val string: String, val vec: Vector2i) {
-    UP("U", Vector2i(0, 1)),
-    DOWN("D", Vector2i(0, -1)),
-    LEFT("L", Vector2i(-1, 0)),
-    RIGHT("R", Vector2i(1, 0));
+    private enum class RopeDirection(val string: String, val vec: Vector2i) {
+        UP("U", Vector2i(0, 1)),
+        DOWN("D", Vector2i(0, -1)),
+        LEFT("L", Vector2i(-1, 0)),
+        RIGHT("R", Vector2i(1, 0));
 
-    companion object {
-        fun from(string: String) = entries.first { it.string == string }
+        companion object {
+            fun from(string: String) = entries.first { it.string == string }
+        }
     }
 }

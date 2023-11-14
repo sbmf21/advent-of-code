@@ -3,12 +3,13 @@ package nl.sbmf21.aoc22.days
 import nl.sbmf21.aoc.common.ADay
 import nl.sbmf21.math.Vector2i
 
-class Day8(input: List<String>) : ADay(input) {
+class Day8 : ADay() {
 
     private val grid = input.foldIndexed(mutableListOf<List<Int>>()) { y, grid, row ->
         grid.add(y, row.map { it.toString().toInt() })
         grid
     }.toList()
+
     private val directions = listOf(
         Vector2i(1, 0),
         Vector2i(-1, 0),
@@ -43,7 +44,7 @@ class Day8(input: List<String>) : ADay(input) {
     private fun <T : Any> mapTrees(map: (p: Vector2i, t: Int) -> T) = grid.flatMapIndexed { y: Int, row: List<Int> ->
         row.mapIndexed { x, tree -> map(Vector2i(x, y), tree) }
     }
-}
 
-private operator fun List<List<Int>>.contains(point: Vector2i) =
-    point.y in indices && point.x in this[point.y].indices
+    private operator fun List<List<Int>>.contains(point: Vector2i) =
+        point.y in indices && point.x in this[point.y].indices
+}

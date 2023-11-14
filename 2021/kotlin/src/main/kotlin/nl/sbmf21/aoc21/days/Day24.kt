@@ -2,7 +2,7 @@ package nl.sbmf21.aoc21.days
 
 import nl.sbmf21.aoc.common.ADay
 
-class Day24(input: List<String>) : ADay(input) {
+class Day24 : ADay() {
 
     private val instructions = input
         .filterIndexed { index, _ -> index % 18 == 15 || index % 18 == 5 }

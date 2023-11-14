@@ -4,7 +4,6 @@ import nl.sbmf21.aoc.common.ADay;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -13,10 +12,6 @@ public class Day6 extends ADay {
     private final int size = 1000;
     private final String regex = "(?<action>turn|toggle) ((?<switch>on|off) )?(?<sx>\\d+),(?<sy>\\d+) through (?<ex>\\d+),(?<ey>\\d+)";
     private final Pattern pattern = Pattern.compile(regex);
-
-    public Day6(List<String> input) {
-        super(input);
-    }
 
     @Override
     public @NotNull Integer part1() {

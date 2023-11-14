@@ -6,7 +6,7 @@ import nl.sbmf21.aoc21.days.Day23.AmphiAction.OUT
 import java.util.*
 import kotlin.math.abs
 
-class Day23(input: List<String>) : ADay(input) {
+class Day23 : ADay() {
 
     override fun part1() = calculate(*input.toTypedArray())
     override fun part2() = calculate(*input.aTake(3), "  #D#C#B#A#  ", "  #D#B#A#C#  ", *input.aTakeLast(2))

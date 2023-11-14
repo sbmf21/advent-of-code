@@ -5,7 +5,7 @@ import nl.sbmf21.aoc21.days.Day25.Direction.EAST
 import nl.sbmf21.aoc21.days.Day25.Direction.SOUTH
 import nl.sbmf21.math.Vector2i
 
-class Day25(input: List<String>) : ADay(input) {
+class Day25 : ADay() {
 
     private val map = input.mapIndexed { y, row ->
         row.toCharArray().mapIndexed { x, pos ->

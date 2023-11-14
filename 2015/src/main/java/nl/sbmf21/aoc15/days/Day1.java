@@ -4,15 +4,10 @@ import nl.sbmf21.aoc.common.ADay;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
-import java.util.List;
 
 public class Day1 extends ADay {
 
     private final char[] instructions = parseInstructions();
-
-    public Day1(List<String> input) {
-        super(input);
-    }
 
     @Override
     public @NotNull Integer part1() {

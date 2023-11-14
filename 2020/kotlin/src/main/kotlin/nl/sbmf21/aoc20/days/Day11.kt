@@ -4,7 +4,7 @@ import nl.sbmf21.aoc.common.ADay
 import kotlin.math.max
 import kotlin.math.min
 
-class Day11(input: List<String>) : ADay(input) {
+class Day11 : ADay() {
 
     private val grid = input.map { line -> line.toCharArray().map { it } }
 

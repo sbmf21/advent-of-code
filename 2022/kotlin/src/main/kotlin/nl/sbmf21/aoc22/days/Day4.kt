@@ -3,7 +3,7 @@ package nl.sbmf21.aoc22.days
 import nl.sbmf21.aoc.common.ADay
 import nl.sbmf21.aoc.common.mapToInts
 
-class Day4(input: List<String>) : ADay(input) {
+class Day4 : ADay() {
 
     private val regex = Regex("(\\d+)-(\\d+),(\\d+)-(\\d+)")
 

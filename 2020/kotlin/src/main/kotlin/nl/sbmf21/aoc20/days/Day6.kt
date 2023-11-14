@@ -2,7 +2,7 @@ package nl.sbmf21.aoc20.days
 
 import nl.sbmf21.aoc.common.ADay
 
-class Day6(input: List<String>) : ADay(input) {
+class Day6 : ADay() {
 
     private val lines = input.joinToString(separator = "\n").split("\n\n")
 

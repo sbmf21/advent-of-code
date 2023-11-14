@@ -5,7 +5,7 @@ import nl.sbmf21.aoc.common.mapToInts
 import nl.sbmf21.math.Vector2i
 import kotlin.math.sign
 
-class Day17(input: List<String>) : ADay(input) {
+class Day17 : ADay() {
 
     private val target = input[0].removePrefix("target area: ").split(", ").run {
         val x = this[0].removePrefix("x=").split("..").mapToInts()

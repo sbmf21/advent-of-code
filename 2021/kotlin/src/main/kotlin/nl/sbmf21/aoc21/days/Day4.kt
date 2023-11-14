@@ -4,7 +4,7 @@ import nl.sbmf21.aoc.common.ADay
 import nl.sbmf21.aoc.common.iterated
 import nl.sbmf21.aoc.common.mapToInts
 
-class Day4(input: List<String>) : ADay(input) {
+class Day4 : ADay() {
 
     private val drawn = input[0].split(',').map { it.toInt() }
     private var boards = input.subList(2, input.size).asSequence().filter { it.isNotBlank() }

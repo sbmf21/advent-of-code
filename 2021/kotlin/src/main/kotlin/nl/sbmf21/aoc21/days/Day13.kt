@@ -4,7 +4,7 @@ import nl.sbmf21.aoc.common.ADay
 import nl.sbmf21.aoc.common.aocLetter
 import nl.sbmf21.aoc.common.mapToInts
 
-class Day13(input: List<String>) : ADay(input) {
+class Day13 : ADay() {
 
     private val pattern = Regex("\\d+,\\d+")
     private val dots = input.filter { it.matches(pattern) }.map { it.split(',').mapToInts() }.map { Pair(it[0], it[1]) }

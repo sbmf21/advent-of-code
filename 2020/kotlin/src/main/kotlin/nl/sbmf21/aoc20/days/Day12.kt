@@ -4,7 +4,7 @@ import nl.sbmf21.aoc.common.ADay
 import java.util.regex.Pattern
 import kotlin.math.abs
 
-class Day12(input: List<String>) : ADay(input) {
+class Day12 : ADay() {
 
     private val pattern = Pattern.compile("(?<action>[NSEWLRF])(?<value>\\d+)")
     private val instructions = input.map {

@@ -4,9 +4,7 @@ import nl.sbmf21.aoc.common.ADay
 import java.util.regex.Matcher
 import java.util.regex.Pattern.compile as regex
 
-class Day16(input: List<String>) : ADay(input) {
-
-    // Variables
+class Day16 : ADay() {
 
     private val pattern = regex("(?<key>[a-z ]+): (?<ss>[\\d]+)-(?<se>[\\d]+) or (?<es>[\\d]+)-(?<ee>[\\d+]+)")
     private val tickets = ticketList("nearby tickets:")
@@ -16,15 +14,12 @@ class Day16(input: List<String>) : ADay(input) {
         .filter { it.matches() }
         .map { TicketRule(it) }
 
-    // Puzzles
-
     override fun part1() = tickets
         .map { t -> t.filter { f -> rules.none { it.matches(f) } } }
         .flatten()
         .sum()
 
     override fun part2(): Long {
-
         val tickets = tickets.filter { t -> t.none { f -> rules.none { it.matches(f) } } }
         val position = rules
             .associateBy({ it.key }, {
@@ -59,20 +54,18 @@ class Day16(input: List<String>) : ADay(input) {
             .reduce { acc, x -> acc * x }
     }
 
-    // Helpers
-
     private fun ticketList(prefix: String, single: Boolean = false) = input
         .subList(index(prefix), if (single) index(prefix) + 1 else input.size)
         .map { t -> t.split(',').map { it.toInt() } }
 
     private fun index(prefix: String) = input.indexOf(prefix) + 1
-}
 
-internal class TicketRule(matcher: Matcher) {
+    private class TicketRule(matcher: Matcher) {
 
-    val key = matcher.group("key")!!
-    private val range1 = matcher.group("ss").toInt()..matcher.group("se").toInt()
-    private val range2 = matcher.group("es").toInt()..matcher.group("ee").toInt()
+        val key = matcher.group("key")!!
+        private val range1 = matcher.group("ss").toInt()..matcher.group("se").toInt()
+        private val range2 = matcher.group("es").toInt()..matcher.group("ee").toInt()
 
-    fun matches(field: Int) = field in range1 || field in range2
+        fun matches(field: Int) = field in range1 || field in range2
+    }
 }

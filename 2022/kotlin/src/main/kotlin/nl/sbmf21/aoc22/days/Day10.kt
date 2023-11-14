@@ -4,7 +4,7 @@ import nl.sbmf21.aoc.common.ADay
 import nl.sbmf21.aoc.common.aocLetter
 import kotlin.math.floor
 
-class Day10(input: List<String>) : ADay(input) {
+class Day10 : ADay() {
 
     var store: ((
         cycle: Int,

@@ -4,7 +4,7 @@ import nl.sbmf21.aoc.common.ADay
 import kotlin.math.ceil
 import kotlin.streams.toList
 
-class Day14(input: List<String>) : ADay(input) {
+class Day14 : ADay() {
 
     private val template = input[0]
     private val rules = input.subList(2, input.size).map { it.split(" -> ") }
