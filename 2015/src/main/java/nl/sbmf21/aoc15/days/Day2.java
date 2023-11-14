@@ -4,15 +4,10 @@ import nl.sbmf21.aoc.common.ADay;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Day2 extends ADay {
 
     private final ArrayList<Dimension> dimensions = parseDimensions();
-
-    public Day2(List<String> input) {
-        super(input);
-    }
 
     @Override
     public @NotNull Integer part1() {

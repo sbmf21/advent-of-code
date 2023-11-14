@@ -2,7 +2,7 @@ package nl.sbmf21.aoc21.days
 
 import nl.sbmf21.aoc.common.ADay
 
-class Day21(input: List<String>) : ADay(input) {
+class Day21 : ADay() {
 
     private val playerRegex = Regex("Player \\d+ starting position: (?<pos>\\d+)")
     private val players = input.map { playerRegex.matchEntire(it)!! }.map { Player(it.toInt("pos")) }

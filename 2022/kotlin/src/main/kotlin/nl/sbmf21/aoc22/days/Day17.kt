@@ -1,10 +1,10 @@
 package nl.sbmf21.aoc22.days
 
 import nl.sbmf21.aoc.common.ADay
-import nl.sbmf21.aoc.common.by
 import nl.sbmf21.math.Vector2l
+import nl.sbmf21.math.by
 
-class Day17(input: List<String>) : ADay(input) {
+class Day17 : ADay() {
 
     private companion object {
         val left = Vector2l(-1, 0)

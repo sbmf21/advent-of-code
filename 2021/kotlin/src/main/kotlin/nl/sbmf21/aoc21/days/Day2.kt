@@ -2,7 +2,7 @@ package nl.sbmf21.aoc21.days
 
 import nl.sbmf21.aoc.common.ADay
 
-class Day2(input: List<String>) : ADay(input) {
+class Day2 : ADay() {
 
     private val actions = input.map { it.split(' ') }.map { Pair(it[0], it[1].toInt()) }
 

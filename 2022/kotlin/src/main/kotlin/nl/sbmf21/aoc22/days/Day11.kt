@@ -2,7 +2,7 @@ package nl.sbmf21.aoc22.days
 
 import nl.sbmf21.aoc.common.ADay
 
-class Day11(input: List<String>) : ADay(input) {
+class Day11 : ADay() {
 
     private val monkeys: List<Monkey>
     private val mod: ULong
@@ -51,38 +51,38 @@ class Day11(input: List<String>) : ADay(input) {
         monkeys = monkeys.sortedByDescending { it.inspections }
         return monkeys[0].inspections * monkeys[1].inspections
     }
-}
 
-private class Monkey(
-    val items: MutableList<MonkeyItem>,
-    private val operation: MonkeyOperation,
-    private val test: (MonkeyItem) -> Boolean,
-    private val trueTo: Int,
-    private val falseTo: Int,
-) {
-    var inspections: Long = 0
-        private set
+    private class Monkey(
+        val items: MutableList<MonkeyItem>,
+        private val operation: MonkeyOperation,
+        private val test: (MonkeyItem) -> Boolean,
+        private val trueTo: Int,
+        private val falseTo: Int,
+    ) {
+        var inspections: Long = 0
+            private set
 
-    fun inspect(item: MonkeyItem) {
-        inspections++
-        operation(item)
+        fun inspect(item: MonkeyItem) {
+            inspections++
+            operation(item)
+        }
+
+        fun to(item: MonkeyItem) = if (test(item)) trueTo else falseTo
+
+        fun copy() = Monkey(items.map { it.copy() }.toMutableList(), operation, test, trueTo, falseTo)
     }
 
-    fun to(item: MonkeyItem) = if (test(item)) trueTo else falseTo
+    private class MonkeyItem(var worryLevel: ULong) {
+        fun copy(): MonkeyItem = MonkeyItem(worryLevel)
+    }
 
-    fun copy() = Monkey(items.map { it.copy() }.toMutableList(), operation, test, trueTo, falseTo)
-}
+    private class MonkeyOperation(by: String, private val run: (ULong, ULong) -> ULong) {
 
-private class MonkeyItem(var worryLevel: ULong) {
-    fun copy(): MonkeyItem = MonkeyItem(worryLevel)
-}
+        val old = by == "old"
+        val by = if (old) 0UL else by.toULong()
 
-private class MonkeyOperation(by: String, private val run: (ULong, ULong) -> ULong) {
-
-    val old = by == "old"
-    val by = if (old) 0UL else by.toULong()
-
-    operator fun invoke(item: MonkeyItem) {
-        item.worryLevel = run(item.worryLevel, if (old) item.worryLevel else by)
+        operator fun invoke(item: MonkeyItem) {
+            item.worryLevel = run(item.worryLevel, if (old) item.worryLevel else by)
+        }
     }
 }

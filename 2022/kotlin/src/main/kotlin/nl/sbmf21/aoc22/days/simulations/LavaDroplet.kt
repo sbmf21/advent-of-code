@@ -44,43 +44,43 @@ class LavaDroplet(day: Day18) : Simulation<Day18>() {
 
         super.simulate()
     }
-}
 
-private class DropletFrameData(
-    droplets: Set<Vector3i>,
-    steam: Set<Vector3i>,
-    maxX: Int,
-    minX: Int,
-    maxY: Int,
-    minY: Int,
-    maxZ: Int,
-    minZ: Int
-) {
-    val frames: Map<Int, DropletFrame>
+    private class DropletFrameData(
+        droplets: Set<Vector3i>,
+        steam: Set<Vector3i>,
+        maxX: Int,
+        minX: Int,
+        maxY: Int,
+        minY: Int,
+        maxZ: Int,
+        minZ: Int,
+    ) {
+        val frames: Map<Int, DropletFrame>
 
-    init {
-        val frames = mutableMapOf<Int, DropletFrame>()
+        init {
+            val frames = mutableMapOf<Int, DropletFrame>()
 
-        for (z in minZ..maxZ) {
-            val lines = mutableListOf<String>()
-            for (y in maxY downTo minY) {
-                var line = ""
-                for (x in minX..maxX) {
-                    val vec = Vector3i(x, y, z)
-                    line += when (vec) {
-                        in droplets -> "$BACK_DARK_RED  "
-                        in steam -> "$BACK_WHITE  "
-                        else -> "$BACK_BLACK  "
+            for (z in minZ..maxZ) {
+                val lines = mutableListOf<String>()
+                for (y in maxY downTo minY) {
+                    var line = ""
+                    for (x in minX..maxX) {
+                        val vec = Vector3i(x, y, z)
+                        line += when (vec) {
+                            in droplets -> "$BACK_DARK_RED  "
+                            in steam -> "$BACK_WHITE  "
+                            else -> "$BACK_BLACK  "
+                        }
                     }
+                    line += RESET
+                    lines.add(line)
                 }
-                line += RESET
-                lines.add(line)
+                frames[z] = DropletFrame(lines.joinToString("\n"))
             }
-            frames[z] = DropletFrame(lines.joinToString("\n"))
+
+            this.frames = frames
         }
-
-        this.frames = frames
     }
-}
 
-private class DropletFrame(override val content: String) : Frame()
+    private class DropletFrame(override val content: String) : Frame()
+}

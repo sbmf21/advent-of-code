@@ -4,7 +4,7 @@ import nl.sbmf21.aoc.common.ADay
 import nl.sbmf21.aoc.common.prod
 import kotlin.math.min
 
-class Day13(input: List<String>) : ADay(input) {
+class Day13 : ADay() {
 
     private val comparator = PacketCompare()
     private val packets = input.chunked(3).map { Pair(Packet.from(it[0]), Packet.from(it[1])) }
@@ -20,57 +20,58 @@ class Day13(input: List<String>) : ADay(input) {
         .sortedWith(comparator)
         .mapIndexedNotNull { index, packet -> if (packet.divider) index + 1 else null }
         .prod()
-}
 
-private class Packet(val parent: Packet? = null, val divider: Boolean = false) : MutableList<Any> by mutableListOf() {
-    companion object {
-        fun from(line: String, divider: Boolean = false): Packet {
-            val root = Packet(divider = divider)
-            var current: Packet = root
-            var sameList = false
+    private class Packet(val parent: Packet? = null, val divider: Boolean = false) :
+        MutableList<Any> by mutableListOf() {
+        companion object {
+            fun from(line: String, divider: Boolean = false): Packet {
+                val root = Packet(divider = divider)
+                var current: Packet = root
+                var sameList = false
 
-            var i = 1
-            while (i < line.length) {
-                var c = line[i++]
+                var i = 1
+                while (i < line.length) {
+                    var c = line[i++]
 
-                var number = ""
-                while (c in '0'..'9') {
-                    number += c
-                    c = line[i++]
-                }
-                if (number.isNotEmpty()) current.add(number.toInt())
-
-                when (c) {
-                    '[' -> Packet(parent = if (sameList) current.parent else current).also {
-                        sameList = false
-                        current.add(it)
-                        current = it
+                    var number = ""
+                    while (c in '0'..'9') {
+                        number += c
+                        c = line[i++]
                     }
+                    if (number.isNotEmpty()) current.add(number.toInt())
 
-                    ']' -> current.parent?.also { current = it }
-                    ',' -> sameList = true
+                    when (c) {
+                        '[' -> Packet(parent = if (sameList) current.parent else current).also {
+                            sameList = false
+                            current.add(it)
+                            current = it
+                        }
+
+                        ']' -> current.parent?.also { current = it }
+                        ',' -> sameList = true
+                    }
                 }
+                return root
             }
-            return root
         }
     }
-}
 
-private class PacketCompare : Comparator<List<*>> {
-    override fun compare(left: List<*>, right: List<*>): Int {
-        for (i in 0 until min(left.size, right.size)) {
-            var cLeft = left[i]
-            var cRight = right[i]
+    private class PacketCompare : Comparator<List<*>> {
+        override fun compare(left: List<*>, right: List<*>): Int {
+            for (i in 0 until min(left.size, right.size)) {
+                var cLeft = left[i]
+                var cRight = right[i]
 
-            if (cLeft is Int && cRight is Int)
-                return if (cLeft < cRight) -1
-                else if (cLeft > cRight) 1
-                else continue
-            else if (cLeft is Int) cLeft = listOf(cLeft)
-            else if (cRight is Int) cRight = listOf(cRight)
+                if (cLeft is Int && cRight is Int)
+                    return if (cLeft < cRight) -1
+                    else if (cLeft > cRight) 1
+                    else continue
+                else if (cLeft is Int) cLeft = listOf(cLeft)
+                else if (cRight is Int) cRight = listOf(cRight)
 
-            compare(cLeft as List<*>, cRight as List<*>).also { if (it != 0) return it }
+                compare(cLeft as List<*>, cRight as List<*>).also { if (it != 0) return it }
+            }
+            return left.size.compareTo(right.size)
         }
-        return left.size.compareTo(right.size)
     }
 }

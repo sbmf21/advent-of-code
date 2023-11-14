@@ -5,7 +5,7 @@ import nl.sbmf21.aoc.common.iterated
 import nl.sbmf21.math.Vector3i
 import kotlin.math.abs
 
-class Day19(input: List<String>) : ADay(input) {
+class Day19 : ADay() {
 
     private val scannerPattern = Regex("--- scanner (?<id>\\d+) ---")
     private val beaconPattern = Regex("(?<x>-?\\d+),(?<y>-?\\d+),(?<z>-?\\d+)")

@@ -4,7 +4,7 @@ import nl.sbmf21.aoc.common.ADay
 import nl.sbmf21.aoc.common.iterated
 import nl.sbmf21.aoc.common.mapToInts
 
-class Day19(input: List<String>) : ADay(input) {
+class Day19 : ADay() {
 
     private val pattern = Regex("(\\d+):\\s(.+)")
     private val simplePattern = Regex("\".+\"")
@@ -53,18 +53,18 @@ class Day19(input: List<String>) : ADay(input) {
 
         return rules.toMap()
     }
-}
 
-internal interface BaseRule {
-    fun matches(message: String, index: Int): Int?
-}
+    private interface BaseRule {
+        fun matches(message: String, index: Int): Int?
+    }
 
-internal data class MessageRule(val match: Char) : BaseRule {
-    override fun matches(message: String, index: Int) = if (message[index] == match) index + 1 else null
-}
+    private data class MessageRule(val match: Char) : BaseRule {
+        override fun matches(message: String, index: Int) = if (message[index] == match) index + 1 else null
+    }
 
-internal data class RuleRule(val match: List<List<BaseRule>>) : BaseRule {
-    override fun matches(message: String, index: Int) = match.firstNotNullOfOrNull {
-        it.fold(index) { acc: Int?, r -> if (acc != null) r.matches(message, acc) else null }
+    private data class RuleRule(val match: List<List<BaseRule>>) : BaseRule {
+        override fun matches(message: String, index: Int) = match.firstNotNullOfOrNull {
+            it.fold(index) { acc: Int?, r -> if (acc != null) r.matches(message, acc) else null }
+        }
     }
 }

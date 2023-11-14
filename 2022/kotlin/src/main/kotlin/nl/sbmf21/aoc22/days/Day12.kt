@@ -3,14 +3,14 @@ package nl.sbmf21.aoc22.days
 import nl.sbmf21.aoc.common.ADay
 import nl.sbmf21.math.Vector2i
 
-private val steps = listOf(
-    Vector2i(-1, 0),
-    Vector2i(1, 0),
-    Vector2i(0, -1),
-    Vector2i(0, 1),
-)
+class Day12 : ADay() {
 
-class Day12(input: List<String>) : ADay(input) {
+    private val steps = listOf(
+        Vector2i(-1, 0),
+        Vector2i(1, 0),
+        Vector2i(0, -1),
+        Vector2i(0, 1),
+    )
 
     private lateinit var start: Vector2i
     private lateinit var target: Vector2i

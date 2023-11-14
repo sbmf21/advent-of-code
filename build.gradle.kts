@@ -7,7 +7,7 @@ group = "nl.sbmf21.aoc"
 
 val junitJupiterVersion by extra { "5.10.1" }
 val reflectionsVersion by extra { "0.10.2" }
-val sbmfMathVersion by extra { "1.4.0" }
+val sbmfMathVersion by extra { "1.4.1" }
 
 repositories {
     mavenCentral()

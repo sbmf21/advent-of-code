@@ -5,7 +5,7 @@ import nl.sbmf21.aoc.common.ADay
 internal typealias OctoMap = List<MutableList<Int>>
 internal typealias FlashMap = List<MutableList<Boolean>>
 
-class Day11(input: List<String>) : ADay(input) {
+class Day11 : ADay() {
 
     override fun part1(): Int {
         val octi = mapOctopodes()

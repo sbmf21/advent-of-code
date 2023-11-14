@@ -5,7 +5,7 @@ import nl.sbmf21.aoc.common.mapToInts
 
 private typealias Stack = ArrayDeque<Char>
 
-class Day5(input: List<String>) : ADay(input) {
+class Day5 : ADay() {
 
     var store: ((frame: Int, stacks: List<Stack>) -> Unit)? = null
     private val pattern = Regex("move (\\d+) from (\\d+) to (\\d+)")

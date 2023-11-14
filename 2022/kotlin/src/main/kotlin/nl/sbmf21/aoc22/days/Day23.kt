@@ -1,18 +1,19 @@
 package nl.sbmf21.aoc22.days
 
 import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.math.Vector2i
+import nl.sbmf21.math.by
 import kotlin.math.abs
-import nl.sbmf21.math.Vector2i as vec
 
-class Day23(input: List<String>) : ADay(input) {
+class Day23 : ADay() {
 
     private class Elf
 
     private val directions = listOf(
-        /* N */ vec(0, -1) to listOf(vec(-1, -1), vec(0, -1), vec(1, -1)),
-        /* S */ vec(0, 1) to listOf(vec(-1, 1), vec(0, 1), vec(1, 1)),
-        /* W */ vec(-1, 0) to listOf(vec(-1, 1), vec(-1, 0), vec(-1, -1)),
-        /* E */ vec(1, 0) to listOf(vec(1, 1), vec(1, 0), vec(1, -1)),
+        /* N */ 0 by -1 to listOf(-1 by -1, 0 by -1, 1 by -1),
+        /* S */ 0 by 1 to listOf(-1 by 1, 0 by 1, 1 by 1),
+        /* W */ -1 by 0 to listOf(-1 by 1, -1 by 0, -1 by -1),
+        /* E */ 1 by 0 to listOf(1 by 1, 1 by 0, 1 by -1),
     )
     private val directionChecks = directions.flatMap { (_, checks) -> checks }.distinct()
 
@@ -28,7 +29,7 @@ class Day23(input: List<String>) : ADay(input) {
         if (!moved) return round
     }
 
-    private inline fun run(check: (Map<vec, Elf>, Int, Boolean) -> Unit): Int {
+    private inline fun run(check: (Map<Vector2i, Elf>, Int, Boolean) -> Unit): Int {
         val grid = getGrid()
         var directionIndex = 0
         var round = 0
@@ -36,7 +37,7 @@ class Day23(input: List<String>) : ADay(input) {
         var moved = true
 
         while (true) {
-            val proposals = mutableMapOf<Elf, vec>()
+            val proposals = mutableMapOf<Elf, Vector2i>()
 
             grid.forEach { (pos, elf) ->
                 for (i in 0..3) {
@@ -63,7 +64,7 @@ class Day23(input: List<String>) : ADay(input) {
         }
     }
 
-    private fun getGrid() = input.foldIndexed(mutableMapOf<vec, Elf>()) { y, map, line ->
-        line.forEachIndexed { x, c -> if (c == '#') map[vec(x, y)] = Elf() }; map
+    private fun getGrid() = input.foldIndexed(mutableMapOf<Vector2i, Elf>()) { y, map, line ->
+        line.forEachIndexed { x, c -> if (c == '#') map[x by y] = Elf() }; map
     }
 }

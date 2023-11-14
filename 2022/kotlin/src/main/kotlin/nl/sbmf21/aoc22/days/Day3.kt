@@ -2,7 +2,7 @@ package nl.sbmf21.aoc22.days
 
 import nl.sbmf21.aoc.common.ADay
 
-class Day3(input: List<String>) : ADay(input) {
+class Day3 : ADay() {
 
     override fun part1() = input.sumOf { items ->
         prio(items.substring(0, items.length / 2).first { items.substring(items.length / 2).contains(it) })

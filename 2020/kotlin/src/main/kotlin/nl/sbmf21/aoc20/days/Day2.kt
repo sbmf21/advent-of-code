@@ -4,7 +4,7 @@ import nl.sbmf21.aoc.common.ADay
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
-class Day2(input: List<String>) : ADay(input) {
+class Day2 : ADay() {
 
     private val pattern = Pattern.compile("(?<min>\\d+)-(?<max>\\d+)\\s(?<char>[a-z]):\\s(?<password>[a-z]+)")
     private val rules = input.map { pattern.matcher(it) }.filter { it.matches() }

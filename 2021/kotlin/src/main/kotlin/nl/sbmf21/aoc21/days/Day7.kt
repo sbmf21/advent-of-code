@@ -5,7 +5,7 @@ import nl.sbmf21.aoc.common.mapToInts
 import nl.sbmf21.aoc.common.triangular
 import kotlin.math.abs
 
-class Day7(input: List<String>) : ADay(input) {
+class Day7 : ADay() {
 
     private val crabs = input[0].split(",").mapToInts().sorted()
     private val crabRange = crabs.minOf { it }..crabs.maxOf { it }

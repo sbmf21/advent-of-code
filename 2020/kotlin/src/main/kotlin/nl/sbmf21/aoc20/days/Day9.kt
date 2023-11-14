@@ -2,7 +2,7 @@ package nl.sbmf21.aoc20.days
 
 import nl.sbmf21.aoc.common.ADay
 
-class Day9(input: List<String>) : ADay(input) {
+class Day9 : ADay() {
 
     private val numbers = input.map { it.toLong() }
 

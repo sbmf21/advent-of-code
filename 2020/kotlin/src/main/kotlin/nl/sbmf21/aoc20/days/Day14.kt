@@ -5,7 +5,7 @@ import java.lang.Long.toBinaryString
 import java.math.BigInteger
 import java.util.regex.Pattern
 
-class Day14(input: List<String>) : ADay(input) {
+class Day14 : ADay() {
 
     private val regex = Pattern.compile("(?<cmd>mask|mem)(?:\\[(?<mem>\\d+)])? = (?<val>[\\dX]+)")
 

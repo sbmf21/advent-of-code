@@ -3,7 +3,7 @@ package nl.sbmf21.aoc21.days
 import nl.sbmf21.aoc.common.ADay
 import nl.sbmf21.aoc.common.mapToInts
 
-class Day6(input: List<String>) : ADay(input) {
+class Day6 : ADay() {
 
     private val fish = input[0].split(",").mapToInts()
 

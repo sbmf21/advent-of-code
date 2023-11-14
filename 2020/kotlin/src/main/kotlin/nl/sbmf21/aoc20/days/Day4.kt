@@ -3,7 +3,7 @@ package nl.sbmf21.aoc20.days
 import nl.sbmf21.aoc.common.ADay
 import java.util.regex.Pattern
 
-class Day4(input: List<String>) : ADay(input) {
+class Day4 : ADay() {
 
     private val passports = parsePassports()
 
@@ -33,26 +33,28 @@ class Day4(input: List<String>) : ADay(input) {
 
     private fun hasValidFields(passport: String) =
         Rules.entries.filter { it.isValid(passport) }.size == Rules.entries.size
-}
 
-internal enum class Rules(private var pattern: String, private val validate: (String) -> Boolean = { _ -> true }) {
-    BYR("\\d{4}", { it.toInt() in 1920..2002 }),
-    IYR("\\d{4}", { it.toInt() in 2010..2020 }),
-    EYR("\\d{4}", { it.toInt() in 2020..2030 }),
-    HGT("\\d{3}cm|\\d{2}in", {
-        when (Regex("cm|in").find(it)?.value) {
-            "cm" -> findNumber(it) in 150..193
-            else -> findNumber(it) in 59..76
+    private companion object {
+        fun findNumber(value: String) = Regex("\\d*").find(value)?.value?.toInt()!!
+    }
+
+    private enum class Rules(private var pattern: String, private val validate: (String) -> Boolean = { _ -> true }) {
+        BYR("\\d{4}", { it.toInt() in 1920..2002 }),
+        IYR("\\d{4}", { it.toInt() in 2010..2020 }),
+        EYR("\\d{4}", { it.toInt() in 2020..2030 }),
+        HGT("\\d{3}cm|\\d{2}in", {
+            when (Regex("cm|in").find(it)?.value) {
+                "cm" -> findNumber(it) in 150..193
+                else -> findNumber(it) in 59..76
+            }
+        }),
+        HCL("#[\\da-f]{6}"),
+        ECL("amb|blu|brn|gry|grn|hzl|oth"),
+        PID("\\d{9}");
+
+        fun isValid(passport: String): Boolean {
+            val matcher = Pattern.compile("${this.name.lowercase()}:(?<value>$pattern) ").matcher("$passport ")
+            return if (matcher.find()) validate(matcher.group("value")) else false
         }
-    }),
-    HCL("#[\\da-f]{6}"),
-    ECL("amb|blu|brn|gry|grn|hzl|oth"),
-    PID("\\d{9}");
-
-    fun isValid(passport: String): Boolean {
-        val matcher = Pattern.compile("${this.name.lowercase()}:(?<value>$pattern) ").matcher("$passport ")
-        return if (matcher.find()) validate(matcher.group("value")) else false
     }
 }
-
-internal fun findNumber(value: String) = Regex("\\d*").find(value)?.value?.toInt()!!

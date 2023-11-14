@@ -2,7 +2,7 @@ package nl.sbmf21.aoc22.days
 
 import nl.sbmf21.aoc.common.ADay
 
-class Day7(input: List<String>) : ADay(input) {
+class Day7 : ADay() {
 
     private val root: Dir = mapFileStructure()
     private val directories: List<Dir> = getDirectories(root).sortedBy { it.size }
@@ -50,29 +50,29 @@ class Day7(input: List<String>) : ADay(input) {
         for (file in dir.files.filterIsInstance<Dir>()) size += getSizesBelow100k(file)
         return size
     }
-}
 
-private class Command(input: String) {
-    val command: String
-    val arg: String?
-    val output = mutableListOf<String>()
+    private class Command(input: String) {
+        val command: String
+        val arg: String?
+        val output = mutableListOf<String>()
 
-    init {
-        val data = input.split(" ", limit = 2)
-        command = data[0]
-        arg = if (data.size > 1) data[1] else null
+        init {
+            val data = input.split(" ", limit = 2)
+            command = data[0]
+            arg = if (data.size > 1) data[1] else null
+        }
     }
-}
 
-private interface FileData {
-    val size: Int
-}
+    private interface FileData {
+        val size: Int
+    }
 
-@Suppress("unused") // name and parent are unused, but I like 'em
-private class File(val name: String, override val size: Int, val parent: Dir) : FileData
+    @Suppress("unused") // name and parent are unused, but I like 'em
+    private class File(val name: String, override val size: Int, val parent: Dir) : FileData
 
-private class Dir(val name: String, val parent: Dir? = null) : FileData {
-    val files = mutableListOf<FileData>()
+    private class Dir(val name: String, val parent: Dir? = null) : FileData {
+        val files = mutableListOf<FileData>()
 
-    override val size: Int get() = files.sumOf { it.size }
+        override val size: Int get() = files.sumOf { it.size }
+    }
 }

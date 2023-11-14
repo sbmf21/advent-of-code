@@ -1,48 +1,10 @@
 package nl.sbmf21.aoc22.days
 
 import nl.sbmf21.aoc.common.ADay
-import nl.sbmf21.aoc22.days.Action.*
-import nl.sbmf21.aoc22.days.RockPaperScissor.*
+import nl.sbmf21.aoc22.days.Day2.Action.*
+import nl.sbmf21.aoc22.days.Day2.RockPaperScissor.*
 
-private enum class RockPaperScissor(val score: Int) {
-    ROCK(1),
-    PAPER(2),
-    SCISSOR(3);
-
-    fun beats(other: RockPaperScissor): Boolean {
-        return other == when (this) {
-            ROCK -> SCISSOR
-            PAPER -> ROCK
-            SCISSOR -> PAPER
-        }
-    }
-
-    companion object {
-        fun from(input: String) = when (input) {
-            "A", "X" -> ROCK
-            "B", "Y" -> PAPER
-            "C", "Z" -> SCISSOR
-            else -> throw Error()
-        }
-    }
-}
-
-private enum class Action(val score: Int) {
-    LOSE(0),
-    DRAW(3),
-    WIN(6);
-
-    companion object {
-        fun from(input: String) = when (input) {
-            "X" -> LOSE
-            "Y" -> DRAW
-            "Z" -> WIN
-            else -> throw Error()
-        }
-    }
-}
-
-class Day2(input: List<String>) : ADay(input) {
+class Day2 : ADay() {
 
     override fun part1() = input.sumOf {
         val round = it.split(" ", limit = 2).run {
@@ -78,5 +40,43 @@ class Day2(input: List<String>) : ADay(input) {
         }
 
         round.second.score + choice.score
+    }
+
+    private enum class RockPaperScissor(val score: Int) {
+        ROCK(1),
+        PAPER(2),
+        SCISSOR(3);
+
+        fun beats(other: RockPaperScissor): Boolean {
+            return other == when (this) {
+                ROCK -> SCISSOR
+                PAPER -> ROCK
+                SCISSOR -> PAPER
+            }
+        }
+
+        companion object {
+            fun from(input: String) = when (input) {
+                "A", "X" -> ROCK
+                "B", "Y" -> PAPER
+                "C", "Z" -> SCISSOR
+                else -> throw Error()
+            }
+        }
+    }
+
+    private enum class Action(val score: Int) {
+        LOSE(0),
+        DRAW(3),
+        WIN(6);
+
+        companion object {
+            fun from(input: String) = when (input) {
+                "X" -> LOSE
+                "Y" -> DRAW
+                "Z" -> WIN
+                else -> throw Error()
+            }
+        }
     }
 }

@@ -5,7 +5,7 @@ import nl.sbmf21.math.Vector2i
 import kotlin.math.ceil
 import kotlin.math.floor
 
-class Day18(input: List<String>) : ADay(input) {
+class Day18 : ADay() {
 
     private val list = buildList()
     private var indices = mutableListOf<SFRegular>()
