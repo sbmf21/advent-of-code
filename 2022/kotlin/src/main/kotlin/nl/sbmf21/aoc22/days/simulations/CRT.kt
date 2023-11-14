@@ -1,6 +1,9 @@
 package nl.sbmf21.aoc22.days.simulations
 
-import nl.sbmf21.aoc.common.*
+import nl.sbmf21.aoc.common.Color
+import nl.sbmf21.aoc.common.Color.*
+import nl.sbmf21.aoc.common.Frame
+import nl.sbmf21.aoc.common.Simulation
 import nl.sbmf21.aoc22.days.Day10
 
 class CRT(day: Day10) : Simulation<Day10>() {
@@ -73,7 +76,7 @@ class CRT(day: Day10) : Simulation<Day10>() {
 
         private fun line(vararg list: String) = line(list.joinToString(", "))
 
-        private fun color(expected: Int, actual: Int): String {
+        private fun color(expected: Int, actual: Int): Color {
             return if (expected == actual) WHITE else GRAY
         }
 

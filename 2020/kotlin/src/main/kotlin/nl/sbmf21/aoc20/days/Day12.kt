@@ -1,10 +1,10 @@
 package nl.sbmf21.aoc20.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 import java.util.regex.Pattern
 import kotlin.math.abs
 
-class Day12 : ADay() {
+class Day12 : Day() {
 
     private val pattern = Pattern.compile("(?<action>[NSEWLRF])(?<value>\\d+)")
     private val instructions = input.map {

@@ -1,8 +1,8 @@
 package nl.sbmf21.aoc22.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 
-class Day11 : ADay() {
+class Day11 : Day() {
 
     private val monkeys: List<Monkey>
     private val mod: ULong

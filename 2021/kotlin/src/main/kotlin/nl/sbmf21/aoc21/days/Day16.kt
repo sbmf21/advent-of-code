@@ -1,8 +1,8 @@
 package nl.sbmf21.aoc21.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 
-class Day16 : ADay() {
+class Day16 : Day() {
 
     private val packet = BitsPacket(input[0].map { "$it".toInt(16).toString(2).padStart(4, '0') }.joinToString(""))
 

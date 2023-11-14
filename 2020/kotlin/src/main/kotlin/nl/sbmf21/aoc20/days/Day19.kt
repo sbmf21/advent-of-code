@@ -1,10 +1,10 @@
 package nl.sbmf21.aoc20.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 import nl.sbmf21.aoc.common.iterated
 import nl.sbmf21.aoc.common.mapToInts
 
-class Day19 : ADay() {
+class Day19 : Day() {
 
     private val pattern = Regex("(\\d+):\\s(.+)")
     private val simplePattern = Regex("\".+\"")

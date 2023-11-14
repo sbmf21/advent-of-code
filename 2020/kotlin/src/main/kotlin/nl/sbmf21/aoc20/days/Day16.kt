@@ -1,10 +1,10 @@
 package nl.sbmf21.aoc20.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 import java.util.regex.Matcher
 import java.util.regex.Pattern.compile as regex
 
-class Day16 : ADay() {
+class Day16 : Day() {
 
     private val pattern = regex("(?<key>[a-z ]+): (?<ss>[\\d]+)-(?<se>[\\d]+) or (?<es>[\\d]+)-(?<ee>[\\d+]+)")
     private val tickets = ticketList("nearby tickets:")

@@ -1,9 +1,9 @@
 package nl.sbmf21.aoc22.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 import nl.sbmf21.aoc.common.mapToInts
 
-class Day4 : ADay() {
+class Day4 : Day() {
 
     private val regex = Regex("(\\d+)-(\\d+),(\\d+)-(\\d+)")
 

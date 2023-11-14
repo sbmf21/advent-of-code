@@ -1,8 +1,8 @@
 package nl.sbmf21.aoc21.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 
-class Day12 : ADay() {
+class Day12 : Day() {
 
     private val options = input.asSequence()
         .map { it.split("-") }

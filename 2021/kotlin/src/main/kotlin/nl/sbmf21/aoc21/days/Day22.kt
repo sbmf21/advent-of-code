@@ -1,11 +1,11 @@
 package nl.sbmf21.aoc21.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 import nl.sbmf21.math.Vector3l
 import kotlin.math.max
 import kotlin.math.min
 
-class Day22 : ADay() {
+class Day22 : Day() {
 
     private val rebootRegex =
         Regex("(?<s>o(n|ff)) x=(?<x1>-?\\d+)..(?<x2>-?\\d+),y=(?<y1>-?\\d+)..(?<y2>-?\\d+),z=(?<z1>-?\\d+)..(?<z2>-?\\d+)")

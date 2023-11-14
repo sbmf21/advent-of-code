@@ -1,10 +1,10 @@
 package nl.sbmf21.aoc22.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 import nl.sbmf21.aoc22.days.Day2.Action.*
 import nl.sbmf21.aoc22.days.Day2.RockPaperScissor.*
 
-class Day2 : ADay() {
+class Day2 : Day() {
 
     override fun part1() = input.sumOf {
         val round = it.split(" ", limit = 2).run {

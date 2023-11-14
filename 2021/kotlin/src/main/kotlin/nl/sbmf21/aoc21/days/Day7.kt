@@ -1,11 +1,11 @@
 package nl.sbmf21.aoc21.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 import nl.sbmf21.aoc.common.mapToInts
 import nl.sbmf21.aoc.common.triangular
 import kotlin.math.abs
 
-class Day7 : ADay() {
+class Day7 : Day() {
 
     private val crabs = input[0].split(",").mapToInts().sorted()
     private val crabRange = crabs.minOf { it }..crabs.maxOf { it }

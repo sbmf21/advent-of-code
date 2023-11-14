@@ -1,8 +1,8 @@
 package nl.sbmf21.aoc22.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 
-class Day1 : ADay() {
+class Day1 : Day() {
 
     private val elves = getElves(input)
 

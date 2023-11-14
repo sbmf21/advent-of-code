@@ -1,9 +1,9 @@
 package nl.sbmf21.aoc21.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 import nl.sbmf21.math.Vector2i
 
-class Day20 : ADay() {
+class Day20 : Day() {
 
     private val algo = input[0].map { if (it == '#') 1 else 0 }
     private val img = input.subList(2, input.size).map { r -> r.map { if (it == '#') 1 else 0 } }

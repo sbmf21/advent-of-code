@@ -1,11 +1,11 @@
 package nl.sbmf21.aoc21.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 
 internal typealias OctoMap = List<MutableList<Int>>
 internal typealias FlashMap = List<MutableList<Boolean>>
 
-class Day11 : ADay() {
+class Day11 : Day() {
 
     override fun part1(): Int {
         val octi = mapOctopodes()

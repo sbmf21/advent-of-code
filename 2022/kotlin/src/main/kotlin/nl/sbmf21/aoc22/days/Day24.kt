@@ -1,11 +1,11 @@
 package nl.sbmf21.aoc22.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 import nl.sbmf21.aoc22.days.Day24.Direction.Companion.plus
 import nl.sbmf21.math.Vector2i
 import nl.sbmf21.math.by
 
-class Day24 : ADay() {
+class Day24 : Day() {
 
     companion object {
         private const val GROUND = '.'

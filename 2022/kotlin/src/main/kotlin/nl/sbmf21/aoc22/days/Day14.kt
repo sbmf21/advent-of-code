@@ -1,6 +1,6 @@
 package nl.sbmf21.aoc22.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 import nl.sbmf21.aoc22.days.CaveMaterial.*
 import nl.sbmf21.math.Vector2i
 import nl.sbmf21.math.towards
@@ -8,7 +8,7 @@ import nl.sbmf21.math.towards
 private enum class CaveMaterial { AIR, STONE, SAND; }
 private typealias Cave = MutableMap<Vector2i, CaveMaterial>
 
-class Day14 : ADay() {
+class Day14 : Day() {
 
     private val paths = input.map { line ->
         line

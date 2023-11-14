@@ -1,10 +1,10 @@
 package nl.sbmf21.aoc20.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
-class Day2 : ADay() {
+class Day2 : Day() {
 
     private val pattern = Pattern.compile("(?<min>\\d+)-(?<max>\\d+)\\s(?<char>[a-z]):\\s(?<password>[a-z]+)")
     private val rules = input.map { pattern.matcher(it) }.filter { it.matches() }

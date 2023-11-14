@@ -1,12 +1,12 @@
 package nl.sbmf21.aoc22.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 import nl.sbmf21.math.Vector2i
 import nl.sbmf21.math.clamp
 import kotlin.math.abs
 import kotlin.math.max
 
-class Day15 : ADay() {
+class Day15 : Day() {
 
     private val regex = Regex(".*x=(-?\\d+), y=(-?\\d+).*x=(-?\\d+), y=(-?\\d+)")
     private val sensors: List<Pair<Vector2i, Vector2i>> = input

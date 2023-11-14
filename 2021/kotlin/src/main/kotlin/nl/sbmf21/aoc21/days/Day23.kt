@@ -1,12 +1,12 @@
 package nl.sbmf21.aoc21.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 import nl.sbmf21.aoc21.days.Day23.AmphiAction.IN
 import nl.sbmf21.aoc21.days.Day23.AmphiAction.OUT
 import java.util.*
 import kotlin.math.abs
 
-class Day23 : ADay() {
+class Day23 : Day() {
 
     override fun part1() = calculate(*input.toTypedArray())
     override fun part2() = calculate(*input.aTake(3), "  #D#C#B#A#  ", "  #D#B#A#C#  ", *input.aTakeLast(2))

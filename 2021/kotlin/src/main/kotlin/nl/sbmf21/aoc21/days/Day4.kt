@@ -1,10 +1,10 @@
 package nl.sbmf21.aoc21.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 import nl.sbmf21.aoc.common.iterated
 import nl.sbmf21.aoc.common.mapToInts
 
-class Day4 : ADay() {
+class Day4 : Day() {
 
     private val drawn = input[0].split(',').map { it.toInt() }
     private var boards = input.subList(2, input.size).asSequence().filter { it.isNotBlank() }

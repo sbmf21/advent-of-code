@@ -1,10 +1,10 @@
 package nl.sbmf21.aoc22.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 import nl.sbmf21.aoc.common.aocLetter
 import kotlin.math.floor
 
-class Day10 : ADay() {
+class Day10 : Day() {
 
     var store: ((
         cycle: Int,

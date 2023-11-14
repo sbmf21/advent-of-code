@@ -4,17 +4,17 @@ private typealias DayCache = Pair<Int, List<String>>
 
 internal object Cache {
 
-    private val backing = mutableMapOf<Class<out ADay>, DayCache>()
+    private val backing = mutableMapOf<Class<out Day>, DayCache>()
 
-    operator fun set(clazz: Class<out ADay>, data: DayCache) {
+    operator fun set(clazz: Class<out Day>, data: DayCache) {
         backing[clazz] = data
     }
 
-    infix fun unset(clazz: Class<out ADay>) {
+    infix fun unset(clazz: Class<out Day>) {
         backing.remove(clazz)
     }
 
-    operator fun get(day: Class<out ADay>): DayCache {
-        return backing[day]!!
+    operator fun get(clazz: Class<out Day>): DayCache {
+        return backing[clazz]!!
     }
 }

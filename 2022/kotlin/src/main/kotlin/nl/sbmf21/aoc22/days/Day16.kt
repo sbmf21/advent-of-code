@@ -1,8 +1,8 @@
 package nl.sbmf21.aoc22.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 
-class Day16 : ADay() {
+class Day16 : Day() {
 
     private companion object {
         const val ALONE_MINUTES = 30

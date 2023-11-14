@@ -1,9 +1,9 @@
 package nl.sbmf21.aoc22.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 import nl.sbmf21.aoc22.days.Day21.Operator.*
 
-class Day21 : ADay() {
+class Day21 : Day() {
 
     private val numberRegex = Regex("\\d+")
     private val monkeys = input.fold(mutableMapOf<String, Node>()) { map, line ->

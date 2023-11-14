@@ -1,6 +1,6 @@
 package nl.sbmf21.aoc15.days;
 
-import nl.sbmf21.aoc.common.ADay;
+import nl.sbmf21.aoc.common.Day;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ import java.util.Iterator;
 import java.util.Objects;
 import java.util.function.Consumer;
 
-public class Day3 extends ADay {
+public class Day3 extends Day {
 
     private final ArrayList<Direction> directions = parseDirections();
 

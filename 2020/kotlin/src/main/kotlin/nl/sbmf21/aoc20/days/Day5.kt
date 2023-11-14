@@ -1,8 +1,8 @@
 package nl.sbmf21.aoc20.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 
-class Day5 : ADay() {
+class Day5 : Day() {
 
     private val passports = input.map {
         it.replace(Regex("[FL]"), "0").replace(Regex("[BR]"), "1").toInt(2)

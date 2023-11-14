@@ -1,11 +1,11 @@
 package nl.sbmf21.aoc21.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 import nl.sbmf21.aoc.common.mapToInts
 import nl.sbmf21.math.Vector2i
 import kotlin.math.sign
 
-class Day17 : ADay() {
+class Day17 : Day() {
 
     private val target = input[0].removePrefix("target area: ").split(", ").run {
         val x = this[0].removePrefix("x=").split("..").mapToInts()

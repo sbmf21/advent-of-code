@@ -1,13 +1,13 @@
 package nl.sbmf21.aoc15.days;
 
-import nl.sbmf21.aoc.common.ADay;
+import nl.sbmf21.aoc.common.Day;
 import org.jetbrains.annotations.NotNull;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.util.HashMap;
 
-public class Day4 extends ADay {
+public class Day4 extends Day {
 
     private final HashMap<Integer, String> keys = new HashMap<>();
     private final MessageDigest digester;

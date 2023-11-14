@@ -1,9 +1,9 @@
 package nl.sbmf21.aoc20.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 import java.util.regex.Pattern
 
-class Day7 : ADay() {
+class Day7 : Day() {
 
     private val myBag = "shiny gold"
     private val pattern = Pattern.compile("(?<bag>[\\w ]+) bags contain (?<rule>.*)\\.")

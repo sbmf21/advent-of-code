@@ -1,8 +1,8 @@
 package nl.sbmf21.aoc20.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 
-class Day3 : ADay() {
+class Day3 : Day() {
 
     private val map = input.map { it.toCharArray() }
 

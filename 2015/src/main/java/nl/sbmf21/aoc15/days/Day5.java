@@ -1,9 +1,9 @@
 package nl.sbmf21.aoc15.days;
 
-import nl.sbmf21.aoc.common.ADay;
+import nl.sbmf21.aoc.common.Day;
 import org.jetbrains.annotations.NotNull;
 
-public class Day5 extends ADay {
+public class Day5 extends Day {
 
     @Override
     public @NotNull Integer part1() {

@@ -1,10 +1,10 @@
 package nl.sbmf21.aoc22.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 import nl.sbmf21.aoc.common.prod
 import kotlin.math.min
 
-class Day13 : ADay() {
+class Day13 : Day() {
 
     private val comparator = PacketCompare()
     private val packets = input.chunked(3).map { Pair(Packet.from(it[0]), Packet.from(it[1])) }

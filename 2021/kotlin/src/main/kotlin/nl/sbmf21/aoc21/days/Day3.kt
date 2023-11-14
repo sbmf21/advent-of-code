@@ -1,8 +1,8 @@
 package nl.sbmf21.aoc21.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 
-class Day3 : ADay() {
+class Day3 : Day() {
 
     override fun part1() = input[0]
         .mapIndexed { i, _ -> c(i) }.map { p -> Pair(m(p) { a, b -> a <= b }, m(p) { a, b -> a > b }) }

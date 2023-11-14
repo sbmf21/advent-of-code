@@ -1,11 +1,11 @@
 package nl.sbmf21.aoc22.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 import nl.sbmf21.math.Vector2i
 import nl.sbmf21.math.by
 import kotlin.math.abs
 
-class Day23 : ADay() {
+class Day23 : Day() {
 
     private class Elf
 

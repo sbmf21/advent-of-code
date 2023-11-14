@@ -1,9 +1,9 @@
 package nl.sbmf21.aoc20.days
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 import nl.sbmf21.aoc.common.iterated
 
-class Day18 : ADay() {
+class Day18 : Day() {
 
     private val expressions = input.map { line ->
         line.toCharArray().filter { it != ' ' }.fold(Block()) { acc, xpr ->

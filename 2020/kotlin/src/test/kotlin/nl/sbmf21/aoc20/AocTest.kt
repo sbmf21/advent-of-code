@@ -1,11 +1,11 @@
 package nl.sbmf21.aoc20
 
-import nl.sbmf21.aoc.common.ADay
+import nl.sbmf21.aoc.common.Day
 import nl.sbmf21.aoc.common.DayMeta
 import kotlin.test.assertEquals
 
 fun <A : Any, B : Any> testDay(
-    clazz: Class<out ADay>,
+    clazz: Class<out Day>,
     part1: A,
     part2: B,
     example: Boolean = false,

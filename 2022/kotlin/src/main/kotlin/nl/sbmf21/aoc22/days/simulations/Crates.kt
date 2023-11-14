@@ -1,6 +1,9 @@
 package nl.sbmf21.aoc22.days.simulations
 
-import nl.sbmf21.aoc.common.*
+import nl.sbmf21.aoc.common.Color.*
+import nl.sbmf21.aoc.common.Frame
+import nl.sbmf21.aoc.common.Simulation
+import nl.sbmf21.aoc.common.Simulation.Companion.headers
 import nl.sbmf21.aoc22.days.Day5
 
 class Crates(day: Day5) : Simulation<Day5>() {
