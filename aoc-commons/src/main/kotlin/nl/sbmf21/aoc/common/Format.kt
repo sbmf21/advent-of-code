@@ -15,7 +15,7 @@ internal object Format {
         time >= SECONDS -> {
             val seconds = time / SECONDS
             val actualColor = when {
-                seconds > 5 -> RED
+                seconds >= 5 -> RED
                 else -> YELLOW
             }
 
@@ -25,7 +25,7 @@ internal object Format {
         time >= MILLIS -> {
             val seconds = time / MILLIS
             val actualColor = when {
-                seconds > 500 -> YELLOW
+                seconds >= 500 -> YELLOW
                 else -> color
             }
 
