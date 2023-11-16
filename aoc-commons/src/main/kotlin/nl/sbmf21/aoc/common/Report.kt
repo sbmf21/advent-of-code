@@ -26,7 +26,9 @@ internal class Report(private val aoc: AocBase) {
                     text = listOf(
                         "${LIGHT_GREEN}Advent",
                         "$STAR     of     $STAR",
-                        "Code -- ${aoc.name}"
+                        "Code",
+                        "",
+                        "${YELLOW}${BOLD}${aoc.name}",
                     ).joinToString("\n")
                     align = CENTER
                     colspan = 8
@@ -36,7 +38,7 @@ internal class Report(private val aoc: AocBase) {
 
             if (timings.isEmpty()) {
                 row {
-                    cell { text = "\nNo days have run.]n"; align = CENTER; colspan = 8 }
+                    cell { text = "\nNo days have run.\n"; align = CENTER; colspan = 8 }
                 }
             } else {
                 row {
