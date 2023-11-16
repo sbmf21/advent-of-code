@@ -7,6 +7,7 @@ import java.io.InputStreamReader
 import java.util.*
 import kotlin.concurrent.thread
 import kotlin.math.min
+import kotlin.system.measureNanoTime
 
 abstract class AocBase(val name: String, val simulations: Map<String, (AocBase) -> Simulation<*>> = mapOf()) {
 
@@ -70,22 +71,26 @@ abstract class AocBase(val name: String, val simulations: Map<String, (AocBase) 
                 .invoke(this)
                 .simulate()
         } else if (runDay != null) {
-            days.filter { it.number == runDay }.forEach { report.run(it) }
-            report()
+            val time = measureNanoTime {
+                days.filter { it.number == runDay }.forEach { report.run(it) }
+            }
+            report(time)
         } else {
-            val threads = mutableListOf<Thread>()
-            val concurrentDays = Collections.synchronizedList(days.toMutableList())
             val maxThreads = Runtime.getRuntime().availableProcessors()
             val threadCount = min(days.size, maxThreads)
+            val time = measureNanoTime {
+                val threads = mutableListOf<Thread>()
+                val concurrentDays = Collections.synchronizedList(days.toMutableList())
 
-            for (t in 1..threadCount) threads.add(thread {
-                while (concurrentDays.isNotEmpty()) report.run(concurrentDays.removeFirst())
-            })
-            for (thread in threads) thread.join()
-            report("$threadCount / $maxThreads")
+                for (t in 1..threadCount) threads.add(thread {
+                    while (concurrentDays.isNotEmpty()) report.run(concurrentDays.removeFirst())
+                })
+                for (thread in threads) thread.join()
+            }
+            report(time, "$threadCount / $maxThreads")
         }
     }
 
-    private fun report(threads: String = "1") = report.render(threads)
+    private fun report(executionTime: Long, threads: String = "1") = report.render(executionTime, threads)
     private fun makeReport() = Report(this)
 }

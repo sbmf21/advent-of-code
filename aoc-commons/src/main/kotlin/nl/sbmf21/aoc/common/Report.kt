@@ -19,7 +19,7 @@ internal class Report(private val aoc: AocBase) {
         return runner.day
     }
 
-    fun render(threads: String) {
+    fun render(executionTime: Long, threads: String) {
         table {
             row {
                 cell {
@@ -71,6 +71,11 @@ internal class Report(private val aoc: AocBase) {
                 row {
                     cell { text = "Total time"; align = RIGHT; colspan = 5 }
                     cell { text = timeString(timings.sumOf(TimedRunner::totalTime), true); align = RIGHT; colspan = 2 }
+                }
+
+                row {
+                    cell { text = "Execution time"; align = RIGHT; colspan = 5 }
+                    cell { text = timeString(executionTime, true); align = RIGHT; colspan = 2 }
                 }
 
                 row {
