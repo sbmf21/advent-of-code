@@ -1,5 +1,6 @@
 package nl.sbmf21.aoc.common.table
 
+import nl.sbmf21.aoc.common.Color
 import nl.sbmf21.aoc.common.table.Align.*
 
 internal class Table {
@@ -11,144 +12,105 @@ internal class Table {
     }
 
     fun ruler() {
-        if (rows.last() is Ruler) return
         rows += Ruler
     }
 
-    override fun toString(): String {
-        val rows = mutableListOf(*rows.toTypedArray())
+    override fun toString() = TableRender().toString()
 
-        rows.add(0, Ruler)
-        rows.add(Ruler)
-
-        val cellCache = buildMap {
-            rows.filterIsInstance<Row>().forEachIndexed { index, row ->
-                this[index] = buildList {
-                    row.cells.forEach { cell ->
-                        if (cell.colspan > 1) {
-                            val text = cell.text + "#".repeat((cell.text.length % cell.colspan).let {
-                                if (it > 0) cell.colspan - it
-                                else 0
-                            })
-
-                            val section = (text.length - (3 * (cell.colspan - 1))) / cell.colspan
-                            repeat(cell.colspan) {
-                                add("#".repeat(if (section < 0) 0 else section))
-                            }
-                        } else add(cell.text)
-                    }
-                }
-            }
+    private inner class TableRender {
+        private val lines = buildList {
+            add(0, Ruler)
+            addAll(this@Table.rows)
+            add(Ruler)
         }
 
-        val cols = buildMap {
-            for (i in 0 until cellCache.maxOf { it.value.size }) {
-                this[i] = cellCache.maxOf { (_, values) ->
-                    values.getOrNull(i)?.length ?: 0
-                }
-            }
-        }
+        private val widths = buildMap {
+            val contentCache = buildMap {
+                lines.filterIsInstance<Row>().forEachIndexed { index, row ->
+                    this[index] = buildList {
+                        row.cells.forEach { cell ->
+                            val parsedText = parseAscii(cell.text)
+                            if (cell.colspan > 1) {
+                                val text = parsedText + "#".repeat((parsedText.length % cell.colspan).let {
+                                    if (it > 0) cell.colspan - it
+                                    else 0
+                                })
 
-        val colCache = buildMap {
-            rows.filterIsInstance<Row>().forEach { row ->
-                var index = 0
-                row.cells.forEach { cell ->
-                    this[cell] = buildList {
-                        for (i in 0 until cell.colspan) {
-                            this += index + i
-                        }
-                    }
-
-                    index += cell.colspan
-                }
-            }
-        }
-
-        val s = buildString {
-            var lastRowIndex = -1
-
-            rows.forEachIndexed { index, row ->
-                appendLine(when (row) {
-                    is Ruler -> {
-                        var ruler = "─".repeat(cols.map { it.value }.sum() + 3 * (cols.size - 1) + 2)
-
-                        val first = when {
-                            lastRowIndex + 2 >= rows.size -> '└'
-                            lastRowIndex >= 0 -> '├'
-                            else -> '┌'
-                        }
-
-                        val last = when {
-                            lastRowIndex + 2 >= rows.size -> '┘'
-                            lastRowIndex >= 0 -> '┤'
-                            else -> '┐'
-                        }
-
-                        ruler = first + ruler + last
-
-                        if (lastRowIndex >= 0 && lastRowIndex + 2 >= rows.size) {
-                            val lr = rows[lastRowIndex] as Row
-
-                            var l = 0
-
-                            // in what columns the cell is
-                            lr.cells.take(lr.cells.size - 1).map { colCache[it]!! }
-                                .forEach { columns ->
-                                    val w = columns.map { cols[it]!! }.sumOf { it } + (3 * columns.size - 1)
-                                    ruler = ruler.substring(0, l + w + 1) + '┴' + ruler.substring(
-                                        l + w + 2,
-                                        ruler.length
-                                    )
-                                    l += w + 1
+                                val section = (text.length - (3 * (cell.colspan - 1))) / cell.colspan
+                                repeat(cell.colspan) {
+                                    add("#".repeat(if (section < 0) 0 else section))
                                 }
-                        } else if (lastRowIndex >= 0) {
-                            val lr = rows[lastRowIndex] as Row
-                            val nr = rows[lastRowIndex + 2] as Row
-
-                            val c = mutableMapOf<Int, Char>()
-                            var l = 0
-
-                            lr.cells.take(lr.cells.size - 1).map { colCache[it]!! }.forEach { columns ->
-                                l += columns.map { cols[it]!! }.sumOf { it } + (3 * columns.size - 1) + 1
-                                c[l] = '┴'
-                            }
-
-                            l = 0
-
-                            nr.cells.take(nr.cells.size - 1).map { colCache[it]!! }.forEach { columns ->
-                                l += columns.map { cols[it]!! }.sumOf { it } + (3 * columns.size - 1) + 1
-                                c[l] = if (l in c) '┼' else '┬'
-                            }
-
-                            c.forEach { (l, w) ->
-                                ruler = ruler.substring(0, l) + w + ruler.substring(l + 1, ruler.length)
-                            }
+                            } else add(parsedText)
                         }
-
-                        ruler
                     }
+                }
+            }
 
-                    is Row -> "│ " + row.cells.joinToString(" │ ") { cell ->
-                        lastRowIndex = index
-                        val width =
-                            colCache[cell]!!.sumOf { cols[it]!! } + " │ ".repeat(cell.colspan - 1).length - cell.text.length
-
-                        when (cell.align) {
-                            CENTER -> {
-                                val left = width / 2
-                                val right = width - left
-
-                                " ".repeat(left) + cell.text + " ".repeat(right)
-                            }
-
-                            LEFT -> cell.text + " ".repeat(width)
-                            RIGHT -> " ".repeat(width) + cell.text
-                        }
-                    } + " │"
-                })
+            for (i in 0 until contentCache.maxOf { it.value.size }) {
+                this[i] = contentCache.maxOf { (_, values) -> values.getOrNull(i)?.length ?: 0 }
+            }
+        }
+        private val columnCache = buildMap {
+            lines.filterIsInstance<Row>().forEach { row ->
+                row.cells.fold(0) { index, cell ->
+                    this[cell] = buildList { for (i in 0 until cell.colspan) this += index + i }
+                    index + cell.colspan
+                }
             }
         }
 
-        return s.trim()
+        override fun toString() = lines.withIndex().joinToString("\n") { (index, line) ->
+            when (line) {
+                is Ruler -> {
+                    val width = widths.values.sum() + 3 * (widths.size - 1) + 2
+                    val (first, last) = when (index) {
+                        0 -> '┌' to '┐'
+                        lines.lastIndex -> '└' to '┘'
+                        else -> '├' to '┤'
+                    }
+
+                    val borders = mutableMapOf<Int, Char>()
+                    mapBorders(index - 1) { borders[it] = '┴' }
+                    mapBorders(index + 1) { borders[it] = if (it in borders) '┼' else '┬' }
+
+                    borders.toList().fold(first + "─".repeat(width) + last) { current, (index, border) ->
+                        current.substring(0, index) + border + current.substring(index + 1, current.length)
+                    }
+                }
+
+                is Row -> "│ " + line.cells.joinToString(" │ ") { cell ->
+                    val width = columnCache[cell]!!.sumOf { widths[it]!! } +
+                        " │ ".repeat(cell.colspan - 1).length -
+                        parseAscii(cell.text).length
+                    val renderText = cell.text + Color.RESET
+
+                    when (cell.align) {
+                        CENTER -> {
+                            val left = width / 2
+                            val right = width - left
+
+                            " ".repeat(left) + renderText + " ".repeat(right)
+                        }
+
+                        LEFT -> renderText + " ".repeat(width)
+                        RIGHT -> " ".repeat(width) + renderText
+                    }
+                } + " │"
+            }
+        }
+
+        private fun mapBorders(lineIndex: Int, apply: (Int) -> Unit) {
+            var index = 0
+            when (val lr = lines.getOrNull(lineIndex)) {
+                is Row -> lr.cells.take(lr.cells.lastIndex).map { columnCache[it]!! }.forEach { columns ->
+                    index += columns.map { widths[it]!! }.sumOf { it } + (3 * columns.size - 1) + 1
+                    apply(index)
+                }
+
+                else -> {}
+            }
+        }
+
+        private fun parseAscii(input: String) = input.replace(Color.REGEX, "")
     }
 }
