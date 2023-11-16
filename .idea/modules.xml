@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/advent-of-code.iml" filepath="$PROJECT_DIR$/.idea/modules/advent-of-code.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/2020-Lua.iml" filepath="$PROJECT_DIR$/.idea/modules/2020-Lua.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/advent-of-code.iml" filepath="$PROJECT_DIR$/.idea/modules/advent-of-code.iml" />
     </modules>
   </component>
 </project>

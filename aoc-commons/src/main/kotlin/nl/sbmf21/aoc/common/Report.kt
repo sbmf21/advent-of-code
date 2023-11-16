@@ -23,7 +23,11 @@ internal class Report(private val aoc: AocBase) {
         table {
             row {
                 cell {
-                    text = "$YELLOW* ${LIGHT_GREEN}Advent of Code ${aoc.name} $YELLOW*"
+                    text = listOf(
+                        "${LIGHT_GREEN}Advent",
+                        "$STAR     of     $STAR",
+                        "Code -- ${aoc.name}"
+                    ).joinToString("\n")
                     align = CENTER
                     colspan = 7
                 }
@@ -31,11 +35,9 @@ internal class Report(private val aoc: AocBase) {
             ruler()
 
             if (timings.isEmpty()) {
-                row { cell { colspan = 7 } }
                 row {
-                    cell { text = "No days have run."; align = CENTER; colspan = 7 }
+                    cell { text = "\nNo days have run.]n"; align = CENTER; colspan = 8 }
                 }
-                row { cell { colspan = 7 } }
             } else {
                 row {
                     cell { text = "${GREEN}${BOLD}Day"; align = CENTER }
@@ -84,5 +86,9 @@ internal class Report(private val aoc: AocBase) {
                 }
             }
         }.apply(::println)
+    }
+
+    private companion object {
+        val STAR = "$YELLOW*$LIGHT_GREEN"
     }
 }
