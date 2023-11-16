@@ -70,9 +70,15 @@ abstract class AocBase(val name: String, val simulations: Map<String, (AocBase) 
             simulations.firstNotNullOf { if (it.key == runSim) it.value else null }
                 .invoke(this)
                 .simulate()
-        } else if (runDay != null) {
+        } else if (runDay != null || days.size == 1) {
             val time = measureNanoTime {
-                days.filter { it.number == runDay }.forEach { report.run(it) }
+                val day = when {
+                    runDay != null -> days.find { it.number == runDay }
+                    days.size == 1 -> days.find { it.number == days[0].number }
+                    else -> null
+                }
+
+                day?.let(report::run)
             }
             report(time)
         } else {
