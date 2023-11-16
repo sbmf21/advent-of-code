@@ -29,7 +29,7 @@ internal class Report(private val aoc: AocBase) {
                         "Code -- ${aoc.name}"
                     ).joinToString("\n")
                     align = CENTER
-                    colspan = 7
+                    colspan = 8
                 }
             }
             ruler()
@@ -40,13 +40,14 @@ internal class Report(private val aoc: AocBase) {
                 }
             } else {
                 row {
-                    cell { text = "${GREEN}${BOLD}Day"; align = CENTER }
+                    cell { text = "${GREEN}${BOLD}Execution"; align = CENTER; colspan = 2 }
                     cell { text = "${GREEN}${BOLD}Answers"; align = CENTER; colspan = 2 }
                     cell { text = "${GREEN}${BOLD}Timings"; align = CENTER; colspan = 4 }
                 }
                 ruler()
                 row {
-                    cell()
+                    cell { text = "${GREEN}${BOLD}Day"; align = CENTER }
+                    cell { text = "${GREEN}${BOLD}Order"; align = CENTER }
                     cell { text = "${GREEN}${BOLD}Part 1"; align = CENTER }
                     cell { text = "${GREEN}${BOLD}Part 2"; align = CENTER }
                     cell { text = "${GREEN}${BOLD}Total"; align = CENTER }
@@ -58,7 +59,8 @@ internal class Report(private val aoc: AocBase) {
 
                 timings.sortedBy { it.day.number }.forEach {
                     row {
-                        cell { text = "${BOLD}${BLUE}${it.day.number}"; align = RIGHT }
+                        cell { text = "${BLUE}${BOLD}${it.day.number}"; align = RIGHT }
+                        cell { text = "${BLUE}${BOLD}" + (timings.indexOf(it) + 1).toString(); align = RIGHT }
                         cell { text = stringifyNumber(it.part1Value); align = RIGHT }
                         cell { text = stringifyNumber(it.part2Value); align = RIGHT }
                         cell { text = timeString(it.totalTime); align = RIGHT }
@@ -71,17 +73,17 @@ internal class Report(private val aoc: AocBase) {
                 ruler()
 
                 row {
-                    cell { text = "Total time"; align = RIGHT; colspan = 5 }
+                    cell { text = "Total time"; align = RIGHT; colspan = 6 }
                     cell { text = timeString(timings.sumOf(TimedRunner::totalTime), true); align = RIGHT; colspan = 2 }
                 }
 
                 row {
-                    cell { text = "Execution time"; align = RIGHT; colspan = 5 }
+                    cell { text = "Execution time"; align = RIGHT; colspan = 6 }
                     cell { text = timeString(executionTime, true); align = RIGHT; colspan = 2 }
                 }
 
                 row {
-                    cell { text = "Thread count"; align = RIGHT; colspan = 5 }
+                    cell { text = "Thread count"; align = RIGHT; colspan = 6 }
                     cell { text = threads; align = RIGHT; colspan = 2 }
                 }
             }
