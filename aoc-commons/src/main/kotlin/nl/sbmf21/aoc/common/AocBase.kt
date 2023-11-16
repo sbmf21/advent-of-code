@@ -11,7 +11,7 @@ import kotlin.system.measureNanoTime
 
 abstract class AocBase(val name: String, val simulations: Map<String, (AocBase) -> Simulation<*>> = mapOf()) {
 
-    private var report: Report = makeReport()
+    private val report: Report by lazy { Report(this)}
     internal var runDay: Int? = null
         private set
     internal var runSim: String? = null
@@ -98,5 +98,4 @@ abstract class AocBase(val name: String, val simulations: Map<String, (AocBase) 
     }
 
     private fun report(executionTime: Long, threads: String) = report.render(executionTime, threads)
-    private fun makeReport() = Report(this)
 }
