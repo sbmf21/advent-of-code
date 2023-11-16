@@ -80,7 +80,7 @@ abstract class AocBase(val name: String, val simulations: Map<String, (AocBase) 
 
                 day?.let(report::run)
             }
-            report(time)
+            report(time, "single")
         } else {
             val maxThreads = Runtime.getRuntime().availableProcessors()
             val threadCount = min(days.size, maxThreads)
@@ -97,6 +97,6 @@ abstract class AocBase(val name: String, val simulations: Map<String, (AocBase) 
         }
     }
 
-    private fun report(executionTime: Long, threads: String = "1") = report.render(executionTime, threads)
+    private fun report(executionTime: Long, threads: String) = report.render(executionTime, threads)
     private fun makeReport() = Report(this)
 }
