@@ -11,17 +11,17 @@ import kotlin.system.measureNanoTime
 
 abstract class AocBase(val name: String, val simulations: Map<String, (AocBase) -> Simulation<*>> = mapOf()) {
 
-    private val report: Report by lazy { Report(this)}
+    private val report: Report by lazy { Report(this) }
     internal var runDay: Int? = null
         private set
     internal var runSim: String? = null
         private set
 
     val days = Reflections("${this::class.java.packageName}.days")
-        .getSubTypesOf(Day::class.java)
-        .filter { it.simpleName.matches(Regex("Day\\d+")) }
-        .map { DayMeta(it) }
-        .sortedBy { it.number }
+        .getSubTypesOf(Puzzle::class.java)
+        .filter(::isCorrectName)
+        .map(::PuzzleMeta)
+        .sortedBy(PuzzleMeta<*>::number)
 
     fun exec(args: Array<String>) {
         init(args)
@@ -60,6 +60,7 @@ abstract class AocBase(val name: String, val simulations: Map<String, (AocBase) 
         runSim = sim
     }
 
+    private fun isCorrectName(clazz: Class<out Puzzle>) = clazz.simpleName.matches(Regex("Day\\d+"))
     private fun checkRunning() {
         if (runSim != null) throw Error("Already running a simulation")
         if (runDay != null) throw Error("Already running a specific day")

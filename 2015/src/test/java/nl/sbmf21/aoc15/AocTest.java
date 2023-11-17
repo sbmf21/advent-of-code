@@ -1,7 +1,7 @@
 package nl.sbmf21.aoc15;
 
 import nl.sbmf21.aoc.common.Day;
-import nl.sbmf21.aoc.common.DayMeta;
+import nl.sbmf21.aoc.common.PuzzleMeta;
 
 import java.util.List;
 
@@ -29,14 +29,14 @@ public class AocTest {
     }
 
     public <T extends Day> T buildDay(Class<T> clazz, List<String> input) {
-        return new DayMeta<>(clazz).build(input);
+        return new PuzzleMeta<>(clazz).build(input);
     }
 
     public <T extends Day> T buildDay(Class<T> clazz, Boolean example) {
-        return new DayMeta<>(clazz).build(example, null);
+        return new PuzzleMeta<>(clazz).build(example, null);
     }
 
     public <T extends Day> T buildDay(Class<T> clazz, Boolean example, String filename) {
-        return new DayMeta<>(clazz).build(example, filename);
+        return new PuzzleMeta<>(clazz).build(example, filename);
     }
 }

@@ -2,7 +2,7 @@ package nl.sbmf21.aoc22.days
 
 import nl.sbmf21.aoc22.days.Day25.Companion.decode
 import nl.sbmf21.aoc22.days.Day25.Companion.encode
-import nl.sbmf21.aoc22.testDay
+import nl.sbmf21.aoc22.testFinalDay
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
@@ -10,12 +10,12 @@ class Day25Test {
 
     @Test
     fun testInput() {
-        testDay(Day25::class.java, "2-2=21=0021=-02-1=-0", 50)
+        testFinalDay(Day25::class.java, "2-2=21=0021=-02-1=-0")
     }
 
     @Test
     fun testExample() {
-        testDay(Day25::class.java, "2=-1=0", 50, true)
+        testFinalDay(Day25::class.java, "2=-1=0", true)
     }
 
     @Test

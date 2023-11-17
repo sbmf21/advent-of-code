@@ -1,8 +1,8 @@
 package nl.sbmf21.aoc.common
 
 import nl.sbmf21.aoc.common.Color.*
-import nl.sbmf21.aoc.common.Format.stringifyNumber
 import nl.sbmf21.aoc.common.Format.timeString
+import nl.sbmf21.aoc.common.TimedRunner.Companion.report
 import nl.sbmf21.aoc.common.table.Align.CENTER
 import nl.sbmf21.aoc.common.table.Align.RIGHT
 import nl.sbmf21.aoc.common.table.table
@@ -10,13 +10,13 @@ import java.util.Collections.synchronizedList
 
 internal class Report(private val aoc: AocBase) {
 
-    private val timings = synchronizedList(mutableListOf<TimedRunner>())
+    private val timings = synchronizedList(mutableListOf<TimedRunner<*>>())
 
-    fun run(meta: DayMeta<Day>): Day {
+    fun run(meta: PuzzleMeta<Puzzle>): Puzzle {
         val runner = TimedRunner(meta)
         runner.run()
         timings.add(runner)
-        return runner.day
+        return runner.puzzle
     }
 
     fun render(executionTime: Long, threads: String) {
@@ -59,16 +59,9 @@ internal class Report(private val aoc: AocBase) {
                 }
                 ruler()
 
-                timings.sortedBy { it.day.number }.forEach {
+                timings.sortedBy { it.puzzle.number }.forEach {
                     row {
-                        cell { text = "${BLUE}${BOLD}${it.day.number}"; align = RIGHT }
-                        cell { text = "${BLUE}${BOLD}" + (timings.indexOf(it) + 1).toString(); align = RIGHT }
-                        cell { text = stringifyNumber(it.part1Value); align = RIGHT }
-                        cell { text = stringifyNumber(it.part2Value); align = RIGHT }
-                        cell { text = timeString(it.totalTime); align = RIGHT }
-                        cell { text = timeString(it.setupTime); align = RIGHT }
-                        cell { text = timeString(it.part1Time); align = RIGHT }
-                        cell { text = timeString(it.part2Time); align = RIGHT }
+                        report(it, timings.indexOf(it) + 1)
                     }
                 }
 
@@ -76,7 +69,12 @@ internal class Report(private val aoc: AocBase) {
 
                 row {
                     cell { text = "Total time"; align = RIGHT; colspan = 6 }
-                    cell { text = timeString(timings.sumOf(TimedRunner::totalTime), true); align = RIGHT; colspan = 2 }
+
+                    cell {
+                        text = timeString(timings.sumOf(TimedRunner<*>::totalTime), true)
+                        align = RIGHT
+                        colspan = 2
+                    }
                 }
 
                 row {
