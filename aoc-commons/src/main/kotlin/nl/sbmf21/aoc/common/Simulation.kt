@@ -2,7 +2,7 @@ package nl.sbmf21.aoc.common
 
 import nl.sbmf21.aoc.common.Color.*
 
-abstract class Simulation<T : Day> {
+abstract class Simulation<T : Puzzle> {
     protected abstract val frames: List<Frame>
     protected var framesCount: Long = 60
 

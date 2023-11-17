@@ -1,6 +1,6 @@
 package nl.sbmf21.aoc.common
 
-data class DayMeta<T : Day>(val clazz: Class<out T>) {
+data class PuzzleMeta<T : Puzzle>(val clazz: Class<out T>) {
 
     val number = clazz.simpleName.substring("Day".length).toInt()
 

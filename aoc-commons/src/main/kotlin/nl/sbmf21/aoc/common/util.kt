@@ -8,7 +8,7 @@ inline fun <T> MutableList<T>.iterated(action: (MutableIterator<T>, T) -> Unit):
     return this
 }
 
-inline fun <reified T : Day, reified S : Simulation<T>> simulate(crossinline build: (T) -> S): (AocBase) -> S = {
+inline fun <reified T : Puzzle, reified S : Simulation<T>> simulate(crossinline build: (T) -> S): (AocBase) -> S = {
     val day = it.days.first { meta -> meta.clazz == T::class.java }.build() as T
     println("Simulating day ${day.number}")
     build.invoke(day)

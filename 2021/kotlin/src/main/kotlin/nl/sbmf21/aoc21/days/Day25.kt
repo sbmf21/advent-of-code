@@ -1,11 +1,11 @@
 package nl.sbmf21.aoc21.days
 
-import nl.sbmf21.aoc.common.Day
+import nl.sbmf21.aoc.common.FinalDay
 import nl.sbmf21.aoc21.days.Day25.Direction.EAST
 import nl.sbmf21.aoc21.days.Day25.Direction.SOUTH
 import nl.sbmf21.math.Vector2i
 
-class Day25 : Day() {
+class Day25 : FinalDay() {
 
     private val map = input.mapIndexed { y, row ->
         row.toCharArray().mapIndexed { x, pos ->
@@ -17,7 +17,7 @@ class Day25 : Day() {
         }
     }
 
-    override fun part1(): Int {
+    override fun solution(): Int {
         var step = 0
         var moved = true
         var map = this.map
@@ -30,8 +30,6 @@ class Day25 : Day() {
 
         return step
     }
-
-    override fun part2() = 50
 
     private fun move(map: List<List<Cucumber?>>, direction: Direction) =
         List(map.size) { y -> MutableList(map[y].size) { x -> map[y][x] } }.run {

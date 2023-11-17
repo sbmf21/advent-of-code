@@ -2,17 +2,17 @@ package nl.sbmf21.aoc.common
 
 import java.util.Collections.synchronizedMap
 
-private typealias DayCache = Pair<Int, List<String>>
+private typealias PuzzleCache = Pair<Int, List<String>>
 
 internal object Cache {
 
-    private val backing = synchronizedMap(mutableMapOf<Class<out Day>, DayCache>())
+    private val backing = synchronizedMap(mutableMapOf<Class<out Puzzle>, PuzzleCache>())
 
-    operator fun set(clazz: Class<out Day>, data: DayCache) {
+    operator fun set(clazz: Class<out Puzzle>, data: PuzzleCache) {
         backing[clazz] = data
     }
 
-    operator fun get(clazz: Class<out Day>): DayCache {
+    operator fun get(clazz: Class<out Puzzle>): PuzzleCache {
         return backing[clazz]!!
     }
 }

@@ -90,7 +90,7 @@ internal class Table {
 
                                     val previous = if (it > 0) {
                                         textParts.take(it).joinToString("") {
-                                            REGEX.findAll(it).joinToString("") { it.value }
+                                            REGEX.findAll(it).joinToString("", transform = MatchResult::value)
                                         }
                                     } else ""
 

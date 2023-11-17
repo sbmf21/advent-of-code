@@ -1,6 +1,6 @@
 package nl.sbmf21.aoc22.days
 
-import nl.sbmf21.aoc.common.DayMeta
+import nl.sbmf21.aoc.common.PuzzleMeta
 import nl.sbmf21.aoc22.testDay
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
@@ -19,7 +19,7 @@ class Day19Test {
 
     @Test
     fun testExample() {
-        val day = DayMeta(Day19::class.java).build(true, null)
+        val day = PuzzleMeta(Day19::class.java).build(true, null)
         assertEquals(33, day.part1())
     }
 }

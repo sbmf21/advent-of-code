@@ -1,11 +1,10 @@
 package nl.sbmf21.aoc22.days
 
-import nl.sbmf21.aoc.common.Day
+import nl.sbmf21.aoc.common.FinalDay
 
-class Day25 : Day() {
+class Day25 : FinalDay() {
 
-    override fun part1() = encode(input.map(::decode).sum())
-    override fun part2() = 50
+    override fun solution() = encode(input.map(::decode).sum())
 
     companion object {
         private const val DIGITS = "=-012"
