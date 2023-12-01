@@ -16,3 +16,5 @@ fun <A : Any, B : Any> testDay(
     assertEquals(part1, day.part1())
     assertEquals(part2, day.part2())
 }
+
+fun buildWithInput(clazz: Class<out Day>, input: List<String>) = PuzzleMeta(clazz).build(input)
