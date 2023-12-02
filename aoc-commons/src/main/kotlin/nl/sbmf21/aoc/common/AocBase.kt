@@ -46,7 +46,7 @@ abstract class AocBase(val name: String, val simulations: Map<String, (AocBase) 
         }
 
         if (arg.matches(Regex("--latest"))) {
-            setDay(days.last().number)
+            setDay(days.maxOf(PuzzleMeta<*>::number))
         }
     }
 

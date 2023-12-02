@@ -7,6 +7,11 @@ import nl.sbmf21.aoc.common.table.Align.*
 internal class Table {
 
     private val rows = mutableListOf<Line>()
+    private var padding: Int = 2
+        set(value) {
+            if (value < 0) throw Error("Padding cannot be negative")
+            field = value
+        }
 
     fun row(configure: Row.() -> Unit) {
         rows += Row().apply(configure)
@@ -16,12 +21,23 @@ internal class Table {
         rows += Ruler
     }
 
-    override fun toString() = TableRender().toString()
+    override fun toString() = TableRender(this).toString()
 
-    private inner class TableRender {
+    private class TableRender(table: Table) {
+
+        companion object {
+            private const val PADDING = ' '
+            private const val SEPARATOR = '│'
+        }
+
+        private val padding = table.padding
+        private val cellStart = SEPARATOR + PADDING.repeat(padding)
+        private val cellSeparator = PADDING.repeat(padding) + SEPARATOR + PADDING.repeat(padding)
+        private val cellEnd = PADDING.repeat(padding) + SEPARATOR
+
         private val lines = buildList {
-            add(0, Ruler)
-            addAll(this@Table.rows)
+            add(Ruler)
+            addAll(table.rows)
             add(Ruler)
         }
 
@@ -33,20 +49,23 @@ internal class Table {
                             val parsedText = parseAscii(cell.text).split("\n").maxBy(String::length)
                             if (cell.colspan > 1) {
                                 val text = parsedText + "#".repeat((parsedText.length % cell.colspan).let {
-                                    if (it > 0) cell.colspan - it
-                                    else 0
+                                    if (it > 0) cell.colspan - it else 0
                                 })
 
-                                val section = (text.length - (3 * (cell.colspan - 1))) / cell.colspan
-                                repeat(cell.colspan) { add("#".repeat(if (section < 0) 0 else section)) }
-                            } else add(parsedText)
+                                val section = (text.length - (cellSeparator.length * (cell.colspan - 1))) / cell.colspan
+                                repeat(cell.colspan) {
+                                    add(if (section < 0) 0 else section)
+                                }
+                            } else {
+                                add(parseAscii(parsedText).length)
+                            }
                         }
                     }
                 }
             }
 
             for (i in 0 until contentCache.maxOf { it.value.size }) {
-                this[i] = contentCache.maxOf { (_, values) -> values.getOrNull(i)?.length ?: 0 }
+                this[i] = contentCache.maxOf { (_, values) -> values.getOrNull(i) ?: 0 }
             }
         }
         private val columnCache = buildMap {
@@ -63,7 +82,8 @@ internal class Table {
                 lines.forEachIndexed { index, line ->
                     when (line) {
                         is Ruler -> {
-                            val width = widths.values.sum() + 3 * (widths.size - 1) + 2
+                            val width =
+                                widths.values.sum() + cellSeparator.length * (widths.size - 1) + (padding * 2)
                             val (first, last) = when (index) {
                                 0 -> '┌' to '┐'
                                 lines.lastIndex -> '└' to '┘'
@@ -84,7 +104,7 @@ internal class Table {
                             val rowCount = cells.maxOf { it.text.split("\n").size }
 
                             repeat(rowCount) {
-                                add("│ " + line.cells.joinToString(" │ ") { cell ->
+                                add(cellStart + line.cells.joinToString(cellSeparator) { cell ->
                                     val textParts = cell.text.split("\n")
                                     val current = textParts.getOrElse(it) { "" }
 
@@ -95,7 +115,7 @@ internal class Table {
                                     } else ""
 
                                     val width = columnCache[cell]!!.sumOf { widths[it]!! } +
-                                        " │ ".repeat(cell.colspan - 1).length -
+                                        cellSeparator.repeat(cell.colspan - 1).length -
                                         parseAscii(current).length
                                     val renderText = previous + current + Color.RESET
 
@@ -110,7 +130,7 @@ internal class Table {
                                         LEFT -> renderText + " ".repeat(width)
                                         RIGHT -> " ".repeat(width) + renderText
                                     }
-                                } + " │")
+                                } + cellEnd)
                             }
                         }
                     }
@@ -124,7 +144,7 @@ internal class Table {
             var index = 0
             when (val line = lines.getOrNull(lineIndex)) {
                 is Row -> line.cells.take(line.cells.lastIndex).map { columnCache[it]!! }.forEach { columns ->
-                    index += columns.map { widths[it]!! }.sumOf { it } + (3 * columns.size - 1) + 1
+                    index += columns.map { widths[it]!! }.sumOf { it } + (cellSeparator.length * columns.size - 1) + 1
                     apply(index)
                 }
 
@@ -135,3 +155,5 @@ internal class Table {
         private fun parseAscii(input: String) = input.replace(REGEX, "")
     }
 }
+
+private fun Char.repeat(n: Int) = "$this".repeat(n)
