@@ -42,7 +42,7 @@ are done.
 <tbody>
 <tr>
 <td style="text-align: center"><b>1</b></td>
-<td style="text-align: center"></td>
+<td style="text-align: center">✅</td>
 <td style="text-align: center">✅</td>
 <td style="text-align: center">✅</td>
 <td style="text-align: center">✅</td>
@@ -52,7 +52,7 @@ are done.
 
 <tr>
 <td style="text-align: center"><b>2</b></td>
-<td style="text-align: center"></td>
+<td style="text-align: center">✅</td>
 <td style="text-align: center">✅</td>
 <td style="text-align: center">✅</td>
 <td style="text-align: center">✅</td>
