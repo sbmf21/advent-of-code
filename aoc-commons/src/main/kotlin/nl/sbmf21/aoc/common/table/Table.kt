@@ -7,7 +7,7 @@ import nl.sbmf21.aoc.common.table.Align.*
 internal class Table {
 
     private val rows = mutableListOf<Line>()
-    private var padding: Int = 2
+    private var padding: Int = 1
         set(value) {
             if (value < 0) throw Error("Padding cannot be negative")
             field = value
