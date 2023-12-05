@@ -16,52 +16,48 @@ class Day5 : Day() {
 
     override fun part1() = seeds.minOf { seed ->
         var value = seed
-        maps.forEach { map -> value = find(map, value) }
+        maps.forEach { map -> value = mapSeed(map, value) }
         value
     }
 
-    override fun part2(): Long {
-        return maps.fold(seeds.chunked(2).map { (s, e) -> s to s + e }) { min, map -> yeet(min, map) }
-            .filter { it.first > 0 }
-            .minOf { it.first }
-    }
+    override fun part2() = maps
+        .fold(seeds.chunked(2).map { (s, e) -> s to s + e }, ::mapSeedRanges)
+        .filter { it.first > 0 }
+        .minOf { it.first }
 
-    private fun yeet(min: List<Pair<Long, Long>>, map: List<AlmanacMap>): MutableList<Pair<Long, Long>> {
-        val result = mutableListOf<Pair<Long, Long>>()
-
-        for ((destStart, srcStart, range) in map) {
-            val segments = buildList {
-                for ((minSeed, maxSeed) in min) {
-                    val src = srcStart to srcStart + range
-                    val check = minSeed to maxSeed
-
-                    if (check.first > src.second || src.first > check.second) continue
-                    add(max(src.first, check.first) to min(src.second, check.second))
-                }
-            }
-
-            var start = srcStart
-            var end: Long
-
-            segments.forEach {
-                end = it.first
-                if (start < end) result.add(start to end - 1)
-                result.add(destStart - srcStart + it.first to destStart - srcStart + it.second - 1)
-                start = it.second
-            }
-            end = start + range
-            if (start < end) result.add(start to end - 1)
-        }
-
-        return result
-    }
-
-    private fun find(map: List<AlmanacMap>, check: Long): Long {
+    private fun mapSeed(map: List<AlmanacMap>, check: Long): Long {
         map.forEach {
             val (dest, src, range) = it
             if (check >= src && check <= src + range) return dest - src + check
         }
         return check
+    }
+
+    private fun mapSeedRanges(min: List<Pair<Long, Long>>, map: List<AlmanacMap>) = buildList {
+        for ((minSeed, maxSeed) in min) {
+            val seenSegments = map.mapNotNull { (destStart, srcStart, range) ->
+                val src = srcStart to srcStart + range
+                val check = minSeed to maxSeed
+
+                if (check.first > src.second || src.first > check.second) return@mapNotNull null
+
+                val overlap = max(src.first, check.first) to min(src.second, check.second)
+                add(destStart - srcStart + overlap.first to destStart - srcStart + overlap.second)
+                overlap
+            }
+
+            var start = minSeed
+            var end: Long
+
+            seenSegments.forEach {
+                end = it.first
+                if (start < end) add(start to end)
+                start = it.second
+            }
+
+            end = maxSeed
+            if (start < end) add(start to end)
+        }
     }
 
     private class AlmanacMap(val destinationRangeStart: Long, val sourceRangeStart: Long, val rangeLength: Long) {
