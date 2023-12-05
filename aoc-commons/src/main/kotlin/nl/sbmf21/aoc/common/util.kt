@@ -14,6 +14,31 @@ inline fun <reified T : Puzzle, reified S : Simulation<T>> simulate(crossinline 
     build.invoke(day)
 }
 
+fun <T> List<T>.subList(fromIndex: Int) = subList(fromIndex, size)
+
+fun <T> Iterable<T>.split(ignoreEmpty: Boolean = true, predicate: (T) -> Boolean) = buildList {
+    val buffer = mutableListOf<T>()
+
+    this@split.forEach {
+        if (predicate(it)) {
+            if (!ignoreEmpty || buffer.isNotEmpty()) {
+                add(buffer.toList())
+                buffer.clear()
+            }
+        } else {
+            buffer.add(it)
+        }
+    }
+
+    if (buffer.isNotEmpty()) {
+        add(buffer.toList())
+    }
+}
+
+fun CharSequence.splitToLongs(vararg delimiters: String, ignoreCase: Boolean = false) = this
+    .split(delimiters = delimiters, ignoreCase = ignoreCase)
+    .mapToLongs()
+
 fun List<String>.mapToInts() = map(String::toInt)
 
 fun List<String>.mapToLongs() = map(String::toLong)
