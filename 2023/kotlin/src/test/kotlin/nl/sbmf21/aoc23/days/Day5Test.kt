@@ -5,14 +5,9 @@ import org.junit.jupiter.api.Test
 
 class Day5Test {
 
-    // 58853829 too high
-    // 220731594
+    @Test
+    fun testInput() = testDay(Day5::class.java, 165_788_812L, 1_928_058L)
 
     @Test
-    fun testInput() = testDay(Day5::class.java, 165788812L, -1L)
-
-    // example part to = 46
-
-    @Test
-    fun testExample() = testDay(Day5::class.java, 35L, -1L, true)
+    fun testExample() = testDay(Day5::class.java, 35L, 46L, true)
 }
