@@ -58,45 +58,59 @@ class Day5 : Day() {
     }
 
     override fun part2(): Any {
-        return -1L
+//        return -1L
 
         val seeds = input[0].split(": ")[1].split(" ").mapToLongs().chunked(2).map { it[0] to it[0] + it[1] }
-        val maps = input.subList(2, input.size).joinToString("\n").split("\n\n").associate {
+        val maps = input.subList(2, input.size).joinToString("\n").split("\n\n").map {
             val lines = it.split("\n")
-            val name = lines[0].split(" ")[0]
 
             val map = lines.subList(1, lines.size).map { l ->
                 l.split(" ").mapToLongs()
             }
 
-            name to map
+            map
         }
 
         var min = seeds
 
-        maps.forEach { (s, map) ->
+        maps.forEach { map ->
             val result = mutableListOf<Pair<Long, Long>>()
 
             for ((dest, src, range) in map) {
+                var segments = mutableListOf<Pair<Long, Long>>()
+
                 for ((minSeed, maxSeed) in min) {
                     val l = src to src + range
                     val r = minSeed to maxSeed
 
-                    if(l.first > r.second) {
-//                        result.add(l)
-//                        continue
-                    }else if(l.second< r.first) {
-//                        result.add(r)
-                    } else {
-                        val out = dest - src + max(l.first, r.first) to dest - src + min(l.second, r.second)
-                        result.add(out)
+                    if (r.first > l.second || l.first > r.second) {
+                        continue
                     }
+
+                    val s = max(l.first, r.first)
+                    val e = min(l.second, r.second) - 1
+
+                    segments.add(s to e)
                 }
+
+                segments = segments.sortedBy { it.first }.toMutableList()
+
+                var start = src
+                var end: Long
+
+                segments.forEach {
+                    end = it.first
+                    if (start < end) result.add(start to end)
+                    result.add((dest - src + it.first) to (dest - src + it.second))
+                    start = it.second
+                }
+                end = start + range - 1
+                if (start < end) result.add(start to end)
             }
 
             min = result
         }
 
-        return min.map { it.first }.min()
+        return min.map { it.first }.filter { it > 0 }.min()
     }
 }
