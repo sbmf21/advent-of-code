@@ -10,6 +10,7 @@ dependencies {
     implementation(project(":aoc-commons"))
     implementation("nl.sbmf21:math:$sbmfMathVersion")
     testImplementation(kotlin("test"))
+    testImplementation(project(":aoc-test-utils"))
 }
 
 tasks {

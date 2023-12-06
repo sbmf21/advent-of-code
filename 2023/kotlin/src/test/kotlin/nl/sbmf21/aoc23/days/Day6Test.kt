@@ -1,6 +1,6 @@
 package nl.sbmf21.aoc23.days
 
-import nl.sbmf21.aoc23.testDay
+import nl.sbmf21.aoc.testing.testDay
 import org.junit.jupiter.api.Test
 
 class Day6Test {

@@ -1,18 +1,19 @@
 package nl.sbmf21.aoc15.days;
 
-import nl.sbmf21.aoc15.AocTest;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.List;
 
+import static nl.sbmf21.aoc.testing.UtilKt.buildWithInput;
+import static nl.sbmf21.aoc.testing.UtilKt.testDay;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class Day12Test extends AocTest {
+public class Day12Test {
 
     @Test
     public void testInput() {
-        testDay(Day12.class, 191164, 87842);
+        testDay(Day12.class, 191164, 87842, false, null);
     }
 
     @Test
@@ -27,7 +28,7 @@ public class Day12Test extends AocTest {
             put("[]", 0);
             put("{}", 0);
         }}.forEach((input, expected) -> {
-            Day12 day = buildDay(Day12.class, List.of(input));
+            Day12 day = buildWithInput(Day12.class, List.of(input));
             assertEquals(expected, day.part1());
         });
     }
@@ -40,7 +41,7 @@ public class Day12Test extends AocTest {
             put("{\"d\":\"red\",\"e\":[1,2,3,4],\"f\":5}", 0);
             put("[1,\"red\",5]", 6);
         }}.forEach((input, expected) -> {
-            Day12 day = buildDay(Day12.class, List.of(input));
+            Day12 day = buildWithInput(Day12.class, List.of(input));
             assertEquals(expected, day.part2());
         });
     }

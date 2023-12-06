@@ -13,6 +13,7 @@ dependencies {
     implementation("org.jetbrains:annotations:$annotationsVersion")
     implementation("com.google.code.gson:gson:$gsonVersion")
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion")
+    testImplementation(project(":aoc-test-utils"))
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion")
 }
 

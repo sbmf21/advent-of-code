@@ -1,7 +1,7 @@
 package nl.sbmf21.aoc21.days
 
 import nl.sbmf21.aoc.common.PuzzleMeta
-import nl.sbmf21.aoc21.testDay
+import nl.sbmf21.aoc.testing.testDay
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
@@ -17,5 +17,6 @@ class Day22Test {
     fun testExampleLarge() = assertEquals(590_784, PuzzleMeta(Day22::class.java).build(true, "large").part1())
 
     @Test
-    fun testExampleHuge() = assertEquals(2_758_514_936_282_235, PuzzleMeta(Day22::class.java).build(true, "huge").part2())
+    fun testExampleHuge() =
+        assertEquals(2_758_514_936_282_235, PuzzleMeta(Day22::class.java).build(true, "huge").part2())
 }

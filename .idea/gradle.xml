@@ -14,6 +14,7 @@
             <option value="$PROJECT_DIR$/2022/kotlin" />
             <option value="$PROJECT_DIR$/2023/kotlin" />
             <option value="$PROJECT_DIR$/aoc-commons" />
+            <option value="$PROJECT_DIR$/aoc-test-utils" />
           </set>
         </option>
       </GradleProjectSettings>

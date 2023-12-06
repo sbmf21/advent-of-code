@@ -1,6 +1,7 @@
 rootProject.name = "advent-of-code"
 
 include(":aoc-commons")
+include(":aoc-test-utils")
 
 mapOf(
     "2015" to "2015",

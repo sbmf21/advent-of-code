@@ -10,6 +10,7 @@
   only:
     changes:
       - aoc-commons/**/*
+      - aoc-test-utils/**/*
       - 2022/kotlin/**/*
   cache:
     key: !reference [ .2022:kotlin:caches, key ]

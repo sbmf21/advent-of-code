@@ -1,12 +1,13 @@
 package nl.sbmf21.aoc15.days;
 
-import nl.sbmf21.aoc15.AocTest;
 import org.junit.jupiter.api.Test;
 
-public class Day5Test extends AocTest {
+import static nl.sbmf21.aoc.testing.UtilKt.testDay;
+
+public class Day5Test {
 
     @Test
     public void testInput() {
-        testDay(Day5.class, 258, 53);
+        testDay(Day5.class, 258, 53, false, null);
     }
 }

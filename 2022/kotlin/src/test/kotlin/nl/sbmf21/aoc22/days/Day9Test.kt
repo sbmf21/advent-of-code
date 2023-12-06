@@ -1,7 +1,7 @@
 package nl.sbmf21.aoc22.days
 
 import nl.sbmf21.aoc.common.PuzzleMeta
-import nl.sbmf21.aoc22.testDay
+import nl.sbmf21.aoc.testing.testDay
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
