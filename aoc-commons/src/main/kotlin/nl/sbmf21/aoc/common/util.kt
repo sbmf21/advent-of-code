@@ -35,6 +35,8 @@ fun <T> Iterable<T>.split(ignoreEmpty: Boolean = true, predicate: (T) -> Boolean
     }
 }
 
+fun <K, V, R> Map<K, V>.map(transform: (K, V) -> R) = map { (k, v) -> transform(k, v) }
+
 fun CharSequence.splitToLongs(vararg delimiters: String, ignoreCase: Boolean = false) = this
     .split(delimiters = delimiters, ignoreCase = ignoreCase)
     .mapToLongs()

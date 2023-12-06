@@ -1,6 +1,7 @@
 package nl.sbmf21.aoc23.days
 
 import nl.sbmf21.aoc.common.Day
+import nl.sbmf21.aoc.common.map
 import nl.sbmf21.aoc.common.prod
 
 class Day6 : Day() {
@@ -18,10 +19,7 @@ class Day6 : Day() {
         totalDistance = distances.joinToString("").toLong()
     }
 
-    override fun part1() = races
-        .map { (maxTime, maxDistance) -> race(maxTime, maxDistance) }
-        .prod()
-
+    override fun part1() = races.map(::race).prod()
     override fun part2() = race(totalTime, totalDistance)
 
     private fun race(maxTime: Int, maxDistance: Long) = (1..<maxTime).count { ms ->
