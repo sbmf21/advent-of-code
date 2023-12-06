@@ -10,6 +10,7 @@
   only:
     changes:
       - aoc-commons/**/*
+      - aoc-test-utils/**/*
       - 2015/**/*
   cache:
     key: !reference [ .2015:java:caches, key ]
