@@ -11,33 +11,34 @@ class Day1Test {
     fun testInput() = testDay(Day1::class.java, 55029, 55686)
 
     @Test
-    fun testExamplePart1() = assertEquals(
-        142,
-        buildWithInput(
-            Day1::class.java,
-            listOf(
-                "1abc2",
-                "pqr3stu8vwx",
-                "a1b2c3d4e5f",
-                "treb7uchet",
-            ),
-        ).part1(),
-    )
+    fun testExample() {
+        assertEquals(
+            142,
+            buildWithInput(
+                Day1::class.java,
+                listOf(
+                    "1abc2",
+                    "pqr3stu8vwx",
+                    "a1b2c3d4e5f",
+                    "treb7uchet",
+                ),
+            ).part1(),
+        )
 
-    @Test
-    fun testExamplePart2() = assertEquals(
-        281,
-        buildWithInput(
-            Day1::class.java,
-            listOf(
-                "two1nine",
-                "eightwothree",
-                "abcone2threexyz",
-                "xtwone3four",
-                "4nineeightseven2",
-                "zoneight234",
-                "7pqrstsixteen",
-            ),
-        ).part2(),
-    )
+        assertEquals(
+            281,
+            buildWithInput(
+                Day1::class.java,
+                listOf(
+                    "two1nine",
+                    "eightwothree",
+                    "abcone2threexyz",
+                    "xtwone3four",
+                    "4nineeightseven2",
+                    "zoneight234",
+                    "7pqrstsixteen",
+                ),
+            ).part2(),
+        )
+    }
 }
