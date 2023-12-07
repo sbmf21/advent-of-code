@@ -1,6 +1,7 @@
 package nl.sbmf21.aoc23.days
 
 import nl.sbmf21.aoc.common.Day
+import nl.sbmf21.aoc23.days.Day7.Type.*
 
 class Day7 : Day() {
 
@@ -23,7 +24,7 @@ class Day7 : Day() {
                     }
                 }
             }
-            .minOfOrNull(::getType) ?: Type.FiveOfAKind
+            .minOfOrNull(::getType) ?: FiveOfAKind
     }
 
     private fun solve(scores: List<Char>, getType: (String) -> Type = ::getType) = hands
@@ -39,13 +40,13 @@ class Day7 : Day() {
             .sortedByDescending(Pair<Char, Int>::second)
 
         when {
-            charCount.size == 1 -> Type.FiveOfAKind
-            charCount.size == 2 && charCount[0].second == 4 -> Type.FourOfAKind
-            charCount.size == 2 && charCount[0].second == 3 -> Type.FullHouse
-            charCount.size == 3 && charCount[0].second == 3 -> Type.ThreeOfAKind
-            charCount.size == 3 && charCount[0].second == 2 && charCount[1].second == 2 -> Type.TwoPair
-            charCount.size == 4 && charCount[0].second == 2 -> Type.OnePair
-            charCount.size == 5 -> Type.HighCard
+            charCount.size == 1 -> FiveOfAKind
+            charCount.size == 2 && charCount[0].second == 4 -> FourOfAKind
+            charCount.size == 2 && charCount[0].second == 3 -> FullHouse
+            charCount.size == 3 && charCount[0].second == 3 -> ThreeOfAKind
+            charCount.size == 3 && charCount[0].second == 2 && charCount[1].second == 2 -> TwoPair
+            charCount.size == 4 && charCount[0].second == 2 -> OnePair
+            charCount.size == 5 -> HighCard
             else -> throw Error("Done did do something bad: $hand")
         }
     }
@@ -73,6 +74,6 @@ class Day7 : Day() {
         ThreeOfAKind,
         TwoPair,
         OnePair,
-        HighCard,
+        HighCard;
     }
 }
