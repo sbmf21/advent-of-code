@@ -39,32 +39,28 @@ class Day7 : Day() {
             .distinct()
             .sortedByDescending(Pair<Char, Int>::second)
 
-        when {
-            charCount.size == 1 -> FiveOfAKind
-            charCount.size == 2 && charCount[0].second == 4 -> FourOfAKind
-            charCount.size == 2 && charCount[0].second == 3 -> FullHouse
-            charCount.size == 3 && charCount[0].second == 3 -> ThreeOfAKind
-            charCount.size == 3 && charCount[0].second == 2 && charCount[1].second == 2 -> TwoPair
-            charCount.size == 4 && charCount[0].second == 2 -> OnePair
-            charCount.size == 5 -> HighCard
-            else -> throw Error("Done did do something bad: $hand")
+        when (charCount.size) {
+            1 -> FiveOfAKind
+            2 -> if (charCount[0].second == 4) FourOfAKind else FullHouse
+            3 -> if (charCount[0].second == 3) ThreeOfAKind else TwoPair
+            4 -> OnePair
+            else -> HighCard
         }
     }
 
     private class Card(val hand: String, val bid: Int, val type: Type, val scores: List<Char>) : Comparable<Card> {
 
         override fun compareTo(other: Card): Int {
-            var compare = type.compareTo(other.type)
-            if (compare == 0) compare = charScore(0).compareTo(other.charScore(0))
-            if (compare == 0) compare = charScore(1).compareTo(other.charScore(1))
-            if (compare == 0) compare = charScore(2).compareTo(other.charScore(2))
-            if (compare == 0) compare = charScore(3).compareTo(other.charScore(3))
-            if (compare == 0) compare = charScore(4).compareTo(other.charScore(4))
-            if (compare == 0) throw Error("Comparing the same hands, this shouldn't occur :(")
-            return compare
+            val compare = type.compareTo(other.type)
+            return if (compare == 0) compareAt(other) else compare
         }
 
-        private fun charScore(at: Int) = scores.indexOf(hand[at])
+        private fun compareAt(other: Card, index: Int = 0): Int {
+            val compare = charScore(index).compareTo(other.charScore(index))
+            return if (compare == 0) compareAt(other, index + 1) else compare
+        }
+
+        private fun charScore(index: Int) = scores.indexOf(hand[index])
     }
 
     private enum class Type {
