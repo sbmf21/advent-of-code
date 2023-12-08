@@ -38,6 +38,8 @@ class Day8 : Day() {
             current = instructions[(step++ % instructions.size).toInt()](nodes[current]!!)
         } while (checkNext(current))
 
+        //shut the hell up intellij
+        @Suppress("KotlinConstantConditions")
         return step
     }
 
