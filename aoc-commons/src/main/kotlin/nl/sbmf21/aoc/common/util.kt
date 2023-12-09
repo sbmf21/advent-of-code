@@ -50,3 +50,5 @@ fun List<String>.mapToFloats() = map(String::toFloat)
 fun List<String>.mapToDoubles() = map(String::toDouble)
 
 fun List<Int>.prod() = fold(1) { acc, i -> acc * i }
+
+val String.llength get() = length.toLong()
