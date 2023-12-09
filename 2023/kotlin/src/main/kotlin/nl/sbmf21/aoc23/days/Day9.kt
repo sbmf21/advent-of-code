@@ -6,19 +6,15 @@ import nl.sbmf21.aoc.common.mapToLongs
 class Day9 : Day() {
 
     private val oasisHistory = input.map { it.split(" ").mapToLongs() }.map { start ->
-        var current = start
-        val all = mutableListOf(current.first() to current.last())
-
-        while (!current.all { it == 0L }) {
-            val next = mutableListOf<Long>()
-            for (idx in 0..<current.lastIndex) {
-                next += current[idx + 1] - current[idx]
+        buildList history@{
+            this += start.first() to start.last()
+            var current = start
+            while (!current.all { it == 0L }) current = buildList {
+                for (idx in 0..<current.lastIndex) this += current[idx + 1] - current[idx]
+                this@history += first() to last()
             }
-            all += next.first() to next.last()
-            current = next
+            reverse()
         }
-
-        all.reversed()
     }
 
     override fun part1() = solve { num, list -> num + list.second }
