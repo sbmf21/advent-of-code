@@ -6,11 +6,7 @@ import nl.sbmf21.math.by
 
 class Day10 : Day() {
 
-    private val start = run {
-        val y = input.indexOfFirst { it.contains('S') }
-        input[y].indexOf('S') by y
-    }
-
+    private val start = input.indexOfFirst { it.contains(START) }.let { y -> input[y].indexOf(START) by y }
     private val map = buildSet seen@{
         this += start
         var next = neighbours(findType(start)).map { start + it }.toSet()
@@ -56,11 +52,10 @@ class Day10 : Day() {
             addAll(checks)
             checks.forEach { current ->
                 var next = listOf(current)
-                while (next.isNotEmpty()) next = next.flatMap { c -> NEIGHBORS.map { c + it } }
-                    .toSet()
+                while (next.isNotEmpty()) next = next.flatMap { c -> NEIGHBORS.map { c + it } }.toSet()
                     .filter { it !in this }
                     .filter { it !in map }
-                    .also { this.addAll(it) }
+                    .also(::addAll)
             }
         }.size
     }
@@ -126,17 +121,11 @@ class Day10 : Day() {
 
     private fun at(pos: Vector2i): Char {
         val c = if (pos.y in input.indices && pos.x in input[pos.y].indices) input[pos.y][pos.x] else '.'
-        return if (c == 'S') findType(pos) else c
+        return if (c == START) findType(pos) else c
     }
 
     private companion object {
-        val RIGHT = 1 by 0
-        val LEFT = -1 by 0
-        val DOWN = 0 by 1
-        val UP = 0 by -1
-
-        val NEIGHBORS = listOf(UP, DOWN, LEFT, RIGHT)
-
+        const val START = 'S'
         const val NW = 'J'
         const val NE = 'L'
         const val SW = '7'
@@ -144,6 +133,12 @@ class Day10 : Day() {
         const val NS = '|'
         const val EW = '-'
 
+        val RIGHT = 1 by 0
+        val LEFT = -1 by 0
+        val DOWN = 0 by 1
+        val UP = 0 by -1
+
+        val NEIGHBORS = listOf(UP, DOWN, LEFT, RIGHT)
         val TOP_L = listOf(SW, SE, NS)
         val BOTTOM_L = listOf(NE, NW, NS)
         val LEFT_L = listOf(NE, SE, EW)
