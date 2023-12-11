@@ -52,7 +52,7 @@ class Day10 : Day() {
             addAll(checks)
             checks.forEach { current ->
                 var next = listOf(current)
-                while (next.isNotEmpty()) next = next.flatMap { c -> NEIGHBORS.map { c + it } }.toSet()
+                while (next.isNotEmpty()) next = next.flatMapTo(HashSet()) { NEIGHBORS.map(it::plus) }
                     .filter { it !in this }
                     .filter { it !in map }
                     .also(::addAll)
