@@ -10,7 +10,7 @@ class Day11 : Day() {
     private val expandedRows = input.indices.filter { y -> input[y].all { it == '.' } }
 
     override fun part1() = solve()
-    override fun part2() = solve(999999L)
+    override fun part2() = solve(999999)
 
     private fun solve(expansion: Long = 1): Long {
         val galaxies = buildList {
