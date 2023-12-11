@@ -30,28 +30,24 @@ class Day10 : Day() {
     override fun part1() = map.size / 2
 
     override fun part2(): Int {
-
         val start = map.sortedBy { it.x }.sortedBy { it.y }.first { input[it.y][it.x] == EW }
         var pos = start
 
         val checks = buildSet {
-            var direction = RIGHT
-            var checkDir = DOWN
+            var dir = RIGHT
+            var check = DOWN
 
             while (true) {
-                val next = pos + direction
+                val next = pos + dir
                 if (next == start) break
 
-                val (newDir, newCheckDir) = rotate(
-                    if (next == this@Day10.start) findType(this@Day10.start) else input[next.y][next.x],
-                    direction, checkDir,
-                )
+                val (newDir, newCheck) = rotate(at(next), dir, check)
 
-                (pos + checkDir).let { if (it !in map) this += it }
-                if (direction != newDir) (next + checkDir).let { if (it !in map) this += it }
+                (pos + check).let { if (it !in map) this += it }
+                if (dir != newDir) (next + check).let { if (it !in map) this += it }
 
-                direction = newDir
-                checkDir = newCheckDir
+                dir = newDir
+                check = newCheck
                 pos = next
             }
         }
@@ -60,7 +56,7 @@ class Day10 : Day() {
             addAll(checks)
             checks.forEach { current ->
                 var next = listOf(current)
-                while (next.isNotEmpty()) next = next.flatMap { c -> neighbours1().map { c + it } }
+                while (next.isNotEmpty()) next = next.flatMap { c -> NEIGHBORS.map { c + it } }
                     .toSet()
                     .filter { it !in this }
                     .filter { it !in map }
@@ -79,45 +75,36 @@ class Day10 : Day() {
         else -> throw Error()
     }
 
-    private fun neighbours1() = listOf(
-        UP,
-        DOWN,
-        LEFT,
-        RIGHT,
-    )
-
-    private fun rotate(next: Char, dir: Vector2i, check: Vector2i): Pair<Vector2i, Vector2i> {
-        return when (dir) {
-            UP -> when (next) {
-                'F' -> RIGHT to DOWN
-                '7' -> LEFT to UP
-                '|' -> dir to check
-                else -> throw Error("Unexpected up $next")
-            }
-
-            DOWN -> when (next) {
-                'L' -> RIGHT to DOWN
-                'J' -> LEFT to UP
-                '|' -> dir to check
-                else -> throw Error("Unexpected down $next")
-            }
-
-            LEFT -> when (next) {
-                'L' -> UP to RIGHT
-                'F' -> DOWN to LEFT
-                '-' -> dir to check
-                else -> throw Error("Unexpected left $next")
-            }
-
-            RIGHT -> when (next) {
-                'J' -> UP to RIGHT
-                '7' -> DOWN to LEFT
-                '-' -> dir to check
-                else -> throw Error("Unexpected right $next")
-            }
-
-            else -> throw Error("Unexpected direction ${dir.x} ${dir.y}")
+    private fun rotate(next: Char, dir: Vector2i, check: Vector2i) = when (dir) {
+        UP -> when (next) {
+            SE -> RIGHT to DOWN
+            SW -> LEFT to UP
+            NS -> dir to check
+            else -> throw Error("Unexpected up $next")
         }
+
+        DOWN -> when (next) {
+            NE -> RIGHT to DOWN
+            NW -> LEFT to UP
+            NS -> dir to check
+            else -> throw Error("Unexpected down $next")
+        }
+
+        LEFT -> when (next) {
+            NE -> UP to RIGHT
+            SE -> DOWN to LEFT
+            EW -> dir to check
+            else -> throw Error("Unexpected left $next")
+        }
+
+        RIGHT -> when (next) {
+            NW -> UP to RIGHT
+            SW -> DOWN to LEFT
+            EW -> dir to check
+            else -> throw Error("Unexpected right $next")
+        }
+
+        else -> throw Error("Unexpected direction ${dir.x} ${dir.y}")
     }
 
     private fun findType(s: Vector2i): Char {
@@ -137,14 +124,18 @@ class Day10 : Day() {
         }
     }
 
-    private fun at(pos: Vector2i) =
-        if (pos.y in input.indices && pos.x in input[pos.y].indices) input[pos.y][pos.x] else '.'
+    private fun at(pos: Vector2i): Char {
+        val c = if (pos.y in input.indices && pos.x in input[pos.y].indices) input[pos.y][pos.x] else '.'
+        return if (c == 'S') findType(pos) else c
+    }
 
     private companion object {
         val RIGHT = 1 by 0
         val LEFT = -1 by 0
         val DOWN = 0 by 1
         val UP = 0 by -1
+
+        val NEIGHBORS = listOf(UP, DOWN, LEFT, RIGHT)
 
         const val NW = 'J'
         const val NE = 'L'
