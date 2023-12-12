@@ -1,0 +1,53 @@
+.2016:kotlin:caches:
+  key: '2016:kotlin'
+  paths:
+    - .gradle
+    - aoc-commons/build
+    - 2016/kotlin/build
+
+.2016:kotlin:
+  extends: .gradle
+  only:
+    changes:
+      - aoc-commons/**/*
+      - 2016/kotlin/**/*
+  cache:
+    key: !reference [ .2016:kotlin:caches, key ]
+    policy: pull
+    paths: !reference [ .2016:kotlin:caches, paths ]
+
+2016:kotlin:compile:
+  extends:
+    - .2016:kotlin
+    - .gradle:compile
+  variables:
+    PROJECT: '2016'
+  cache:
+    key: !reference [ .2016:kotlin:caches, key ]
+    policy: pull-push
+    paths: !reference [ .2016:kotlin:caches, paths ]
+
+2016:kotlin:test:
+  extends:
+    - .2016:kotlin
+    - .gradle:test
+  variables:
+    PROJECT: '2016'
+  dependencies:
+    - 2016:kotlin:compile
+  needs:
+    - 2016:kotlin:compile
+  artifacts:
+    reports:
+      junit: 2016/kotlin/build/test-results/test/TEST-*.xml
+
+2016:kotlin:run:
+  extends: .2016:kotlin
+  stage: run
+  dependencies:
+    - 2016:kotlin:compile
+  needs:
+    - 2016:kotlin:compile
+    - 2016:kotlin:test
+  script:
+    - java -jar 2016/kotlin/build/libs/aoc2016-shaded.jar

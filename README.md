@@ -13,7 +13,7 @@ are done.
 <table>
 <thead>
 <tr>
-<th colspan="7" style="text-align: center">
+<th colspan="8" style="text-align: center">
 <h2 style="padding: 0; margin: 0">Projects</h2>
 <i>All subprojects in this repository.</i>
 </th>
@@ -25,6 +25,7 @@ are done.
 <th style="text-align: center"><a href="https://adventofcode.com/2022">2022</a></th>
 <th style="text-align: center"><a href="https://adventofcode.com/2021">2021</a></th>
 <th style="text-align: center" colspan="2"><a href="https://adventofcode.com/2020">2020</a></th>
+<th style="text-align: center"><a href="https://adventofcode.com/2016">2016</a></th>
 <th style="text-align: center"><a href="https://adventofcode.com/2015">2015</a></th>
 </tr>
 
@@ -35,6 +36,7 @@ are done.
 <th style="text-align: center"><a href="2021/kotlin"><i>Kotlin</i></a></th>
 <th style="text-align: center"><a href="2020/kotlin"><i>Kotlin</i></a></th>
 <th style="text-align: center"><a href="2020/lua"><i>Lua</i></a></th>
+<th style="text-align: center"><a href="2016/kotlin"><i>Kotlin</i></a></th>
 <th style="text-align: center"><a href="2015/java"><i>Java</i></a></th>
 </tr>
 </thead>
@@ -42,6 +44,7 @@ are done.
 <tbody>
 <tr>
 <td style="text-align: center"><b>1</b></td>
+<td style="text-align: center">✅</td>
 <td style="text-align: center">✅</td>
 <td style="text-align: center">✅</td>
 <td style="text-align: center">✅</td>
@@ -58,10 +61,12 @@ are done.
 <td style="text-align: center">✅</td>
 <td style="text-align: center">✅</td>
 <td style="text-align: center">✅</td>
+<td style="text-align: center">✅</td>
 </tr>
 
 <tr>
 <td style="text-align: center"><b>3</b></td>
+<td style="text-align: center">✅</td>
 <td style="text-align: center">✅</td>
 <td style="text-align: center">✅</td>
 <td style="text-align: center">✅</td>
@@ -78,10 +83,12 @@ are done.
 <td style="text-align: center">✅</td>
 <td style="text-align: center">✅</td>
 <td style="text-align: center">✅</td>
+<td style="text-align: center">✅</td>
 </tr>
 
 <tr>
 <td style="text-align: center"><b>5</b></td>
+<td style="text-align: center">✅</td>
 <td style="text-align: center">✅</td>
 <td style="text-align: center">✅</td>
 <td style="text-align: center">✅</td>
@@ -98,6 +105,7 @@ are done.
 <td style="text-align: center">✅</td>
 <td style="text-align: center">✅</td>
 <td style="text-align: center">✅</td>
+<td style="text-align: center">✅</td>
 </tr>
 
 <tr>
@@ -107,6 +115,7 @@ are done.
 <td style="text-align: center">✅</td>
 <td style="text-align: center">✅</td>
 <td style="text-align: center"></td>
+<td style="text-align: center">✅</td>
 <td style="text-align: center">✅</td>
 </tr>
 
@@ -118,6 +127,7 @@ are done.
 <td style="text-align: center">✅</td>
 <td style="text-align: center"></td>
 <td style="text-align: center">✅</td>
+<td style="text-align: center">✅</td>
 </tr>
 
 <tr>
@@ -128,6 +138,7 @@ are done.
 <td style="text-align: center">✅</td>
 <td style="text-align: center"></td>
 <td style="text-align: center">✅</td>
+<td style="text-align: center">✅</td>
 </tr>
 
 <tr>
@@ -136,6 +147,7 @@ are done.
 <td style="text-align: center">✅</td>
 <td style="text-align: center">✅</td>
 <td style="text-align: center">✅</td>
+<td style="text-align: center"></td>
 <td style="text-align: center"></td>
 <td style="text-align: center">✅</td>
 </tr>
@@ -147,6 +159,7 @@ are done.
 <td style="text-align: center">✅</td>
 <td style="text-align: center">✅</td>
 <td style="text-align: center"></td>
+<td style="text-align: center"></td>
 <td style="text-align: center">✅</td>
 </tr>
 
@@ -156,6 +169,7 @@ are done.
 <td style="text-align: center">✅</td>
 <td style="text-align: center">✅</td>
 <td style="text-align: center">✅</td>
+<td style="text-align: center"></td>
 <td style="text-align: center"></td>
 <td style="text-align: center">✅</td>
 </tr>
@@ -167,6 +181,7 @@ are done.
 <td style="text-align: center">✅</td>
 <td style="text-align: center">✅</td>
 <td style="text-align: center"></td>
+<td style="text-align: center"></td>
 <td style="text-align: center">✅</td>
 </tr>
 
@@ -176,6 +191,7 @@ are done.
 <td style="text-align: center">✅</td>
 <td style="text-align: center">✅</td>
 <td style="text-align: center">✅</td>
+<td style="text-align: center"></td>
 <td style="text-align: center"></td>
 <td style="text-align: center">✅</td>
 </tr>
@@ -188,6 +204,7 @@ are done.
 <td style="text-align: center">✅</td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
+<td style="text-align: center"></td>
 </tr>
 
 <tr>
@@ -196,6 +213,7 @@ are done.
 <td style="text-align: center">✅</td>
 <td style="text-align: center">✅</td>
 <td style="text-align: center">✅</td>
+<td style="text-align: center"></td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
 </tr>
@@ -208,6 +226,7 @@ are done.
 <td style="text-align: center">✅</td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
+<td style="text-align: center"></td>
 </tr>
 
 <tr>
@@ -216,6 +235,7 @@ are done.
 <td style="text-align: center">✅</td>
 <td style="text-align: center">✅</td>
 <td style="text-align: center">✅</td>
+<td style="text-align: center"></td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
 </tr>
@@ -228,6 +248,7 @@ are done.
 <td style="text-align: center">☑️</td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
+<td style="text-align: center"></td>
 </tr>
 
 <tr>
@@ -235,6 +256,7 @@ are done.
 <td style="text-align: center"></td>
 <td style="text-align: center">✅</td>
 <td style="text-align: center">✅</td>
+<td style="text-align: center"></td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
@@ -248,6 +270,7 @@ are done.
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
+<td style="text-align: center"></td>
 </tr>
 
 <tr>
@@ -255,6 +278,7 @@ are done.
 <td style="text-align: center"></td>
 <td style="text-align: center">✅</td>
 <td style="text-align: center">✅</td>
+<td style="text-align: center"></td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
@@ -268,6 +292,7 @@ are done.
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
+<td style="text-align: center"></td>
 </tr>
 
 <tr>
@@ -278,6 +303,7 @@ are done.
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
+<td style="text-align: center"></td>
 </tr>
 
 <tr>
@@ -285,6 +311,7 @@ are done.
 <td style="text-align: center"></td>
 <td style="text-align: center">✅</td>
 <td style="text-align: center">✅</td>
+<td style="text-align: center"></td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>

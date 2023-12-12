@@ -5,6 +5,7 @@ include(":aoc-test-utils")
 
 mapOf(
     "2015" to "2015/java",
+    "2016" to "2016/kotlin",
     "2020" to "2020/kotlin",
     "2021" to "2021/kotlin",
     "2022" to "2022/kotlin",
