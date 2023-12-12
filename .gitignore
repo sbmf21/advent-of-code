@@ -1,9 +1,6 @@
 # Gradle/Kotlin/Java
 /**/.gradle/
 /**/build/
-/**/gradle/wrapper/
-/**/gradlew.bat
-/**/gradlew
 
 # Mac
 /**/.DS_Store
