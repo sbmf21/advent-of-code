@@ -18,9 +18,9 @@ dependencies {
 }
 
 tasks {
-    withType<Jar> { archiveBaseName.set("aoc2015") }
+    withType<Jar> { archiveBaseName = "aoc2015" }
     withType<ShadowJar> {
-        archiveClassifier.set("shaded")
+        archiveClassifier = "shaded"
         mergeServiceFiles()
     }
     jar { dependsOn(shadowJar) }
@@ -28,5 +28,5 @@ tasks {
 }
 
 application {
-    mainClass.set("nl.sbmf21.aoc15.Aoc")
+    mainClass = "nl.sbmf21.aoc15.Aoc"
 }
