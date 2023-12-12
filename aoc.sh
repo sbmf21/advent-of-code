@@ -168,9 +168,9 @@ dependencies {
 }
 
 tasks {
-    withType<Jar> { archiveBaseName.set("aoc$year") }
+    withType<Jar> { archiveBaseName = "aoc$year" }
     withType<ShadowJar> {
-        archiveClassifier.set("shaded")
+        archiveClassifier = "shaded"
         mergeServiceFiles()
     }
     jar { dependsOn(shadowJar) }
@@ -178,7 +178,7 @@ tasks {
 }
 
 application {
-    mainClass.set("nl.sbmf21.aoc${year:(-2)}.AocKt")
+    mainClass = "nl.sbmf21.aoc${year:(-2)}.AocKt"
 }
 GRADLE
     )"; then
@@ -290,9 +290,9 @@ dependencies {
 }
 
 tasks {
-    withType<Jar> { archiveBaseName.set("aoc$year") }
+    withType<Jar> { archiveBaseName = "aoc$year" }
     withType<ShadowJar> {
-        archiveClassifier.set("shaded")
+        archiveClassifier = "shaded"
         mergeServiceFiles()
     }
     jar { dependsOn(shadowJar) }
@@ -300,7 +300,7 @@ tasks {
 }
 
 application {
-    mainClass.set("nl.sbmf21.aoc${year:(-2)}.Aoc")
+    mainClass = "nl.sbmf21.aoc${year:(-2)}.Aoc"
 }
 GRADLE
     )"; then
