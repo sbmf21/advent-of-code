@@ -28,7 +28,7 @@ stages:
 # Projects
 
 include:
-  - local: /2015/.gitlab-ci.yml
+  - local: /2015/java/.gitlab-ci.yml
   - local: /2020/kotlin/.gitlab-ci.yml
   - local: /2020/lua/.gitlab-ci.yml
   - local: /2021/kotlin/.gitlab-ci.yml

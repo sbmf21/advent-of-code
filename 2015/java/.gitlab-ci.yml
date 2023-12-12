@@ -3,7 +3,7 @@
   paths:
     - .gradle
     - aoc-commons/build
-    - 2015/build
+    - 2015/java/build
 
 .2015:java:
   extends: .gradle
@@ -11,7 +11,7 @@
     changes:
       - aoc-commons/**/*
       - aoc-test-utils/**/*
-      - 2015/**/*
+      - 2015/java/**/*
   cache:
     key: !reference [ .2015:java:caches, key ]
     policy: pull
@@ -40,7 +40,7 @@
     - 2015:java:compile
   artifacts:
     reports:
-      junit: 2015/build/test-results/test/TEST-*.xml
+      junit: 2015/java/build/test-results/test/TEST-*.xml
 
 2015:java:run:
   extends: .2015:java
@@ -51,4 +51,4 @@
     - 2015:java:compile
     - 2015:java:test
   script:
-    - java -jar 2015/build/libs/aoc2015-shaded.jar
+    - java -jar 2015/java/build/libs/aoc2015-shaded.jar

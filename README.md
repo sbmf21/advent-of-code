@@ -35,7 +35,7 @@ are done.
 <th style="text-align: center"><a href="2021/kotlin"><i>Kotlin</i></a></th>
 <th style="text-align: center"><a href="2020/kotlin"><i>Kotlin</i></a></th>
 <th style="text-align: center"><a href="2020/lua"><i>Lua</i></a></th>
-<th style="text-align: center"><a href="2015"><i>Java</i></a></th>
+<th style="text-align: center"><a href="2015/java"><i>Java</i></a></th>
 </tr>
 </thead>
 
