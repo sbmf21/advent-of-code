@@ -176,7 +176,7 @@ are done.
 
 <tr>
 <td style="text-align: center"><b>13</b></td>
-<td style="text-align: center"></td>
+<td style="text-align: center">☑️</td>
 <td style="text-align: center">✅</td>
 <td style="text-align: center">✅</td>
 <td style="text-align: center">✅</td>
