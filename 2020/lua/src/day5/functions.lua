@@ -1,7 +1,7 @@
 function parseBoardingPasses()
     local ids = {}
 
-    for line in io.lines('input/day5.txt') do
+    for line in io.lines('../../resources/input/day5.txt') do
         ids[#ids + 1] = tonumber(line:gsub('F', '0'):gsub('L', '0'):gsub('B', '1'):gsub('R', 1), 2)
     end
 
