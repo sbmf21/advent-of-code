@@ -13,7 +13,7 @@ local function split(input, match)
 end
 
 local function parsePasswords()
-    local lines = io.lines('input/day2.txt')
+    local lines = io.lines('../../resources/input/day2.txt')
     local passwords = {}
 
     for line in lines do

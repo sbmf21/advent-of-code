@@ -25,7 +25,7 @@ local function parseLine(current, line)
 end
 
 function parsePassports()
-    local lines = io.lines('input/day4.txt')
+    local lines = io.lines('../../resources/input/day4.txt')
     local passports = {};
     local current = {}
 

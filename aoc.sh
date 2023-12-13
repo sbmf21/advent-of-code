@@ -168,6 +168,8 @@ dependencies {
 }
 
 tasks {
+    processResources { from("../resources/input") { into("input") } }
+    processTestResources { from("../resources/example") { into("example") } }
     withType<Jar> { archiveBaseName = "aoc$year" }
     withType<ShadowJar> {
         archiveClassifier = "shaded"
@@ -224,7 +226,7 @@ class Day$day : Day() {
 SOLUTION
     )"; then
       truncate -s -1 "$solutionFile"
-      create_file "$folder/src/main/resources/input/day${day}.txt"
+      create_file "$year/resources/input/day${day}.txt"
     fi
 
     if create_file "$testFile" "$(cat <<TEST
@@ -244,7 +246,7 @@ class Day${day}Test {
 TEST
     )"; then
       truncate -s -1 "$testFile"
-      create_file "$folder/src/test/resources/example/day${day}.txt"
+      create_file "$year/resources/example/day${day}.txt"
     fi
 
     run_gradle "kotlin" "$year" "$day"
@@ -290,6 +292,8 @@ dependencies {
 }
 
 tasks {
+    processResources { from("../resources/input") { into("input") } }
+    processTestResources { from("../resources/example") { into("example") } }
     withType<Jar> { archiveBaseName = "aoc$year" }
     withType<ShadowJar> {
         archiveClassifier = "shaded"
@@ -359,7 +363,7 @@ public class Day$day extends Day {
 }
 SOLUTION
     )"; then
-      create_file "$folder/src/main/resources/input/day${day}.txt"
+      create_file "$year/resources/input/day${day}.txt"
     fi
 
     if create_file "$testFile" "$(cat <<TEST
@@ -383,7 +387,7 @@ public class Day${day}Test {
 }
 TEST
     )"; then
-      create_file "$folder/src/test/resources/example/day${day}.txt"
+      create_file "$year/resources/example/day${day}.txt"
     fi
 
     run_gradle "java" "$year" "$day"
