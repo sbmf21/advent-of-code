@@ -7,9 +7,6 @@ the most pretty looking code, but also to learn new languages!
 
 Feel free to take a look around and judge my code 😈
 
-Finished days are marked by ☑️ if only part 1 has been finished, and ✅ if both parts
-are done.
-
 <table>
 <thead>
 <tr>
@@ -44,164 +41,164 @@ are done.
 <tbody>
 <tr>
 <td style="text-align: center"><b>1</b></td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
 </tr>
 
 <tr>
 <td style="text-align: center"><b>2</b></td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
 </tr>
 
 <tr>
 <td style="text-align: center"><b>3</b></td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
 </tr>
 
 <tr>
 <td style="text-align: center"><b>4</b></td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
 </tr>
 
 <tr>
 <td style="text-align: center"><b>5</b></td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
 </tr>
 
 <tr>
 <td style="text-align: center"><b>6</b></td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
 </tr>
 
 <tr>
 <td style="text-align: center"><b>7</b></td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
 <td style="text-align: center"></td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
 </tr>
 
 <tr>
 <td style="text-align: center"><b>8</b></td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
 <td style="text-align: center"></td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
 </tr>
 
 <tr>
 <td style="text-align: center"><b>9</b></td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
 <td style="text-align: center"></td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
 </tr>
 
 <tr>
 <td style="text-align: center"><b>10</b></td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
-<td style="text-align: center">✅</td>
+<td style="text-align: center">⭐⭐</td>
 </tr>
 
 <tr>
 <td style="text-align: center"><b>11</b></td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
-<td style="text-align: center">✅</td>
+<td style="text-align: center">⭐⭐</td>
 </tr>
 
 <tr>
 <td style="text-align: center"><b>12</b></td>
-<td style="text-align: center">☑️</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
+<td style="text-align: center">⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
-<td style="text-align: center">✅</td>
+<td style="text-align: center">⭐⭐</td>
 </tr>
 
 <tr>
 <td style="text-align: center"><b>13</b></td>
-<td style="text-align: center">☑️</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
+<td style="text-align: center">⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
-<td style="text-align: center">✅</td>
+<td style="text-align: center">⭐⭐</td>
 </tr>
 
 <tr>
 <td style="text-align: center"><b>14</b></td>
 <td style="text-align: center"></td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
-<td style="text-align: center">✅</td>
+<td style="text-align: center">⭐⭐</td>
 </tr>
 
 <tr>
 <td style="text-align: center"><b>15</b></td>
 <td style="text-align: center"></td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
@@ -210,9 +207,9 @@ are done.
 <tr>
 <td style="text-align: center"><b>16</b></td>
 <td style="text-align: center"></td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
@@ -221,9 +218,9 @@ are done.
 <tr>
 <td style="text-align: center"><b>17</b></td>
 <td style="text-align: center"></td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
@@ -232,9 +229,9 @@ are done.
 <tr>
 <td style="text-align: center"><b>18</b></td>
 <td style="text-align: center"></td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
@@ -243,9 +240,9 @@ are done.
 <tr>
 <td style="text-align: center"><b>19</b></td>
 <td style="text-align: center"></td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">☑️</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐</td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
@@ -254,8 +251,8 @@ are done.
 <tr>
 <td style="text-align: center"><b>20</b></td>
 <td style="text-align: center"></td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
@@ -265,8 +262,8 @@ are done.
 <tr>
 <td style="text-align: center"><b>21</b></td>
 <td style="text-align: center"></td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
@@ -276,8 +273,8 @@ are done.
 <tr>
 <td style="text-align: center"><b>22</b></td>
 <td style="text-align: center"></td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
@@ -287,8 +284,8 @@ are done.
 <tr>
 <td style="text-align: center"><b>23</b></td>
 <td style="text-align: center"></td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
@@ -298,8 +295,8 @@ are done.
 <tr>
 <td style="text-align: center"><b>24</b></td>
 <td style="text-align: center"></td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
@@ -309,8 +306,8 @@ are done.
 <tr>
 <td style="text-align: center"><b>25</b></td>
 <td style="text-align: center"></td>
-<td style="text-align: center">✅</td>
-<td style="text-align: center">✅</td>
+<td style="text-align: center">⭐⭐</td>
+<td style="text-align: center">⭐⭐</td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
 <td style="text-align: center"></td>
