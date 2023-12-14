@@ -1,8 +1,8 @@
 package nl.sbmf21.aoc23.days
 
-import nl.sbmf21.aoc.common.Color
 import nl.sbmf21.aoc.common.Day
 import nl.sbmf21.aoc.common.mapToInts
+import nl.sbmf21.aoc23.TODO
 
 class Day12 : Day() {
 
@@ -43,7 +43,7 @@ class Day12 : Day() {
 
     override fun part2(): Any {
         // ... yeah, nah
-        return Color.RED + "# TODO #" + Color.RESET
+        return TODO
     }
 
     private fun isValid(groups: List<Int>, counts: List<Int>): Boolean {

@@ -2,6 +2,7 @@ package nl.sbmf21.aoc23.days
 
 import nl.sbmf21.aoc.common.Day
 import nl.sbmf21.aoc.common.split
+import nl.sbmf21.aoc23.TODO
 import nl.sbmf21.math.Vector2i
 import nl.sbmf21.math.by
 import kotlin.math.max
@@ -13,8 +14,8 @@ class Day13 : Day() {
 
     override fun part1() = patterns.sumOf { (_, pos) -> summary(pos) }
 
-    override fun part2(): Int {
-        return -1
+    override fun part2(): String {
+        return TODO
 
 //        return patterns
 //            .map { (map, original) ->

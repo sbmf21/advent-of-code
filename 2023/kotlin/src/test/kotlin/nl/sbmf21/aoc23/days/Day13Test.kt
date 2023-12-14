@@ -1,6 +1,7 @@
 package nl.sbmf21.aoc23.days
 
 import nl.sbmf21.aoc.testing.testDay
+import nl.sbmf21.aoc23.TODO
 import org.junit.jupiter.api.Test
 
 class Day13Test {
@@ -18,8 +19,8 @@ class Day13Test {
     // 44143
 
     @Test
-    fun testInput() = testDay(Day13::class.java, 34918, -1)
+    fun testInput() = testDay(Day13::class.java, 34918, TODO)
 
     @Test
-    fun testExample() = testDay(Day13::class.java, 405, -1 /* 400 */, true)
+    fun testExample() = testDay(Day13::class.java, 405, TODO /* 400 */, true)
 }
