@@ -206,7 +206,7 @@ Feel free to take a look around and judge my code 😈
 
 <tr>
 <td style="text-align: center"><b>16</b></td>
-<td style="text-align: center"></td>
+<td style="text-align: center">⭐⭐</td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center">⭐⭐</td>
