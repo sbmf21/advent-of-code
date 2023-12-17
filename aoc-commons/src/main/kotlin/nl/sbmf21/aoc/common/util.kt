@@ -41,6 +41,10 @@ fun CharSequence.splitToLongs(vararg delimiters: String, ignoreCase: Boolean = f
     .split(delimiters = delimiters, ignoreCase = ignoreCase)
     .mapToLongs()
 
+fun CharSequence.splitToInts(vararg delimiters: String, ignoreCase: Boolean = false) = this
+    .split(delimiters = delimiters, ignoreCase = ignoreCase)
+    .mapToInts()
+
 fun List<String>.mapToInts() = map(String::toInt)
 
 fun List<String>.mapToLongs() = map(String::toLong)
