@@ -1,63 +1,48 @@
 package nl.sbmf21.aoc23.days
 
 import nl.sbmf21.aoc.common.Day
-import nl.sbmf21.aoc.common.mapToInts
-import nl.sbmf21.aoc23.TODO
+import nl.sbmf21.aoc.common.splitToInts
 
 class Day12 : Day() {
 
-    private val data = input.map {
-        val parts = it.split(" ")
+    private val data = input.map { it.split(" ").let { (segment, groups) -> segment to groups.splitToInts(",") } }
 
-        val left = parts[0]
-        val right = parts[1].split(",").mapToInts()
+    override fun part1() = solve()
 
-        left to right
+    override fun part2() = solve(data.map { (segment, groups) ->
+        List(5) { segment }.joinToString("?") to List(5) { groups }.flatten()
+    })
+
+    private fun solve(data: List<Pair<String, List<Int>>> = this.data) = data.sumOf { (parts, nums) ->
+        arrangements("$parts.", nums, mutableMapOf())
     }
 
-    override fun part1() = data.sumOf { (corrupted, counts) ->
-        val indices = corrupted.withIndex().filter { it.value == '?' }.map { it.index }
-        val combinations = combinations(listOf("#", "."), indices.size)
+    private fun arrangements(segment: String, groups: List<Int>, results: MutableMap<Pair<Int, Int>, Long>): Long {
+        val damageCount = groups.sum()
+        val minDamage = segment.count { it == '#' }
+        val maxDamage = minDamage + segment.count { it == '?' }
 
-        buildList {
-            combinations.forEach { c ->
-                add(buildList {
-                    val a = c.mapIndexed { index, c -> indices[index] to c }.toMap()
+        return when {
+            damageCount == 0 && minDamage == 0 -> 1
+            damageCount !in minDamage..maxDamage -> 0
 
-                    var current = 0
-
-                    for (i in corrupted.indices) when (if (i in a) a[i] else corrupted[i]) {
-                        '.' -> if (current > 0) {
-                            add(current)
-                            current = 0
-                        }
-
-                        '#' -> current++
-                    }
-
-                    if (current > 0) add(current)
-                })
+            segment[0] == '?' -> {
+                val index = segment.length to groups.size
+                if (index !in results) results[index] = arrangements(segment.substring(1), groups, results).let { c ->
+                    if (segment.substring(0, groups[0]).all { it != '.' } && segment[groups[0]] != '#')
+                        c + arrangements(segment.substring(groups[0] + 1), groups.drop(1), results)
+                    else c
+                }
+                results[index]!!
             }
-        }.count { isValid(it, counts) }
-    }
 
-    override fun part2(): Any {
-        // ... yeah, nah
-        return TODO
-    }
-
-    private fun isValid(groups: List<Int>, counts: List<Int>): Boolean {
-        if (groups.size != counts.size) return false
-        for (i in counts.indices) if (groups[i] != counts[i]) return false
-        return true
-    }
-
-    private fun combinations(elements: List<String>, lengthOfList: Int): List<String> =
-        if (lengthOfList == 1) elements
-        else buildList {
-            val subs = combinations(elements, lengthOfList - 1)
-            for (i in elements.indices) for (j in subs.indices) {
-                this += elements[i] + subs[j]
+            segment[0] == '#' -> {
+                if (segment.substring(0, groups[0]).all { it == '#' || it == '?' } && segment[groups[0]] != '#')
+                    arrangements(segment.substring(groups[0] + 1), groups.drop(1), results)
+                else 0
             }
+
+            else -> arrangements(segment.substring(1), groups, results)
         }
+    }
 }
