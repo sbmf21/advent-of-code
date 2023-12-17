@@ -319,3 +319,7 @@ Feel free to take a look around and judge my code 😈
 ### [AOC Commons](aoc-commons)
 
 Made in Kotlin. Used to find day classes and load input files for Java/Kotlin projects. Also used to run simulations.
+
+### [AOC Test Utils](aoc-test-utils)
+
+Made in Kotlin. Primarily used to build day instances with data and run test assertions.
