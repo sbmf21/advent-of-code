@@ -1,6 +1,8 @@
 # Gradle/Kotlin/Java
 /**/.gradle/
+/**/.kotilin/
 /**/build/
+/**/target/
 
 # Mac
 /**/.DS_Store
