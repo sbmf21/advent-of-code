@@ -1,5 +1,7 @@
 package nl.sbmf21.aoc.common
 
+val TODO = Color.RED + "# TODO #" + Color.RESET
+
 inline fun <T> MutableList<T>.iterated(action: (MutableIterator<T>, T) -> Unit): MutableList<T> {
     val iterator = iterator()
 
