@@ -1,0 +1,54 @@
+.2024:kotlin:caches:
+  key: '2024:kotlin'
+  paths:
+    - .gradle
+    - aoc-commons/build
+    - 2024/kotlin/build
+
+.2024:kotlin:
+  extends: .gradle
+  only:
+    changes:
+      - aoc-commons/**/*
+      - aoc-test-utils/**/*
+      - 2024/kotlin/**/*
+  cache:
+    key: !reference [ .2024:kotlin:caches, key ]
+    policy: pull
+    paths: !reference [ .2024:kotlin:caches, paths ]
+
+2024:kotlin:compile:
+  extends:
+    - .2024:kotlin
+    - .gradle:compile
+  variables:
+    PROJECT: '2024'
+  cache:
+    key: !reference [ .2024:kotlin:caches, key ]
+    policy: pull-push
+    paths: !reference [ .2024:kotlin:caches, paths ]
+
+2024:kotlin:test:
+  extends:
+    - .2024:kotlin
+    - .gradle:test
+  variables:
+    PROJECT: '2024'
+  dependencies:
+    - 2024:kotlin:compile
+  needs:
+    - 2024:kotlin:compile
+  artifacts:
+    reports:
+      junit: 2024/kotlin/build/test-results/test/TEST-*.xml
+
+2024:kotlin:run:
+  extends: .2024:kotlin
+  stage: run
+  dependencies:
+    - 2024:kotlin:compile
+  needs:
+    - 2024:kotlin:compile
+    - 2024:kotlin:test
+  script:
+    - java -jar 2024/kotlin/build/libs/aoc2024-shaded.jar

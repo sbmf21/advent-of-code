@@ -10,7 +10,7 @@ Feel free to take a look around and judge my code 😈
 <table>
 <thead>
 <tr>
-<th colspan="8" style="text-align: center">
+<th colspan="9" style="text-align: center">
 <h2 style="padding: 0; margin: 0">Projects</h2>
 <i>All subprojects in this repository.</i>
 </th>
@@ -18,6 +18,7 @@ Feel free to take a look around and judge my code 😈
 
 <tr>
 <th></th>
+<th style="text-align: center"><a href="https://adventofcode.com/2024">2024</a></th>
 <th style="text-align: center"><a href="https://adventofcode.com/2023">2023</a></th>
 <th style="text-align: center"><a href="https://adventofcode.com/2022">2022</a></th>
 <th style="text-align: center"><a href="https://adventofcode.com/2021">2021</a></th>
@@ -28,6 +29,7 @@ Feel free to take a look around and judge my code 😈
 
 <tr>
 <th>Day</th>
+<th style="text-align: center"><a href="2024/kotlin"><i>Kotlin</i></a></th>
 <th style="text-align: center"><a href="2023/kotlin"><i>Kotlin</i></a></th>
 <th style="text-align: center"><a href="2022/kotlin"><i>Kotlin</i></a></th>
 <th style="text-align: center"><a href="2021/kotlin"><i>Kotlin</i></a></th>
@@ -41,6 +43,7 @@ Feel free to take a look around and judge my code 😈
 <tbody>
 <tr>
 <td style="text-align: center"><b>1</b></td>
+<td style="text-align: center"></td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center">⭐⭐</td>
@@ -52,6 +55,7 @@ Feel free to take a look around and judge my code 😈
 
 <tr>
 <td style="text-align: center"><b>2</b></td>
+<td style="text-align: center"></td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center">⭐⭐</td>
@@ -63,6 +67,7 @@ Feel free to take a look around and judge my code 😈
 
 <tr>
 <td style="text-align: center"><b>3</b></td>
+<td style="text-align: center"></td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center">⭐⭐</td>
@@ -74,6 +79,7 @@ Feel free to take a look around and judge my code 😈
 
 <tr>
 <td style="text-align: center"><b>4</b></td>
+<td style="text-align: center"></td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center">⭐⭐</td>
@@ -85,6 +91,7 @@ Feel free to take a look around and judge my code 😈
 
 <tr>
 <td style="text-align: center"><b>5</b></td>
+<td style="text-align: center"></td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center">⭐⭐</td>
@@ -96,6 +103,7 @@ Feel free to take a look around and judge my code 😈
 
 <tr>
 <td style="text-align: center"><b>6</b></td>
+<td style="text-align: center"></td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center">⭐⭐</td>
@@ -107,6 +115,7 @@ Feel free to take a look around and judge my code 😈
 
 <tr>
 <td style="text-align: center"><b>7</b></td>
+<td style="text-align: center"></td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center">⭐⭐</td>
@@ -118,6 +127,7 @@ Feel free to take a look around and judge my code 😈
 
 <tr>
 <td style="text-align: center"><b>8</b></td>
+<td style="text-align: center"></td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center">⭐⭐</td>
@@ -129,6 +139,7 @@ Feel free to take a look around and judge my code 😈
 
 <tr>
 <td style="text-align: center"><b>9</b></td>
+<td style="text-align: center"></td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center">⭐⭐</td>
@@ -140,6 +151,7 @@ Feel free to take a look around and judge my code 😈
 
 <tr>
 <td style="text-align: center"><b>10</b></td>
+<td style="text-align: center"></td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center">⭐⭐</td>
@@ -151,6 +163,7 @@ Feel free to take a look around and judge my code 😈
 
 <tr>
 <td style="text-align: center"><b>11</b></td>
+<td style="text-align: center"></td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center">⭐⭐</td>
@@ -162,6 +175,7 @@ Feel free to take a look around and judge my code 😈
 
 <tr>
 <td style="text-align: center"><b>12</b></td>
+<td style="text-align: center"></td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center">⭐⭐</td>
@@ -173,6 +187,7 @@ Feel free to take a look around and judge my code 😈
 
 <tr>
 <td style="text-align: center"><b>13</b></td>
+<td style="text-align: center"></td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center">⭐⭐</td>
@@ -184,6 +199,7 @@ Feel free to take a look around and judge my code 😈
 
 <tr>
 <td style="text-align: center"><b>14</b></td>
+<td style="text-align: center"></td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center">⭐⭐</td>
@@ -195,6 +211,7 @@ Feel free to take a look around and judge my code 😈
 
 <tr>
 <td style="text-align: center"><b>15</b></td>
+<td style="text-align: center"></td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center">⭐⭐</td>
@@ -206,6 +223,7 @@ Feel free to take a look around and judge my code 😈
 
 <tr>
 <td style="text-align: center"><b>16</b></td>
+<td style="text-align: center"></td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center">⭐⭐</td>
@@ -217,6 +235,7 @@ Feel free to take a look around and judge my code 😈
 
 <tr>
 <td style="text-align: center"><b>17</b></td>
+<td style="text-align: center"></td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center">⭐⭐</td>
@@ -228,6 +247,7 @@ Feel free to take a look around and judge my code 😈
 
 <tr>
 <td style="text-align: center"><b>18</b></td>
+<td style="text-align: center"></td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center">⭐⭐</td>
@@ -239,6 +259,7 @@ Feel free to take a look around and judge my code 😈
 
 <tr>
 <td style="text-align: center"><b>19</b></td>
+<td style="text-align: center"></td>
 <td style="text-align: center">⭐</td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center">⭐⭐</td>
@@ -250,6 +271,7 @@ Feel free to take a look around and judge my code 😈
 
 <tr>
 <td style="text-align: center"><b>20</b></td>
+<td style="text-align: center"></td>
 <td style="text-align: center">⭐</td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center">⭐⭐</td>
@@ -262,6 +284,7 @@ Feel free to take a look around and judge my code 😈
 <tr>
 <td style="text-align: center"><b>21</b></td>
 <td style="text-align: center"></td>
+<td style="text-align: center"></td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center"></td>
@@ -272,6 +295,7 @@ Feel free to take a look around and judge my code 😈
 
 <tr>
 <td style="text-align: center"><b>22</b></td>
+<td style="text-align: center"></td>
 <td style="text-align: center"></td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center">⭐⭐</td>
@@ -284,6 +308,7 @@ Feel free to take a look around and judge my code 😈
 <tr>
 <td style="text-align: center"><b>23</b></td>
 <td style="text-align: center"></td>
+<td style="text-align: center"></td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center"></td>
@@ -295,6 +320,7 @@ Feel free to take a look around and judge my code 😈
 <tr>
 <td style="text-align: center"><b>24</b></td>
 <td style="text-align: center"></td>
+<td style="text-align: center"></td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center"></td>
@@ -305,6 +331,7 @@ Feel free to take a look around and judge my code 😈
 
 <tr>
 <td style="text-align: center"><b>25</b></td>
+<td style="text-align: center"></td>
 <td style="text-align: center"></td>
 <td style="text-align: center">⭐⭐</td>
 <td style="text-align: center">⭐⭐</td>

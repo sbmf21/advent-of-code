@@ -35,4 +35,5 @@ include:
   - local: /2021/kotlin/.gitlab-ci.yml
   - local: /2022/kotlin/.gitlab-ci.yml
   - local: /2023/kotlin/.gitlab-ci.yml
+  - local: /2024/kotlin/.gitlab-ci.yml
   - local: /aoc-commons/.gitlab-ci.yml

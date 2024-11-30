@@ -10,6 +10,7 @@ mapOf(
     "2021" to "2021/kotlin",
     "2022" to "2022/kotlin",
     "2023" to "2023/kotlin",
+    "2024" to "2024/kotlin",
 ).forEach { (name, folder) ->
     include(name)
     val project = project(":$name")

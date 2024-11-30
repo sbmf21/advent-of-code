@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/2020-Lua.iml" filepath="$PROJECT_DIR$/.idea/modules/2020-Lua.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/2024/kotlin/advent-of-code.2024.test.iml" filepath="$PROJECT_DIR$/.idea/modules/2024/kotlin/advent-of-code.2024.test.iml" />
     </modules>
   </component>
 </project>
