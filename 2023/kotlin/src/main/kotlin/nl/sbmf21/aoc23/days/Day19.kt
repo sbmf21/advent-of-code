@@ -1,6 +1,7 @@
 package nl.sbmf21.aoc23.days
 
 import nl.sbmf21.aoc.common.Day
+import nl.sbmf21.aoc.common.TODO
 import nl.sbmf21.aoc.common.mapToInts
 import nl.sbmf21.aoc.common.split
 import nl.sbmf21.aoc23.days.Day19.Action.*
@@ -50,7 +51,7 @@ class Day19 : Day() {
     override fun part1() = parts.filter(::validate).sumOf(Part::sum)
 
     override fun part2(): Any {
-        return nl.sbmf21.aoc.common.TODO
+        return TODO
 
         val range = 1L to 4000L
 
