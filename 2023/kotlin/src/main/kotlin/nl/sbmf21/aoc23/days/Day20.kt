@@ -1,7 +1,6 @@
 package nl.sbmf21.aoc23.days
 
 import nl.sbmf21.aoc.common.Day
-import nl.sbmf21.aoc23.TODO
 import nl.sbmf21.aoc23.days.Day20.Pulse.HIGH
 import nl.sbmf21.aoc23.days.Day20.Pulse.LOW
 
@@ -47,7 +46,7 @@ class Day20 : Day() {
 
     override fun part2(): Any {
 
-        return TODO
+        return nl.sbmf21.aoc.common.TODO
 
 //        modules = read()
 //
