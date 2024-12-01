@@ -4,7 +4,7 @@ import nl.sbmf21.aoc.common.Day
 import nl.sbmf21.aoc.common.splitToInts
 import kotlin.math.abs
 
-class Day1: Day() {
+class Day1 : Day() {
 
     val left: List<Int>
     val right: List<Int>
