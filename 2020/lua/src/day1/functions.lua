@@ -1,5 +1,5 @@
 function parseNumbers()
-    local lines = io.lines('../../resources/input/day1.txt')
+    local lines = io.lines('../../../advent-of-code-input/2020/input/day1.txt')
     local numbers = {}
 
     for line in lines do
