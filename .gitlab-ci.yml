@@ -23,7 +23,7 @@ stages:
 
 # Lua
 .lua:
-  image: registry.sbmf21.nl/templates/containers/lua:latest
+  image: registry.sbmf21.nl/infra/containers/lua:latest
 
 # Projects
 
