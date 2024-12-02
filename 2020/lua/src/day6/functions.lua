@@ -22,7 +22,7 @@ function parseGroups()
     local groups = {};
     local group = {}
 
-    for line in io.lines('../../../advent-of-code-input/2020/input/day6.txt') do
+    for line in io.lines('../../../input/2020/input/day6.txt') do
         if line == '' then
             groups[#groups + 1] = group
             group = {}

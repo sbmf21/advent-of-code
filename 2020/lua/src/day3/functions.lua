@@ -12,7 +12,7 @@ end
 local function readMap()
     local map = {}
 
-    for line in io.lines('../../../advent-of-code-input/2020/input/day3.txt') do
+    for line in io.lines('../../../input/2020/input/day3.txt') do
         map[#map + 1] = line
     end
 
