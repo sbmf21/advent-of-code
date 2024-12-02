@@ -6,7 +6,7 @@ stages:
 # Gradle
 
 .gradle:
-  image: gradle:8.2-jdk17
+  image: gradle:8.2-jdk21
   variables:
     GRADLE_OPTS: -Dorg.gradle.daemon=false
 

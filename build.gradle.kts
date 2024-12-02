@@ -26,8 +26,4 @@ subprojects {
         mavenCentral()
         maven("https://gitlab.sbmf21.nl/api/v4/groups/5/-/packages/maven") { name = "sbmf" }
     }
-
-    tasks {
-        withType<JavaCompile> { targetCompatibility = "17" }
-    }
 }

@@ -1,6 +1,5 @@
-package je.bouk.aco24.days
+package je.bouk.aoc24.days
 
-import je.bouk.aoc24.days.Day1
 import nl.sbmf21.aoc.testing.testDay
 import kotlin.test.Test
 

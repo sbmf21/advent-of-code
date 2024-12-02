@@ -114,7 +114,7 @@ function run_gradle {
   cd "$(base_folder)" || exit 1
 
   echo "Running tests"
-  if ! ./gradlew ":$2:clean" ":$2:test" --tests "nl.sbmf21.aoc${2:(-2)}.days.Day${3}Test"; then
+  if ! ./gradlew ":$2:clean" ":$2:test" --tests "$packageBase.aoc${2:(-2)}.days.Day${3}Test"; then
     echo -e "\e[31mTests failed" >&2; return
   fi
 
@@ -135,12 +135,20 @@ day=$3
 check_year "$year"
 check_day "$day"
 
+if (( "$year" >= 2024 )); then
+  sourceBase="je/bouk"
+  packageBase="je.bouk"
+else
+  sourceBase="nl/sbmf21"
+  packageBase="nl.sbmf21"
+fi
+
 case $2 in
   "kotlin")
     echo "Generating kotlin files for $year:$day"
     folder=$(init_folder "$year" "kotlin")
-    packageFolder="nl/sbmf21/aoc${year:(-2)}"
-    package="nl.sbmf21.aoc${year:(-2)}"
+    packageFolder="$sourceBase/aoc${year:(-2)}"
+    package="$packageBase.aoc${year:(-2)}"
 
     projectFile="$folder/build.gradle.kts"
     mainFile="$folder/src/main/kotlin/$packageFolder/Aoc.kt"
@@ -180,7 +188,7 @@ tasks {
 }
 
 application {
-    mainClass = "nl.sbmf21.aoc${year:(-2)}.AocKt"
+    mainClass = "$packageBase.aoc${year:(-2)}.AocKt"
 }
 GRADLE
     )"; then
@@ -210,17 +218,16 @@ MAIN
 package $package.days
 
 import nl.sbmf21.aoc.common.Day
+import nl.sbmf21.aoc.common.TODO
 
 class Day$day : Day() {
 
     override fun part1(): Any {
-
-        return -1
+        return TODO
     }
 
     override fun part2(): Any {
-
-        return -1
+        return TODO
     }
 }
 SOLUTION
@@ -232,16 +239,17 @@ SOLUTION
     if create_file "$testFile" "$(cat <<TEST
 package $package.days
 
+import nl.sbmf21.aoc.common.TODO
 import nl.sbmf21.aoc.testing.testDay
 import org.junit.jupiter.api.Test
 
 class Day${day}Test {
 
     @Test
-    fun testInput() = testDay(Day${day}::class.java, -1, -1)
+    fun testInput() = testDay(Day${day}::class.java, TODO, TODO)
 
     @Test
-    fun testExample() = testDay(Day${day}::class.java, -1, -1, true)
+    fun testExample() = testDay(Day${day}::class.java, TODO, TODO, true)
 }
 TEST
     )"; then
@@ -259,8 +267,8 @@ TEST
   "java")
     echo "Generating java files for $year:$day"
     folder=$(init_folder "$year" "java")
-    packageFolder="nl/sbmf21/aoc${year:(-2)}"
-    package="nl.sbmf21.aoc${year:(-2)}"
+    packageFolder="$sourceBase/aoc${year:(-2)}"
+    package="$packageBase.aoc${year:(-2)}"
 
     projectFile="$folder/build.gradle.kts"
     mainFile="$folder/src/main/java/$packageFolder/Aoc.java"
@@ -304,7 +312,7 @@ tasks {
 }
 
 application {
-    mainClass = "nl.sbmf21.aoc${year:(-2)}.Aoc"
+    mainClass = "$packageBase.aoc${year:(-2)}.Aoc"
 }
 GRADLE
     )"; then
@@ -347,18 +355,18 @@ package $package.days;
 import nl.sbmf21.aoc.common.Day;
 import org.jetbrains.annotations.NotNull;
 
+import static nl.sbmf21.aoc.common.UtilKt.getTODO;
+
 public class Day$day extends Day {
 
     @Override
     public @NotNull Object part1() {
-
-        return -1;
+        return getTODO();
     }
 
     @Override
     public @NotNull Object part2() {
-
-        return -1;
+        return getTODO();
     }
 }
 SOLUTION
@@ -371,18 +379,19 @@ package $package.days;
 
 import org.junit.jupiter.api.Test;
 
+import static nl.sbmf21.aoc.common.UtilKt.getTODO;
 import static nl.sbmf21.aoc.testing.UtilKt.testDay;
 
 public class Day${day}Test {
 
     @Test
     public void testInput() {
-        testDay(Day${day}.class, -1, -1, false, null);
+        testDay(Day${day}.class, getTODO(), getTODO(), false, null);
     }
 
     @Test
     public void testExample() {
-        testDay(Day${day}.class, -1, -1, true, null);
+        testDay(Day${day}.class, getTODO(), getTODO(), true, null);
     }
 }
 TEST
