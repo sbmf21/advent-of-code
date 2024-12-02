@@ -3,6 +3,9 @@ stages:
   - test
   - run
 
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+
 # Gradle
 
 .gradle:
