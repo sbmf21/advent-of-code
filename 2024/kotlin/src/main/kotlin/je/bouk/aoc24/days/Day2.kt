@@ -17,36 +17,34 @@ class Day2 : Day() {
     override fun part1() = reports.count(::isSave)
 
     override fun part2() = reports.count { report ->
-        isSave(report) || (((index(report, DOWN) ?: index(report, UP)) == true))
+        isSave(report) || isFixable(report, DOWN) || isFixable(report, UP)
     }
 
-    private fun index(report: Report, compare: Compare): Boolean? {
-        if (check(report, 1, compare)) return true
+    private fun isSave(report: Report): Boolean {
+        return isValidReport(report, compare = DOWN)
+            || isValidReport(report, compare = UP)
+    }
+
+    private fun isFixable(report: Report, compare: Compare): Boolean {
+        if (isValidReport(report, 1, compare)) return true
         for (index in report.indices) {
             if (isValid(report[index], report[index + 1], compare)) continue
-            return if (doesRemovingFix(report, index, compare)) true else null
+            return index == report.lastIndex - 1
+                || checkCurrent(report, index, compare)
+                || checkAhead(report, index, compare)
         }
-        return null
+        return false
     }
-
-    private fun doesRemovingFix(report: Report, index: Int, compare: Compare) = index == report.lastIndex - 1
-        || checkCurrent(report, index, compare)
-        || checkAhead(report, index, compare)
 
     private fun checkCurrent(report: Report, index: Int, compare: Compare) = index - 1 >= 0
         && isValid(report[index - 1], report[index + 1], compare)
-        && check(report, index + 1, compare)
+        && isValidReport(report, index + 1, compare)
 
     private fun checkAhead(report: Report, index: Int, compare: Compare) = index + 2 <= report.lastIndex
         && isValid(report[index], report[index + 2], compare)
-        && check(report, index + 2, compare)
+        && isValidReport(report, index + 2, compare)
 
-    private fun isSave(report: Report): Boolean {
-        return check(report, compare = DOWN)
-            || check(report, compare = UP)
-    }
-
-    private fun check(report: Report, start: Int = 0, compare: Compare): Boolean {
+    private fun isValidReport(report: Report, start: Int = 0, compare: Compare): Boolean {
         for (i in start..<report.lastIndex) if (!isValid(report[i], report[i + 1], compare)) return false
         return true
     }
