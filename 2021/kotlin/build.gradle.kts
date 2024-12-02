@@ -14,8 +14,8 @@ dependencies {
 }
 
 tasks {
-    processResources { from("../resources/input") { into("input") } }
-    processTestResources { from("../resources/example") { into("example") } }
+    processResources { from("../../advent-of-code-input/2021/input") { into("input") } }
+    processTestResources { from("../../advent-of-code-input/2021/example") { into("example") } }
     withType<Jar> { archiveBaseName = "aoc2021" }
     withType<ShadowJar> {
         archiveClassifier = "shaded"
