@@ -31,6 +31,7 @@ variables:
 # Projects
 
 include:
+  # @projects:start
   - local: /2015/java/.gitlab-ci.yml
   - local: /2016/kotlin/.gitlab-ci.yml
   - local: /2020/kotlin/.gitlab-ci.yml
@@ -40,3 +41,4 @@ include:
   - local: /2023/kotlin/.gitlab-ci.yml
   - local: /2024/kotlin/.gitlab-ci.yml
   - local: /aoc-commons/.gitlab-ci.yml
+  # @projects:end

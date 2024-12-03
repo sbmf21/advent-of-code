@@ -1,0 +1,53 @@
+variables:
+  PROJECT: '$year@$language'
+
+.$year:$language:caches:
+  key: '$year:$language'
+  paths:
+    - .gradle
+    - aoc-commons/build
+    - $year/$language/build
+
+.$year:$language:
+  extends: .gradle
+  only:
+    changes:
+      - aoc-commons/**/*
+      - aoc-test-utils/**/*
+      - $year/$language/**/*
+  cache:
+    key: !reference [ .$year:$language:caches, key ]
+    policy: pull
+    paths: !reference [ .$year:$language:caches, paths ]
+
+$year:$language:compile:
+  extends:
+    - .$year:$language
+    - .gradle:compile
+  cache:
+    key: !reference [ .$year:$language:caches, key ]
+    policy: pull-push
+    paths: !reference [ .$year:$language:caches, paths ]
+
+$year:$language:test:
+  extends:
+    - .$year:$language
+    - .gradle:test
+  dependencies:
+    - $year:$language:compile
+  needs:
+    - $year:$language:compile
+  artifacts:
+    reports:
+      junit: $year/$language/build/test-results/test/TEST-*.xml
+
+$year:$language:run:
+  extends: .$year:$language
+  stage: run
+  dependencies:
+    - $year:$language:compile
+  needs:
+    - $year:$language:compile
+    - $year:$language:test
+  script:
+    - java -jar $year/$language/build/libs/aoc$year-shaded.jar

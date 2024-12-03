@@ -1,3 +1,6 @@
+variables:
+  PROJECT: '2020@kotlin'
+
 .2020:kotlin:caches:
   key: '2020:kotlin'
   paths:
@@ -21,8 +24,6 @@
   extends:
     - .2020:kotlin
     - .gradle:compile
-  variables:
-    PROJECT: '2020'
   cache:
     key: !reference [ .2020:kotlin:caches, key ]
     policy: pull-push
@@ -32,8 +33,6 @@
   extends:
     - .2020:kotlin
     - .gradle:test
-  variables:
-    PROJECT: '2020'
   dependencies:
     - 2020:kotlin:compile
   needs:

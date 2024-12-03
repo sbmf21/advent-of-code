@@ -3,16 +3,20 @@ rootProject.name = "advent-of-code"
 include(":aoc-commons")
 include(":aoc-test-utils")
 
-mapOf(
-    "2015" to "2015/java",
-    "2016" to "2016/kotlin",
-    "2020" to "2020/kotlin",
-    "2021" to "2021/kotlin",
-    "2022" to "2022/kotlin",
-    "2023" to "2023/kotlin",
-    "2024" to "2024/kotlin",
-).forEach { (name, folder) ->
-    include(name)
-    val project = project(":$name")
-    project.projectDir = file(folder)
+listOf(
+    // @projects:start
+    "2015:java",
+    "2016:kotlin",
+    "2020:kotlin",
+    "2021:kotlin",
+    "2022:kotlin",
+    "2023:kotlin",
+    "2024:kotlin",
+    // @projects:end
+).forEach {
+    val (year, language) = it.split(":")
+    include("$year@$language")
+    project(":$year@$language").apply {
+        projectDir = file("$year/$language")
+    }
 }

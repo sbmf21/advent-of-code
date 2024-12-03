@@ -1,23 +1,61 @@
 #!/bin/bash
 
+F_RED="\033[31m"
+F_GREEN="\033[32m"
+F_BLUE="\033[34m"
+F_RESET="\033[0m"
+
+function trunc {
+  if [[ $1 == *.kt ]] || [[ $1 == *.kts ]]; then
+    truncate -s -1 "$1"
+  fi
+}
+
 function check_arguments {
-  if [ "$#" -ne 3 ]; then
+  if [ "$#" -ne 3 ] && [ "$#" -ne 2 ]; then
     me=$(basename "$0")
-    echo -e "\033[31mUsage: ./$me year language day" >&2; exit 1
+    echo -e "${F_RED}Usage: ./$me year language [day]" >&2; exit 1
   fi
-}
 
-function check_year {
-  regex='^(20(1[5-9]|[2-9][0-9]))|(2[1-9][0-9]{2})$'
-  if ! [[ "$1" =~ $regex ]] ; then
-    echo -e "\033[31mError: $1 is not a valid year" >&2; exit 1
+  errors=0
+  yearRegex='^(20(1[5-9]|[2-9][0-9]))|(2[1-9][0-9]{2})$'
+  dayRegex='^((2[0-5])|(1[0-9])|([1-9]))$'
+  languages=("kotlin" "java")
+
+  export year=$1
+  export language=$2
+  export day=$3
+
+  # check year
+
+  if ! [[ "$year" =~ $yearRegex ]] ; then
+    echo -e "${F_RED}Error: '$year' is not a valid year" >&2; ((errors++))
   fi
-}
 
-function check_day {
-  regex='^((2[0-5])|(1[0-9])|([1-9]))$'
-  if ! [[ "$1" =~ $regex ]] ; then
-    echo -e "\033[31mError: $1 is not a valid day" >&2; exit 1
+  if (( "$year" >= 2024 )); then
+    sourceBase="je/bouk"
+    packageBase="je.bouk"
+  else
+    sourceBase="nl/sbmf21"
+    packageBase="nl.sbmf21"
+  fi
+
+  # check language
+
+  if [[ ! "${languages[*]}" =~ ${language} ]]; then
+    echo -e "${F_RED}Error: '$language' is not a supported language" >&2; ((errors++))
+  fi
+
+  # check day
+
+  if [[ ! "$day" =~ $dayRegex ]] && [ -n "$day" ]; then
+    echo -e "${F_RED}Error: '$day' is not a valid day" >&2; ((errors++))
+  fi
+
+  # finish
+
+  if [ $errors -gt 0 ]; then
+    exit $errors
   fi
 }
 
@@ -28,7 +66,7 @@ function base_folder {
 
 function init_folder {
   base=$(base_folder)
-  folder="$base/$1/$2"
+  folder="$base/$year/$language"
   mkdir -p "$folder"
   echo "$folder"
 }
@@ -36,13 +74,45 @@ function init_folder {
 function create_file {
   if [ -s "$1" ]; then return 1; fi
 
-  echo "Generating $1"
+  echo -e "Generating $F_BLUE$1$F_RESET"
   mkdir -p "${1%/*}" && touch "$1"
 
-  if [ -z "$2" ]; then return 1; fi
+  if [ -z "$2" ]; then return 0; fi
 
-  echo "$2" >> "$1"
+  template="resources/$2"
+  template="resources/$2"
+  # shellcheck disable=SC2016
+  # this is how envsubset knows what to export
+  content=$(envsubst '$year,$day,$language,$package' < "$template")
+  echo "$content" > "$1"
+  trunc "$1"
+
   return 0
+}
+
+function add_to_list {
+  IFS=$'\n'
+
+  projects=$(awk '/start/{f=1; next} /end/{f=0} f' "$2") # read projects between start and end
+  read -rd '' -a projects <<<"$projects" # convert to array
+  projects+=("$1") # push file
+  read -rd '' -a projects < <(for project in "${projects[@]}"; do echo "$project"; done | sort) # sort
+
+  unset IFS
+
+  out=""
+  for c in "${!projects[@]}"; do
+    if [ "$c" -gt 0 ]; then out+="\n"; fi
+    out+="${projects[c]}"
+  done
+
+  content=$(awk -v projects="$out" '/end/{f=0} !f; sub(/start/,""){print projects; f=1}' "$2")
+  echo "$content" > "$2"
+  trunc "$2"
+
+  unset projects
+  unset content
+  unset out
 }
 
 function get_input {
@@ -53,401 +123,120 @@ function get_input {
     return 0
   fi
 
-  sessionFile=".aoc/session"
+  sessionFile="resources/.session"
   if [ ! -e "$sessionFile" ]; then
     mkdir -p "$(dirname "$sessionFile")"
     touch "$sessionFile"
   fi
 
   if [ ! -s "$sessionFile" ]; then
-    echo -ne "\033[31mPlease paste your AOC session here\033[0m: "
+    echo -ne "${F_RED}Please paste your AOC session here${F_RESET}: "
     read -r input
     echo "$input" > "$sessionFile"
     truncate -s -1 "$sessionFile"
   fi
 
-  echo "Collecting input"
+  echo -n "Collecting input"
 
   session=$(cat "$sessionFile")
-  content=$(curl -s --fail --show-error \
-                 --cookie "session=$session" \
-                "https://adventofcode.com/$year/day/$day/input")
-  code=$?
+  content=$(curl -s --fail \
+     --cookie "session=$session" \
+    "https://adventofcode.com/$year/day/$day/input")
 
+  code=$?
   if [ $code -ne 0 ]; then
-    echo -e "\033[31mCollecting input failed\033[0m"
+    echo -e ": ${F_RED}failed${F_RESET}."
     return
   fi
 
   echo "$content" > "$file"
+  echo -e ": ${F_GREEN}done${F_RESET}."
   truncate -s -1 "$file"
 }
 
-function create_gradle_ci {
-    if create_file "$3/.gitlab-ci.yml" "$(cat <<CI
-.$1:$2:caches:
-  key: '$1:$2'
-  paths:
-    - .gradle
-    - aoc-commons/build
-    - $1/$2/build
-
-.$1:$2:
-  extends: .gradle
-  only:
-    changes:
-      - aoc-commons/**/*
-      - aoc-test-utils/**/*
-      - $1/$2/**/*
-  cache:
-    key: !reference [ .$1:$2:caches, key ]
-    policy: pull
-    paths: !reference [ .$1:$2:caches, paths ]
-
-$1:$2:compile:
-  extends:
-    - .$1:$2
-    - .gradle:compile
-  variables:
-    PROJECT: '$1'
-  cache:
-    key: !reference [ .$1:$2:caches, key ]
-    policy: pull-push
-    paths: !reference [ .$1:$2:caches, paths ]
-
-$1:$2:test:
-  extends:
-    - .$1:$2
-    - .gradle:test
-  variables:
-    PROJECT: '$1'
-  dependencies:
-    - $1:$2:compile
-  needs:
-    - $1:$2:compile
-  artifacts:
-    reports:
-      junit: $1/$2/build/test-results/test/TEST-*.xml
-
-$1:$2:run:
-  extends: .$1:$2
-  stage: run
-  dependencies:
-    - $1:$2:compile
-  needs:
-    - $1:$2:compile
-    - $1:$2:test
-  script:
-    - java -jar $1/$2/build/libs/aoc$1-shaded.jar
-CI
-  )"; then
-    echo -e "\033[32mHEY: Remember to add \`\033[48;5;0m- local: /$1/$2/.gitlab-ci.yml\033[0m\033[32m\` to the gitlab ci configuration\033[0m"
-    return 0
+function gradle_create_ci {
+  if create_file "$1/.gitlab-ci.yml" ".gitlab-ci.gradle.yml"; then
+    echo "Adding to main CI file"
+    add_to_list "  - local: /$year/$language/.gitlab-ci.yml" ".gitlab-ci.yml"
   fi
-
-  return 1
 }
 
-function run_gradle {
+function gradle_add_project {
+  if create_file "$1" "$2"; then
+    echo "Adding to main gradle project"
+    add_to_list "    \"$year:$language\"," "settings.gradle.kts"
+  fi
+}
+
+function gradle_run_year {
   cd "$(base_folder)" || exit 1
 
-  if ! ./gradlew ":$2:clean" ":$2:test" --tests "$packageBase.aoc${2:(-2)}.days.Day${3}Test" ":$2:jar"; then
+  if ! ./gradlew ":$year@$language:clean" ":$year@$language:test" ":$year@$language:jar"; then
     return 1 # no need to log nothing, gradle does that for us
   fi
 
-  java -jar "$2/$1/build/libs/aoc$2-shaded.jar" --day="$day"
+  java -jar "$year/$language/build/libs/aoc$year-shaded.jar"
+}
+
+function gradle_run_single {
+  cd "$(base_folder)" || exit 1
+
+  get_input "$inputFile"
+
+  if ! ./gradlew ":$year@$language:clean" ":$year@$language:test" --tests "$packageBase.aoc${year:(-2)}.days.Day${day}Test" ":$year@$language:jar"; then
+    return 1 # no need to log nothing, gradle does that for us
+  fi
+
+  java -jar "$year/$language/build/libs/aoc$year-shaded.jar" --day="$day"
 }
 
 check_arguments "$@"
 
-year=$1
-language=$2
-day=$3
+inputFile="$(base_folder)/input/$year/input/day${day}.txt"
+exampleFile="$(base_folder)/input/$year/example/day${day}.txt"
 
-check_year "$year"
-check_day "$day"
-
-if (( "$year" >= 2024 )); then
-  sourceBase="je/bouk"
-  packageBase="je.bouk"
-else
-  sourceBase="nl/sbmf21"
-  packageBase="nl.sbmf21"
-fi
-
-case $2 in
+case $language in
   "kotlin")
-    echo "Generating kotlin files for $year:$day"
-    folder=$(init_folder "$year" "kotlin")
+    folder=$(init_folder)
     packageFolder="$sourceBase/aoc${year:(-2)}"
-    package="$packageBase.aoc${year:(-2)}"
+    export package="$packageBase.aoc${year:(-2)}"
 
-    projectFile="$folder/build.gradle.kts"
-    mainFile="$folder/src/main/kotlin/$packageFolder/Aoc.kt"
-    solutionFile="$folder/src/main/kotlin/$packageFolder/days/Day${day}.kt"
-    testFile="$folder/src/test/kotlin/$packageFolder/days/Day${day}Test.kt"
+    gradle_create_ci "$folder"
+    gradle_add_project "$folder/build.gradle.kts" "kotlin/build.gradle.kts"
+    create_file "$folder/src/main/kotlin/$packageFolder/Aoc.kt" "kotlin/Aoc.kt"
 
-    needs_action=0
+    if [ -n "$day" ]; then
+      if create_file "$folder/src/main/kotlin/$packageFolder/days/Day${day}.kt" "kotlin/Day.kt"; then create_file "$inputFile"; fi
+      if create_file "$folder/src/test/kotlin/$packageFolder/days/Day${day}Test.kt" "kotlin/Test.kt"; then create_file "$exampleFile"; fi
 
-    if create_gradle_ci "$year" "kotlin" "$folder"; then needs_action=1; fi
-
-    if create_file "$projectFile" "$(cat <<GRADLE
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-
-plugins {
-    kotlin("jvm")
-}
-
-val sbmfMathVersion: String by rootProject.extra
-
-dependencies {
-    implementation(project(":aoc-commons"))
-    implementation("nl.sbmf21:math:\$sbmfMathVersion")
-    testImplementation(kotlin("test"))
-    testImplementation(project(":aoc-test-utils"))
-}
-
-tasks {
-    processResources { from("../../input/$year/input") { into("input") } }
-    processTestResources { from("../../input/$year/example") { into("example") } }
-    withType<Jar> { archiveBaseName = "aoc$year" }
-    withType<ShadowJar> {
-        archiveClassifier = "shaded"
-        mergeServiceFiles()
-    }
-    jar { dependsOn(shadowJar) }
-    test { useJUnitPlatform() }
-}
-
-application {
-    mainClass = "$packageBase.aoc${year:(-2)}.AocKt"
-}
-GRADLE
-    )"; then
-      truncate -s -1 "$projectFile"
-      echo -e "\033[32mHEY: Remember to add \`\033[48;5;0m\"$year\" \033[34mto \033[32m\"$year/kotlin\"\033[38;5;255m,\033[0m\033[32m\` to the gradle base settings\033[0m"
-      needs_action=1
+      gradle_run_single
+    else
+      gradle_run_year
     fi
-
-    if create_file "$mainFile" "$(cat <<MAIN
-package $package
-
-import nl.sbmf21.aoc.common.AocBase
-
-class Aoc : AocBase("$year")
-
-fun main(args: Array<String>) = Aoc().run { exec(args) }
-MAIN
-    )"; then
-      truncate -s -1 "$mainFile"
-      echo -e "\033[32mHEY: Remember to add run configuration for Aoc.kt in InteliJ\033[0m"
-      needs_action=1
-    fi
-
-    if (( needs_action )); then echo "Exiting because an action is required"; exit 0; fi
-
-    inputFile="input/$year/input/day${day}.txt"
-
-    if create_file "$solutionFile" "$(cat <<SOLUTION
-package $package.days
-
-import nl.sbmf21.aoc.common.Day
-import nl.sbmf21.aoc.common.TODO
-
-class Day$day : Day() {
-
-    override fun part1(): Any {
-        return TODO
-    }
-
-    override fun part2(): Any {
-        return TODO
-    }
-}
-SOLUTION
-    )"; then
-      truncate -s -1 "$solutionFile"
-      create_file "$inputFile"
-    fi
-
-    get_input "$inputFile"
-
-    if create_file "$testFile" "$(cat <<TEST
-package $package.days
-
-import nl.sbmf21.aoc.common.TODO
-import nl.sbmf21.aoc.testing.testDay
-import org.junit.jupiter.api.Test
-
-class Day${day}Test {
-
-    @Test
-    fun testInput() = testDay(Day${day}::class.java, TODO, TODO)
-
-    @Test
-    fun testExample() = testDay(Day${day}::class.java, TODO, TODO, true)
-}
-TEST
-    )"; then
-      truncate -s -1 "$testFile"
-      create_file "input/$year/example/day${day}.txt"
-    fi
-
-    run_gradle "kotlin" "$year" "$day"
     ;;
-
-
-
 
 
   "java")
-    echo "Generating java files for $year:$day"
-    folder=$(init_folder "$year" "java")
+    folder=$(init_folder)
     packageFolder="$sourceBase/aoc${year:(-2)}"
-    package="$packageBase.aoc${year:(-2)}"
+    export package="$packageBase.aoc${year:(-2)}"
 
-    projectFile="$folder/build.gradle.kts"
-    mainFile="$folder/src/main/java/$packageFolder/Aoc.java"
-    solutionFile="$folder/src/main/java/$packageFolder/days/Day${day}.java"
-    testFile="$folder/src/test/java/$packageFolder/days/Day${day}Test.java"
+    gradle_create_ci "$folder"
+    gradle_add_project "$folder/build.gradle.kts" "java/build.gradle.kts"
+    create_file "$folder/src/main/java/$packageFolder/Aoc.java" "java/Aoc.java"
 
-    needs_action=0
+    if [ -n "$day" ]; then
+      if create_file "$folder/src/main/java/$packageFolder/days/Day${day}.java" "java/Day.java"; then create_file "$inputFile"; fi
+      if create_file "$folder/src/test/java/$packageFolder/days/Day${day}Test.java" "java/Test.java"; then create_file "$exampleFile"; fi
 
-    if create_gradle_ci "$year" "java" "$folder"; then needs_action=1; fi
-
-    if create_file "$projectFile" "$(cat <<GRADLE
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-
-plugins {
-    java
-}
-
-val annotationsVersion: String by rootProject.extra
-val sbmfMathVersion: String by rootProject.extra
-val junitJupiterVersion: String by rootProject.extra
-
-dependencies {
-    implementation(project(":aoc-commons"))
-    implementation("org.jetbrains:annotations:\$annotationsVersion")
-    implementation("nl.sbmf21:math:\$sbmfMathVersion")
-    testImplementation("org.junit.jupiter:junit-jupiter-api:\$junitJupiterVersion")
-    testImplementation(project(":aoc-test-utils"))
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:\$junitJupiterVersion")
-}
-
-tasks {
-    processResources { from("../../input/$year/input") { into("input") } }
-    processTestResources { from("../../input/$year/example") { into("example") } }
-    withType<Jar> { archiveBaseName = "aoc$year" }
-    withType<ShadowJar> {
-        archiveClassifier = "shaded"
-        mergeServiceFiles()
-    }
-    jar { dependsOn(shadowJar) }
-    test { useJUnitPlatform() }
-}
-
-application {
-    mainClass = "$packageBase.aoc${year:(-2)}.Aoc"
-}
-GRADLE
-    )"; then
-      truncate -s -1 "$projectFile"
-      echo -e "\033[32mHEY: Remember to add \`\033[48;5;0m\"$year\" \033[34mto \033[32m\"$year/java\"\033[38;5;255m,\033[0m\033[32m\` to the gradle base settings\033[0m"
-      needs_action=1
+      gradle_run_single
+    else
+      gradle_run_year
     fi
-
-    if create_file "$mainFile" "$(cat <<MAIN
-package $package;
-
-import nl.sbmf21.aoc.common.AocBase;
-
-import java.util.HashMap;
-
-public class Aoc extends AocBase {
-
-    public Aoc() {
-        super("$year", new HashMap<>());
-    }
-
-    public static void main(String[] args) {
-        var aoc = new Aoc();
-
-        aoc.exec(args);
-    }
-}
-MAIN
-    )"; then
-      truncate -s -1 "$mainFile"
-      echo -e "\033[32mHEY: Remember to add run configuration for Aoc.java in IntelliJ\033[0m"
-      needs_action=1
-    fi
-
-    if (( needs_action )); then echo "Exiting because an action is required"; exit 0; fi
-
-    inputFile="input/$year/input/day${day}.txt"
-
-    if create_file "$solutionFile" "$(cat <<SOLUTION
-package $package.days;
-
-import nl.sbmf21.aoc.common.Day;
-import org.jetbrains.annotations.NotNull;
-
-import static nl.sbmf21.aoc.common.UtilKt.getTODO;
-
-public class Day$day extends Day {
-
-    @Override
-    public @NotNull Object part1() {
-        return getTODO();
-    }
-
-    @Override
-    public @NotNull Object part2() {
-        return getTODO();
-    }
-}
-SOLUTION
-    )"; then
-      create_file "$inputFile"
-    fi
-
-    get_input "$inputFile"
-
-    if create_file "$testFile" "$(cat <<TEST
-package $package.days;
-
-import org.junit.jupiter.api.Test;
-
-import static nl.sbmf21.aoc.common.UtilKt.getTODO;
-import static nl.sbmf21.aoc.testing.UtilKt.testDay;
-
-public class Day${day}Test {
-
-    @Test
-    public void testInput() {
-        testDay(Day${day}.class, getTODO(), getTODO(), false, null);
-    }
-
-    @Test
-    public void testExample() {
-        testDay(Day${day}.class, getTODO(), getTODO(), true, null);
-    }
-}
-TEST
-    )"; then
-      create_file "input/$year/example/day${day}.txt"
-    fi
-
-    run_gradle "java" "$year" "$day"
     ;;
-
-
-
 
 
   *)
-    echo -e "\033[31mError: no handler to generate files for $language" >&2; exit 1
+    echo -e "${F_RED}Error: no handler to generate files for $language" >&2; exit 1
     ;;
 esac
-

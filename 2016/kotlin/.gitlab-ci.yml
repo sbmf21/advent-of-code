@@ -1,3 +1,6 @@
+variables:
+  PROJECT: '2016@kotlin'
+
 .2016:kotlin:caches:
   key: '2016:kotlin'
   paths:
@@ -20,8 +23,6 @@
   extends:
     - .2016:kotlin
     - .gradle:compile
-  variables:
-    PROJECT: '2016'
   cache:
     key: !reference [ .2016:kotlin:caches, key ]
     policy: pull-push
@@ -31,8 +32,6 @@
   extends:
     - .2016:kotlin
     - .gradle:test
-  variables:
-    PROJECT: '2016'
   dependencies:
     - 2016:kotlin:compile
   needs:
