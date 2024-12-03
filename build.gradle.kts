@@ -1,3 +1,6 @@
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+import org.gradle.api.tasks.testing.logging.TestLogEvent
+
 plugins {
     kotlin("jvm") version "2.1.0" apply false
     id("com.github.johnrengelman.shadow") version "8.1.1" apply false
@@ -25,5 +28,18 @@ subprojects {
     repositories {
         mavenCentral()
         maven("https://gitlab.sbmf21.nl/api/v4/groups/5/-/packages/maven") { name = "sbmf" }
+    }
+
+    tasks {
+        withType<Test> {
+            testLogging {
+                events = setOf(TestLogEvent.FAILED)
+                exceptionFormat = TestExceptionFormat.FULL
+                showExceptions = true
+                showCauses = true
+                showStackTraces = false
+                showStandardStreams = false
+            }
+        }
     }
 }

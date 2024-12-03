@@ -3,21 +3,21 @@
 function check_arguments {
   if [ "$#" -ne 3 ]; then
     me=$(basename "$0")
-    echo -e "\e[31mUsage: ./$me year language day" >&2; exit 1
+    echo -e "\033[31mUsage: ./$me year language day" >&2; exit 1
   fi
 }
 
 function check_year {
   regex='^(20(1[5-9]|[2-9][0-9]))|(2[1-9][0-9]{2})$'
   if ! [[ "$1" =~ $regex ]] ; then
-    echo -e "\e[31mError: $1 is not a valid year" >&2; exit 1
+    echo -e "\033[31mError: $1 is not a valid year" >&2; exit 1
   fi
 }
 
 function check_day {
   regex='^((2[0-5])|(1[0-9])|([1-9]))$'
   if ! [[ "$1" =~ $regex ]] ; then
-    echo -e "\e[31mError: $1 is not a valid day" >&2; exit 1
+    echo -e "\033[31mError: $1 is not a valid day" >&2; exit 1
   fi
 }
 
@@ -43,6 +43,44 @@ function create_file {
 
   echo "$2" >> "$1"
   return 0
+}
+
+function get_input {
+  file="$1"
+
+  if [ ! -e "$file" ] || [ -s "$file" ]; then
+    # file does not exist OR file has content
+    return 0
+  fi
+
+  sessionFile=".aoc/session"
+  if [ ! -e "$sessionFile" ]; then
+    mkdir -p "$(dirname "$sessionFile")"
+    touch "$sessionFile"
+  fi
+
+  if [ ! -s "$sessionFile" ]; then
+    echo -ne "\033[31mPlease paste your AOC session here\033[0m: "
+    read -r input
+    echo "$input" > "$sessionFile"
+    truncate -s -1 "$sessionFile"
+  fi
+
+  echo "Collecting input"
+
+  session=$(cat "$sessionFile")
+  content=$(curl -s --fail --show-error \
+                 --cookie "session=$session" \
+                "https://adventofcode.com/$year/day/$day/input")
+  code=$?
+
+  if [ $code -ne 0 ]; then
+    echo -e "\033[31mCollecting input failed\033[0m"
+    return
+  fi
+
+  echo "$content" > "$file"
+  truncate -s -1 "$file"
 }
 
 function create_gradle_ci {
@@ -103,7 +141,7 @@ $1:$2:run:
     - java -jar $1/$2/build/libs/aoc$1-shaded.jar
 CI
   )"; then
-    echo -e "\e[32mHEY: Remember to add \`\e[48;5;0m- local: /$1/$2/.gitlab-ci.yml\e[0m\e[32m\` to the gitlab ci configuration\e[0m"
+    echo -e "\033[32mHEY: Remember to add \`\033[48;5;0m- local: /$1/$2/.gitlab-ci.yml\033[0m\033[32m\` to the gitlab ci configuration\033[0m"
     return 0
   fi
 
@@ -113,23 +151,17 @@ CI
 function run_gradle {
   cd "$(base_folder)" || exit 1
 
-  echo "Running tests"
-  if ! ./gradlew ":$2:clean" ":$2:test" --tests "$packageBase.aoc${2:(-2)}.days.Day${3}Test"; then
-    echo -e "\e[31mTests failed" >&2; return
+  if ! ./gradlew ":$2:clean" ":$2:test" --tests "$packageBase.aoc${2:(-2)}.days.Day${3}Test" ":$2:jar"; then
+    return 1 # no need to log nothing, gradle does that for us
   fi
 
-  echo "Compiling application"
-  if ! ./gradlew ":$2:jar"; then
-    echo -e "\e[31mCompilation failed" >&2; return
-  fi
-
-  echo "Running application"
   java -jar "$2/$1/build/libs/aoc$2-shaded.jar" --day="$day"
 }
 
 check_arguments "$@"
 
 year=$1
+language=$2
 day=$3
 
 check_year "$year"
@@ -193,7 +225,7 @@ application {
 GRADLE
     )"; then
       truncate -s -1 "$projectFile"
-      echo -e "\e[32mHEY: Remember to add \`\e[48;5;0m\"$year\" \e[34mto \e[32m\"$year/kotlin\"\e[38;5;255m,\e[0m\e[32m\` to the gradle base settings\e[0m"
+      echo -e "\033[32mHEY: Remember to add \`\033[48;5;0m\"$year\" \033[34mto \033[32m\"$year/kotlin\"\033[38;5;255m,\033[0m\033[32m\` to the gradle base settings\033[0m"
       needs_action=1
     fi
 
@@ -208,11 +240,13 @@ fun main(args: Array<String>) = Aoc().run { exec(args) }
 MAIN
     )"; then
       truncate -s -1 "$mainFile"
-      echo -e "\e[32mHEY: Remember to add run configuration for Aoc.kt in InteliJ\e[0m"
+      echo -e "\033[32mHEY: Remember to add run configuration for Aoc.kt in InteliJ\033[0m"
       needs_action=1
     fi
 
     if (( needs_action )); then echo "Exiting because an action is required"; exit 0; fi
+
+    inputFile="input/$year/input/day${day}.txt"
 
     if create_file "$solutionFile" "$(cat <<SOLUTION
 package $package.days
@@ -233,8 +267,10 @@ class Day$day : Day() {
 SOLUTION
     )"; then
       truncate -s -1 "$solutionFile"
-      create_file "input/$year/input/day${day}.txt"
+      create_file "$inputFile"
     fi
+
+    get_input "$inputFile"
 
     if create_file "$testFile" "$(cat <<TEST
 package $package.days
@@ -317,7 +353,7 @@ application {
 GRADLE
     )"; then
       truncate -s -1 "$projectFile"
-      echo -e "\e[32mHEY: Remember to add \`\e[48;5;0m\"$year\" \e[34mto \e[32m\"$year/java\"\e[38;5;255m,\e[0m\e[32m\` to the gradle base settings\e[0m"
+      echo -e "\033[32mHEY: Remember to add \`\033[48;5;0m\"$year\" \033[34mto \033[32m\"$year/java\"\033[38;5;255m,\033[0m\033[32m\` to the gradle base settings\033[0m"
       needs_action=1
     fi
 
@@ -343,11 +379,13 @@ public class Aoc extends AocBase {
 MAIN
     )"; then
       truncate -s -1 "$mainFile"
-      echo -e "\e[32mHEY: Remember to add run configuration for Aoc.java in InteliJ\e[0m"
+      echo -e "\033[32mHEY: Remember to add run configuration for Aoc.java in IntelliJ\033[0m"
       needs_action=1
     fi
 
     if (( needs_action )); then echo "Exiting because an action is required"; exit 0; fi
+
+    inputFile="input/$year/input/day${day}.txt"
 
     if create_file "$solutionFile" "$(cat <<SOLUTION
 package $package.days;
@@ -371,8 +409,10 @@ public class Day$day extends Day {
 }
 SOLUTION
     )"; then
-      create_file "input/$year/input/day${day}.txt"
+      create_file "$inputFile"
     fi
+
+    get_input "$inputFile"
 
     if create_file "$testFile" "$(cat <<TEST
 package $package.days;
@@ -407,7 +447,7 @@ TEST
 
 
   *)
-    echo -e "\e[31mError: no handler to generate files for $language" >&2; exit 1
+    echo -e "\033[31mError: no handler to generate files for $language" >&2; exit 1
     ;;
 esac
 
