@@ -2,7 +2,7 @@ package nl.sbmf21.aoc.common
 
 import nl.sbmf21.aoc.common.standin.Aoc
 import nl.sbmf21.aoc.common.standin.days.*
-import org.junit.jupiter.api.Test
+import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue

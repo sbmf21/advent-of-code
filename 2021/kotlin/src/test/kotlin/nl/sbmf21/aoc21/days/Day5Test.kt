@@ -1,7 +1,7 @@
 package nl.sbmf21.aoc21.days
 
 import nl.sbmf21.aoc.testing.testDay
-import org.junit.jupiter.api.Test
+import kotlin.test.Test
 
 class Day5Test {
 

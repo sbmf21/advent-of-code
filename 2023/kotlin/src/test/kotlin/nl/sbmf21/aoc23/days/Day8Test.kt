@@ -2,7 +2,7 @@ package nl.sbmf21.aoc23.days
 
 import nl.sbmf21.aoc.testing.buildWithInput
 import nl.sbmf21.aoc.testing.testDay
-import org.junit.jupiter.api.Test
+import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class Day8Test {

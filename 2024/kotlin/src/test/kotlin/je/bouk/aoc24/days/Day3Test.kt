@@ -2,7 +2,7 @@ package je.bouk.aoc24.days
 
 import nl.sbmf21.aoc.common.PuzzleMeta
 import nl.sbmf21.aoc.testing.testDay
-import org.junit.jupiter.api.Test
+import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class Day3Test {

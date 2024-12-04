@@ -3,7 +3,7 @@ package nl.sbmf21.aoc22.days
 import nl.sbmf21.aoc.testing.testFinalDay
 import nl.sbmf21.aoc22.days.Day25.Companion.decode
 import nl.sbmf21.aoc22.days.Day25.Companion.encode
-import org.junit.jupiter.api.Test
+import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class Day25Test {

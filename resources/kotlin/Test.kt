@@ -2,7 +2,7 @@ package $package.days
 
 import nl.sbmf21.aoc.common.TODO
 import nl.sbmf21.aoc.testing.testDay
-import org.junit.jupiter.api.Test
+import kotlin.test.Test
 
 class Day${day}Test {
 
