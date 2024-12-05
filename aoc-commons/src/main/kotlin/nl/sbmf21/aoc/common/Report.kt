@@ -3,8 +3,7 @@ package nl.sbmf21.aoc.common
 import nl.sbmf21.aoc.common.Color.*
 import nl.sbmf21.aoc.common.Format.timeString
 import nl.sbmf21.aoc.common.TimedRunner.Companion.report
-import nl.sbmf21.aoc.common.table.Align.CENTER
-import nl.sbmf21.aoc.common.table.Align.RIGHT
+import nl.sbmf21.aoc.common.table.Align.*
 import nl.sbmf21.aoc.common.table.table
 import java.util.Collections.synchronizedList
 
@@ -20,6 +19,8 @@ internal class Report(private val aoc: AocBase) {
     }
 
     fun render(executionTime: Long, threads: String) {
+        val totalTime = timings.sumOf(TimedRunner<*>::totalTime)
+
         table {
             row {
                 cell {
@@ -69,22 +70,17 @@ internal class Report(private val aoc: AocBase) {
 
                 row {
                     cell { text = "Total time"; align = RIGHT; colspan = 6 }
-
-                    cell {
-                        text = timeString(timings.sumOf(TimedRunner<*>::totalTime), true)
-                        align = RIGHT
-                        colspan = 2
-                    }
+                    cell { text = timeString(totalTime, true, false); align = LEFT; colspan = 2 }
                 }
 
                 row {
                     cell { text = "Execution time"; align = RIGHT; colspan = 6 }
-                    cell { text = timeString(executionTime, true); align = RIGHT; colspan = 2 }
+                    cell { text = timeString(executionTime, true, false); align = LEFT; colspan = 2 }
                 }
 
                 row {
                     cell { text = "Thread count"; align = RIGHT; colspan = 6 }
-                    cell { text = threads; align = RIGHT; colspan = 2 }
+                    cell { text = threads; align = LEFT; colspan = 2 }
                 }
             }
         }.apply(::println)

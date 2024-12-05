@@ -11,10 +11,11 @@ internal object Format {
     private const val MILLIS_SUFFIX = "ms"
     private const val MICROS_SUFFIX = "μs"
 
-    fun timeString(time: Long, trimSuffix: Boolean = false, color: Color = RESET) = when {
+    fun timeString(time: Long, trimSuffix: Boolean = false, colors: Boolean = true) = when {
         time >= SECONDS -> {
             val seconds = time / SECONDS
             val actualColor = when {
+                !colors -> RESET
                 seconds >= 5 -> RED
                 else -> YELLOW
             }
@@ -25,15 +26,16 @@ internal object Format {
         time >= MILLIS -> {
             val seconds = time / MILLIS
             val actualColor = when {
+                !colors -> RESET
                 seconds >= 500 -> YELLOW
-                else -> color
+                else -> RESET
             }
 
             actualColor + format(time, MILLIS, MILLIS_SUFFIX, trimSuffix)
         }
 
-        time >= MICROS -> color + format(time, MICROS, MICROS_SUFFIX, trimSuffix)
-        else -> "$color$time ns"
+        time >= MICROS -> RESET + format(time, MICROS, MICROS_SUFFIX, trimSuffix)
+        else -> "$RESET$time ns"
     }
 
     fun stringifyNumber(n: Any) = when (n) {
