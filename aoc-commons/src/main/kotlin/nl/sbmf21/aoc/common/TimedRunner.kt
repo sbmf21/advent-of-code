@@ -1,8 +1,9 @@
 package nl.sbmf21.aoc.common
 
-import nl.sbmf21.aoc.common.Format.stringifyNumber
+import nl.sbmf21.aoc.common.Format.stringify
 import nl.sbmf21.aoc.common.Format.timeString
-import nl.sbmf21.aoc.common.table.Align
+import nl.sbmf21.aoc.common.table.Align.LEFT
+import nl.sbmf21.aoc.common.table.Align.RIGHT
 import nl.sbmf21.aoc.common.table.Row
 import kotlin.properties.Delegates
 import kotlin.system.measureNanoTime
@@ -41,48 +42,70 @@ internal data class TimedRunner<T : Puzzle>(private val meta: PuzzleMeta<T>) {
 
             when (val puzzle = puzzle) {
                 is Day -> {
-                    part1Time = measureNanoTime { part1Value = puzzle.part1() }
-                    part2Time = measureNanoTime { part2Value = puzzle.part2() }
+                    part1Time = measureNanoTime { part1Value = execute(puzzle::part1) }
+                    part2Time = measureNanoTime { part2Value = execute(puzzle::part2) }
                 }
 
                 is FinalDay -> {
-                    solutionTime = measureNanoTime { solutionValue = puzzle.solution() }
+                    solutionTime = measureNanoTime { solutionValue = execute(puzzle::solution) }
                 }
             }
         }
+    }
+
+    private fun execute(block: () -> Any) = try {
+        block()
+    } catch (t: Throwable) {
+        t
     }
 
     companion object {
         fun Row.report(runner: TimedRunner<*>, index: Int) {
             val puzzle = runner.puzzle
 
-            cell { text = "${Color.BLUE}${Color.BOLD}${puzzle.number}"; align = Align.RIGHT }
-            cell { text = "${Color.BLUE}${Color.BOLD}" + stringifyNumber(index); align = Align.RIGHT }
+            cell { text = "${Color.BLUE}${Color.BOLD}${puzzle.number}"; align = RIGHT }
+            cell { text = "${Color.BLUE}${Color.BOLD}" + stringify(index); align = RIGHT }
 
             when (puzzle) {
                 is Day -> {
-                    cell { text = stringifyNumber(runner.part1Value); align = Align.RIGHT }
-                    cell { text = stringifyNumber(runner.part2Value); align = Align.RIGHT }
+                    cell {
+                        text = stringify(runner.part1Value)
+                        align = alignValue(runner.part1Value)
+                    }
+
+                    cell {
+                        text = stringify(runner.part2Value)
+                        align = alignValue(runner.part2Value)
+                    }
                 }
 
                 is FinalDay -> {
-                    cell { text = stringifyNumber(runner.solutionValue); align = Align.RIGHT; colspan = 2 }
+                    cell {
+                        text = stringify(runner.solutionValue)
+                        align = alignValue(runner.solutionValue)
+                        colspan = 2
+                    }
                 }
             }
 
-            cell { text = timeString(runner.totalTime); align = Align.RIGHT }
-            cell { text = timeString(runner.setupTime); align = Align.RIGHT }
+            cell { text = timeString(runner.totalTime); align = RIGHT }
+            cell { text = timeString(runner.setupTime); align = RIGHT }
 
             when (puzzle) {
                 is Day -> {
-                    cell { text = timeString(runner.part1Time); align = Align.RIGHT }
-                    cell { text = timeString(runner.part2Time); align = Align.RIGHT }
+                    cell { text = timeString(runner.part1Time); align = RIGHT }
+                    cell { text = timeString(runner.part2Time); align = RIGHT }
                 }
 
                 is FinalDay -> {
-                    cell { text = timeString(runner.solutionTime); align = Align.RIGHT; colspan = 2 }
+                    cell { text = timeString(runner.solutionTime); align = RIGHT; colspan = 2 }
                 }
             }
+        }
+
+        private fun alignValue(value: Any) = when {
+            value is Throwable -> LEFT
+            else -> RIGHT
         }
     }
 }

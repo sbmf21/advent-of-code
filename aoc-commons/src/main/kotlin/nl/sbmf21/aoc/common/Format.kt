@@ -38,10 +38,12 @@ internal object Format {
         else -> "$RESET$time ns"
     }
 
-    fun stringifyNumber(n: Any) = when (n) {
-        is Long -> n.toBigInteger().toString()
-        is Double -> n.toBigDecimal().toString()
-        else -> n.toString()
+    fun stringify(value: Any) = when (value) {
+        is Long -> value.toBigInteger().toString()
+        is Double -> value.toBigDecimal().toString()
+        is NotImplementedError -> TODO
+        is Throwable -> RED + value.stackTraceToString().replace("\t", "    ").trim()
+        else -> value.toString()
     }
 
     private fun format(time: Long, value: Double, suffix: String, trimSuffix: Boolean) =
