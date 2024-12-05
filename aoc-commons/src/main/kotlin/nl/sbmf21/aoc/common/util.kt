@@ -59,4 +59,6 @@ fun List<String>.mapToDoubles() = map(String::toDouble)
 
 fun List<Int>.prod() = fold(1) { acc, i -> acc * i }
 
+fun <T> List<T>.middle() = this[if (size % 2 == 1) (size - 1) / 2 else size / 2]
+
 val String.llength get() = length.toLong()
