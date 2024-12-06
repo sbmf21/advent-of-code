@@ -1,6 +1,7 @@
 package nl.sbmf21.aoc22.days
 
 import nl.sbmf21.aoc.common.Day
+import nl.sbmf21.aoc.common.util.Direction
 import nl.sbmf21.math.Vector2i
 import nl.sbmf21.math.clamp
 
@@ -9,7 +10,7 @@ class Day9 : Day() {
     var store: ((frame: Int, index: Int, pos: Vector2i) -> Unit)? = null
     private val actions = input
         .map { it.split(" ") }
-        .map { RopeAction(RopeDirection.from(it[0]), it[1].toInt()) }
+        .map { RopeAction(Direction(it[0]), it[1].toInt()) }
     private val valid = listOf(
         Vector2i(-1, 1), Vector2i(0, 1), Vector2i(1, 1),
         Vector2i(-1, 0), Vector2i(0, 0), Vector2i(1, 0),
@@ -48,16 +49,5 @@ class Day9 : Day() {
         return visited.size
     }
 
-    private data class RopeAction(val direction: RopeDirection, val distance: Int)
-
-    private enum class RopeDirection(val string: String, val vec: Vector2i) {
-        UP("U", Vector2i(0, 1)),
-        DOWN("D", Vector2i(0, -1)),
-        LEFT("L", Vector2i(-1, 0)),
-        RIGHT("R", Vector2i(1, 0));
-
-        companion object {
-            fun from(string: String) = entries.first { it.string == string }
-        }
-    }
+    private data class RopeAction(val direction: Direction, val distance: Int)
 }

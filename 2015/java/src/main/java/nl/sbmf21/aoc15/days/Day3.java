@@ -1,17 +1,21 @@
 package nl.sbmf21.aoc15.days;
 
 import nl.sbmf21.aoc.common.Day;
+import nl.sbmf21.aoc.common.util.Direction;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Objects;
+import java.util.*;
 import java.util.function.Consumer;
 
 public class Day3 extends Day {
 
-    private final ArrayList<Direction> directions = parseDirections();
+    private static final Map<Direction, Consumer<Santa>> moves = Map.of(
+        Direction.NORTH, Santa::moveUp,
+        Direction.SOUTH, Santa::moveDown,
+        Direction.EAST, Santa::moveRight,
+        Direction.WEST, Santa::moveLeft
+    );
+    private final List<Direction> directions = parseDirections();
 
     @Override
     public @NotNull Integer part1() {
@@ -59,43 +63,11 @@ public class Day3 extends Day {
 
         for (var line : getInput()) {
             for (char c : line.toCharArray()) {
-                directions.add(Direction.fromChar(c));
+                directions.add(Direction.Companion.invoke(c));
             }
         }
 
         return directions;
-    }
-
-    public enum Direction {
-
-        NORTH('^', Santa::moveUp),
-        SOUTH('v', Santa::moveDown),
-        EAST('>', Santa::moveRight),
-        WEST('<', Santa::moveLeft);
-
-        /**
-         * <code>values()</code> always calculates the values from an enum.
-         * Give the fact that enums are constant, this results in many calculations.
-         */
-        public static final Direction[] CACHE = Direction.values();
-        private final char key;
-        public final Consumer<Santa> move;
-
-        Direction(char key, Consumer<Santa> move) {
-            this.key = key;
-            this.move = move;
-        }
-
-        public static Direction fromChar(char c) {
-
-            for (Direction direction : CACHE) {
-                if (direction.key == c) {
-                    return direction;
-                }
-            }
-
-            throw new IllegalArgumentException(String.format("'%s' is not a valid %s", c, Direction.class.getName()));
-        }
     }
 
     public static class Santa {
@@ -120,7 +92,7 @@ public class Day3 extends Day {
 
         public void deliverPresent(Direction direction, HashMap<Point, Integer> presents) {
 
-            direction.move.accept(this);
+            moves.get(direction).accept(this);
             var point = getPoint();
 
             if (!presents.containsKey(point)) {

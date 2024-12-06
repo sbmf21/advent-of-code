@@ -1,11 +1,10 @@
 package je.bouk.aoc24.days
 
-import je.bouk.aoc24.days.Day6.Direction.entries
 import nl.sbmf21.aoc.common.Day
 import nl.sbmf21.aoc.common.TODO
 import nl.sbmf21.aoc.common.grid
-import nl.sbmf21.math.Vector2i
-import nl.sbmf21.math.by
+import nl.sbmf21.aoc.common.util.Direction
+import nl.sbmf21.aoc.common.util.Direction.Companion.plus
 
 class Day6 : Day() {
 
@@ -17,15 +16,15 @@ class Day6 : Day() {
         val pos = buildSet {
             add(start)
 
-            var d = Direction.UP
+            var d = Direction.straight()
             var pos = start
 
             do {
-                val next = pos + d.vec
+                val next = pos + d
                 val tile = grid[next] ?: break
 
                 if (tile.obstacle) {
-                    d = d.next()
+                    d.next()
                 } else {
                     add(next)
                     pos = next
@@ -110,16 +109,5 @@ class Day6 : Day() {
     class Tile(val char: Char) {
         val start get() = char == '^'
         val obstacle = char == '#'
-    }
-
-    enum class Direction(x: Int, y: Int) {
-        UP(0, -1),
-        RIGHT(1, 0),
-        DOWN(0, 1),
-        LEFT(-1, 0);
-
-        val vec = x by y
-
-        fun next() = entries[(ordinal + 1) % entries.size]
     }
 }

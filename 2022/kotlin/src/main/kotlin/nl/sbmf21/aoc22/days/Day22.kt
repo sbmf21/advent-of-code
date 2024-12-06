@@ -1,10 +1,12 @@
 package nl.sbmf21.aoc22.days
 
 import nl.sbmf21.aoc.common.Day
+import nl.sbmf21.aoc.common.util.Direction
+import nl.sbmf21.aoc.common.util.Direction.*
+import nl.sbmf21.aoc.common.util.Direction.Companion.noDiag
+import nl.sbmf21.aoc.common.util.Direction.Companion.plus
 import nl.sbmf21.aoc22.days.Day22.CubeEdge.*
 import nl.sbmf21.aoc22.days.Day22.CubeFace.*
-import nl.sbmf21.aoc22.days.Day22.Direction.*
-import nl.sbmf21.aoc22.days.Day22.Direction.Companion.plus
 import nl.sbmf21.aoc22.days.Day22.Rotation.*
 import nl.sbmf21.math.Vector2i
 import nl.sbmf21.math.by
@@ -77,6 +79,7 @@ class Day22 : Day() {
                             EAST -> filter { it.y == y }.minBy { it.x }
                             SOUTH -> filter { it.x == x }.minBy { it.y }
                             NORTH -> filter { it.x == x }.maxBy { it.y }
+                            else -> noDiag(direction)
                         }
                     }
                 }.let { if (tiles[it]!!) position = it }
@@ -97,7 +100,7 @@ class Day22 : Day() {
         private val edges = buildList {
             val connected = faces.associateWith { face ->
                 buildMap {
-                    Direction.entries.map { face.coord + it to it }.forEach { (coord, direction) ->
+                    directions.map { face.coord + it to it }.forEach { (coord, direction) ->
                         faces.firstOrNull { otherFace -> otherFace.coord == coord }?.let { this[direction] = it }
                     }
                 }
@@ -109,7 +112,7 @@ class Day22 : Day() {
 
             while (batch.isNotEmpty()) {
                 val (cubeFace, face, rotation) = batch.removeFirst()
-                Direction.entries.forEach { direction ->
+                directions.forEach { direction ->
                     val edge = cubeFace.edges[rotation.rotate(direction)]!!
                     val other = connected[face]!![direction]
                     if (other != null && other !in seen) {
@@ -145,7 +148,7 @@ class Day22 : Day() {
     }
 
     private data class Face(val coord: Vector2i, val size: Int, val tiles: Map<Vector2i, Boolean>) {
-        private val edges = Direction.entries.associateWith { this to it }
+        private val edges = directions.associateWith { this to it }
         val start = coord * size
         val end = start + size
 
@@ -159,16 +162,21 @@ class Day22 : Day() {
             val exit = when (direction) {
                 NORTH, SOUTH -> position.x
                 WEST, EAST -> position.y
+                else -> noDiag(direction)
             }
             val entry = max - exit + 1
 
+            val left = new.second
+            val right = previous.second
+
             // @formatter:off
-            return Triple(new.first, when (new.second) {
-                NORTH -> when (previous.second) { NORTH, EAST -> entry; SOUTH, WEST -> exit } by 1
-                SOUTH -> when (previous.second) { NORTH, EAST -> exit; SOUTH, WEST -> entry } by max
-                WEST -> 1 by when (previous.second) { NORTH, EAST -> exit; SOUTH, WEST -> entry }
-                EAST -> max by when (previous.second) { NORTH, EAST -> entry; SOUTH, WEST -> exit }
-            }, new.second.opposite)
+            return Triple(new.first, when (left) {
+                NORTH -> when (right) { NORTH, EAST -> entry; SOUTH, WEST -> exit; else -> noDiag(right) } by 1
+                SOUTH -> when (right) { NORTH, EAST -> exit; SOUTH, WEST -> entry; else -> noDiag(right) } by max
+                WEST -> 1 by when (right) { NORTH, EAST -> exit; SOUTH, WEST -> entry; else -> noDiag(right) }
+                EAST -> max by when (right) { NORTH, EAST -> entry; SOUTH, WEST -> exit; else -> noDiag(right) }
+                else -> noDiag(left)
+            }, left.opposite)
             // @formatter:on
         }
     }
@@ -215,10 +223,10 @@ class Day22 : Day() {
         MIRROR({ it + 2 }),
         NONE({ it });
 
-        fun rotate(direction: Direction) = Direction(rotate(direction.ordinal))
+        fun rotate(direction: Direction) = directions(rotate(direction.ordinal))
 
         companion object {
-            operator fun invoke(from: Direction, to: Direction) = Direction(from.ordinal - to.ordinal).rotation
+            operator fun invoke(from: Direction, to: Direction) = directions(from.ordinal - to.ordinal).rotation
 
             operator fun invoke(from: Char) = when (from) {
                 'L' -> COUNTER_CLOCKWISE
@@ -228,18 +236,16 @@ class Day22 : Day() {
         }
     }
 
-    private enum class Direction(private val vector: Vector2i, opposite: () -> Direction, rotation: () -> Rotation) {
-        EAST(1 by 0, { WEST }, { NONE }),
-        SOUTH(0 by 1, { NORTH }, { CLOCKWISE }),
-        WEST(-1 by 0, { EAST }, { MIRROR }),
-        NORTH(0 by -1, { SOUTH }, { COUNTER_CLOCKWISE });
+    private companion object {
+        val directions = Direction.straight()
 
-        val opposite by lazy(opposite)
-        val rotation by lazy(rotation)
-
-        companion object {
-            operator fun invoke(index: Int) = entries[index.mod(entries.size)]
-            operator fun Vector2i.plus(direction: Direction) = plus(direction.vector)
-        }
+        val Direction.rotation: Rotation
+            get() = when (this) {
+                EAST -> NONE
+                SOUTH -> CLOCKWISE
+                WEST -> MIRROR
+                NORTH -> COUNTER_CLOCKWISE
+                else -> noDiag(this)
+            }
     }
 }

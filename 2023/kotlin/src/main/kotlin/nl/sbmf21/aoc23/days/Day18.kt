@@ -1,6 +1,7 @@
 package nl.sbmf21.aoc23.days
 
 import nl.sbmf21.aoc.common.Day
+import nl.sbmf21.aoc.common.util.Direction
 import nl.sbmf21.math.Vector2l
 import nl.sbmf21.math.by
 
@@ -23,7 +24,7 @@ class Day18 : Day() {
     }.run { sumOf(Line::surface) / 2 + 1 }
 
     private data class Instruction(val direction: Direction, val length: Long, private val hex: String) {
-        fun real() = Instruction(Direction(hex.substring(6, 7).toInt(16)), hex.substring(1, 6).toLong(16), hex)
+        fun real() = Instruction(directions.invoke(hex.substring(6, 7).toInt(16)), hex.substring(1, 6).toLong(16), hex)
     }
 
     private class Line(direction: Direction, start: Vector2l, length: Long) {
@@ -31,17 +32,7 @@ class Day18 : Day() {
         val surface: Long = start.x * end.y - start.y * end.x + length
     }
 
-    private enum class Direction(val vec: Vector2l) {
-        RIGHT(1L by 0L),
-        DOWN(0L by 1L),
-        LEFT(-1L by 0L),
-        UP(0L by -1L);
-
-        operator fun times(other: Long) = vec * other
-
-        companion object {
-            operator fun invoke(char: Char) = entries.first { it.name[0] == char }
-            operator fun invoke(ordinal: Int) = entries[ordinal.mod(entries.size)]
-        }
+    private companion object {
+        val directions = Direction.straight()
     }
 }

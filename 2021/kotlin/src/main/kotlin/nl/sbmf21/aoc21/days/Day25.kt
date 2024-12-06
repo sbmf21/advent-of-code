@@ -1,8 +1,10 @@
 package nl.sbmf21.aoc21.days
 
 import nl.sbmf21.aoc.common.FinalDay
-import nl.sbmf21.aoc21.days.Day25.Direction.EAST
-import nl.sbmf21.aoc21.days.Day25.Direction.SOUTH
+import nl.sbmf21.aoc.common.util.Direction
+import nl.sbmf21.aoc.common.util.Direction.Companion.noDir
+import nl.sbmf21.aoc.common.util.Direction.EAST
+import nl.sbmf21.aoc.common.util.Direction.SOUTH
 import nl.sbmf21.math.Vector2i
 
 class Day25 : FinalDay() {
@@ -44,8 +46,6 @@ class Day25 : FinalDay() {
             Pair(this, this != map)
         }
 
-    private enum class Direction { EAST, SOUTH }
-
     private data class Cucumber(val direction: Direction, val pos: Vector2i) {
         fun next(map: List<List<Cucumber?>>) = when (direction) {
             EAST -> {
@@ -57,6 +57,8 @@ class Day25 : FinalDay() {
                 val cy = if (pos.y + 1 in map.indices) pos.y + 1 else 0
                 if (map[cy][pos.x] == null) Cucumber(direction, Vector2i(pos.x, cy)) else null
             }
+
+            else -> noDir(direction)
         }
     }
 }

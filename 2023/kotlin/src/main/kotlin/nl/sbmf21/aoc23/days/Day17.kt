@@ -1,7 +1,8 @@
 package nl.sbmf21.aoc23.days
 
 import nl.sbmf21.aoc.common.Day
-import nl.sbmf21.aoc23.days.Day17.Direction.Companion.plus
+import nl.sbmf21.aoc.common.util.Direction
+import nl.sbmf21.aoc.common.util.Direction.Companion.plus
 import nl.sbmf21.math.Vector2i
 import nl.sbmf21.math.by
 import java.util.*
@@ -56,30 +57,17 @@ class Day17 : Day() {
             val heatLoss = heatLoss + "${input[position]}".toInt()
 
             if (straights + 1 >= minStraight) {
-                this += State(position, direction.dec(), 0, heatLoss)
-                this += State(position, direction.inc(), 0, heatLoss)
+                this += State(position, directions.previous(direction), 0, heatLoss)
+                this += State(position, directions.next(direction), 0, heatLoss)
             }
 
             this += State(position, direction, straights.inc(), heatLoss)
         }
     }
 
-    private enum class Direction(private val vector: Vector2i) {
-        RIGHT(1 by 0),
-        DOWN(0 by 1),
-        LEFT(-1 by 0),
-        UP(0 by -1);
-
-        operator fun inc() = at(ordinal + 1)
-        operator fun dec() = at(ordinal - 1)
-
-        companion object {
-            operator fun Vector2i.plus(direction: Direction) = plus(direction.vector)
-            private fun at(index: Int) = entries[index.mod(entries.size)]
-        }
-    }
-
     private companion object {
+        val directions = Direction.straight()
+
         operator fun List<String>.contains(vector: Vector2i) =
             vector.y in indices && vector.x in this[vector.y].indices
 

@@ -1,6 +1,12 @@
 package nl.sbmf21.aoc23.days
 
 import nl.sbmf21.aoc.common.Day
+import nl.sbmf21.aoc.common.util.Direction
+import nl.sbmf21.aoc.common.util.Direction.Companion.noDiag
+import nl.sbmf21.aoc.common.util.Direction.EAST
+import nl.sbmf21.aoc.common.util.Direction.NORTH
+import nl.sbmf21.aoc.common.util.Direction.SOUTH
+import nl.sbmf21.aoc.common.util.Direction.WEST
 import nl.sbmf21.math.Vector2i
 import nl.sbmf21.math.by
 
@@ -50,7 +56,7 @@ class Day14 : Day() {
         while (true) {
             if (rocks.keys in seen) break
             seen[rocks.keys] = end++
-            rocks = Direction.entries.fold(rocks, ::move)
+            rocks = Direction.of(NORTH, WEST, SOUTH, EAST).fold(rocks, ::move)
         }
 
         val start = seen[rocks.keys]!!
@@ -70,7 +76,7 @@ class Day14 : Day() {
         putAll(dish.filterValues { !it })
         dish.filterValues { it }.forEach { (check, _) ->
             when (direction) {
-                Direction.NORTH -> {
+                NORTH -> {
                     var newY = (filterKeys { it.x == check.x && it.y < check.y }
                         .maxOfOrNull { (it, _) -> it.y } ?: -1) + 1
 
@@ -80,7 +86,7 @@ class Day14 : Day() {
                     this[check.x by newY] = true
                 }
 
-                Direction.WEST -> {
+                WEST -> {
                     var newX = (filterKeys { it.y == check.y && it.x < check.x }
                         .maxOfOrNull { (it, _) -> it.x } ?: -1) + 1
 
@@ -90,7 +96,7 @@ class Day14 : Day() {
                     this[newX by check.y] = true
                 }
 
-                Direction.SOUTH -> {
+                SOUTH -> {
                     var newY = (filterKeys { it.x == check.x && it.y >= check.y }
                         .minOfOrNull { (it, _) -> it.y } ?: height) - 1
 
@@ -100,7 +106,7 @@ class Day14 : Day() {
                     this[check.x by newY] = true
                 }
 
-                Direction.EAST -> {
+                EAST -> {
                     var newX = (filterKeys { it.y == check.y && it.x >= check.x }
                         .minOfOrNull { (it, _) -> it.x } ?: width) - 1
 
@@ -109,16 +115,9 @@ class Day14 : Day() {
 
                     this[newX by check.y] = true
                 }
+
+                else -> noDiag(direction)
             }
         }
-    }
-
-    private enum class Direction {
-        NORTH,
-        WEST,
-        SOUTH,
-        EAST;
-
-        operator fun inc() = entries[(ordinal + 1) % entries.size]
     }
 }

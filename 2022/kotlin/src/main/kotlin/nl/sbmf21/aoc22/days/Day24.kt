@@ -1,18 +1,24 @@
 package nl.sbmf21.aoc22.days
 
 import nl.sbmf21.aoc.common.Day
-import nl.sbmf21.aoc22.days.Day24.Direction.Companion.plus
+import nl.sbmf21.aoc.common.util.Direction
+import nl.sbmf21.aoc.common.util.Direction.Companion.plus
 import nl.sbmf21.math.Vector2i
-import nl.sbmf21.math.by
 
 class Day24 : Day() {
 
-    companion object {
-        private const val GROUND = '.'
+    private companion object {
+        const val GROUND = '.'
+
+        val directions = Direction.straight()
+
+        fun blizzard(day: Day24, x: Int, y: Int, char: Char): Blizzard? = directions
+            .firstOrNull { char in it.keys }
+            ?.run { day.Blizzard(Vector2i(x, y), this) }
     }
 
     private val initial = Valley(input.flatMapIndexed { y, row ->
-        row.mapIndexedNotNull { x, char -> Direction(this, x, y, char) }
+        row.mapIndexedNotNull { x, char -> blizzard(this, x, y, char) }
     })
     private val start = Vector2i(input[0].indexOf(GROUND), 0)
     private val end = Vector2i(input.last().indexOf(GROUND), input.lastIndex)
@@ -39,7 +45,7 @@ class Day24 : Day() {
             steps = buildSet {
                 steps.forEach { current ->
                     if (valley.canMove(current) || current == start) add(current)
-                    Direction.entries.map { current + it }
+                    directions.map { current + it }
                         .onEach { if (it == end) return valley }
                         .filter(valley::canMove)
                         .also(::addAll)
@@ -70,21 +76,6 @@ class Day24 : Day() {
                 },
                 direction,
             )
-        }
-    }
-
-    private enum class Direction(val char: Char, val force: Vector2i) {
-        UP('^', 0 by -1),
-        DOWN('v', 0 by 1),
-        LEFT('<', -1 by 0),
-        RIGHT('>', 1 by 0);
-
-        companion object {
-            operator fun invoke(day: Day24, x: Int, y: Int, char: Char) = entries
-                .firstOrNull { it.char == char }
-                ?.run { day.Blizzard(Vector2i(x, y), this) }
-
-            operator fun Vector2i.plus(direction: Direction) = this + direction.force
         }
     }
 }
