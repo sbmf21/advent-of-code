@@ -20,7 +20,7 @@ function check_arguments {
   errors=0
   yearRegex='^(20(1[5-9]|[2-9][0-9]))|(2[1-9][0-9]{2})$'
   dayRegex='^((2[0-5])|(1[0-9])|([1-9]))$'
-  languages=("kotlin" "java")
+  languages=("kotlin" "java" "lua")
 
   export year=$1
   export language=$2
@@ -155,7 +155,7 @@ function get_input {
 }
 
 function gradle_create_ci {
-  if create_file "$1/.gitlab-ci.yml" ".gitlab-ci.gradle.yml"; then
+  if create_file "$1/.gitlab-ci.yml" "gradle/.gitlab-ci.yml"; then
     echo "Adding to main CI file"
     add_to_list "  - local: /$year/$language/.gitlab-ci.yml" ".gitlab-ci.yml"
   fi
@@ -188,6 +188,25 @@ function gradle_run_single {
   fi
 
   java -jar "$year/$language/build/libs/aoc$year-shaded.jar" --day="$day"
+}
+
+function lua_run_year {
+  current=$(pwd)
+  cd "$(base_folder)/$year/lua/src" || exit $?
+
+  lua test.lua
+  code=$?; if [ $code -ne 0 ]; then exit $code; fi
+
+  lua main.lua
+  code=$?; if [ $code -ne 0 ]; then exit $code; fi
+
+  cd "$current" || exit $?
+}
+
+function lua_run_single {
+  get_input "$inputFile"
+  echo -e "${F_RED}Cannot run a single day yet, running whole year.$F_RESET"
+  lua_run_year
 }
 
 check_arguments "$@"
@@ -232,6 +251,28 @@ case $language in
       gradle_run_single
     else
       gradle_run_year
+    fi
+    ;;
+
+
+  "lua")
+    folder=$(init_folder)
+
+    echo -e "$F_RED *$F_BLUE LUA support is only partial. Project configuration and creation is not included.$F_RESET"
+
+    if [ -n "$day" ]; then
+      create_file "$folder/src/day$day/part1.lua" "lua/part1.lua"
+      create_file "$folder/src/day$day/part2.lua" "lua/part2.lua"
+
+      if create_file "$folder/src/day$day/functions.lua" "lua/functions.lua"; then
+        add_to_list "    { nr = $day, part1 = -1, part2 = -1 }," "$year/lua/src/data.lua"
+        create_file "$inputFile"
+        create_file "$exampleFile"
+      fi
+
+      lua_run_single
+    else
+      lua_run_year
     fi
     ;;
 
